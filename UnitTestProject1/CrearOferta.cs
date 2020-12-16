@@ -81,7 +81,7 @@ namespace CrearOfertaLyntia {
         {
             // Click en "+"
             driver.FindElement(By.XPath("//button[contains(@data-id, 'quickCreateLauncher')]")).Click();
-            Thread.Sleep(6000);
+            Thread.Sleep(4000);
             // Click en Cliente
             driver.FindElements(By.XPath("//div[contains(@data-id, '__flyoutRootNode')]//button"))[1].Click();
             Thread.Sleep(6000);
