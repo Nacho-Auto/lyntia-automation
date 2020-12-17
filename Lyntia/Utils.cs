@@ -7,7 +7,6 @@ namespace Lyntia
 
     public class Utils
     {
-
         public IWebDriver Instanciador()
         {
             IWebDriver driver = new ChromeDriver(@"C:\chromedriver");
@@ -17,11 +16,23 @@ namespace Lyntia
             return driver;
         }
 
+        public bool EncontrarElemento(By by, out IWebElement element, IWebDriver driver)
+        {
+            try
+            {
+                element = driver.FindElement(by);
+            }
+            catch (NoSuchElementException)
+            {
+                element = null;
+                return false;
+            }
+            return true;
+        }
     }
 
     public class Navegacion
     {
-
         public void Login(IWebDriver driver)
         {
             // Login (acceso a PRE lyntia) 365 dinamic
@@ -37,4 +48,11 @@ namespace Lyntia
 
     }
 
+    public class GridUtils
+    {
+        public int NumeroRegistrosEnGrid(By by, IWebDriver driver)
+        {       
+            return Int16.Parse(driver.FindElement(by).GetAttribute("data-row-count"));
+        }
+    }
 }

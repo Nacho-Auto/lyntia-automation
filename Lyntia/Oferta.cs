@@ -1,12 +1,14 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using System;
 using System.Threading;
 
 namespace Lyntia
 {
 
     [TestClass]
-    public class Oferta {
+    public class Oferta 
+    {
 
         IWebDriver driver;
 
@@ -15,6 +17,7 @@ namespace Lyntia
         ProductoAction productoActions = new ProductoAction();
         Utils utils = new Utils();
         Navegacion navegacion = new Navegacion();
+        GridUtils grid = new GridUtils();
 
         [TestInitialize]
         public void Instanciador()
@@ -26,7 +29,8 @@ namespace Lyntia
         }
 
         [TestCleanup]
-        public void Cierre() {
+        public void Cierre() 
+        {
             driver.Quit();
         }
 
@@ -43,13 +47,41 @@ namespace Lyntia
 
         }
 
+        //CRM-COF0002
         [TestMethod]
-        public void CreandoOferta()
+        public void CRM_COF0002_consultaOferta()
         {
-            // Paso 1
+            // Login y Acceso a Gestión de Cliente
             actions.AccesoGestionCliente(driver);
             condition.AccedeGestionCliente(driver);
-            // Paso 2
+
+            // Paso 1 - Hacer click en Ofertas
+            actions.AccesoOfertasLyntia(driver);
+
+            // Paso 2A - Comprobar si hay alguna Oferta para abrir
+            IWebElement element = null;
+            if(utils.EncontrarElemento(By.XPath("//div[@title='No hay datos disponibles.']"), out element, driver))
+            {
+                // Crear Oferta Nueva
+                actions.CrearOferta(driver);
+            }
+            else
+            {
+                // Abrir Oferta existente 
+                //div[@data-id='cell-1-4']
+                actions.abrirOferta(grid, driver);
+            }
+ 
+        }
+
+        //[TestMethod]
+        public void CreandoOferta()
+        {
+            // Login y Acceso a Gestión de Cliente
+            actions.AccesoGestionCliente(driver);
+            condition.AccedeGestionCliente(driver);
+
+            // TODO: Cambiar el estilo de creación de oferta
             actions.CrearOferta(driver);
             condition.CreaOferta(driver);
            
@@ -102,13 +134,28 @@ namespace Lyntia
 
         }
 
+        public void AccesoNuevaOferta(IWebDriver driver)
+        {
+            // Click en "+ Nuevo", barra de herramientas
+            driver.FindElement(By.XPath("//button[@aria-label='Nuevo']")).Click();
+            Thread.Sleep(10000);
+        }
+
+        internal void abrirOferta(GridUtils grid, IWebDriver driver)
+        {
+            // Titulo por defecto de la Oferta
+            int numeroOfertas = grid.NumeroRegistrosEnGrid(By.XPath("//div[@wj-part='cells']"), driver);
+
+            // Método para clickar en celda de grid  
+            Thread.Sleep(6000);
+        }
     }
 
         // Para continuar trabajando
         public class OfertaConditions
         {
 
-            public void AccedeGestionCliente(IWebDriver driver)
+        public void AccedeGestionCliente(IWebDriver driver)
             {
 
             }
