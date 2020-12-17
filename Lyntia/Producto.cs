@@ -6,14 +6,15 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace UnitTestProject1
+namespace Lyntia
 {
-    class Cliente
+    [TestClass]
+    class Producto
     {
 
     }
 
-    public class ClienteActions
+    public class ProductoAction
     {
         public void creacionRapidaCliente(IWebDriver driver)
         {

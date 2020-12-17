@@ -5,7 +5,9 @@ using System;
 using System.Threading;
 using UnitTestProject1;
 
-namespace CrearOfertaLyntia {
+namespace Lyntia
+{
+
     [TestClass]
     public class Ofertas {
 
