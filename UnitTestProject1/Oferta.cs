@@ -7,7 +7,7 @@ using UnitTestProject1;
 
 namespace CrearOfertaLyntia {
     [TestClass]
-    public class Ofertas {
+    public class Oferta {
 
         IWebDriver driver;
 
