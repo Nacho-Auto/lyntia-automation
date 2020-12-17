@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using System;
 using System.Threading;
 
@@ -18,12 +19,20 @@ namespace Lyntia
         Utils utils = new Utils();
         Navegacion navegacion = new Navegacion();
         GridUtils grid = new GridUtils();
+        Actions seleniumActions;        
 
         [TestInitialize]
         public void Instanciador()
         {
             // Instanciador del driver
             driver = utils.Instanciador();
+
+            // Interacciones básicas de Selenium
+            seleniumActions = new Actions(driver);
+
+            // JavaScriptExecutor, usado por ejemplo para hacer scrolling a los elementos
+            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+
             // Realizar login
             navegacion.Login(driver);
         }
@@ -63,7 +72,7 @@ namespace Lyntia
             if(utils.EncontrarElemento(By.XPath("//div[@title='No hay datos disponibles.']"), out element, driver))
             {
                 // Crear Oferta Nueva
-                actions.CrearOferta(driver);
+                actions.AccesoNuevaOferta(driver);
             }
             else
             {
@@ -72,6 +81,23 @@ namespace Lyntia
                 actions.abrirOferta(grid, driver);
             }
  
+        }
+
+        //CRM-COF0003
+        [TestMethod]
+        public void CRM_COF0003_creacionOferta()
+        {
+            // Login y Acceso a Gestión de Cliente
+            actions.AccesoGestionCliente(driver);
+            condition.AccedeGestionCliente(driver);
+
+            // Paso 1 - Hacer click en Ofertas
+            actions.AccesoOfertasLyntia(driver);
+
+            // Paso 2A - Comprobar si hay alguna Oferta para abrir
+            actions.AccesoNuevaOferta(driver);
+            condition.CreaOferta(driver, navegacion);
+
         }
 
         //[TestMethod]
@@ -83,7 +109,7 @@ namespace Lyntia
 
             // TODO: Cambiar el estilo de creación de oferta
             actions.CrearOferta(driver);
-            condition.CreaOferta(driver);
+            condition.CreaOferta(driver, navegacion);
            
         }
 
@@ -138,7 +164,7 @@ namespace Lyntia
         {
             // Click en "+ Nuevo", barra de herramientas
             driver.FindElement(By.XPath("//button[@aria-label='Nuevo']")).Click();
-            Thread.Sleep(10000);
+            Thread.Sleep(2000);
         }
 
         internal void abrirOferta(GridUtils grid, IWebDriver driver)
@@ -152,18 +178,30 @@ namespace Lyntia
     }
 
         // Para continuar trabajando
-        public class OfertaConditions
-        {
+    public class OfertaConditions{
 
         public void AccedeGestionCliente(IWebDriver driver)
-            {
-
-            }
-
-            public void CreaOferta(IWebDriver driver)
-            {
-
-            }
+        {
 
         }
+
+        public void CreaOferta(IWebDriver driver, Navegacion navegacion)
+        {
+            // Assert de título "Nuevo Oferta" del formulario
+            Assert.AreEqual(driver.FindElement(By.XPath("//h1[@data-id='header_title']")).Text, "Nuevo Oferta");
+
+            // Assert de tab por defecto "General"
+            Assert.IsTrue(driver.FindElement(By.XPath("//li[@aria-label='General']")).GetAttribute("aria-selected").Equals("true"));
+
+            // Assert de Razón para el estado de la Oferta "En elaboración" 
+            Assert.AreEqual(driver.FindElement(By.XPath("//section[@id='quote information']//span[@aria-label='Razón para el estado']//span")).Text, "En elaboración");
+
+            // Assert de Tipo de Oferta por defecto "Nuevo Servicio"
+            navegacion.ScrollHaciaElemento(driver.FindElement(By.XPath("//select[@aria-label='Tipo de oferta']")), driver);
+            Assert.AreEqual(driver.FindElement(By.XPath("//select[@aria-label='Tipo de oferta']")).GetAttribute("title"), "Nuevo servicio");
+
+            // Assert de Divisa  
+            Assert.AreEqual(driver.FindElement(By.XPath("//div[contains(@data-id,'transactioncurrencyid_selected_tag_text')]")).Text, "Euro");
+        }
+    }
 }
