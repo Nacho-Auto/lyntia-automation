@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace Lyntia
 
     public class ProductoAction
     {
-        public void creacionRapidaCliente(IWebDriver driver)
+        public void CreacionRapidaCliente(IWebDriver driver)
         {
             // Click en "+"
             driver.FindElement(By.XPath("//button[contains(@data-id, 'quickCreateLauncher')]")).Click();
@@ -53,7 +54,7 @@ namespace Lyntia
             // 35127689L
         }
 
-        public void borradoCliente(IWebDriver driver)
+        public void CorradoCliente(IWebDriver driver)
         {
 
         }

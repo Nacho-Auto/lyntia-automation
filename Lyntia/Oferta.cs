@@ -15,75 +15,54 @@ namespace Lyntia
 
         OfertaActions actions = new OfertaActions();
         OfertaConditions condition = new OfertaConditions();
-        ClienteActions clientActions = new ClienteActions();
-        Utilidades utils = new Utilidades();
+        ProductoAction productoActions = new ProductoAction();
+        Utils utils = new Utils();
+        Navegacion navegacion = new Navegacion();
 
         [TestInitialize]
-        public void instanciador() {
-
-            driver = new ChromeDriver("C:\\chromedriver");
-            driver.Navigate().GoToUrl("https://ufinetprep2.crm4.dynamics.com/");
-            driver.Manage().Window.Maximize();
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
-
+        public void Instanciador()
+        {
+            driver = utils.Instanciador();
             // Realizar login
-            utils.login(driver);
+            navegacion.Login(driver);
         }
 
         [TestCleanup]
-        public void cierre() {
+        public void Cierre() {
             driver.Quit();
         }
 
         //CRM-COF0001
         [TestMethod]
-        public void accesoOfertas()
+        public void CRM_COF0001_accesoOfertas()
         {
             // Paso 1
-            actions.accesoGestionCliente(driver);
-            condition.accedeGestionCliente(driver);
+            actions.AccesoGestionCliente(driver);
+            condition.AccedeGestionCliente(driver);
 
             // Comprobar si existe cliente o crear
-            clientActions.creacionRapidaCliente(driver);
+            productoActions.CreacionRapidaCliente(driver);
 
         }
 
         [TestMethod]
-        public void creandoOferta()
+        public void CreandoOferta()
         {
             // Paso 1
-            actions.accesoGestionCliente(driver);
-            condition.accedeGestionCliente(driver);
+            actions.AccesoGestionCliente(driver);
+            condition.AccedeGestionCliente(driver);
             // Paso 2
-            actions.crearOferta(driver);
-            condition.creaOferta(driver);
+            actions.CrearOferta(driver);
+            condition.CreaOferta(driver);
            
         }
+
     }
-
-    public class Navegacion
-    {
-        public void login(IWebDriver driver)
-        {
-
-            // Login (acceso a PRE lyntia) 365 dinamic
-            driver.FindElement(By.Id("i0116")).SendKeys("rgomezs.ext@lyntia.com"); //usuario de lyntia
-            driver.FindElement(By.Id("idSIButton9")).Click();
-            driver.FindElement(By.Id("userNameInput")).Clear();
-            driver.FindElement(By.Id("userNameInput")).SendKeys("rgomezs@lyntia.com"); //usuario de entorno lyntia
-            driver.FindElement(By.Id("passwordInput")).SendKeys("W1nter20$"); //pass de entorno lyntia
-            driver.FindElement(By.Id("submitButton")).Click();
-            driver.FindElement(By.Id("idBtn_Back")).Click(); //Desea mantener la sesion iniciada NO
-
-        }
-    }
-
-    
 
     public class OfertaActions
     {
        
-        public void accesoGestionCliente(IWebDriver driver)
+        public void AccesoGestionCliente(IWebDriver driver)
         {
             // Acceso al modulo Gestion del cliente
             Thread.Sleep(10000);
@@ -93,7 +72,7 @@ namespace Lyntia
 
         }
 
-        public void accesoOfertasLyntia(IWebDriver driver)
+        public void AccesoOfertasLyntia(IWebDriver driver)
         {
 
             driver.FindElement(By.Id("sitemap-entity-oferta")).Click();
@@ -106,7 +85,7 @@ namespace Lyntia
             driver.FindElement(By.XPath("//*[contains(@title, 'Ofertas lyntia')")).Click();//Opción escalable
         }
 
-        public void crearOferta(IWebDriver driver)
+        public void CrearOferta(IWebDriver driver)
         {
 
             driver.FindElement(By.XPath("//button[contains(@data-id, 'quickCreateLauncher')]")).Click();
@@ -117,25 +96,26 @@ namespace Lyntia
 
         }
 
-        public void accesoOferta(IWebDriver driver)
+        public void AccesoOferta(IWebDriver driver)
         {
             // Click en Ofertas, barra izquierda del CRM
             driver.FindElement(By.XPath("//li[@title='Ofertas']")).Click();
             Thread.Sleep(10000);
 
         }
+
     }
 
         // Para continuar trabajando
         public class OfertaConditions
         {
 
-            public void accedeGestionCliente(IWebDriver driver)
+            public void AccedeGestionCliente(IWebDriver driver)
             {
 
             }
 
-            public void creaOferta(IWebDriver driver)
+            public void CreaOferta(IWebDriver driver)
             {
 
             }
