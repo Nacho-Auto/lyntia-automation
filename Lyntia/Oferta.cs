@@ -1,9 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using System;
 using System.Threading;
-using Lyntia;
 
 namespace Lyntia
 {
@@ -22,6 +19,7 @@ namespace Lyntia
         [TestInitialize]
         public void Instanciador()
         {
+            // Instanciador del driver
             driver = utils.Instanciador();
             // Realizar login
             navegacion.Login(driver);
@@ -36,12 +34,12 @@ namespace Lyntia
         [TestMethod]
         public void CRM_COF0001_accesoOfertas()
         {
-            // Paso 1
+            // Login y Acceso a Gestión de Cliente
             actions.AccesoGestionCliente(driver);
             condition.AccedeGestionCliente(driver);
 
-            // Comprobar si existe cliente o crear
-            productoActions.CreacionRapidaCliente(driver);
+            // Paso 1 - Hacer click en Ofertas
+            actions.AccesoOfertasLyntia(driver);
 
         }
 
@@ -82,7 +80,7 @@ namespace Lyntia
             //new Actions(driver).SendKeys(OpenQA.Selenium.Keys.Enter).Perform();
 
             //driver.FindElements(By.XPath("//*[starts-with(@id, 'ViewSelector') and contains(@id, 'list')]"))[3].Click();//Opción escalable
-            driver.FindElement(By.XPath("//*[contains(@title, 'Ofertas lyntia')")).Click();//Opción escalable
+            driver.FindElement(By.XPath("//span[contains(text(), 'Ofertas lyntia')]")).Click();//Opción escalable
         }
 
         public void CrearOferta(IWebDriver driver)

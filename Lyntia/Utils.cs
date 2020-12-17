@@ -1,22 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
 namespace Lyntia
 {
 
-    class Utils
+    public class Utils
     {
-
-        IWebDriver driver;
 
         public IWebDriver Instanciador()
         {
-            driver = new ChromeDriver("C:\\chromedriver");
+            IWebDriver driver = new ChromeDriver(@"C:\chromedriver");
             driver.Navigate().GoToUrl("https://ufinetprep2.crm4.dynamics.com/");
             driver.Manage().Window.Maximize();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
