@@ -19,7 +19,7 @@ namespace Lyntia
         Utils utils = new Utils();
         Navegacion navegacion = new Navegacion();
         GridUtils grid = new GridUtils();
-        Actions seleniumActions;        
+        IJavaScriptExecutor js;
 
         [TestInitialize]
         public void Instanciador()
@@ -27,11 +27,8 @@ namespace Lyntia
             // Instanciador del driver
             driver = utils.Instanciador();
 
-            // Interacciones básicas de Selenium
-            seleniumActions = new Actions(driver);
-
             // JavaScriptExecutor, usado por ejemplo para hacer scrolling a los elementos
-            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+            js = (IJavaScriptExecutor)driver;
 
             // Realizar login
             navegacion.Login(driver);
@@ -124,8 +121,6 @@ namespace Lyntia
             Thread.Sleep(10000);
             driver.SwitchTo().Frame(driver.FindElement(By.Id("AppLandingPage"))); // Cambiar al frame de Apps
             driver.FindElement(By.XPath("//a[contains(@aria-label, 'Cliente')]")).Click(); //modulo gestion de clientes
-            Assert.AreEqual(driver.FindElement(By.XPath("/html/body/div[2]/div/div[1]/div/div[1]/a/span")).Text, "Gestión del Cliente");
-
         }
 
         public void AccesoOfertasLyntia(IWebDriver driver)
@@ -164,7 +159,7 @@ namespace Lyntia
         {
             // Click en "+ Nuevo", barra de herramientas
             driver.FindElement(By.XPath("//button[@aria-label='Nuevo']")).Click();
-            Thread.Sleep(2000);
+            Thread.Sleep(3000);
         }
 
         internal void abrirOferta(GridUtils grid, IWebDriver driver)
@@ -182,7 +177,8 @@ namespace Lyntia
 
         public void AccedeGestionCliente(IWebDriver driver)
         {
-
+            // TODO: Asserts de Acceso 
+            Assert.AreEqual(driver.FindElement(By.XPath("/html/body/div[2]/div/div[1]/div/div[1]/a/span")).Text, "Gestión del Cliente");
         }
 
         public void CreaOferta(IWebDriver driver, Navegacion navegacion)
@@ -196,11 +192,18 @@ namespace Lyntia
             // Assert de Razón para el estado de la Oferta "En elaboración" 
             Assert.AreEqual(driver.FindElement(By.XPath("//section[@id='quote information']//span[@aria-label='Razón para el estado']//span")).Text, "En elaboración");
 
+            // TODO : SCROLL A ELEMENTOS NO VISIBLES INICIALMENTE (posiblemente scroll periodico)
             // Assert de Tipo de Oferta por defecto "Nuevo Servicio"
-            navegacion.ScrollHaciaElemento(driver.FindElement(By.XPath("//select[@aria-label='Tipo de oferta']")), driver);
-            Assert.AreEqual(driver.FindElement(By.XPath("//select[@aria-label='Tipo de oferta']")).GetAttribute("title"), "Nuevo servicio");
+            //Actions actions = new Actions(driver);
+            //actions.MoveToElement(driver.FindElement(By.XPath("//select[contains(@aria-label,'Tipo de oferta')]")));
+            //actions.Perform();
+            navegacion.ScrollHaciaElemento(driver.FindElement(By.XPath("//select[contains(@aria-label,'Tipo de oferta')]")), driver);
+            Assert.AreEqual(driver.FindElement(By.XPath("//select[contains(@aria-label,'Tipo de oferta')]")).GetAttribute("title"), "Nuevo servicio");
 
-            // Assert de Divisa  
+            // Assert de Divisa
+            //actions.MoveToElement(driver.FindElement(By.XPath("//div[contains(@data-id,'transactioncurrencyid_selected_tag_text')]")));
+            //actions.Perform();
+            navegacion.ScrollHaciaElemento(driver.FindElement(By.XPath("//label[contains(@id,'transactioncurrencyid-field-label')]")), driver);
             Assert.AreEqual(driver.FindElement(By.XPath("//div[contains(@data-id,'transactioncurrencyid_selected_tag_text')]")).Text, "Euro");
         }
     }
