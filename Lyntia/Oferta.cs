@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using System;
 using System.Threading;
 
 namespace Lyntia
@@ -99,6 +100,33 @@ namespace Lyntia
 
         }
 
+        //CRM-COF0004
+        [TestMethod]
+        public void CRM_COF0004_creacionOfertaSinCamposObligatorios()
+        {
+            // Login y Acceso a Gestión de Cliente
+            actions.AccesoGestionCliente(driver);
+            condition.AccedeGestionCliente(driver);
+
+            // Paso 1 - Hacer click en Ofertas
+            actions.AccesoOfertasLyntia(driver);
+
+            // Paso 2 - Crear Nueva Oferta
+            actions.AccesoNuevaOferta(driver);
+
+            // Paso 3 - Guardar sin campos obligatorios
+            //input[@aria-label='Nombre oferta']  -> Nombre de la Oferta 
+            //input[@aria-label='Cliente, Búsqueda'] -> Cliente
+            actions.GuardarOferta(driver);
+            condition.ofertaNoCreada(driver);
+
+            // paso 4 - Repetir el paso anterior pero pulsando Guardar y Cerrar
+            actions.GuardarYCerrarOferta(driver);
+            condition.ofertaNoCreada(driver);
+
+
+        }
+
         //[TestMethod]
         public void CreandoOferta()
         {
@@ -179,6 +207,18 @@ namespace Lyntia
             Thread.Sleep(6000);
 
         }
+
+        public void GuardarOferta(IWebDriver driver)
+        {
+            // Click en Guardar en la barra de herramientas         
+            driver.FindElement(By.XPath("//button[@aria-label='Guardar']")).Click();
+        }
+
+        public void GuardarYCerrarOferta(IWebDriver driver)
+        {
+            // Click en Guardar y cerrar en la barra de herramientas
+            driver.FindElement(By.XPath("//button[@aria-label='Guardar y cerrar']")).Click();
+        }
     }
 
     public class OfertaConditions{
@@ -222,6 +262,13 @@ namespace Lyntia
             // Assert de Hora de modificación vacía
             Assert.IsTrue(driver.FindElement(By.XPath("//input[contains(@aria-label,'Time of Fecha de modificación')]")).Text.Equals(""));
 
+        }
+
+        public void ofertaNoCreada(IWebDriver driver)
+        {
+            // Assert de alerta con los campos obligatorios sin informar
+            //div[@data-id="notificationWrapper"]
+            Assert.IsTrue
         }
     }
 }
