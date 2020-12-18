@@ -46,11 +46,9 @@ namespace Lyntia
 
         }
 
-        public void ScrollHaciaElemento(IWebElement element, IWebDriver driver)
+        public void ScrollHaciaElemento(IWebDriver driver)
         {
-            ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", element);
-            ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", element);
-            ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].click();", element);
+            ((IJavaScriptExecutor)driver).ExecuteScript("scrollBy(0, 2500)");
         }
     }
 
