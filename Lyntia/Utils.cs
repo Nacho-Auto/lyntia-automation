@@ -16,7 +16,7 @@ namespace Lyntia
 
         public IWebDriver Instanciador()
         {
-            driver = new ChromeDriver("C:\\chromedriver");
+            driver = new ChromeDriver ("C:/Chromedriver");
             driver.Navigate().GoToUrl("https://ufinetprep2.crm4.dynamics.com/");
             driver.Manage().Window.Maximize();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
