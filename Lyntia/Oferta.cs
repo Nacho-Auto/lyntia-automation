@@ -1,7 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
-using System;
 using System.Threading;
 
 namespace Lyntia
@@ -19,7 +17,7 @@ namespace Lyntia
         Utils utils = new Utils();
         Navegacion navegacion = new Navegacion();
         GridUtils grid = new GridUtils();
-        Actions seleniumActions;        
+        IJavaScriptExecutor js;
 
         [TestInitialize]
         public void Instanciador()
@@ -27,11 +25,8 @@ namespace Lyntia
             // Instanciador del driver
             driver = utils.Instanciador();
 
-            // Interacciones básicas de Selenium
-            seleniumActions = new Actions(driver);
-
             // JavaScriptExecutor, usado por ejemplo para hacer scrolling a los elementos
-            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+            js = (IJavaScriptExecutor)driver;
 
             // Realizar login
             navegacion.Login(driver);
@@ -71,12 +66,12 @@ namespace Lyntia
             IWebElement element = null;
             if(utils.EncontrarElemento(By.XPath("//div[@title='No hay datos disponibles.']"), out element, driver))
             {
-                // Crear Oferta Nueva
+                // Paso 2AA - Crear Oferta Nueva
                 actions.AccesoNuevaOferta(driver);
             }
             else
             {
-                // Abrir Oferta existente 
+                // Paso 2AB - Abrir Oferta existente 
                 //div[@data-id='cell-1-4']
                 actions.abrirOferta(grid, driver);
             }
@@ -94,9 +89,13 @@ namespace Lyntia
             // Paso 1 - Hacer click en Ofertas
             actions.AccesoOfertasLyntia(driver);
 
-            // Paso 2A - Comprobar si hay alguna Oferta para abrir
+            // Paso 2 - Crear Nueva Oferta
             actions.AccesoNuevaOferta(driver);
             condition.CreaOferta(driver, navegacion);
+
+            // Paso 3 - Cambiar a la pestaña Fechas
+            actions.AccesoFechasOferta(driver);
+            condition.FechasSinInformar(driver);
 
         }
 
@@ -124,8 +123,6 @@ namespace Lyntia
             Thread.Sleep(10000);
             driver.SwitchTo().Frame(driver.FindElement(By.Id("AppLandingPage"))); // Cambiar al frame de Apps
             driver.FindElement(By.XPath("//a[contains(@aria-label, 'Cliente')]")).Click(); //modulo gestion de clientes
-            Assert.AreEqual(driver.FindElement(By.XPath("/html/body/div[2]/div/div[1]/div/div[1]/a/span")).Text, "Gestión del Cliente");
-
         }
 
         public void AccesoOfertasLyntia(IWebDriver driver)
@@ -164,44 +161,67 @@ namespace Lyntia
         {
             // Click en "+ Nuevo", barra de herramientas
             driver.FindElement(By.XPath("//button[@aria-label='Nuevo']")).Click();
-            Thread.Sleep(2000);
+            Thread.Sleep(3000);
         }
 
-        internal void abrirOferta(GridUtils grid, IWebDriver driver)
+        public void abrirOferta(GridUtils grid, IWebDriver driver)
         {
-            // Titulo por defecto de la Oferta
+            // Cantidad de Ofertas
             int numeroOfertas = grid.NumeroRegistrosEnGrid(By.XPath("//div[@wj-part='cells']"), driver);
 
-            // Método para clickar en celda de grid  
+            // TODO: Método para clickar en celda de grid          
+        }
+
+        public void AccesoFechasOferta(IWebDriver driver)
+        {
+            // Click en pestaña Fechas
+            driver.FindElement(By.XPath("//li[@title='Fechas']")).Click();
             Thread.Sleep(6000);
+
         }
     }
 
-        // Para continuar trabajando
     public class OfertaConditions{
 
         public void AccedeGestionCliente(IWebDriver driver)
         {
-
+            // TODO: Asserts de Acceso 
+            Assert.AreEqual(driver.FindElement(By.XPath("/html/body/div[2]/div/div[1]/div/div[1]/a/span")).Text, "Gestión del Cliente");
         }
 
         public void CreaOferta(IWebDriver driver, Navegacion navegacion)
         {
             // Assert de título "Nuevo Oferta" del formulario
-            Assert.AreEqual(driver.FindElement(By.XPath("//h1[@data-id='header_title']")).Text, "Nuevo Oferta");
+            Assert.AreEqual("Nuevo Oferta", driver.FindElement(By.XPath("//h1[@data-id='header_title']")).Text);
 
             // Assert de tab por defecto "General"
             Assert.IsTrue(driver.FindElement(By.XPath("//li[@aria-label='General']")).GetAttribute("aria-selected").Equals("true"));
 
             // Assert de Razón para el estado de la Oferta "En elaboración" 
-            Assert.AreEqual(driver.FindElement(By.XPath("//section[@id='quote information']//span[@aria-label='Razón para el estado']//span")).Text, "En elaboración");
+            Assert.AreEqual("En elaboración", driver.FindElement(By.XPath("//section[@id='quote information']//span[@aria-label='Razón para el estado']//span")).Text);
 
+            // TODO : SCROLL A ELEMENTOS NO VISIBLES INICIALMENTE (posiblemente scroll periodico)
             // Assert de Tipo de Oferta por defecto "Nuevo Servicio"
-            navegacion.ScrollHaciaElemento(driver.FindElement(By.XPath("//select[@aria-label='Tipo de oferta']")), driver);
-            Assert.AreEqual(driver.FindElement(By.XPath("//select[@aria-label='Tipo de oferta']")).GetAttribute("title"), "Nuevo servicio");
+            //Assert.AreEqual(driver.FindElement(By.XPath("//select[contains(@aria-label,'Tipo de oferta')]")).GetAttribute("title"), "Nuevo servicio");
 
-            // Assert de Divisa  
-            Assert.AreEqual(driver.FindElement(By.XPath("//div[contains(@data-id,'transactioncurrencyid_selected_tag_text')]")).Text, "Euro");
+            // Assert de Divisa
+            //Assert.AreEqual(driver.FindElement(By.XPath("//span[contains(@title,'Divisa')]")).Text, "Divisa");
+        }
+
+        public void FechasSinInformar(IWebDriver driver)
+        {
+            // Assert de Fecha de creación vacía
+            Assert.IsTrue(driver.FindElement(By.XPath("//input[contains(@data-id,'createdon')]")).Text.Equals(""));
+
+            // Assert de Hora de creación vacía
+            Assert.IsTrue(driver.FindElement(By.XPath("//input[contains(@aria-label,'Time of Fecha de creación')]")).Text.Equals(""));
+
+            // Assert de Fecha de modificación vacía
+            Assert.IsTrue(driver.FindElement(By.XPath("//input[contains(@data-id,'modifiedon')]")).Text.Equals(""));
+
+            // Assert de Hora de modificación vacía
+            Assert.IsTrue(driver.FindElement(By.XPath("//input[contains(@aria-label,'Time of Fecha de modificación')]")).Text.Equals(""));
+
         }
     }
 }
