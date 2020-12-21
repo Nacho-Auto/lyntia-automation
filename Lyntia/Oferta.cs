@@ -115,15 +115,25 @@ namespace Lyntia
             actions.AccesoNuevaOferta(driver);
 
             // Paso 3 - Guardar sin campos obligatorios
-            //input[@aria-label='Nombre oferta']  -> Nombre de la Oferta 
             //input[@aria-label='Cliente, Búsqueda'] -> Cliente
             actions.GuardarOferta(driver);
             condition.ofertaNoCreada(driver);
 
-            // paso 4 - Repetir el paso anterior pero pulsando Guardar y Cerrar
+            // Paso 4 - Repetir el paso anterior pero pulsando Guardar y Cerrar
             actions.GuardarYCerrarOferta(driver);
             condition.ofertaNoCreada(driver);
 
+            // Paso 5 - Guardar informando solo el Nombre
+            actions.rellenarCamposOferta("TEST", "", "", driver);
+            actions.GuardarOferta(driver);
+            condition.ofertaNoCreada(driver);
+
+            // Paso 5 - Guardar y cerrar informando solo el Nombre
+            actions.rellenarCamposOferta("TEST", "", "", driver);
+            actions.GuardarYCerrarOferta(driver);
+            condition.ofertaNoCreada(driver);
+
+            // HAY QUE VACIAR EL NOMBRE AHORA
 
         }
 
@@ -135,7 +145,7 @@ namespace Lyntia
             condition.AccedeGestionCliente(driver);
 
             // TODO: Cambiar el estilo de creación de oferta
-            actions.CrearOferta(driver);
+            //actions.CrearOferta(driver);
             condition.CreaOferta(driver, navegacion);
            
         }
@@ -166,7 +176,7 @@ namespace Lyntia
             driver.FindElement(By.XPath("//span[contains(text(), 'Ofertas lyntia')]")).Click();//Opción escalable
         }
 
-        public void CrearOferta(IWebDriver driver)
+        public void CrearOfertaRapida(IWebDriver driver)
         {
 
             driver.FindElement(By.XPath("//button[contains(@data-id, 'quickCreateLauncher')]")).Click();
@@ -219,6 +229,19 @@ namespace Lyntia
             // Click en Guardar y cerrar en la barra de herramientas
             driver.FindElement(By.XPath("//button[@aria-label='Guardar y cerrar']")).Click();
         }
+
+        public void rellenarCamposOferta(String nombre, String cliente, String kma, IWebDriver driver)
+        {
+            if (!nombre.Equals(""))
+            {
+                // Rellenar Nombre de Oferta
+                driver.FindElement(By.XPath("//input[@aria-label='Nombre oferta']")).Click();
+                Thread.Sleep(1000);
+                driver.FindElement(By.XPath("//input[@aria-label='Nombre oferta']")).SendKeys(nombre);
+                Thread.Sleep(1000);
+
+            }
+        }
     }
 
     public class OfertaConditions{
@@ -268,7 +291,7 @@ namespace Lyntia
         {
             // Assert de alerta con los campos obligatorios sin informar
             //div[@data-id="notificationWrapper"]
-            Assert.IsTrue
+            Assert.IsTrue(driver.FindElements(By.XPath("//div[@data-id='notificationWrapper']")).Count > 0);
         }
     }
 }
