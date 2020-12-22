@@ -45,17 +45,12 @@ namespace Lyntia
             driver.FindElement(By.Id("idBtn_Back")).Click(); //Desea mantener la sesion iniciada NO
 
         }
-
-        public void ScrollHaciaElemento(IWebDriver driver)
-        {
-            ((IJavaScriptExecutor)driver).ExecuteScript("scrollBy(0, 2500)");
-        }
     }
 
     public class GridUtils
     {
         public int NumeroRegistrosEnGrid(By by, IWebDriver driver)
-        {       
+        {
             return Int16.Parse(driver.FindElement(by).GetAttribute("data-row-count"));
         }
     }
