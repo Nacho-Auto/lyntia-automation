@@ -327,6 +327,49 @@ namespace Lyntia
 
         }
 
+        //CRM-APR0001
+        [TestMethod]
+        public void CRM_APR0001_añadir_producto()
+        {
+            //Paso 1 Login y acceso al modulo gestion de cliente
+            actions.AccesoGestionCliente(driver);//Acceso al modulo de Gestion de Cliente(Aplicaciones)
+            condition.AccedeGestionCliente(driver);//Acceso correcto
+
+            //Paso 2
+            actions.AccesoOferta(driver);//Oferta menu
+            condition.AccedeOferta(driver);//comprobamos el acceso
+
+            //Paso 3
+            actions.SeleccionOfertaAPR0001(driver);//hacemos click en una oferta del listado para añadir producto
+            condition.AccederSeleccionOfertaAPR0001(driver);//accede a la oferta
+
+            //Paso 4
+            actions.Editar_añadir_producto(driver);//se pulsa añadir producto en la pestaña general y realizamos unas comprobaciones
+            condition.Resultado_Editar_añadir_producto(driver);//se verifican cambios
+
+            //Paso 5
+            //actions.Cancelar_y_cerrar(driver);
+            //condition.Resultado_Cancelar_y_cerrar(driver);
+        }
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         //[TestMethod]
         public void CreandoOferta()
         {
@@ -618,13 +661,85 @@ namespace Lyntia
             driver.FindElement(By.XPath("//a[@title='"+nombreOferta+"']")).Click();
             Thread.Sleep(2000);
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //Nacho borrar comntario
+        public void SeleccionOfertaAPR0001(IWebDriver driver)
+        {
+            driver.FindElement(By.LinkText("Prueba_AUTO_CRM-APR")).Click();
+            
+        }
+        public void Editar_añadir_producto(IWebDriver driver)
+        {
+            driver.FindElement(By.XPath("//button[contains(@aria-label, 'Agregar producto')]")).Click();//pulsamos sobre agregar producto
+            driver.FindElement(By.XPath("//button[contains(@data-id, 'quickCreateSaveAndCloseBtn')]")).Click();//guardamos
+            Thread.Sleep(3000);
+            driver.FindElement(By.XPath("//button[contains(@data-id, 'quickCreateSaveAndCloseBtn')]")).Click();//guardamos y cerramos
+        }
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
 
     public class OfertaConditions
     {
-
         
+        public void AccederSeleccionOfertaAPR0001(IWebDriver driver)
+        {
+            Assert.AreEqual(true, driver.FindElement(By.XPath("//button[contains(@aria-label, 'Agregar producto')]")).Enabled);//comprobamos que añadir producto esta habilitado
+        }
+
+        public void Resultado_Editar_añadir_producto(IWebDriver driver)
+        {
+            Assert.AreEqual("Creación rápida: Producto de oferta", driver.FindElement(By.XPath("//h1[contains(@data-id, 'quickHeaderTitle')]")).Text);
+
+            Assert.AreEqual("Tiene 3 notificaciones. Seleccione esta opción para verlas.", driver.FindElement(By.XPath("/html/body/section/div/div/div/div/section/div[1]/div/div/div/span[2]")).Text);//Mensajes indicando que faltan campos
+            Assert.AreEqual("Producto existente: Es necesario rellenar los campos obligatorios.", driver.FindElement(By.XPath("//span[contains(@data-id, 'productid-error-message')]")).Text);//comprobamos advertencia Producto existente
+            Assert.AreEqual("Uso (Línea de negocio): Es necesario rellenar los campos obligatorios.", driver.FindElement(By.XPath("//span[contains(@data-id, 'lyn_uso-error-message')]")).Text);//comprobamos advertencia Uso linea de negocio 
+            Assert.AreEqual("Unidad de venta: Es necesario rellenar los campos obligatorios.", driver.FindElement(By.XPath("//span[contains(@data-id, 'uomid-error-message')]")).Text);//comprobamos advertencia Unidad de venta
+
+            //Cancelamos y cerramos con sus comprobaciones
+            
+            driver.FindElement(By.XPath("//button[contains(@aria-label, 'Cancelar')]")).Click();//boton cancelar añadir producto
+            Assert.AreEqual("¿Desea guardar los cambios antes de salir de esta página?", driver.FindElement(By.XPath("/html/body/section[2]/div/div/div/div/div/div/div[2]/span")).Text);//Mensaje pop up
+            driver.FindElement(By.XPath("//button[contains(@aria-label, 'Guardar y continuar')]")).Click();//pulsamos en guardar y continuar de se comprueba que siguen faltando los campos
+            Assert.AreEqual("Tiene 3 notificaciones. Seleccione esta opción para verlas." , driver.FindElement(By.XPath("/html/body/section/div/div/div/div/section/div[1]/div/div/div/span[2]")).Text);//Mensajes indicando que faltan campos
+            Assert.AreEqual("Producto existente: Es necesario rellenar los campos obligatorios.", driver.FindElement(By.XPath("//span[contains(@data-id, 'productid-error-message')]")).Text);//comprobamos advertencia Producto existente
+            Assert.AreEqual("Uso (Línea de negocio): Es necesario rellenar los campos obligatorios.", driver.FindElement(By.XPath("//span[contains(@data-id, 'lyn_uso-error-message')]")).Text);//comprobamos advertencia Uso linea de negocio 
+            Assert.AreEqual("Unidad de venta: Es necesario rellenar los campos obligatorios.", driver.FindElement(By.XPath("//span[contains(@data-id, 'uomid-error-message')]")).Text);//comprobamos advertencia Unidad de venta
+            driver.FindElement(By.XPath("//button[contains(@aria-label, 'Cancelar')]")).Click();//boton cancelar añadir producto
+            Thread.Sleep(2000);
+            driver.FindElement(By.XPath("/html/body/section[2]/div/div/div/div/div/div/div[1]/div/button/span")).Click();
+            Assert.AreEqual(true, driver.FindElement(By.XPath("//button[contains(@aria-label, 'Agregar producto')]")).Enabled);//volvemos a la pagina de añadir producto
+        } 
+
+
+
 
         public void AccedeGestionCliente(IWebDriver driver)
         {
