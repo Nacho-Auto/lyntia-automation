@@ -37,9 +37,6 @@ namespace Lyntia
         }
 
         [TestCleanup]
-
-
-
         public void Cierre()
 
         {
@@ -68,7 +65,7 @@ namespace Lyntia
 
         //CRM-EOF0003
         [TestMethod]
-        public void CRM_EOF0003_Editar_Oferta()
+        public void CRM_EOF0003_Editar_campos_de_una_oferta()
         {
             // Paso 1
             actions.AccesoGestionCliente(driver);//Acceso al modulo de Gestion de Cliente(Apliaciones)
@@ -93,7 +90,7 @@ namespace Lyntia
 
         //CRM-EOF0004
         [TestMethod]
-        public void CRM_EOF0004_Editar_Oferta()
+        public void CRM_EOF0004_Editar_campo_tipo_de_Oferta()
         {
             // Paso 1
             actions.AccesoGestionCliente(driver);//Acceso al modulo de Gestion de Cliente(Apliaciones)
@@ -435,22 +432,6 @@ namespace Lyntia
 
             
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         //[TestMethod]
         public void CreandoOferta()
         {
@@ -546,10 +527,10 @@ namespace Lyntia
             Thread.Sleep(3000);
             driver.FindElement(By.XPath("//input[contains(@aria-label, 'Código GVAL')]")).SendKeys("prue123456");//Escribimos prue123456 en codigo gval
             driver.FindElement(By.XPath("//textarea[contains(@aria-label, 'Descripción')]")).SendKeys("Prueba campo descripcion");//Escribimos Prueba campo descripcion en detalle de oferta
-
+            Thread.Sleep(3000);
 
             driver.FindElement(By.XPath("//li[contains(@aria-label, 'Guardar')]")).Click();//Guardar
-
+            Thread.Sleep(3000);
             driver.FindElement(By.XPath("//input[contains(@aria-label, 'Fecha de Fecha de presentación')]")).Click();//Calendario
             driver.FindElement(By.XPath("//button[contains(@aria-label, 'diciembre 14, 2020')]")).Click();//seleccionamos fecha del calendario
             driver.FindElement(By.XPath("//li[contains(@title, 'Fechas')]")).Click();//Pestaña fechas
@@ -565,26 +546,28 @@ namespace Lyntia
             driver.FindElement(By.LinkText("Prueba-Auto_NO_borrarCRM-EOF0004")).Click();
             Thread.Sleep(3000);
             driver.FindElement(By.XPath("//select[contains(@title, 'Nuevo servicio')]")).Click();
-            new Actions(driver).SendKeys(OpenQA.Selenium.Keys.ArrowDown).Perform();//selecciona la oppcion inferior
+            new Actions(driver).SendKeys(OpenQA.Selenium.Keys.ArrowDown).Perform();//selecciona la opcion inferior
+            new Actions(driver).SendKeys(OpenQA.Selenium.Keys.Enter).Perform();//y lo pulsa 
         }
         public void Tipo_de_oferta_Cambiodeprecio (IWebDriver driver)
         {
             Thread.Sleep(3000);
             driver.FindElement(By.XPath("//select[contains(@title, 'Cambio de capacidad (Upgrade/Downgrade)')]")).Click();
-            new Actions(driver).SendKeys(OpenQA.Selenium.Keys.ArrowDown).Perform();////selecciona la oppcion inferior
+            new Actions(driver).SendKeys(OpenQA.Selenium.Keys.ArrowDown).Perform();////selecciona la opcion inferior
             new Actions(driver).SendKeys(OpenQA.Selenium.Keys.Enter).Perform();//y lo pulsa 
         }
         public void Tipo_de_oferta_Cambiodesolucion (IWebDriver driver)
         {
+            Thread.Sleep(3000);
             driver.FindElement(By.XPath("//select[contains(@title, 'Cambio de precio/Renovación')]")).Click();
-            new Actions(driver).SendKeys(OpenQA.Selenium.Keys.ArrowDown).Perform();////selecciona la oppcion inferior
+            new Actions(driver).SendKeys(OpenQA.Selenium.Keys.ArrowDown).Perform();////selecciona la opcion inferior
             new Actions(driver).SendKeys(OpenQA.Selenium.Keys.Enter).Perform();//y lo pulsa 
         }
         public void Tipo_de_oferta_Cambiodedireccion (IWebDriver driver)
         {
-
+            Thread.Sleep(3000);
             driver.FindElement(By.XPath("//select[contains(@title, 'Cambio de solución técnica (Tecnología)')]")).Click();
-            new Actions(driver).SendKeys(OpenQA.Selenium.Keys.ArrowDown).Perform();////selecciona la oppcion inferior
+            new Actions(driver).SendKeys(OpenQA.Selenium.Keys.ArrowDown).Perform();////selecciona la opcion inferior
             new Actions(driver).SendKeys(OpenQA.Selenium.Keys.Enter).Perform();//y lo pulsa 
         }
 
@@ -819,10 +802,9 @@ namespace Lyntia
 
 
 
-    }
+    
 
-    public class OfertaConditions
-    {
+    
 
 
         public void AccedeGestionCliente(IWebDriver driver)
@@ -877,6 +859,7 @@ namespace Lyntia
         {
             Thread.Sleep(3000);
             Assert.AreEqual("La oferta de tipo “Cambio de precio” no requiere envío a construcción ni cambiar el código administrativo", driver.FindElement(By.XPath("//span[contains(@data-id, 'warningNotification')]")).Text);
+            Thread.Sleep(3000);
             driver.FindElement(By.XPath("//li[contains(@aria-label, 'Guardar')]")).Click();//Guardar
         }
 
