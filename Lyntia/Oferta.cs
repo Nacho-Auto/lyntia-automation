@@ -14,17 +14,17 @@ namespace Lyntia
 
     public class Oferta
 
+
     {
 
         IWebDriver driver;
 
-        OfertaActions actions = new OfertaActions();
-        OfertaConditions condition = new OfertaConditions();
-        ProductoAction productoActions = new ProductoAction();
-        Utils utils = new Utils();
-        Navegacion navegacion = new Navegacion();
-        GridUtils grid = new GridUtils();
-        IJavaScriptExecutor js;
+        readonly OfertaActions actions = new OfertaActions();
+        readonly OfertaConditions condition = new OfertaConditions();
+        readonly ProductoAction productoActions = new ProductoAction();
+        readonly Utils utils = new Utils();
+        readonly Navegacion navegacion = new Navegacion();
+        readonly GridUtils grid = new GridUtils();
 
         [TestInitialize]
         public void Instanciador()
@@ -32,14 +32,13 @@ namespace Lyntia
             // Instanciador del driver
             driver = utils.Instanciador();
 
-            // JavaScriptExecutor, usado por ejemplo para hacer scrolling a los elementos
-            js = (IJavaScriptExecutor)driver;
-
             // Realizar login
             navegacion.Login(driver);
         }
 
         [TestCleanup]
+
+
 
         public void Cierre()
 
@@ -58,7 +57,7 @@ namespace Lyntia
             condition.AccedeGestionCliente(driver);
 
             // Paso 1 - Hacer click en Ofertas
-            actions.AccesoOfertasLyntia(driver);
+            actions.AccesoOfertasLyntia("Mis Ofertas lyntia", driver);
 
 
             //Paso 2
@@ -135,7 +134,7 @@ namespace Lyntia
             condition.AccedeGestionCliente(driver);
 
             // Paso 1 - Hacer click en Ofertas
-            actions.AccesoOfertasLyntia(driver);
+            actions.AccesoOfertasLyntia("Mis Ofertas lyntia", driver);
 
             // Paso 2A - Comprobar si hay alguna Oferta para abrir
             IWebElement element = null;
@@ -162,7 +161,7 @@ namespace Lyntia
             condition.AccedeGestionCliente(driver);
 
             // Paso 1 - Hacer click en Ofertas
-            actions.AccesoOfertasLyntia(driver);
+            actions.AccesoOfertasLyntia("Mis Ofertas lyntia", driver);
 
             // Paso 2 - Crear Nueva Oferta
             actions.AccesoNuevaOferta(driver);
@@ -185,7 +184,7 @@ namespace Lyntia
             condition.AccedeGestionCliente(driver);
 
             // Paso 1 - Hacer click en Ofertas
-            actions.AccesoOfertasLyntia(driver);
+            actions.AccesoOfertasLyntia("Mis Ofertas lyntia", driver);
 
             // Paso 2 - Crear Nueva Oferta
             actions.AccesoNuevaOferta(driver);
@@ -231,7 +230,7 @@ namespace Lyntia
             condition.AccedeGestionCliente(driver);
 
             // Paso 1 - Hacer click en Ofertas
-            actions.AccesoOfertasLyntia(driver);
+            actions.AccesoOfertasLyntia("Mis Ofertas lyntia", driver);
 
             // Paso 2 - Crear Nueva Oferta
             actions.AccesoNuevaOferta(driver);
@@ -248,9 +247,9 @@ namespace Lyntia
             actions.AccesoFechasOferta(driver);
             condition.FechasInformadasCorrectamente(driver);
 
-            actions.EliminarOfertaActual(driver);
+            actions.EliminarOfertaActual("Eliminar", driver);
 
-            actions.AccesoOfertasLyntia(driver);
+            actions.AccesoOfertasLyntia("Mis Ofertas lyntia", driver);
 
             // Paso 4 - Crear Nueva Oferta, pulsando Guardar y cerrar
             actions.AccesoNuevaOferta(driver);
@@ -270,7 +269,7 @@ namespace Lyntia
             actions.AccesoFechasOferta(driver);
             condition.FechasInformadasCorrectamente(driver);
 
-            actions.EliminarOfertaActual(driver);
+            actions.EliminarOfertaActual("Eliminar", driver);
 
         }
 
@@ -283,7 +282,7 @@ namespace Lyntia
             condition.AccedeGestionCliente(driver);
 
             // Paso 1 - Hacer click en Ofertas
-            actions.AccesoOfertasLyntia(driver);
+            actions.AccesoOfertasLyntia("Mis Ofertas lyntia", driver);
 
             // Paso 2 - Crear Nueva Oferta
             actions.AccesoNuevaOferta(driver);
@@ -295,14 +294,14 @@ namespace Lyntia
 
             driver.Navigate().Refresh();
 
-            condition.OfertaGuardadaCorrectamente("CRM-COF0006" , "Cambio de capacidad (Upgrade/Downgrade)",  driver);
+            condition.OfertaGuardadaCorrectamente("CRM-COF0006", "Cambio de capacidad (Upgrade/Downgrade)", driver);
 
             actions.AccesoFechasOferta(driver);
             condition.FechasInformadasCorrectamente(driver);
 
-            actions.EliminarOfertaActual(driver);
+            actions.EliminarOfertaActual("Eliminar", driver);
 
-            actions.AccesoOfertasLyntia(driver);
+            actions.AccesoOfertasLyntia("Mis Ofertas lyntia", driver);
 
             // Paso 4 - Crear Nueva Oferta, pulsando Guardar y cerrar
             actions.AccesoNuevaOferta(driver);
@@ -322,8 +321,90 @@ namespace Lyntia
             actions.AccesoFechasOferta(driver);
             condition.FechasInformadasCorrectamente(driver);
 
-            actions.EliminarOfertaActual(driver);
+            actions.EliminarOfertaActual("Eliminar", driver);
 
+        }
+
+        // CRM-COF0005 Eliminar Oferta con Producto añadido
+        [TestMethod]
+        public void CRM_COF0005_eliminarOfertaProductoAnadido()
+        {
+            // Login y Acceso a Gestión de Cliente
+            actions.AccesoGestionCliente(driver);
+            condition.AccedeGestionCliente(driver);
+
+            // Paso 1 - Hacer click en Ofertas
+            actions.AccesoOfertasLyntia("Mis Ofertas lyntia", driver);
+
+            // Paso 2 - Acceder a una Oferta que esté en estado Borrador con producto añadido.
+            actions.AccesoNuevaOferta(driver);
+
+            actions.rellenarCamposOferta("CRM-COF0005-ELIMINAR", "CLIENTE INTEGRACION", "Nuevo servicio", "# BizQA", driver);
+            actions.GuardarOferta(driver);
+            Thread.Sleep(3000);
+
+            // Añadir Producto a la Oferta
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps", driver);
+
+            // Paso 3 y 4 - Pulsar Eliminar en la barra de herramientas y cancelar la eliminacion
+            actions.EliminarOfertaActual("Cancelar", driver);
+
+            // Volver al grid
+            actions.AccesoOfertasLyntia("Mis Ofertas lyntia", driver);
+
+            // Buscar Oferta creada
+            actions.BuscarOfertaEnVista("CRM-COF0005-ELIMINAR", driver);
+            condition.OfertaGuardadaCorrectamenteEnGrid(driver);
+
+            // Abrir la oferta anterior y comprobar datos cumplimentados
+            actions.AbrirOfertaEnVista("CRM-COF0005-ELIMINAR", driver);
+
+            // Paso 5 - Eliminar definitivamente
+            actions.EliminarOfertaActual("Eliminar", driver);
+        }
+
+        // CRM-COF0006 Eliminar Oferta con Producto añadido desde el grid
+        [TestMethod]
+        public void CRM_COF0006_eliminarOfertaProductoAnadidoDesdeGrid()
+        {
+            // Login y Acceso a Gestión de Cliente
+            actions.AccesoGestionCliente(driver);
+            condition.AccedeGestionCliente(driver);
+
+            // Paso 1 - Hacer click en Ofertas
+            actions.AccesoOfertasLyntia("Mis Ofertas lyntia", driver);
+
+            // Paso 2 - Acceder a una Oferta que esté en estado Borrador con producto añadido.
+            actions.AccesoNuevaOferta(driver);
+
+            actions.rellenarCamposOferta("CRM-COF0006-ELIMINAR", "CLIENTE INTEGRACION", "Nuevo servicio", "# BizQA", driver);
+            actions.GuardarOferta(driver);
+
+            // Añadir Producto a la Oferta
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps", driver);
+
+            // Volver al grid
+            actions.AccesoOfertasLyntia("Mis Ofertas lyntia", driver);
+
+            // Paso 2 Seleccionar la Oferta del grid
+            actions.BuscarOfertaEnVista("CRM-COF0006-ELIMINAR", driver);
+            condition.OfertaGuardadaCorrectamenteEnGrid(driver);
+
+            // Seleccionar la Oferta del grid
+            actions.SeleccionarOfertaGrid(driver);
+
+            // Paso 3 - Pulsar Eliminar en la barra de herramientas y cancelar la eliminacion
+            actions.EliminarOfertaActual("Cancelar", driver);
+
+            actions.AccesoOfertasLyntia("Mis Ofertas lyntia", driver);
+
+            actions.BuscarOfertaEnVista("CRM-COF0006-ELIMINAR", driver);
+            condition.OfertaGuardadaCorrectamenteEnGrid(driver);
+
+            // Paso 4 - Repetir paso anterior eliminando la oferta
+            actions.SeleccionarOfertaGrid(driver);
+
+            actions.EliminarOfertaActual("Eliminar", driver);
 
         }
 
@@ -397,11 +478,12 @@ namespace Lyntia
             driver.FindElement(By.XPath("//a[contains(@aria-label, 'Cliente')]")).Click(); //modulo gestion de clientes
         }
 
-        public void AccesoOfertasLyntia(IWebDriver driver)//Desplegable tipos de ofertas(mis ofertas lyntia, ofertas lyntia y AQS)
+
+        public void AccesoOfertasLyntia(String seccion, IWebDriver driver)
         {
 
             driver.FindElement(By.Id("sitemap-entity-oferta")).Click();
-
+            Thread.Sleep(2000);
             driver.FindElement(By.XPath("//h1[@title='Seleccionar vista']")).Click(); //Expandimos la opción de Ofertas lyntia
 
 
@@ -409,6 +491,7 @@ namespace Lyntia
             //new Actions(driver).SendKeys(OpenQA.Selenium.Keys.Enter).Perform();
 
             //driver.FindElements(By.XPath("//*[starts-with(@id, 'ViewSelector') and contains(@id, 'list')]"))[3].Click();//Opción escalable
+
 
             //driver.FindElement(By.XPath("//span[contains(text(), 'Ofertas lyntia')]")).Click();//Opción escalable
         }
@@ -423,6 +506,7 @@ namespace Lyntia
             //driver.FindElement(By.LinkText("CLIENTE INTEGRACION")).Click();//click en la oferta
             Thread.Sleep(3000);
             driver.FindElement(By.XPath("//div[contains(@title, 'Automatica_MOD')]")).Click();//click en la oferta
+
 
 
         }
@@ -560,6 +644,7 @@ namespace Lyntia
         {
             // Click en Guardar en la barra de herramientas         
             driver.FindElement(By.XPath("//button[@aria-label='Guardar']")).Click();
+            Thread.Sleep(3000);
         }
 
         public void GuardarYCerrarOferta(IWebDriver driver)
@@ -571,7 +656,7 @@ namespace Lyntia
         public void rellenarCamposOferta(String nombre, String cliente, String tipoOferta, String kam, IWebDriver driver)
         {
             Actions accionesSelenium = new Actions(driver);
-     
+
             driver.FindElement(By.XPath("//input[@aria-label='Nombre oferta']")).Click();
             driver.FindElement(By.XPath("//input[@aria-label='Nombre oferta']")).SendKeys(Keys.Control + "a");
             driver.FindElement(By.XPath("//input[@aria-label='Nombre oferta']")).SendKeys(Keys.Delete);
@@ -596,7 +681,7 @@ namespace Lyntia
                 driver.FindElement(By.XPath("//input[contains(@id,'customerid')]")).Click();
                 Thread.Sleep(1000);
                 driver.FindElement(By.XPath("//input[contains(@id,'customerid')]")).SendKeys(cliente);
-                Thread.Sleep(1000);          
+                Thread.Sleep(1000);
 
                 driver.FindElement(By.XPath("//span[contains(text(), '" + cliente + "')]")).Click();
                 Thread.Sleep(2000);
@@ -625,6 +710,10 @@ namespace Lyntia
 
                 driver.FindElement(By.XPath("//input[contains(@id,'kamresponsable')]")).Click();
                 Thread.Sleep(1000);
+
+                driver.FindElement(By.XPath("//input[contains(@id,'kamresponsable')]")).SendKeys(Keys.Control + "a");
+                driver.FindElement(By.XPath("//input[contains(@id,'kamresponsable')]")).SendKeys(Keys.Delete);
+
                 driver.FindElement(By.XPath("//input[contains(@id,'kamresponsable')]")).SendKeys(kam);
                 Thread.Sleep(1000);
 
@@ -637,15 +726,22 @@ namespace Lyntia
             }
         }
 
-        internal void EliminarOfertaActual(IWebDriver driver)
+        internal void EliminarOfertaActual(String opcion, IWebDriver driver)
         {
-            // TODO: INDICAR CON FLAG SI SE DESEA BORRAR O CANCELAR (PARA PRO-ELIMINAR OFERTA)
             // Click en Eliminar
-            driver.FindElement(By.XPath("//button[contains(@title,'Eliminar')]")).Click();
-            // Confirmar Borrado
-            driver.FindElement(By.XPath("//button[@id='confirmButton']")).Click();
-            Thread.Sleep(4000);
+            driver.FindElement(By.XPath("//button[contains(@aria-label,'Eliminar')]")).Click();
 
+            // Confirmar Borrado
+            if (opcion.Equals("Eliminar"))
+            {
+                driver.FindElement(By.XPath("//button[@id='confirmButton']")).Click();
+                Thread.Sleep(4000);
+            }
+            else
+            {
+                driver.FindElement(By.XPath("//button[@id='cancelButton']")).Click();
+                Thread.Sleep(4000);
+            }
         }
 
         internal void BuscarOfertaEnVista(string nombreOferta, IWebDriver driver)
@@ -658,25 +754,19 @@ namespace Lyntia
 
         internal void AbrirOfertaEnVista(string nombreOferta, IWebDriver driver)
         {
-            driver.FindElement(By.XPath("//a[@title='"+nombreOferta+"']")).Click();
+            driver.FindElement(By.XPath("//a[@title='" + nombreOferta + "']")).Click();
+            Thread.Sleep(2000);
+        }
+
+        internal void SeleccionarOfertaGrid(IWebDriver driver)
+        {
+            driver.FindElement(By.XPath("//div[@data-id='cell-0-1']")).Click();
             Thread.Sleep(2000);
         }
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-        //Nacho borrar comntario
         public void SeleccionOfertaAPR0001(IWebDriver driver)
         {
             driver.FindElement(By.LinkText("Prueba_AUTO_CRM-APR")).Click();
@@ -690,19 +780,7 @@ namespace Lyntia
             driver.FindElement(By.XPath("//button[contains(@data-id, 'quickCreateSaveAndCloseBtn')]")).Click();//guardamos y cerramos
         }
 
-            
-
-
-
-
-
-
-
-
-
-
-
-
+          
     }
 
 
@@ -739,6 +817,12 @@ namespace Lyntia
         } 
 
 
+
+
+    }
+
+    public class OfertaConditions
+    {
 
 
         public void AccedeGestionCliente(IWebDriver driver)
