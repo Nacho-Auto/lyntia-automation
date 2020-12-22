@@ -1,4 +1,5 @@
 ﻿using System;
+using Lyntia.Utils;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
@@ -7,8 +8,11 @@ namespace Lyntia
 
     public class Utils
     {
+        IWebDriver driver;
+        Lyntia.Utils.ObjectRepositoryUtils objRep;
         public IWebDriver Instanciador()
         {
+            Lyntia.Utils.ObjectRepositoryUtils objRep = new Lyntia.Utils.ObjectRepositoryUtils();
             IWebDriver driver = new ChromeDriver(@"C:\chromedriver");
             driver.Navigate().GoToUrl("https://ufinetprep2.crm4.dynamics.com/");
             driver.Manage().Window.Maximize();
