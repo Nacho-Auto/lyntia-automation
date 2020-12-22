@@ -4,7 +4,6 @@ using OpenQA.Selenium.Chrome;
 
 namespace Lyntia
 {
-
     public class Utils
     {
         public IWebDriver Instanciador()
@@ -14,6 +13,7 @@ namespace Lyntia
             driver.Manage().Window.Maximize();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
             return driver;
+
         }
 
         public bool EncontrarElemento(By by, out IWebElement element, IWebDriver driver)
@@ -21,13 +21,16 @@ namespace Lyntia
             try
             {
                 element = driver.FindElement(by);
+
             }
             catch (NoSuchElementException)
             {
                 element = null;
                 return false;
+
             }
             return true;
+
         }
     }
 
@@ -52,6 +55,7 @@ namespace Lyntia
         public int NumeroRegistrosEnGrid(By by, IWebDriver driver)
         {
             return Int16.Parse(driver.FindElement(by).GetAttribute("data-row-count"));
+
         }
     }
 }

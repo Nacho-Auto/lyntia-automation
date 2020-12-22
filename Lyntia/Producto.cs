@@ -33,7 +33,7 @@ namespace Lyntia
             drop.SelectByText(uso);
 
             // Seleccionar Producto existente del desplegable si esta vacio
-            if (driver.FindElement(By.XPath("//input[contains(@data-id,'uomid')]")).GetAttribute("value").Equals("---"))
+            if (driver.FindElement(By.XPath("//div[contains(@data-id,'uomid_selected_tag_text')]")).Text.Equals("---"))
             {
                 driver.FindElement(By.XPath("//input[contains(@data-id,'uomid')]")).Click();
                 Thread.Sleep(1000);
@@ -47,11 +47,13 @@ namespace Lyntia
 
                 driver.FindElement(By.XPath("//span[contains(text(), '" + unidadVenta + "')]")).Click();
                 Thread.Sleep(2000);
+
             }
 
             // Guardar y Cerrar Producto actual
             driver.FindElement(By.XPath("//button[@id='quickCreateSaveAndCloseBtn']")).Click();
             Thread.Sleep(10000);
+
         }
     }
 }
