@@ -1,20 +1,24 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using System.Threading;
+using Lyntia.TestSet.Conditions;
+using Lyntia.Utilities;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using System;
-using System.Threading;
 
-namespace Lyntia
+namespace Lyntia.TestSet.Actions
 {
-    [TestClass]
-    class Producto
+    public class ProductoActions
     {
 
-    }
+        private static IWebDriver driver = Utils.getDriver();
+        private static OfertaActions ofertaActions = Utils.getOfertaActions();
+        private static OfertaConditions ofertaCondition = Utils.getOfertaConditions();
+        private static ProductoActions productoActions = Utils.getProductoActions();
+        private static ProductoConditions productoCondition = Utils.getProductoConditions();
+        private static CommonActions commonActions = Utils.getCommonActions();
+        private static CommonConditions commonCondition = Utils.getCommonConditions();
 
-    public class ProductoAction
-    {
-        public void CreacionProducto(String productoExistente, String uso, String unidadVenta, IWebDriver driver)
+        public void CreacionProducto(String productoExistente, String uso, String unidadVenta)
         {
             // Click en "+ Agregar producto"
             driver.FindElement(By.XPath("//button[contains(@title,'Agregar producto')]")).Click();
@@ -53,7 +57,12 @@ namespace Lyntia
             // Guardar y Cerrar Producto actual
             driver.FindElement(By.XPath("//button[@id='quickCreateSaveAndCloseBtn']")).Click();
             Thread.Sleep(10000);
+        }
 
+        public void Añadirproducto_vistarapida() {
+            driver.FindElement(By.Id("quickCreateLauncher_buttoncrm_header_global")).Click();
+            driver.FindElements(By.XPath("//div[contains(@data-id, '__flyoutRootNode')]//button"))[5].Click();
+            Thread.Sleep(2000);
         }
     }
 }
