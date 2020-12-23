@@ -5,9 +5,9 @@ using System.Text;
 
 namespace Lyntia.Utils
 {
-	class TestDataUtils
+	public class TestDataUtils
 	{
-		public Dictionary<String, List<String>> database = new Dictionary<String, List<String>>();
+		Dictionary<String, List<String>> database = new Dictionary<String, List<String>>();
 
 		/**
 		 * Read all data of the csv and store as a database.

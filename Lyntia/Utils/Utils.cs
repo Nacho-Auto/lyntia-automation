@@ -3,7 +3,7 @@ using Lyntia.Utils;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
-namespace Lyntia
+namespace Lyntia.Utils
 {
 
     public class Utils

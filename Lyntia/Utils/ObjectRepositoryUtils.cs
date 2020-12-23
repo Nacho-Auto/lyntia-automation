@@ -5,23 +5,8 @@ using System.Text;
 
 namespace Lyntia.Utils
 {
-
-	
-
 	public class ObjectRepositoryUtils
 	{
-
-		public static ObjectRepositoryUtils obj;
-
-		private ObjectRepositoryUtils()
-		{
-		}
-
-		public static void setInstance()
-		{
-			obj = new ObjectRepositoryUtils();
-		}
-
 		Dictionary<String, List<String>> database = new Dictionary<String, List<String>>();
 
 		/**
@@ -38,7 +23,8 @@ namespace Lyntia.Utils
 				{
 					List<String> dataList = new List<string>();
 
-					foreach (String value in line.Split(csvSplitBy)) {
+					foreach (String value in line.Split(csvSplitBy)) 
+					{
 						dataList.Add(value);
 					}
 
