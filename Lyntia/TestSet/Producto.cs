@@ -1,59 +1,87 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Allure.Attributes;
+using NUnit.Allure.Core;
+using NUnit.Framework;
+using Lyntia.TestSet.Conditions;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
-using System;
-using System.Threading;
+using Lyntia.Utilities;
+using Lyntia.TestSet.Actions;
 
-namespace Lyntia
+namespace Lyntia.TestSet
 {
-    [TestClass]
+    [TestFixture]
+    [AllureNUnit]
+    [AllureSuite("PRODUCTO")]
     class Producto
     {
 
-    }
+        private static IWebDriver driver = Utils.getDriver();
+        private static OfertaActions ofertaActions = Utils.getOfertaActions();
+        private static OfertaConditions ofertaCondition = Utils.getOfertaConditions();
+        private static ProductoActions productoActions = Utils.getProductoActions();
+        private static ProductoConditions productoCondition = Utils.getProductoConditions();
+        private static CommonActions commonActions = Utils.getCommonActions();
+        private static CommonConditions commonCondition = Utils.getCommonConditions();
 
-    public class ProductoAction
-    {
-        public void CreacionProducto(String productoExistente, String uso, String unidadVenta, IWebDriver driver)
+        readonly Utils utils = new Utils();
+
+        [SetUp]
+        public void Instanciador()
         {
-            // Click en "+ Agregar producto"
-            driver.FindElement(By.XPath("//button[contains(@title,'Agregar producto')]")).Click();
-            Thread.Sleep(4000);
+            // Instanciador del driver
+            utils.Instanciador();
 
-            // Seleccionar Producto existente del desplegable
-            driver.FindElement(By.XPath("//input[contains(@data-id,'productid')]")).Click();
-            Thread.Sleep(1000);
-            driver.FindElement(By.XPath("//input[contains(@data-id,'productid')]")).SendKeys(productoExistente);
-            Thread.Sleep(1000);
-            driver.FindElement(By.XPath("//span[contains(text(), '" + productoExistente + "')]")).Click();
-            Thread.Sleep(6000);
+            // Realizar login
+            commonActions.Login();
+        }
 
-            // Seleccionar Uso(Línea de negocio)
-            SelectElement drop = new SelectElement(driver.FindElement(By.XPath("//select[contains(@id,'uso')]")));
-            drop.SelectByText(uso);
+        [TearDown]
+        public void Cierre()
+        {
+            driver.Quit();
+        }
 
-            // Seleccionar Producto existente del desplegable si esta vacio
-            if (driver.FindElement(By.XPath("//div[contains(@data-id,'uomid_selected_tag_text')]")).Text.Equals("---"))
-            {
-                driver.FindElement(By.XPath("//input[contains(@data-id,'uomid')]")).Click();
-                Thread.Sleep(1000);
+        //CRM-APR0001
+        [Test]
+        [AllureSubSuite("PRO AÑADIR OFERTA")]
+        public void CRM_APR0001_añadir_producto()
+        {
+            //Paso 1 Login y acceso al modulo gestion de cliente
+            commonActions.AccesoGestionCliente();//Acceso al modulo de Gestion de Cliente(Aplicaciones)
+            commonCondition.AccedeGestionCliente();//Acceso correcto
 
-                driver.FindElement(By.XPath("//input[contains(@data-id,'uomid')]")).SendKeys(unidadVenta);
-                Thread.Sleep(1000);
-                driver.FindElement(By.XPath("//input[contains(@data-id,'uomid')]")).SendKeys(Keys.Control + "a");
-                driver.FindElement(By.XPath("//input[contains(@data-id,'uomid')]")).SendKeys(Keys.Delete);
-                driver.FindElement(By.XPath("//input[contains(@data-id,'uomid')]")).SendKeys(unidadVenta);
-                Thread.Sleep(1000);
+            //Paso 2
+            commonActions.AccesoOferta();//Oferta menu
+            commonCondition.AccedeOferta();//comprobamos el acceso
 
-                driver.FindElement(By.XPath("//span[contains(text(), '" + unidadVenta + "')]")).Click();
-                Thread.Sleep(2000);
+            //Paso 3
+            ofertaActions.SeleccionOfertaAPR0001();//hacemos click en una oferta del listado para añadir producto
+            ofertaCondition.AccederSeleccionOfertaAPR0001();//accede a la oferta
 
-            }
+            //Paso 4
+            ofertaActions.Editar_añadir_producto();//se pulsa añadir producto en la pestaña general y realizamos unas comprobaciones
+            ofertaCondition.Resultado_Editar_añadir_producto();//se verifican cambios
 
-            // Guardar y Cerrar Producto actual
-            driver.FindElement(By.XPath("//button[@id='quickCreateSaveAndCloseBtn']")).Click();
-            Thread.Sleep(10000);
+            //Paso 5
+            //actions.Cancelar_y_cerrar();
+            //condition.Resultado_Cancelar_y_cerrar();
+        }
 
+        //CRM-APR0002
+        [Test]
+        [AllureSubSuite("PRO AÑADIR OFERTA")]
+        public void CRM_APR0002_añadir_producto_creacion_rapida()
+        {
+            //Paso 1 Login y acceso al modulo gestion de cliente
+            commonActions.AccesoGestionCliente();//Acceso al modulo de Gestion de Cliente(Aplicaciones)
+            commonCondition.AccedeGestionCliente();//Acceso correcto             
+
+            //Paso 2
+            commonActions.AccesoOferta();//Oferta menu
+            commonCondition.AccedeOferta();//comprobamos el acceso             
+
+            //Paso 3
+            productoActions.Añadirproducto_vistarapida();//entramos en añadir producto vista rapida
+            productoCondition.Resultado2_Editar_añadir_producto();//se accede a pantalla añadir producto
         }
     }
 }
