@@ -6,6 +6,20 @@ namespace Lyntia.Utilities
 {
 	public class ObjectRepositoryUtils
 	{
+		private readonly static ObjectRepositoryUtils _instance = new ObjectRepositoryUtils();
+
+		private ObjectRepositoryUtils()
+		{
+		}
+
+		public static ObjectRepositoryUtils Instance
+		{
+			get
+			{
+				return _instance;
+			}
+		}
+
 		Dictionary<String, List<String>> database = new Dictionary<String, List<String>>();
 
 		/**

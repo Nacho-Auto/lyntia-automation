@@ -6,6 +6,20 @@ namespace Lyntia.Utilities
 {
 	public class TestDataUtils
 	{
+		private readonly static TestDataUtils _instance = new TestDataUtils();
+
+		private TestDataUtils()
+		{
+		}
+
+		public static TestDataUtils Instance
+		{
+			get
+			{
+				return _instance;
+			}
+		}
+
 		Dictionary<String, List<String>> database = new Dictionary<String, List<String>>();
 
 		/**

@@ -9,13 +9,24 @@ namespace Lyntia.TestSet.Actions
 	public class CommonActions
 	{
 
-        private static IWebDriver driver = Utils.getDriver();
-        private static OfertaActions ofertaActions = Utils.getOfertaActions();
-        private static OfertaConditions ofertaCondition = Utils.getOfertaConditions();
-        private static ProductoActions productoActions = Utils.getProductoActions();
-        private static ProductoConditions productoCondition = Utils.getProductoConditions();
-        private static CommonActions commonActions = Utils.getCommonActions();
-        private static CommonConditions commonCondition = Utils.getCommonConditions();
+        private static IWebDriver driver;
+        private static OfertaConditions ofertaCondition;
+        private static ProductoActions productoActions;
+        private static ProductoConditions productoCondition;
+        private static CommonActions commonActions;
+        private static CommonConditions commonCondition;
+        private static OpenQA.Selenium.Interactions.Actions accionesSelenium;
+
+        public CommonActions()
+        {
+            driver = Utils.driver;
+            ofertaCondition = Utils.getOfertaConditions();
+            productoActions = Utils.getProductoActions();
+            productoCondition = Utils.getProductoConditions();
+            commonActions = Utils.getCommonActions();
+            commonCondition = Utils.getCommonConditions();
+            accionesSelenium = new OpenQA.Selenium.Interactions.Actions(driver);
+        }
 
         public void AccesoGestionCliente()
         {

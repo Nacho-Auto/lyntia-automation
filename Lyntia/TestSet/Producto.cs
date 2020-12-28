@@ -14,6 +14,8 @@ namespace Lyntia.TestSet
     class Producto
     {
 
+        readonly Utils utils = new Utils();
+
         private static IWebDriver driver;
         private static OfertaActions ofertaActions;
         private static OfertaConditions ofertaCondition;
@@ -22,14 +24,13 @@ namespace Lyntia.TestSet
         private static CommonActions commonActions;
         private static CommonConditions commonCondition;
 
-        readonly Utils utils = new Utils();
-
         [SetUp]
         public void Instanciador()
         {
             // Instanciador del driver
             utils.Instanciador();
-            driver = Utils.getDriver();
+
+            driver = Utils.driver;
             ofertaActions = Utils.getOfertaActions();
             ofertaCondition = Utils.getOfertaConditions();
             productoActions = Utils.getProductoActions();

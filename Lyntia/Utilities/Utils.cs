@@ -9,9 +9,9 @@ namespace Lyntia.Utilities
     public class Utils
     {
 
-        private static IWebDriver driver;
-        public ObjectRepositoryUtils objRep;
-        public TestDataUtils dataRep;
+        public static IWebDriver driver;
+        public static ObjectRepositoryUtils objRep;
+        public static TestDataUtils dataRep;
         private static OfertaActions ofertaActions;
         private static OfertaConditions ofertaCondition;
         private static ProductoActions productoActions;
@@ -51,23 +51,18 @@ namespace Lyntia.Utilities
             return commonCondition;
         }
 
-        public static IWebDriver getDriver()
-        {
-            return driver;
-        }
-
-
         public void Instanciador()
         {
+            driver = new ChromeDriver(@"C:\chromedriver");
+
+            objRep = ObjectRepositoryUtils.Instance;
+            dataRep = TestDataUtils.Instance;
             ofertaActions = new OfertaActions();
             ofertaCondition = new OfertaConditions();
             productoActions = new ProductoActions();
             productoCondition = new ProductoConditions();
             commonActions = new CommonActions();
             commonCondition = new CommonConditions();
-            objRep = new ObjectRepositoryUtils();
-            dataRep = new TestDataUtils();
-            driver = new ChromeDriver(@"C:\chromedriver");
 
             driver.Navigate().GoToUrl("https://ufinetprep2.crm4.dynamics.com/");
             driver.Manage().Window.Maximize();
