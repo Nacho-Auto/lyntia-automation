@@ -247,7 +247,7 @@ namespace Lyntia
 
         }
 
-        [Test(Description = "CRM-COF0005 Eliminar Oferta en borrador con producto añadido")]
+        //[Test(Description = "CRM-COF0005 Eliminar Oferta en borrador con producto añadido")]
         [AllureSubSuite("PRO ELIMINAR OFERTA")]
         public void CRM_COF0005_eliminarOfertaProductoAnadido()
         {
@@ -284,7 +284,7 @@ namespace Lyntia
             actions.EliminarOfertaActual("Eliminar", driver);
         }
 
-        [Test(Description = "CRM-COF0006 Eliminar Oferta en borrador con producto añadido desde el grid")]
+        //[Test(Description = "CRM-COF0006 Eliminar Oferta en borrador con producto añadido desde el grid")]
         [AllureSubSuite("PRO ELIMINAR OFERTA")]
         public void CRM_COF0006_eliminarOfertaProductoAnadidoDesdeGrid()
         {
@@ -329,8 +329,7 @@ namespace Lyntia
 
         }
 
-        //CRM-EOF0003
-        [Test]
+        [Test(Description = "CRM-EOF0003 Editar campos de una Oferta")]
         [AllureSubSuite("PRO EDITAR OFERTA")]
         public void CRM_EOF0003_Editar_campos_de_una_oferta()
         {
@@ -356,7 +355,7 @@ namespace Lyntia
 
 
         //CRM-EOF0004
-        [Test]
+        [Test(Description = "CRM-EOF0004 Editar campo Tipo de Oferta")]
         [AllureSubSuite("PRO EDITAR OFERTA")]
         public void CRM_EOF0004_Editar_campo_tipo_de_Oferta()
         {
@@ -386,8 +385,8 @@ namespace Lyntia
 
         }
 
-        //CRM-APR0001
-        [Test]
+
+        //[Test(Description = "CRM-COF0001 Añadir Producto")]
         [AllureSubSuite("PRO AÑADIR OFERTA")]
         public void CRM_APR0001_añadir_producto()
         {
