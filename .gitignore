@@ -15,11 +15,6 @@
 
 # Build results
 [Dd]ebug/
-# Except repositories and allureconfig.json
-!*[Dd]ebug/netcoreapp3.1/ObjectRepository.csv
-!*[Dd]ebug/netcoreapp3.1/DataRepository.csv
-!*[Dd]ebug/netcoreapp3.1/allureConfig.json
-# -------------
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
@@ -344,3 +339,8 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 Lyntia/allure-report/
+
+# Except repositories and allureconfig.json
+!*Lyntia/bin/Debug/netcoreapp3.1/ObjectRepository.csv
+!*Lyntia/bin/Debug/netcoreapp3.1/DataRepository.csv
+!*Lyntia/bin/Debug/netcoreapp3.1/allureConfig.json
