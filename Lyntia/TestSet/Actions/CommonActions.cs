@@ -16,6 +16,8 @@ namespace Lyntia.TestSet.Actions
         private static CommonActions commonActions;
         private static CommonConditions commonCondition;
         private static OpenQA.Selenium.Interactions.Actions accionesSelenium;
+        private static ObjectRepositoryUtils objRep = Utils.objRep;
+        private static TestDataUtils dataRep = Utils.dataRep;
 
         public CommonActions()
         {
@@ -53,13 +55,13 @@ namespace Lyntia.TestSet.Actions
         public void Login()
         {
             // Login (acceso a PRE lyntia) 365 dinamic
-            driver.FindElement(By.Id("i0116")).SendKeys("rgomezs.ext@lyntia.com"); //usuario de lyntia
-            driver.FindElement(By.Id("idSIButton9")).Click();
-            driver.FindElement(By.Id("userNameInput")).Clear();
-            driver.FindElement(By.Id("userNameInput")).SendKeys("rgomezs@lyntia.com"); //usuario de entorno lyntia
-            driver.FindElement(By.Id("passwordInput")).SendKeys("W1nter20$"); //pass de entorno lyntia
-            driver.FindElement(By.Id("submitButton")).Click();
-            driver.FindElement(By.Id("idBtn_Back")).Click(); //Desea mantener la sesion iniciada NO
+            Utils.searchWebElement("Login.firstInput").SendKeys("rgomezs.ext@lyntia.com"); //usuario de lyntia
+            Utils.searchWebElement("Login.firstSubmitButton").Click();
+            Utils.searchWebElement("Login.secondInput").Clear();
+            Utils.searchWebElement("Login.secondInput").SendKeys("rgomezs@lyntia.com"); //usuario de entorno lyntia
+            Utils.searchWebElement("Login.thirdInput").SendKeys("W1nter20$"); //pass de entorno lyntia
+            Utils.searchWebElement("Login.secondSubmitButton").Click();
+            Utils.searchWebElement("Login.notPersistanceButton").Click(); //Desea mantener la sesion iniciada NO
 
         }
     }

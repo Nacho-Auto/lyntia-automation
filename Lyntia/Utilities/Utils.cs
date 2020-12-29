@@ -56,7 +56,9 @@ namespace Lyntia.Utilities
             driver = new ChromeDriver(@"C:\chromedriver");
 
             objRep = ObjectRepositoryUtils.Instance;
+            objRep.testDataReader(@"ObjectRepository.csv");
             dataRep = TestDataUtils.Instance;
+            dataRep.testDataReader(@"DataRepository.csv");
             ofertaActions = new OfertaActions();
             ofertaCondition = new OfertaConditions();
             productoActions = new ProductoActions();
@@ -86,5 +88,19 @@ namespace Lyntia.Utilities
             return true;
 
         }
+
+        public static IWebElement searchWebElement(String identificador)
+        {
+            switch (objRep.TypeObjectID(identificador))
+            {
+                case "XPATH":
+                    return driver.FindElement(By.XPath(objRep.ObjectID(identificador)));
+                case "ID":
+                    return driver.FindElement(By.Id(objRep.ObjectID(identificador)));
+                default:
+                    return null;
+            }
+        }
+
     }
 }

@@ -35,13 +35,14 @@ namespace Lyntia.Utilities
 				while (!reader.EndOfStream)
 				{
 					List<String> dataList = new List<string>();
+					line = reader.ReadLine();
 
 					foreach (String value in line.Split(csvSplitBy))
 					{
 						dataList.Add(value);
 					}
 
-					database.TryAdd(dataList[0], dataList.GetRange(1, dataList.Count));
+					database.TryAdd(dataList[0], dataList.GetRange(1, dataList.Count-1));
 				}
 			}
 		}
