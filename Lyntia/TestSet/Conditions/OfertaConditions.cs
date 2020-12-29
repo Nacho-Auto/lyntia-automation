@@ -222,5 +222,11 @@ namespace Lyntia.TestSet.Conditions
             driver.FindElement(By.XPath("//li[contains(@aria-label, 'Guardar')]")).Click();
             driver.FindElement(By.XPath("//span[contains(@aria-label, 'Guardar y cerrar')]")).Click();
         }
+
+        public void OfertaNoCancelada()
+        {
+            // Se muestra label con mensaje "Por favor, completa los campos obligatorios"
+            Assert.AreEqual("Por favor, completa los campos obligatorios", driver.FindElement(By.XPath("//p[@id='error']]")).Text);
+        }
     }
 }
