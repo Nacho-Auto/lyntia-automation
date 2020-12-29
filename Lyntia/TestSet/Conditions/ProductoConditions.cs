@@ -5,8 +5,7 @@ using OpenQA.Selenium;
 
 namespace Lyntia.TestSet.Conditions
 {
-
-   
+	
 	public class ProductoConditions
 	{
 		
@@ -29,13 +28,12 @@ namespace Lyntia.TestSet.Conditions
             accionesSelenium = new OpenQA.Selenium.Interactions.Actions(driver);
         }
 
-
         public void Resultado_Añadirproducto_vistarapida()
         {
             Assert.AreEqual(true, driver.FindElement(By.Id("quickCreateLauncher_buttoncrm_header_global")).Enabled);
         }
-
-        public void Resultado2_Editar_añadir_producto()
+		
+		public void Resultado2_Editar_añadir_producto()
         {
             driver.FindElement(By.XPath("//button[contains(@data-id, 'quickCreateSaveAndCloseBtn')]")).Click();//Guardar
             Assert.AreEqual("Tiene 2 notificaciones. Seleccione esta opción para verlas.", driver.FindElement(By.XPath("/html/body/section/div/div/div/div/section/div[1]/div/div/div/span[2]")).Text);//Mensajes indicando que faltan campos
@@ -51,6 +49,7 @@ namespace Lyntia.TestSet.Conditions
             driver.FindElement(By.XPath("//button[contains(@aria-label, 'Cancelar')]")).Click();//boton cancelar añadir producto
             driver.FindElement(By.XPath("/html/body/section[2]/div/div/div/div/div/div/div[1]/div/button/span")).Click();//cerrar
         }
+		
         public void Resultado_Añadir_producto_ciercuito_de_capacidad()
         {
             Assert.AreEqual("Tiene 2 notificaciones. Seleccione esta opción para verlas.", driver.FindElement(By.XPath("/html/body/section/div/div/div/div/section/div[1]/div/div/div/span[2]")).Text);//Mensajes indicando que faltan campos
@@ -71,5 +70,4 @@ namespace Lyntia.TestSet.Conditions
             Assert.AreEqual("Los cambios se han guardado.", driver.FindElement(By.XPath("//span[contains(@title,'Los cambios se han guardado.' )]")).Text);//Mensajes indicando que se ha guardado correctamente
         }
     }
-
 }

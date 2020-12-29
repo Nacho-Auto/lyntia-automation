@@ -27,11 +27,10 @@ namespace Lyntia.TestSet.Actions
             commonActions = Utils.getCommonActions();
             commonCondition = Utils.getCommonConditions();
             accionesSelenium = new OpenQA.Selenium.Interactions.Actions(driver);
-    }        
+		}        
 
         public void AccesoOfertasLyntia(String seccion)
         {
-
             driver.FindElement(By.Id("sitemap-entity-oferta")).Click();
             Thread.Sleep(2000);
             driver.FindElement(By.XPath("//h1[@title='Seleccionar vista']")).Click(); //Expandimos la opción de Ofertas lyntia
@@ -96,7 +95,6 @@ namespace Lyntia.TestSet.Actions
 
         public void RellenarCamposOferta(String nombre, String cliente, String tipoOferta, String kam)
         {
-            
 
             driver.FindElement(By.XPath("//input[@aria-label='Nombre oferta']")).Click();
             driver.FindElement(By.XPath("//input[@aria-label='Nombre oferta']")).SendKeys(Keys.Control + "a");
@@ -305,6 +303,36 @@ namespace Lyntia.TestSet.Actions
             driver.FindElement(By.XPath("//button[contains(@data-id, 'quickCreateSaveAndCloseBtn')]")).Click();//guardamos y cerramos
         }
 
+        internal void CancelarOfertaActual(string opcion, string razonOferta, string motivoCierre)
+        {
+            if (!razonOferta.Equals(""))
+            {
+                SelectElement drop = new SelectElement(driver.FindElement(By.XPath("//select[@id='razonestado']")));
+
+                drop.SelectByText(razonOferta);
+            }
+
+            if (!motivoCierre.Equals(""))
+            {
+                SelectElement drop = new SelectElement(driver.FindElement(By.XPath("//select[@id='motivocierre']")));
+
+                drop.SelectByText(motivoCierre);
+            }
+
+            if (opcion.Equals("Aceptar"))
+            {
+                // Cancelación realizada
+                driver.FindElement(By.XPath("//button[@id='btnOK']")).Click();
+                Thread.Sleep(3000);
+            }
+            else
+            {
+                // Cancelación anulada
+                driver.FindElement(By.XPath("//button[@id='cmdDialogCancel']")).Click();
+                Thread.Sleep(3000);
+            }
+        }
+		
         public void SeleccionOferta()//Seleccion de una oferta del listado
         {
             driver.FindElement(By.Id("sitemap-entity-oferta")).Click();
@@ -316,6 +344,7 @@ namespace Lyntia.TestSet.Actions
             Thread.Sleep(3000);
             driver.FindElement(By.XPath("//div[contains(@title, 'Automatica_MOD')]")).Click();//click en la oferta
         }
+		
         public void SeleccionarOfertaGridEliminar()//selecciona una oferta y la eliminamos(realizamos comprobaciones tipo cancelar)
         {
             driver.FindElement(By.XPath("//div[contains(@title, 'Ganada')]")).Click();//seleccionamos una oferta ganada y pulsamos sobre el ckeck
@@ -356,5 +385,4 @@ namespace Lyntia.TestSet.Actions
         }
 
     }
-
 }

@@ -338,6 +338,53 @@ namespace Lyntia.TestSet
 
         }
 
+        [Test(Description = "CRM-COF0007 Cancelar Oferta en borrador con producto añadido")]
+        [AllureSubSuite("PRO ELIMINAR OFERTA")]
+        public void CRM_COF0007_cancelarOfertaProductoAnadidoDesdeGrid()
+        {
+            // Login y Acceso a Gestión de Cliente
+            commonActions.AccesoGestionCliente();
+            commonCondition.AccedeGestionCliente();
+
+            // Paso 1 - Hacer click en Ofertas
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            // Paso 2 - Acceder a una Oferta que esté en estado Borrador con producto añadido.
+            ofertaActions.AccesoNuevaOferta();
+
+            ofertaActions.RellenarCamposOferta("CRM-COF0007-CANCELAR", "CLIENTE INTEGRACION", "Nuevo servicio", "# BizQA");
+            ofertaActions.GuardarOferta();
+
+            // Añadir Producto a la Oferta
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps");
+
+            // Volver al grid
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            // Paso 2 Seleccionar la Oferta del grid
+            ofertaActions.BuscarOfertaEnVista("CRM-COF0007-CANCELAR");
+            ofertaCondition.OfertaGuardadaCorrectamenteEnGrid();
+
+            // Seleccionar la Oferta del grid
+            ofertaActions.SeleccionarOfertaGrid();
+
+            // Paso 3 - Pulsar Cancelar en la barra de herramientas y cancelar la eliminacion
+            ofertaActions.CancelarOfertaActual("Cancelar", "Cancelada", "Sin información");
+            ofertaCondition.OfertaNoCancelada();
+
+
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            ofertaActions.BuscarOfertaEnVista("CRM-COF0006-ELIMINAR");
+            ofertaCondition.OfertaGuardadaCorrectamenteEnGrid();
+
+            // Paso 4 - Repetir paso anterior eliminando la oferta
+            ofertaActions.SeleccionarOfertaGrid();
+
+            ofertaActions.EliminarOfertaActual("Eliminar");
+
+        }
+		
         //CRM-EOF0003
         [Test]
         [AllureSubSuite("PRO EDITAR OFERTA")]
@@ -394,6 +441,7 @@ namespace Lyntia.TestSet
             ofertaCondition.Aviso_Cambiodedireccion();
 
         }
+
         [Test(Description = "CRM-COF0011 Oferta/Eliminar/Adjudicada")]
         [AllureSubSuite("PRO ELIMINAR OFERTA")]
         public void CRM_COF0011_eliminarOferta_Adjudicada()
@@ -437,6 +485,5 @@ namespace Lyntia.TestSet
             ofertaActions.Seleccionofertarazonadjudicada();
             ofertaCondition.Resultado_Seleccionofertarazonadjudicada();
         }
-
     }
 }

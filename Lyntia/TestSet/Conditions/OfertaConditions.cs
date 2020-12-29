@@ -17,7 +17,6 @@ namespace Lyntia.TestSet.Conditions
         private static CommonActions commonActions;
         private static CommonConditions commonCondition;
         private static OpenQA.Selenium.Interactions.Actions accionesSelenium;
-        
 
         public OfertaConditions()
         {
@@ -232,10 +231,12 @@ namespace Lyntia.TestSet.Conditions
         {
             Assert.AreEqual("Ganada", driver.FindElement(By.XPath("//div[contains(@title, 'Ganada')]")).Text);//la oferta esta en estado ganada
         }
+		
         public void Resultado_Eliminar_BarraMenu()
         {
             Assert.AreEqual("Confirmar eliminación", driver.FindElement(By.XPath("//h1[contains(@aria-label, 'Confirmar eliminación')]")).Text);//se comprueba texto de la ventana emergente
         }
+		
         public void Resultado_Cancelar()
         {
             Assert.AreEqual("Ganada", driver.FindElement(By.XPath("//div[contains(@title, 'Ganada')]")).Text);//la oferta esta en estado ganada
@@ -252,11 +253,17 @@ namespace Lyntia.TestSet.Conditions
             driver.FindElement(By.XPath("//*[@id='cancelButton']")).Click();
             Thread.Sleep(2000);
         }
+		
         public void Resultado_Seleccionofertarazonadjudicada()
         {
 
             //Assert.IsTrue(false, Utils.EncontrarElemento(By.XPath("//span[contains(@aria-label, 'Eliminar')]")));
-
+		}
+		
+        public void OfertaNoCancelada()
+        {
+            // Se muestra label con mensaje "Por favor, completa los campos obligatorios"
+            Assert.AreEqual("Por favor, completa los campos obligatorios", driver.FindElement(By.XPath("//p[@id='error']]")).Text);
         }
     }
 }
