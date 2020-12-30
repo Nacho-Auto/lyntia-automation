@@ -8,7 +8,7 @@ Login.secondSubmitButton;ID;submitButton
 Login.notPersistanceButton;ID;idBtn_Back
 ############################## OFERTA #############################
 Oferta.ofertaSection;ID;sitemap-entity-oferta
-Oferta ofertaTitleSelector;XPATH;//h1[@title='Seleccionar vista']
+Oferta.ofertaTitleSelector;XPATH;//h1[@title='Seleccionar vista']
 Oferta.newOferta;XPATH;//button[@aria-label='Nuevo']
 Oferta.saveOferta;XPATH;//button[@aria-label='Guardar']
 Oferta.saveAndCloseOferta;XPATH;//button[@aria-label='Guardar y cerrar']
