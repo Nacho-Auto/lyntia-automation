@@ -69,9 +69,7 @@ namespace Lyntia.TestSet
             ofertaActions.Editar_añadir_producto();//se pulsa añadir producto en la pestaña general y realizamos unas comprobaciones
             ofertaCondition.Resultado_Editar_añadir_producto();//se verifican cambios
 
-            //Paso 5
-            //actions.Cancelar_y_cerrar();
-            //condition.Resultado_Cancelar_y_cerrar();
+            
         }
 
         //CRM-APR0002
@@ -90,6 +88,34 @@ namespace Lyntia.TestSet
             //Paso 3
             productoActions.Añadirproducto_vistarapida();//entramos en añadir producto vista rapida
             productoCondition.Resultado2_Editar_añadir_producto();//se accede a pantalla añadir producto
+        }
+        //CRM-APR0003
+        [Test]
+        [AllureSubSuite("PRO AÑADIR OFERTA")]
+        public void CRM_APR0003_Producto_Añadir_CC()
+        {
+            //Paso 1 Login y acceso al modulo gestion de cliente
+            commonActions.AccesoGestionCliente();//Acceso al modulo de Gestion de Cliente(Aplicaciones)
+            commonCondition.AccedeGestionCliente();//Acceso correcto             
+
+            //Paso 2
+            commonActions.AccesoOferta();//Oferta menu
+            commonCondition.AccedeOferta();//comprobamos el acceso
+
+            //Paso 3
+            ofertaActions.Seleccion_de_oferta_Borrador();//en el listado seleccionamos una oferta borrardor y pulsamos Enter
+            ofertaCondition.Resultado_Seleccion_de_oferta_Borrador();//se realizan comprobaciones
+
+            //Paso 5
+            productoActions.Agregar_Producto_tipo_circuito_de_capacidad("Circuitos de capacidad");//Se selecciona solo el producto existente y se guarda
+            productoCondition.Resultado_Agregar_Producto_tipo_circuito_de_capacidad();//se realizan comprobaciones
+
+            //Paso 6
+            productoActions.Agregar_Liena_de_nogocio_y_Unidad_de_venta("FTTT", "10");
+            productoCondition.Resultado_Agregar_Liena_de_nogocio_y_Unidad_de_venta();
+
+            // Reestablece datos
+            productoActions.Borrado_de_producto();
         }
     }
 }

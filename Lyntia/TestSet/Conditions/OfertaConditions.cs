@@ -273,5 +273,14 @@ namespace Lyntia.TestSet.Conditions
             // Se muestra label con mensaje "Por favor, completa los campos obligatorios"
             Assert.AreEqual("Por favor, completa los campos obligatorios", driver.FindElement(By.XPath("//p[@id='error']]")).Text);
         }
+        public void Resultado_Seleccion_de_oferta_Borrador()
+        {
+            Assert.AreEqual(true, driver.FindElement(By.XPath("//li[contains(@aria-label, 'General')]")).Enabled);//la pestaña general esta activa
+            Assert.AreEqual("General", driver.FindElement(By.XPath("//li[contains(@aria-label, 'General')]")).Text);
+        }
+        public void Resultado_Agregar_Producto()
+        {
+            Assert.AreEqual(true, driver.FindElement(By.XPath("//input[contains(@aria-label, 'Producto existente, Búsqueda')]")).Enabled);//el campo producto existente esta habilitado
+        }
     }
 }

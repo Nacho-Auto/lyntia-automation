@@ -385,6 +385,19 @@ namespace Lyntia.TestSet.Actions
             driver.FindElement(By.XPath("//*[@id='confirmButtonText']")).Click();
             
         }
+        public void Seleccion_de_oferta_Borrador()
+        {
+            Thread.Sleep(3000);
+            driver.FindElement(By.XPath("//div[contains(@title, 'Borrador')]")).Click();//seleccionamos una oferta en Borrador y pulsamos sobre el ckeck
+            Thread.Sleep(1000);
+            driver.FindElement(By.XPath("//li[contains(@aria-label, 'Editar')]")).Click();//pulsamos editar la oferta
+            Thread.Sleep(3000);
+        }
+        public void Agregar_Producto()
+        {
+            driver.FindElement(By.XPath("//button[contains(@aria-label, 'Agregar producto')]")).Click();//pulsamos sobre agregar producto de la pestaña General
+            Thread.Sleep(2000);
+        }
 
     }
 }
