@@ -28,10 +28,10 @@ namespace Lyntia.TestSet.Actions
             commonActions = Utils.getCommonActions();
             commonCondition = Utils.getCommonConditions();
             accionesSelenium = new OpenQA.Selenium.Interactions.Actions(driver);
-		}        
+        }
 
         public void AccesoOfertasLyntia(String seccion)
-        {           
+        {
             if (utils.EncontrarElemento(By.Id(Utils.getIdentifier("Oferta.ofertaSection"))))
             {
                 Utils.searchWebElement("Oferta.ofertaSection").Click();
@@ -40,7 +40,7 @@ namespace Lyntia.TestSet.Actions
                 driver.FindElement(By.XPath("//span[contains(text(), '" + seccion + "')]")).Click(); //Opción escalable
                 Thread.Sleep(2000);
             }
-            
+
         }
 
         public void AccesoNuevaOferta()
@@ -80,7 +80,7 @@ namespace Lyntia.TestSet.Actions
 
         public void RellenarCamposOferta(String nombre, String cliente, String tipoOferta, String kam)
         {
-            
+
             Utils.searchWebElement("Oferta.inputNameOferta").Click();
             Utils.searchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Control + "a");
             Utils.searchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Delete);
@@ -101,7 +101,7 @@ namespace Lyntia.TestSet.Actions
                 accionesSelenium.SendKeys(Keys.PageDown);
                 accionesSelenium.Build().Perform();
                 Thread.Sleep(3000);
- 
+
                 Utils.searchWebElement("Oferta.inputCustomerId").Click();
                 Thread.Sleep(1000);
                 Utils.searchWebElement("Oferta.inputCustomerId").SendKeys(cliente);
@@ -117,7 +117,7 @@ namespace Lyntia.TestSet.Actions
                 // Rellenar Tipo de Oferta
                 accionesSelenium.SendKeys(Keys.PageDown);
                 accionesSelenium.Build().Perform();
- 
+
                 SelectElement drop = new SelectElement(Utils.searchWebElement("Oferta.selectOfertaType"));
 
                 drop.SelectByText(tipoOferta);
@@ -324,7 +324,7 @@ namespace Lyntia.TestSet.Actions
                 Thread.Sleep(3000);
             }
         }
-		
+
         public void SeleccionOferta()//Seleccion de una oferta del listado
         {
             driver.FindElement(By.Id("sitemap-entity-oferta")).Click();
@@ -336,7 +336,7 @@ namespace Lyntia.TestSet.Actions
             Thread.Sleep(3000);
             driver.FindElement(By.XPath("//div[contains(@title, 'Automatica_MOD')]")).Click();//click en la oferta
         }
-		
+
         public void SeleccionarOfertaGridEliminar()//selecciona una oferta y la eliminamos(realizamos comprobaciones tipo cancelar)
         {
             driver.FindElement(By.XPath("//div[contains(@title, 'Ganada')]")).Click();//seleccionamos una oferta ganada y pulsamos sobre el ckeck
@@ -373,8 +373,12 @@ namespace Lyntia.TestSet.Actions
         {
             Thread.Sleep(2000);
             driver.FindElement(By.XPath("//*[@id='confirmButtonText']")).Click();
-            
+
         }
 
+        public void PresentarOferta()
+        {
+            driver.FindElement(By.XPath("//button[@title='Presentar Oferta']")).Click();
+        }
     }
 }
