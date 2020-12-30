@@ -445,7 +445,61 @@ namespace Lyntia.TestSet
             ofertaActions.EliminarOfertaActual("Eliminar");
 
         }
-		
+
+        [Test(Description = "CRM-COF00010 Cerrar Oferta Presentada con producto añadido, Revisada")]
+        [AllureSubSuite("PRO ELIMINAR OFERTA")]
+        public void CRM_COF00010_cerrarOfertaPresentadaProductoAnadidoRevisada()
+        {
+            // Login y Acceso a Gestión de Cliente
+            commonActions.AccesoGestionCliente();
+            commonCondition.AccedeGestionCliente();
+
+            // Paso 1 - Hacer click en Ofertas
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            // Paso 2 - Acceder a una Oferta que esté en estado Borrador con producto añadido.
+            ofertaActions.AccesoNuevaOferta();
+
+            ofertaActions.RellenarCamposOferta("CRM-COF00010-CIERRE", "CLIENTE INTEGRACION", "Nuevo servicio", "# BizQA");
+            ofertaActions.GuardarOferta();
+
+            // Añadir Producto a la Oferta
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps");
+
+            // Volver al grid
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            // Paso 2 Seleccionar la Oferta del grid
+            ofertaActions.BuscarOfertaEnVista("CRM-COF00010-CIERRE");
+            ofertaCondition.OfertaGuardadaCorrectamenteEnGrid();
+
+            // Seleccionar la Oferta del grid
+            ofertaActions.SeleccionarOfertaGrid();
+            ofertaActions.AbrirOfertaEnVista("CRM-COF00010-CIERRE");
+
+            // Presentar la Oferta
+            ofertaActions.PresentarOferta();
+            ofertaCondition.OfertaPresentada();
+
+            // Paso 6 - Cerrar la Oferta actual como Revisada
+            ofertaActions.CerrarOfertaActual("Aceptar", "Revisada", "");
+
+            driver.Navigate().Refresh();
+
+            // Acceso a Ofertas y buscar la Oferta Cerrada
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            // Paso 7 - Repetir el paso anterior pero cerrando de manera correcta
+            ofertaActions.BuscarOfertaEnVista("CRM-COF00010-CIERRE");
+            ofertaCondition.OfertaCerradaCorrectamenteEnGrid("No viable");
+
+            // Eliminar Oferta
+            ofertaActions.SeleccionarOfertaGrid();
+
+            ofertaActions.EliminarOfertaActual("Eliminar");
+
+        }
+
         //CRM-EOF0003
         [Test]
         [AllureSubSuite("PRO EDITAR OFERTA")]

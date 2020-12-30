@@ -221,7 +221,7 @@ namespace Lyntia.TestSet.Conditions
             driver.FindElement(By.XPath("//select[contains(@title, 'Cambio de capacidad (Upgrade/Downgrade)')]")).Click();
             accionesSelenium.SendKeys(Keys.ArrowUp).Perform();
             accionesSelenium.SendKeys(Keys.Enter).Perform();
-            
+
             Thread.Sleep(7000);
             driver.FindElement(By.XPath("//li[contains(@aria-label, 'Guardar')]")).Click();
             driver.FindElement(By.XPath("//span[contains(@aria-label, 'Guardar y cerrar')]")).Click();
@@ -231,12 +231,12 @@ namespace Lyntia.TestSet.Conditions
         {
             Assert.AreEqual("Ganada", driver.FindElement(By.XPath("//div[contains(@title, 'Ganada')]")).Text);//la oferta esta en estado ganada
         }
-		
+
         public void Resultado_Eliminar_BarraMenu()
         {
             Assert.AreEqual("Confirmar eliminación", driver.FindElement(By.XPath("//h1[contains(@aria-label, 'Confirmar eliminación')]")).Text);//se comprueba texto de la ventana emergente
         }
-		
+
         public void Resultado_Cancelar()
         {
             Assert.AreEqual("Ganada", driver.FindElement(By.XPath("//div[contains(@title, 'Ganada')]")).Text);//la oferta esta en estado ganada
@@ -249,17 +249,17 @@ namespace Lyntia.TestSet.Conditions
             Console.WriteLine(AvisoPriv);
             String AvisoPriv2 = driver.FindElement(By.XPath("//h2[contains(@aria-label, 'privilegios')]")).Text;//imprime en consola el texto
             Console.WriteLine(AvisoPriv2);
-            
+
             driver.FindElement(By.XPath("//*[@id='cancelButton']")).Click();
             Thread.Sleep(2000);
         }
-		
+
         public void Resultado_Seleccionofertarazonadjudicada()
         {
 
             //Assert.IsTrue(false, Utils.EncontrarElemento(By.XPath("//span[contains(@aria-label, 'Eliminar')]")));
-		}
-		
+        }
+
         public void OfertaNoCerrada()
         {
             // Se muestra label con mensaje "Por favor, completa los campos obligatorios"
@@ -273,6 +273,11 @@ namespace Lyntia.TestSet.Conditions
 
             // Se encuentra en Razon para el estado En elaboracion
             Assert.AreEqual(razonEstado, driver.FindElement(By.XPath("//div[@data-id='cell-0-8']")).GetAttribute("title"));
+        }
+
+        public void OfertaPresentada()
+        {
+            Assert.AreEqual("Solo lectura: estado de este registro: Bloqueada", driver.FindElement(By.XPath("//span[@data-id='warningNotification']")).Text);
         }
     }
 }
