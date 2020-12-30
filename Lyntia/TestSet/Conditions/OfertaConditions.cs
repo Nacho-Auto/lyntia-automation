@@ -279,5 +279,10 @@ namespace Lyntia.TestSet.Conditions
         {
             Assert.AreEqual("Solo lectura: estado de este registro: Bloqueada", driver.FindElement(By.XPath("//span[@data-id='warningNotification']")).Text);
         }
+
+        public void OfertaRevisadaCorrectamente()
+        {
+            Assert.AreEqual("2", Utils.searchWebElement("Oferta.gridCellsOferta").GetAttribute("data-row-count"));
+        }
     }
 }
