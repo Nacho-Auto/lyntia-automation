@@ -75,8 +75,7 @@ namespace Lyntia.TestSet
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
 
             // Paso 2A - Comprobar si hay alguna Oferta para abrir
-            IWebElement element = null;
-            if (utils.EncontrarElemento(By.XPath("//div[@title='No hay datos disponibles.']"), out element))
+            if (utils.EncontrarElemento(By.XPath("//div[@title='No hay datos disponibles.']")))
             {
                 // Paso 2AA - Crear Oferta Nueva
                 ofertaActions.AccesoNuevaOferta();
@@ -338,9 +337,9 @@ namespace Lyntia.TestSet
 
         }
 
-        [Test(Description = "CRM-COF0007 Cancelar Oferta en borrador con producto añadido")]
+        [Test(Description = "CRM-COF0007 Cerrar Oferta en borrador con producto añadido")]
         [AllureSubSuite("PRO ELIMINAR OFERTA")]
-        public void CRM_COF0007_cancelarOfertaProductoAnadidoDesdeGrid()
+        public void CRM_COF0007_cerrarOfertaProductoAnadido()
         {
             // Login y Acceso a Gestión de Cliente
             commonActions.AccesoGestionCliente();
@@ -352,7 +351,7 @@ namespace Lyntia.TestSet
             // Paso 2 - Acceder a una Oferta que esté en estado Borrador con producto añadido.
             ofertaActions.AccesoNuevaOferta();
 
-            ofertaActions.RellenarCamposOferta("CRM-COF0007-CANCELAR", "CLIENTE INTEGRACION", "Nuevo servicio", "# BizQA");
+            ofertaActions.RellenarCamposOferta("CRM-COF0007-CIERRE", "CLIENTE INTEGRACION", "Nuevo servicio", "# BizQA");
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la Oferta
@@ -362,23 +361,85 @@ namespace Lyntia.TestSet
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
 
             // Paso 2 Seleccionar la Oferta del grid
-            ofertaActions.BuscarOfertaEnVista("CRM-COF0007-CANCELAR");
+            ofertaActions.BuscarOfertaEnVista("CRM-COF0007-CIERRE");
             ofertaCondition.OfertaGuardadaCorrectamenteEnGrid();
 
             // Seleccionar la Oferta del grid
             ofertaActions.SeleccionarOfertaGrid();
+            ofertaActions.AbrirOfertaEnVista("CRM-COF0007-CIERRE");
 
-            // Paso 3 - Pulsar Cancelar en la barra de herramientas y cancelar la eliminacion
-            ofertaActions.CancelarOfertaActual("Cancelar", "Cancelada", "Sin información");
-            ofertaCondition.OfertaNoCancelada();
+            // Paso 3 y 4 - Pulsar Cerrar en la barra de herramientas y cancelar el cierre
+            ofertaActions.CerrarOfertaActual("Cancelar", "Cancelada", "Sin información");
 
+            // Paso 5 - Repetir el paso anterior pero cerrando sin completar campos obligatorios
+            ofertaActions.CerrarOfertaActual("Aceptar", "Cancelada", "");
+            ofertaCondition.OfertaNoCerrada();
 
+            driver.Navigate().Refresh();
+
+            // Paso 6 - Repetir el paso anterior pero cerrando de manera correcta
+            ofertaActions.CerrarOfertaActual("Aceptar", "Cancelada", "Sin información");
+
+            driver.Navigate().Refresh();
+
+            // Acceso a Ofertas y buscar la Oferta Cerrada
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
 
-            ofertaActions.BuscarOfertaEnVista("CRM-COF0006-ELIMINAR");
+            // Paso 7 - Repetir el paso anterior pero cerrando de manera correcta
+            ofertaActions.BuscarOfertaEnVista("CRM-COF0007-CIERRE");
+            ofertaCondition.OfertaCerradaCorrectamenteEnGrid("Cancelada");
+
+            // Eliminar Oferta
+            ofertaActions.SeleccionarOfertaGrid();
+
+            ofertaActions.EliminarOfertaActual("Eliminar");
+
+        }
+
+        [Test(Description = "CRM-COF0008 Cerrar Oferta en borrador con producto añadido, No viable")]
+        [AllureSubSuite("PRO ELIMINAR OFERTA")]
+        public void CRM_COF0008_cerrarOfertaProductoAnadidoNoViable()
+        {
+            // Login y Acceso a Gestión de Cliente
+            commonActions.AccesoGestionCliente();
+            commonCondition.AccedeGestionCliente();
+
+            // Paso 1 - Hacer click en Ofertas
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            // Paso 2 - Acceder a una Oferta que esté en estado Borrador con producto añadido.
+            ofertaActions.AccesoNuevaOferta();
+
+            ofertaActions.RellenarCamposOferta("CRM-COF0008-CIERRE", "CLIENTE INTEGRACION", "Nuevo servicio", "# BizQA");
+            ofertaActions.GuardarOferta();
+
+            // Añadir Producto a la Oferta
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps");
+
+            // Volver al grid
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            // Paso 2 Seleccionar la Oferta del grid
+            ofertaActions.BuscarOfertaEnVista("CRM-COF0008-CIERRE");
             ofertaCondition.OfertaGuardadaCorrectamenteEnGrid();
 
-            // Paso 4 - Repetir paso anterior eliminando la oferta
+            // Seleccionar la Oferta del grid
+            ofertaActions.SeleccionarOfertaGrid();
+            ofertaActions.AbrirOfertaEnVista("CRM-COF0008-CIERRE");
+
+            // Paso 6 - Repetir el paso anterior pero cerrando de manera correcta
+            ofertaActions.CerrarOfertaActual("Aceptar", "No viable", "Sin información");
+
+            driver.Navigate().Refresh();
+
+            // Acceso a Ofertas y buscar la Oferta Cerrada
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            // Paso 7 - Repetir el paso anterior pero cerrando de manera correcta
+            ofertaActions.BuscarOfertaEnVista("CRM-COF0008-CIERRE");
+            ofertaCondition.OfertaCerradaCorrectamenteEnGrid("No viable");
+
+            // Eliminar Oferta
             ofertaActions.SeleccionarOfertaGrid();
 
             ofertaActions.EliminarOfertaActual("Eliminar");

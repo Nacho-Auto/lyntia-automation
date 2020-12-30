@@ -9,6 +9,7 @@ namespace Lyntia.TestSet.Actions
 {
     public class ProductoActions
     {
+        readonly Utils utils = new Utils();
 
         private static IWebDriver driver;
         private static OfertaConditions ofertaCondition;
@@ -48,8 +49,9 @@ namespace Lyntia.TestSet.Actions
             drop.SelectByText(uso);
 
             // Seleccionar Producto existente del desplegable si esta vacio
-            if (driver.FindElement(By.XPath("//div[contains(@data-id,'uomid_selected_tag_text')]")).Text.Equals("---"))
+            if (utils.EncontrarElemento(By.XPath("//input[contains(@id,'Dropdown_uomid')]")))
             {
+
                 driver.FindElement(By.XPath("//input[contains(@data-id,'uomid')]")).Click();
                 Thread.Sleep(1000);
 

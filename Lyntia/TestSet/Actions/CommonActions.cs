@@ -46,12 +46,6 @@ namespace Lyntia.TestSet.Actions
 
         }
 
-        public int NumeroRegistrosEnGrid(By by)
-        {
-            return Int16.Parse(driver.FindElement(by).GetAttribute("data-row-count"));
-
-        }
-
         public void Login()
         {
             // Login (acceso a PRE lyntia) 365 dinamic

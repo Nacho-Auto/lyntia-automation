@@ -223,10 +223,19 @@ namespace Lyntia.TestSet.Conditions
             driver.FindElement(By.XPath("//span[contains(@aria-label, 'Guardar y cerrar')]")).Click();
         }
 
-        public void OfertaNoCancelada()
+        public void OfertaNoCerrada()
         {
             // Se muestra label con mensaje "Por favor, completa los campos obligatorios"
-            Assert.AreEqual("Por favor, completa los campos obligatorios", driver.FindElement(By.XPath("//p[@id='error']]")).Text);
+            Assert.AreEqual("Por favor, completa los campos obligatorios", driver.FindElement(By.XPath("//p[@id='error']")).Text);
+        }
+
+        public void OfertaCerradaCorrectamenteEnGrid(String razonEstado)
+        {
+            // Se encuentra en estado borrador
+            Assert.AreEqual("Cerrada", driver.FindElement(By.XPath("//div[@data-id='cell-0-7']")).GetAttribute("title"));
+
+            // Se encuentra en Razon para el estado En elaboracion
+            Assert.AreEqual(razonEstado, driver.FindElement(By.XPath("//div[@data-id='cell-0-8']")).GetAttribute("title"));
         }
     }
 }
