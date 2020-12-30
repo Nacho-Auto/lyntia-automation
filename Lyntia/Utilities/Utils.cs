@@ -72,8 +72,9 @@ namespace Lyntia.Utilities
 
         }
 
-        public bool EncontrarElemento(By by, out IWebElement element)
+        public bool EncontrarElemento(By by)
         {
+            IWebElement element = null;
             try
             {
                 element = driver.FindElement(by);
@@ -81,7 +82,7 @@ namespace Lyntia.Utilities
             }
             catch (NoSuchElementException)
             {
-                element = null;
+               
                 return false;
 
             }

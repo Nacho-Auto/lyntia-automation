@@ -17,6 +17,7 @@ namespace Lyntia.TestSet.Conditions
         private static CommonActions commonActions;
         private static CommonConditions commonCondition;
         private static OpenQA.Selenium.Interactions.Actions accionesSelenium;
+        readonly Utils utils = new Utils();
 
         public OfertaConditions()
         {
@@ -27,6 +28,7 @@ namespace Lyntia.TestSet.Conditions
             commonActions = Utils.getCommonActions();
             commonCondition = Utils.getCommonConditions();
             accionesSelenium = new OpenQA.Selenium.Interactions.Actions(driver);
+
         }
 
         public void CreaOferta()
@@ -247,9 +249,11 @@ namespace Lyntia.TestSet.Conditions
             Assert.AreEqual("Acceso denegado", driver.FindElement(By.XPath("//h1[contains(@aria-label, 'Acceso denegado')]")).Text);//muestra un mensaje informativo
             String AvisoPriv = driver.FindElement(By.XPath("//h1[contains(@aria-label, 'Acceso denegado')]")).Text;//imprime en consola el texto
             Console.WriteLine(AvisoPriv);
-            String AvisoPriv2 = driver.FindElement(By.XPath("//h2[contains(@aria-label, 'privilegios')]")).Text;//imprime en consola el texto
+            String AvisoPriv2 = driver.FindElement(By.XPath("/html/body/section/div/div/div/div/div/div/div[1]/div[2]/h2")).Text;//imprime en consola el texto
             Console.WriteLine(AvisoPriv2);
             
+
+
             driver.FindElement(By.XPath("//*[@id='cancelButton']")).Click();
             Thread.Sleep(2000);
         }
@@ -257,9 +261,13 @@ namespace Lyntia.TestSet.Conditions
         public void Resultado_Seleccionofertarazonadjudicada()
         {
 
-            //Assert.IsTrue(false, Utils.EncontrarElemento(By.XPath("//span[contains(@aria-label, 'Eliminar')]")));
-		}
-		
+
+
+            Assert.AreEqual(false, utils.EncontrarElemento(By.XPath("//span[contains(@aria-label, 'Eliminar')]")));//se comprueba que el elemento no esta presente
+            Assert.AreEqual(false, utils.EncontrarElemento(By.XPath("//span[contains(@aria-label, 'Cerrar Oferta')]")));//se comprueba que el elemento no esta presente
+            
+        }
+
         public void OfertaNoCancelada()
         {
             // Se muestra label con mensaje "Por favor, completa los campos obligatorios"

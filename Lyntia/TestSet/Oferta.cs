@@ -75,8 +75,8 @@ namespace Lyntia.TestSet
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
 
             // Paso 2A - Comprobar si hay alguna Oferta para abrir
-            IWebElement element = null;
-            if (utils.EncontrarElemento(By.XPath("//div[@title='No hay datos disponibles.']"), out element))
+            
+            if (utils.EncontrarElemento(By.XPath("//div[@title='No hay datos disponibles.']")))
             {
                 // Paso 2AA - Crear Oferta Nueva
                 ofertaActions.AccesoNuevaOferta();
@@ -456,7 +456,7 @@ namespace Lyntia.TestSet
             commonActions.AccesoOferta();//Oferta menu
             commonCondition.AccedeOferta();//comprobamos el acceso
 
-            //Paso 2 - Acceder a una Oferta que esté en_en_estado_Adjudicada();
+            //Paso 2 - Acceder a una Oferta que esté en_en_estado_Adjudicada, con el check del listado;
             ofertaActions.AccederOfertaestado_Adjudicada();
             ofertaCondition.Resultado_AccederOfertaestado_Adjudicada();
 
@@ -485,5 +485,24 @@ namespace Lyntia.TestSet
             ofertaActions.Seleccionofertarazonadjudicada();
             ofertaCondition.Resultado_Seleccionofertarazonadjudicada();
         }
+        [Test(Description = "CRM-COF0012 Oferta/Eliminar/Adjudicada")]
+        [AllureSubSuite("PRO ELIMINAR OFERTA")]
+        public void CRM_COF0012_Oferta_Cerrar_Adjudicada()
+        {
+            // Login y Acceso a Gestión de Cliente
+            commonActions.AccesoGestionCliente();//Acceso al modulo de Gestion de Cliente(Apliaciones)
+            commonCondition.AccedeGestionCliente();//Acceso correcto
+
+            // Paso 1 - Hacer click en Ofertas
+            commonActions.AccesoOferta();//Oferta menu
+            commonCondition.AccedeOferta();//comprobamos el acceso
+
+            //Paso 2 - Desde el listado de ofertas, seleccionamos una en estado ganada/adjudicada y se pulsa editar
+            ofertaActions.Seleccionofertarazonadjudicada();
+            ofertaCondition.Resultado_Seleccionofertarazonadjudicada();
+
+
+        }
+
     }
 }

@@ -373,9 +373,11 @@ namespace Lyntia.TestSet.Actions
         }
         public void Seleccionofertarazonadjudicada()
         {
-            driver.FindElement(By.XPath("//div[contains(@title, 'Ganada')]")).Click();//seleccionamos una oferta ganada y pulsamos sobre el ckeck
             Thread.Sleep(3000);
-            driver.FindElement(By.XPath("//span[contains(@aria-label, 'Editar')]")).Click();//seleccionamos una oferta ganada y pulsamos sobre editar
+            driver.FindElement(By.XPath("//div[contains(@title, 'Ganada')]")).Click();//seleccionamos una oferta ganada y pulsamos sobre el ckeck
+            Thread.Sleep(1000);
+            driver.FindElement(By.XPath("//li[contains(@aria-label, 'Editar')]")).Click();//pulsamos sobre editar
+            Thread.Sleep(3000);
         }
         public void Eliminar_Popup()//pulsamos sobre el eliminar del popup
         {
