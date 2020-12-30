@@ -445,7 +445,7 @@ namespace Lyntia.TestSet
             ofertaActions.EliminarOfertaActual("Eliminar");
 
         }
-
+		
         //CRM-EOF0003
         [Test]
         [AllureSubSuite("PRO EDITAR OFERTA")]
@@ -501,6 +501,50 @@ namespace Lyntia.TestSet
             ofertaActions.Tipo_de_oferta_Cambiodedireccion();
             ofertaCondition.Aviso_Cambiodedireccion();
 
+        }
+
+        [Test(Description = "CRM-COF0011 Oferta/Eliminar/Adjudicada")]
+        [AllureSubSuite("PRO ELIMINAR OFERTA")]
+        public void CRM_COF0011_eliminarOferta_Adjudicada()
+        {
+
+
+            // Login y Acceso a Gestión de Cliente
+            commonActions.AccesoGestionCliente();//Acceso al modulo de Gestion de Cliente(Apliaciones)
+            commonCondition.AccedeGestionCliente();//Acceso correcto
+
+            // Paso 1 - Hacer click en Ofertas
+            commonActions.AccesoOferta();//Oferta menu
+            commonCondition.AccedeOferta();//comprobamos el acceso
+
+            //Paso 2 - Acceder a una Oferta que esté en_en_estado_Adjudicada();
+            ofertaActions.AccederOfertaestado_Adjudicada();
+            ofertaCondition.Resultado_AccederOfertaestado_Adjudicada();
+
+            //Paso 3 - Pulsar Eliminar en la barra de herramientas.
+            ofertaActions.Eliminar_BarraMenu();
+            ofertaCondition.Resultado_Eliminar_BarraMenu();
+
+            //Paso 4 - Cancelar la eliminación de la Oferta haciendo click en Cancelar 
+            ofertaActions.Cancelar();
+            ofertaCondition.Resultado_Cancelar();
+
+            //Paso 5 - Repetir pasos 2 y 3 Acceso
+            ofertaActions.AccederOfertaestado_Adjudicada();
+            ofertaCondition.Resultado_AccederOfertaestado_Adjudicada();
+
+            // Paso 6 - Repetir pasos 2 y 3 Eliminar 
+            ofertaActions.Eliminar_BarraMenu();
+            ofertaCondition.Resultado_Eliminar_BarraMenu();
+
+            // Paso 7 - Eliminar la oferta desde popup
+
+            ofertaActions.Eliminar_Popup();
+            ofertaCondition.Resultado_Eliminar_Popup();
+
+            //Paso 6 - Regresar al grid de ofertas, seleccionar la Oferta Adjudicada con la que se trabaja.
+            ofertaActions.Seleccionofertarazonadjudicada();
+            ofertaCondition.Resultado_Seleccionofertarazonadjudicada();
         }
     }
 }

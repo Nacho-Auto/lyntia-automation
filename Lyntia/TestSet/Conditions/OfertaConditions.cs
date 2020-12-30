@@ -145,7 +145,11 @@ namespace Lyntia.TestSet.Conditions
             driver.FindElement(By.XPath("//button[contains(@aria-label, 'Cancelar')]")).Click();//boton cancelar añadir producto
             Thread.Sleep(2000);
             driver.FindElement(By.XPath("/html/body/section[2]/div/div/div/div/div/div/div[1]/div/button/span")).Click();
+            Thread.Sleep(2000);
+            driver.FindElement(By.XPath("//button[contains(@aria-label, 'Cancelar')]")).Click();//boton cancelar añadir producto
+            driver.FindElement(By.XPath("//button[contains(@aria-label, 'Descartar cambios')]")).Click();//boton cerrar de creacion producto
             Assert.AreEqual(true, driver.FindElement(By.XPath("//button[contains(@aria-label, 'Agregar producto')]")).Enabled);//volvemos a la pagina de añadir producto
+            Thread.Sleep(2000);
         }
 
         public void AccederSeleccionOferta()
@@ -223,6 +227,39 @@ namespace Lyntia.TestSet.Conditions
             driver.FindElement(By.XPath("//span[contains(@aria-label, 'Guardar y cerrar')]")).Click();
         }
 
+        public void Resultado_AccederOfertaestado_Adjudicada()
+        {
+            Assert.AreEqual("Ganada", driver.FindElement(By.XPath("//div[contains(@title, 'Ganada')]")).Text);//la oferta esta en estado ganada
+        }
+		
+        public void Resultado_Eliminar_BarraMenu()
+        {
+            Assert.AreEqual("Confirmar eliminación", driver.FindElement(By.XPath("//h1[contains(@aria-label, 'Confirmar eliminación')]")).Text);//se comprueba texto de la ventana emergente
+        }
+		
+        public void Resultado_Cancelar()
+        {
+            Assert.AreEqual("Ganada", driver.FindElement(By.XPath("//div[contains(@title, 'Ganada')]")).Text);//la oferta esta en estado ganada
+        }
+
+        public void Resultado_Eliminar_Popup()
+        {
+            Assert.AreEqual("Acceso denegado", driver.FindElement(By.XPath("//h1[contains(@aria-label, 'Acceso denegado')]")).Text);//muestra un mensaje informativo
+            String AvisoPriv = driver.FindElement(By.XPath("//h1[contains(@aria-label, 'Acceso denegado')]")).Text;//imprime en consola el texto
+            Console.WriteLine(AvisoPriv);
+            String AvisoPriv2 = driver.FindElement(By.XPath("//h2[contains(@aria-label, 'privilegios')]")).Text;//imprime en consola el texto
+            Console.WriteLine(AvisoPriv2);
+            
+            driver.FindElement(By.XPath("//*[@id='cancelButton']")).Click();
+            Thread.Sleep(2000);
+        }
+		
+        public void Resultado_Seleccionofertarazonadjudicada()
+        {
+
+            //Assert.IsTrue(false, Utils.EncontrarElemento(By.XPath("//span[contains(@aria-label, 'Eliminar')]")));
+		}
+		
         public void OfertaNoCerrada()
         {
             // Se muestra label con mensaje "Por favor, completa los campos obligatorios"

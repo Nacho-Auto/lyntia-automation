@@ -28,7 +28,7 @@ namespace Lyntia.TestSet.Actions
             commonActions = Utils.getCommonActions();
             commonCondition = Utils.getCommonConditions();
             accionesSelenium = new OpenQA.Selenium.Interactions.Actions(driver);
-        }
+		}        
 
         public void AccesoOfertasLyntia(String seccion)
         {           
@@ -324,7 +324,7 @@ namespace Lyntia.TestSet.Actions
                 Thread.Sleep(3000);
             }
         }
-
+		
         public void SeleccionOferta()//Seleccion de una oferta del listado
         {
             driver.FindElement(By.Id("sitemap-entity-oferta")).Click();
@@ -336,5 +336,45 @@ namespace Lyntia.TestSet.Actions
             Thread.Sleep(3000);
             driver.FindElement(By.XPath("//div[contains(@title, 'Automatica_MOD')]")).Click();//click en la oferta
         }
+		
+        public void SeleccionarOfertaGridEliminar()//selecciona una oferta y la eliminamos(realizamos comprobaciones tipo cancelar)
+        {
+            driver.FindElement(By.XPath("//div[contains(@title, 'Ganada')]")).Click();//seleccionamos una oferta ganada y pulsamos sobre el ckeck
+            Thread.Sleep(3000);
+            driver.FindElement(By.XPath("//span[contains(@aria-label, 'Eliminar')]")).Click();//pulsamos sobre eliminar de la barra superior del menu
+            driver.FindElement(By.XPath("//hi[contains(@aria-label, 'Confirmar eliminación')]"));//encuentra el elemento pop up
+            driver.FindElement(By.XPath("//button[contains(@aria-label, 'Cancelar')]")).Click();//cancelar del pop up
+            driver.FindElement(By.XPath("//div[contains(@title, 'Ganada')]")).Click();//seleccionamos una oferta ganada y pulsamos sobre el ckeck
+            Thread.Sleep(3000);
+            driver.FindElement(By.XPath("//span[contains(@aria-label, 'Eliminar')]")).Click();//pulsamos sobre eliminar de la barra superior del menu
+            driver.FindElement(By.XPath("//hi[contains(@aria-label, 'Confirmar eliminación')]"));//encuentra el elemento pop up
+            driver.FindElement(By.XPath("//button[contains(@aria-label, 'Eliminar')]")).Click();
+        }
+        public void AccederOfertaestado_Adjudicada()
+        {
+            driver.FindElement(By.XPath("//div[contains(@title, 'Ganada')]")).Click();//seleccionamos una oferta ganada y pulsamos sobre el ckeck
+            Thread.Sleep(3000);
+        }
+        public void Eliminar_BarraMenu()
+        {
+            driver.FindElement(By.XPath("//span[contains(@aria-label, 'Eliminar')]")).Click();//pulsamos sobre eliminar de la barra superior del menu
+        }
+        public void Cancelar()
+        {
+            driver.FindElement(By.XPath("//button[contains(@aria-label, 'Cancelar')]")).Click();//cancelar del pop up
+        }
+        public void Seleccionofertarazonadjudicada()
+        {
+            driver.FindElement(By.XPath("//div[contains(@title, 'Ganada')]")).Click();//seleccionamos una oferta ganada y pulsamos sobre el ckeck
+            Thread.Sleep(3000);
+            driver.FindElement(By.XPath("//span[contains(@aria-label, 'Editar')]")).Click();//seleccionamos una oferta ganada y pulsamos sobre editar
+        }
+        public void Eliminar_Popup()//pulsamos sobre el eliminar del popup
+        {
+            Thread.Sleep(2000);
+            driver.FindElement(By.XPath("//*[@id='confirmButtonText']")).Click();
+            
+        }
+
     }
 }
