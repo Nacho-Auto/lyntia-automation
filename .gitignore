@@ -4,10 +4,10 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 # Except repositories and allureConfig.json
-Lyntia/bin/Debug/netcoreapp3.1/*
-!Lyntia/bin/Debug/netcoreapp3.1/ObjectRepository.csv
-!Lyntia/bin/Debug/netcoreapp3.1/DataRepository.csv
-!Lyntia/bin/Debug/netcoreapp3.1/allureConfig.json
+netcoreapp3.1/*
+!netcoreapp3.1/ObjectRepository.csv
+!netcoreapp3.1/DataRepository.csv
+!netcoreapp3.1/allureConfig.json
 
 # User-specific files
 *.rsuser
