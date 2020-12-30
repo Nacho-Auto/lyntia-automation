@@ -341,6 +341,10 @@ healthchecksdb
 Lyntia/allure-report/
 
 # Except repositories and allureConfig.json
+!Lyntia/bin
+Lyntia/bin/*
+!Lyntia/bin/Debug
+Lyntia/bin/Debug/*
 !Lyntia/bin/Debug/netcoreapp3.1
 Lyntia/bin/Debug/netcoreapp3.1/*
 !Lyntia/bin/Debug/netcoreapp3.1/ObjectRepository.csv

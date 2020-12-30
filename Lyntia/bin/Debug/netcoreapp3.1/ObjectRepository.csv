@@ -1,0 +1,10 @@
+﻿ObjectID;ObjectType;Identificator
+############################## LOGIN ##############################
+Login.firstInput;ID;i0116
+Login.firstSubmitButton;ID;idSIButton9
+Login.secondInput;ID;userNameInput
+Login.thirdInput;ID;passwordInput
+Login.secondSubmitButton;ID;submitButton
+Login.notPersistanceButton;ID;idBtn_Back
+############################# PRODUCTO ############################
+Producto.firstInput;ID;submit
