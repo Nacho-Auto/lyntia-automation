@@ -489,12 +489,23 @@ namespace Lyntia.TestSet
             // Acceso a Ofertas y buscar la Oferta Cerrada
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
 
-            // Paso 7 - Repetir el paso anterior pero cerrando de manera correcta
+            // Paso 7 - Se busca la Oferta, que debe aparecer duplicada
             ofertaActions.BuscarOfertaEnVista("CRM-COF00010-CIERRE");
-            ofertaCondition.OfertaCerradaCorrectamenteEnGrid("No viable");
+            ofertaCondition.OfertaRevisadaCorrectamente();
 
-            // Eliminar Oferta
-            ofertaActions.SeleccionarOfertaGrid();
+            ofertaActions.FiltrarPorIDRevision("0");
+            ofertaCondition.OfertaCerradaCorrectamenteEnGrid("Revisada");
+
+            ofertaActions.FiltrarPorIDRevision("1");
+            ofertaCondition.OfertaGuardadaCorrectamenteEnGrid();
+
+            driver.Navigate().Refresh();
+
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+            ofertaActions.BuscarOfertaEnVista("CRM-COF00010-CIERRE");
+
+            // Eliminar las dos ofertas
+            ofertaActions.SeleccionarTodasOfertaGrid();
 
             ofertaActions.EliminarOfertaActual("Eliminar");
 

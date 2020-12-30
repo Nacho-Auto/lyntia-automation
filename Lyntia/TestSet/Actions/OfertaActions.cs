@@ -251,7 +251,7 @@ namespace Lyntia.TestSet.Actions
 
             accionesSelenium.SendKeys(OpenQA.Selenium.Keys.ArrowDown).Perform(); //selecciona el primer cliente de la lista
             accionesSelenium.SendKeys(OpenQA.Selenium.Keys.Enter).Perform(); //y lo pulsa 
-            
+
             Utils.searchWebElement("Oferta.inputNameOferta").SendKeys("Prueba_auto_NO_borrar_MODIFICADA");
 
             driver.FindElement(By.XPath("//a[contains(@aria-label, 'Es permuta: No')]")).Click();//Toggle Switch
@@ -366,6 +366,7 @@ namespace Lyntia.TestSet.Actions
         internal void CerrarOfertaActual(string opcion, string razonOferta, string motivoCierre)
         {
             // Click en Cerrar Oferta
+            Thread.Sleep(2000);
             driver.FindElement(By.XPath("//button[@title='Cerrar Oferta']")).Click();
             Thread.Sleep(2000);
 
@@ -430,6 +431,24 @@ namespace Lyntia.TestSet.Actions
             driver.FindElement(By.XPath("//div[contains(@title, 'Ganada')]")).Click();//seleccionamos una oferta ganada y pulsamos sobre el ckeck
             Thread.Sleep(3000);
         }
+
+        public void FiltrarPorIDRevision(string idRevision)
+        {
+            Utils.searchWebElement("Oferta.gridFilterIdRevision").Click();
+            Utils.searchWebElement("Oferta.gridFilterBuscarPor").Click();
+            Utils.searchWebElement("Oferta.gridFilterBuscarPorInput").Clear();
+            Utils.searchWebElement("Oferta.gridFilterBuscarPorInput").SendKeys(idRevision);
+            Thread.Sleep(2000);
+            Utils.searchWebElement("Oferta.gridFilterBuscarPorAceptarButton").Click();
+            Thread.Sleep(2000);
+
+        }
+
+        public void SeleccionarTodasOfertaGrid()
+        {
+            Utils.searchWebElement("Oferta.gridSelectAll").Click();   
+        }
+
         public void Eliminar_BarraMenu()
         {
             driver.FindElement(By.XPath("//span[contains(@aria-label, 'Eliminar')]")).Click();//pulsamos sobre eliminar de la barra superior del menu
