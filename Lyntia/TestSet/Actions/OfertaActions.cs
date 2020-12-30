@@ -7,6 +7,9 @@ using Lyntia.TestSet.Conditions;
 
 namespace Lyntia.TestSet.Actions
 {
+    /// <summary>
+    /// OfertaActions Class
+    /// </summary>
     public class OfertaActions
     {
         readonly Utils utils = new Utils();
@@ -19,6 +22,9 @@ namespace Lyntia.TestSet.Actions
         private static CommonConditions commonCondition;
         private static OpenQA.Selenium.Interactions.Actions accionesSelenium;
 
+        /// <summary>
+        /// OfertaActions
+        /// </summary>
         public OfertaActions()
         {
             driver = Utils.driver;
@@ -30,6 +36,10 @@ namespace Lyntia.TestSet.Actions
             accionesSelenium = new OpenQA.Selenium.Interactions.Actions(driver);
         }
 
+        /// <summary>
+        /// Método usado seleccionar vista de Ofertas (Mis Ofertas Lyntia, Todas las ofertas ...)
+        /// </summary>
+        /// <param name="seccion"></param>
         public void AccesoOfertasLyntia(String seccion)
         {
             if (utils.EncontrarElemento(By.Id(Utils.getIdentifier("Oferta.ofertaSection"))))
@@ -43,41 +53,60 @@ namespace Lyntia.TestSet.Actions
 
         }
 
+        /// <summary>
+        /// Método para hacer click en "+ Nuevo", barra de herramientas
+        /// </summary>
         public void AccesoNuevaOferta()
         {
-            // Click en "+ Nuevo", barra de herramientas
             Utils.searchWebElement("Oferta.newOferta").Click();
             Thread.Sleep(3000);
         }
 
+        /// <summary>
+        /// Método para abrir la primera Oferta del grid
+        /// </summary>
         public void abrirOferta()
         {
             Utils.searchWebElement("Oferta.firstFromGrid").Click();
             Thread.Sleep(2000);
         }
 
+        /// <summary>
+        /// Método para acceder a la pestaña de Fechas de Oferta
+        /// </summary>
         public void AccesoFechasOferta()
         {
             // Click en pestaña Fechas
-            Utils.searchWebElement("Oferta.DatesSection").Click();
+            Utils.searchWebElement("Oferta.datesSection").Click();
             Thread.Sleep(6000);
 
         }
 
+        /// <summary>
+        /// Método para hacer Click en Guardar Oferta en la barra de herramientas
+        /// </summary>
         public void GuardarOferta()
         {
-            // Click en Guardar en la barra de herramientas
             Utils.searchWebElement("Oferta.saveOferta").Click();
             Thread.Sleep(3000);
         }
 
+        /// <summary>
+        /// Método para hacer click en Guardar y cerrar en la barra de herramientas
+        /// </summary>
         public void GuardarYCerrarOferta()
         {
-            // Click en Guardar y cerrar en la barra de herramientas
             Utils.searchWebElement("Oferta.saveAndCloseOferta").Click();
             Thread.Sleep(3000);
         }
 
+        /// <summary>
+        /// Métdodo empleado para completar los campos necesarios para crear una nueva Oferta.
+        /// </summary>
+        /// <param name="nombre"></param>
+        /// <param name="cliente"></param>
+        /// <param name="tipoOferta"></param>
+        /// <param name="kam"></param>
         public void RellenarCamposOferta(String nombre, String cliente, String tipoOferta, String kam)
         {
 
@@ -132,13 +161,13 @@ namespace Lyntia.TestSet.Actions
                 accionesSelenium.SendKeys(Keys.PageDown);
                 accionesSelenium.Build().Perform();
 
-                driver.FindElement(By.XPath("//input[contains(@id,'kamresponsable')]")).Click();
+                Utils.searchWebElement("Oferta.kamResponsable").Click();
                 Thread.Sleep(1000);
 
-                driver.FindElement(By.XPath("//input[contains(@id,'kamresponsable')]")).SendKeys(Keys.Control + "a");
-                driver.FindElement(By.XPath("//input[contains(@id,'kamresponsable')]")).SendKeys(Keys.Delete);
+                Utils.searchWebElement("Oferta.kamResponsable").SendKeys(Keys.Control + "a");
+                Utils.searchWebElement("Oferta.kamResponsable").SendKeys(Keys.Delete);
 
-                driver.FindElement(By.XPath("//input[contains(@id,'kamresponsable')]")).SendKeys(kam);
+                Utils.searchWebElement("Oferta.kamResponsable").SendKeys(kam);
                 Thread.Sleep(1000);
 
                 accionesSelenium.SendKeys(Keys.PageDown);
@@ -150,34 +179,47 @@ namespace Lyntia.TestSet.Actions
             }
         }
 
+        /// <summary>
+        /// Método para eliminar Oferta seleccionada o abierta. 
+        /// El campo opción permite cancelar el borrado o realizarlo por completo.
+        /// </summary>
+        /// <param name="opcion"></param>
         public void EliminarOfertaActual(String opcion)
         {
             // Click en Eliminar
-            driver.FindElement(By.XPath("//button[contains(@aria-label,'Eliminar')]")).Click();
+            Utils.searchWebElement("Oferta.deleteButtonOferta").Click();
 
             // Confirmar Borrado
             if (opcion.Equals("Eliminar"))
             {
-                driver.FindElement(By.XPath("//button[@id='confirmButton']")).Click();
+                Utils.searchWebElement("Oferta.confirmDeleteOferta").Click();
                 Thread.Sleep(4000);
 
             }
             else
             {
-                driver.FindElement(By.XPath("//button[@id='cancelButton']")).Click();
+                Utils.searchWebElement("Oferta.cancelDeleteOferta").Click();
                 Thread.Sleep(4000);
 
             }
         }
 
-        internal void BuscarOfertaEnVista(string nombreOferta)
+        /// <summary>
+        /// Método para buscar Ofertas en el grid dado un parámetro de búsqueda.
+        /// </summary>
+        /// <param name="parametroBusqueda"></param>
+        internal void BuscarOfertaEnVista(string parametroBusqueda)
         {
-            driver.FindElement(By.XPath("//input[contains(@id,'quickFind')]")).SendKeys(nombreOferta);
-            driver.FindElement(By.XPath("//span[contains(@id,'quickFind_button')]")).Click();
+            Utils.searchWebElement("Oferta.inputQuickFindOferta").SendKeys(parametroBusqueda);
+            Utils.searchWebElement("Oferta.buttonQuickFindOferta").Click();
             Thread.Sleep(2000);
 
         }
 
+        /// <summary>
+        /// Método empleado para abrir una Oferta sabiendo su nombre.
+        /// </summary>
+        /// <param name="nombreOferta"></param>
         internal void AbrirOfertaEnVista(string nombreOferta)
         {
             driver.FindElement(By.XPath("//a[@title='" + nombreOferta + "']")).Click();
@@ -185,17 +227,25 @@ namespace Lyntia.TestSet.Actions
 
         }
 
+        /// <summary>
+        /// Método empleado para una vez buscada una Oferta en el grid, abrirla
+        /// </summary>
         internal void SeleccionarOfertaGrid()
         {
-            driver.FindElement(By.XPath("//div[@data-id='cell-0-1']")).Click();
+            Utils.searchWebElement("Oferta.selectOfertaGrid").Click();
             Thread.Sleep(2000);
 
         }
 
+        /// <summary>
+        /// Método para inserción de datos de una Oferta
+        /// </summary>
         public void IntroduccirDatos()//Cumplimentar datos de la oferta(campos contacto, fecha...)
         {
             // campos de la oferta
+            // TODO: agregar screenshots a Allure
             ((ITakesScreenshot)driver).GetScreenshot().SaveAsFile("IntroduccirDatosOrinales.png");
+            
             driver.FindElement(By.XPath("//button[contains(@aria-label, 'Buscar registros para el campo Contacto de oferta, Búsqueda')]")).Click();//contacto oferta
             Thread.Sleep(2000);
             accionesSelenium.SendKeys(OpenQA.Selenium.Keys.ArrowDown).Perform();//selecciona el primer cliente de la lista
@@ -219,8 +269,9 @@ namespace Lyntia.TestSet.Actions
             Thread.Sleep(2000);
         }
 
-
-
+        /// <summary>
+        /// Método para abrir una Oferta y cambiar el Tipo de oferta a Cambio de capacidad.
+        /// </summary>
         public void Tipo_de_oferta_Cambiodecapacidad()
         {
             driver.FindElement(By.LinkText("Prueba-Auto_NO_borrarCRM-EOF0004")).Click();
@@ -229,6 +280,10 @@ namespace Lyntia.TestSet.Actions
             accionesSelenium.SendKeys(OpenQA.Selenium.Keys.ArrowDown).Perform();//selecciona la opcion inferior
             accionesSelenium.SendKeys(OpenQA.Selenium.Keys.Enter).Perform();//y lo pulsa 
         }
+
+        /// <summary>
+        /// /// Método para abrir una Oferta y cambiar el Tipo de oferta a Cambio de precio.
+        /// </summary>
         public void Tipo_de_oferta_Cambiodeprecio()
         {
             Thread.Sleep(3000);
@@ -236,6 +291,10 @@ namespace Lyntia.TestSet.Actions
             accionesSelenium.SendKeys(OpenQA.Selenium.Keys.ArrowDown).Perform();////selecciona la opcion inferior
             accionesSelenium.SendKeys(OpenQA.Selenium.Keys.Enter).Perform();//y lo pulsa 
         }
+
+        /// <summary>
+        /// /// Método para abrir una Oferta y cambiar el Tipo de oferta a Cambio de solución.
+        /// </summary>
         public void Tipo_de_oferta_Cambiodesolucion()
         {
             Thread.Sleep(3000);
@@ -243,6 +302,10 @@ namespace Lyntia.TestSet.Actions
             accionesSelenium.SendKeys(OpenQA.Selenium.Keys.ArrowDown).Perform();////selecciona la opcion inferior
             accionesSelenium.SendKeys(OpenQA.Selenium.Keys.Enter).Perform();//y lo pulsa 
         }
+
+        /// <summary>
+        /// /// Método para abrir una Oferta y cambiar el Tipo de oferta a Cambio de dirección.
+        /// </summary>
         public void Tipo_de_oferta_Cambiodedireccion()
         {
             Thread.Sleep(3000);
@@ -251,8 +314,10 @@ namespace Lyntia.TestSet.Actions
             accionesSelenium.SendKeys(OpenQA.Selenium.Keys.Enter).Perform();//y lo pulsa 
         }
 
-
-        public void Restablecimiento_CRM_COF0003()//reestablecemos datos
+        /// <summary>
+        /// Método para reestablecer datos de la Oferta de la prueba CRM_COF0003 de Editar Oferta
+        /// </summary>
+        public void Restablecimiento_CRM_COF0003()
         {
             driver.FindElement(By.LinkText("Automatica_MODPrueba_auto_NO_borrar_MODIFICADA")).Click();
             driver.FindElement(By.XPath("//input[@aria-label='Nombre oferta']")).Click();
@@ -275,11 +340,18 @@ namespace Lyntia.TestSet.Actions
 
         }
 
+        /// <summary>
+        /// Método para seleccionar la Oferta Prueba_AUTO_CRM-APR
+        /// </summary>
         public void SeleccionOfertaAPR0001()
         {
             driver.FindElement(By.LinkText("Prueba_AUTO_CRM-APR")).Click();
 
         }
+
+        /// <summary>
+        /// Método para Agregar producto
+        /// </summary>
         public void Editar_añadir_producto()
         {
             driver.FindElement(By.XPath("//button[contains(@aria-label, 'Agregar producto')]")).Click();//pulsamos sobre agregar producto
