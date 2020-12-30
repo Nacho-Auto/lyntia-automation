@@ -227,6 +227,7 @@ namespace Lyntia.TestSet.Actions
             driver.FindElement(By.XPath("//li[contains(@aria-label, 'Guardar')]")).Click();//Guardar
             Thread.Sleep(3000);
             driver.FindElement(By.XPath("//input[contains(@aria-label, 'Fecha de Fecha de presentación')]")).Click();//Calendario
+            Thread.Sleep(1000);
             driver.FindElement(By.XPath("//button[contains(@aria-label, 'diciembre 14, 2020')]")).Click();//seleccionamos fecha del calendario
             driver.FindElement(By.XPath("//li[contains(@title, 'Fechas')]")).Click();//Pestaña fechas
             ((ITakesScreenshot)driver).GetScreenshot().SaveAsFile("IntroduccirDatos.png");
@@ -238,15 +239,22 @@ namespace Lyntia.TestSet.Actions
 
         public void Tipo_de_oferta_Cambiodecapacidad()
         {
+            driver.FindElement(By.XPath("//input[contains(@aria-label, 'Buscar en esta vista')]")).SendKeys("Prueba-Auto_NO_borrarCRM-EOF0004");//buscamos una oferta en el filtro
+            Thread.Sleep(1000);
+            driver.FindElement(By.XPath("//button[contains(@title, 'Iniciar búsqueda')]")).Click();
+            Thread.Sleep(3000);
             driver.FindElement(By.LinkText("Prueba-Auto_NO_borrarCRM-EOF0004")).Click();
             Thread.Sleep(3000);
             driver.FindElement(By.XPath("//select[contains(@title, 'Nuevo servicio')]")).Click();
+            Thread.Sleep(3000);
             accionesSelenium.SendKeys(OpenQA.Selenium.Keys.ArrowDown).Perform();//selecciona la opcion inferior
+            Thread.Sleep(3000);
             accionesSelenium.SendKeys(OpenQA.Selenium.Keys.Enter).Perform();//y lo pulsa 
+            Thread.Sleep(3000);
         }
         public void Tipo_de_oferta_Cambiodeprecio()
         {
-            Thread.Sleep(3000);
+            Thread.Sleep(8000);
             driver.FindElement(By.XPath("//select[contains(@title, 'Cambio de capacidad (Upgrade/Downgrade)')]")).Click();
             accionesSelenium.SendKeys(OpenQA.Selenium.Keys.ArrowDown).Perform();////selecciona la opcion inferior
             accionesSelenium.SendKeys(OpenQA.Selenium.Keys.Enter).Perform();//y lo pulsa 
@@ -292,7 +300,13 @@ namespace Lyntia.TestSet.Actions
 
         public void SeleccionOfertaAPR0001()
         {
-            driver.FindElement(By.LinkText("Prueba_AUTO_CRM-APR")).Click();
+            Thread.Sleep(3000);
+            driver.FindElement(By.XPath("//div[contains(@title, 'Borrador')]")).Click();//seleccionamos una oferta en Borrador y pulsamos sobre el ckeck
+            Thread.Sleep(1000);
+            driver.FindElement(By.XPath("//li[contains(@aria-label, 'Editar')]")).Click();//pulsamos editar la oferta
+            Thread.Sleep(3000);
+
+            //driver.FindElement(By.XPath("//div[contains(@title, 'Borrador')]")).Click();// Prueba_AUTO_CRM-APR")).Click();
 
         }
         public void Editar_añadir_producto()
@@ -341,10 +355,17 @@ namespace Lyntia.TestSet.Actions
             //new Actions(driver).SendKeys(OpenQA.Selenium.Keys.Enter).Perform();
             //Thread.Sleep(2000);
             //driver.FindElement(By.LinkText("CLIENTE INTEGRACION")).Click();//click en la oferta
+            //Thread.Sleep(3000);
+            
             Thread.Sleep(3000);
-            driver.FindElement(By.XPath("//div[contains(@title, 'Automatica_MOD')]")).Click();//click en la oferta
+            driver.FindElement(By.XPath("//input[contains(@aria-label, 'Buscar en esta vista')]")).SendKeys("Automatica_MOD");//buscamos una oferta en el filtro
+            Thread.Sleep(1000);
+            driver.FindElement(By.XPath("//button[contains(@title, 'Iniciar búsqueda')]")).Click();
+            Thread.Sleep(3000);
+            driver.FindElement(By.LinkText("Automatica_MOD")).Click();//click en la oferta
+            Thread.Sleep(3000);
         }
-		
+
         public void SeleccionarOfertaGridEliminar()//selecciona una oferta y la eliminamos(realizamos comprobaciones tipo cancelar)
         {
             driver.FindElement(By.XPath("//div[contains(@title, 'Ganada')]")).Click();//seleccionamos una oferta ganada y pulsamos sobre el ckeck

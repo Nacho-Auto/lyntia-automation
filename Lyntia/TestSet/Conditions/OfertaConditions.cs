@@ -177,7 +177,7 @@ namespace Lyntia.TestSet.Conditions
 
         public void Aviso_cambiocapacidad()//mensaje por el tipo de oferta
         {
-            Thread.Sleep(3000);
+            Thread.Sleep(2000);
             Assert.AreEqual("La oferta de tipo “Cambio de capacidad” requiere envío a construcción, pero no cambia el código administrativo", driver.FindElement(By.XPath("//span[contains(@data-id, 'warningNotification')]")).Text);
             driver.FindElement(By.XPath("//li[contains(@aria-label, 'Guardar')]")).Click();//Guardar
         }
