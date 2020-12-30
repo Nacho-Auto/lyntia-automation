@@ -6,5 +6,17 @@ Login.secondInput;ID;userNameInput
 Login.thirdInput;ID;passwordInput
 Login.secondSubmitButton;ID;submitButton
 Login.notPersistanceButton;ID;idBtn_Back
+############################## OFERTA #############################
+Oferta.ofertaSection;ID;sitemap-entity-oferta
+Oferta ofertaTitleSelector;XPATH;//h1[@title='Seleccionar vista']
+Oferta.newOferta;XPATH;//button[@aria-label='Nuevo']
+Oferta.saveOferta;XPATH;//button[@aria-label='Guardar']
+Oferta.saveAndCloseOferta;XPATH;//button[@aria-label='Guardar y cerrar']
+Oferta.inputNameOferta;XPATH;//input[@aria-label='Nombre oferta']
+Oferta.inputCustomerId;XPATH;//input[contains(@id,'customerid')]
+Oferta.selectOfertaType;XPATH;//select[@aria-label='Tipo de oferta']
+Oferta.inputReferenceOferta; XPATH;//input[contains(@id,'referencia_oferta')]
+Oferta.firstFromGrid;XPATH;//div[@data-id='cell-0-4']
+Oferta.DatesSection;XPATH;//li[@title='Fechas']
 ############################# PRODUCTO ############################
 Producto.firstInput;ID;submit
