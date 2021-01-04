@@ -290,6 +290,7 @@ namespace Lyntia.TestSet.Actions
             Thread.Sleep(3000);
             accionesSelenium.SendKeys(OpenQA.Selenium.Keys.Enter).Perform();//y lo pulsa 
             Thread.Sleep(3000);
+            driver.FindElement(By.XPath("//li[contains(@aria-label, 'Guardar')]")).Click();//Guardar
         }
 
         /// <summary>
@@ -509,6 +510,14 @@ namespace Lyntia.TestSet.Actions
         public void PresentarOferta()
         {
             driver.FindElement(By.XPath("//button[@title='Presentar Oferta']")).Click();
+        }
+        public void edicion_de_una_oferta(String tipodeoferta)//seleccionamos una oferta del listado con el check y la editamos
+        {
+
+            driver.FindElement(By.XPath("//div[(@title, '" + tipodeoferta + "')]")).Click();//seleccionamos una oferta en Borrador y pulsamos sobre el ckeck
+            Thread.Sleep(1000);
+            driver.FindElement(By.XPath("//li[contains(@aria-label, 'Editar')]")).Click();//pulsamos editar la oferta
+            Thread.Sleep(3000);
         }
     }
 }

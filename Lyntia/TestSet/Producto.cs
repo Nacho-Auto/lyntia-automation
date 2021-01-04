@@ -117,5 +117,31 @@ namespace Lyntia.TestSet
             // Reestablece datos
             productoActions.Borrado_de_producto();
         }
+        //CRM-APR0008
+        [Test]
+        [AllureSubSuite("PRO AÑADIR OFERTA")]
+        public void CRM_APR0008_Producto_Cambio_de_Capacidad_CC()
+        {
+            //Paso 1 Login y acceso al modulo gestion de cliente
+            commonActions.AccesoGestionCliente();//Acceso al modulo de Gestion de Cliente(Aplicaciones)
+            commonCondition.AccedeGestionCliente();//Acceso correcto             
+
+            //Paso 2
+            commonActions.AccesoOferta();//Oferta menu
+            commonCondition.AccedeOferta();//comprobamos el acceso 
+
+            //Paso 3
+            productoActions.Agregar_servicio_heredado_y_guardar();
+            productoCondition.Resultado_Agregar_servicio_heredado_y_guardar();
+
+            //Paso 3
+            productoActions.Cumplimentar_campos_y_guardar();
+            productoCondition.Resultado_Cumplimentar_campos_y_guardar();
+
+            // Reestablece datos
+            productoActions.Borrado_de_producto();
+
+        }
+        
     }
 }
