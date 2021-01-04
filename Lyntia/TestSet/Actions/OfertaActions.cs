@@ -44,7 +44,7 @@ namespace Lyntia.TestSet.Actions
         {
             if (utils.EncontrarElemento(By.Id(Utils.getIdentifier("Oferta.ofertaSection"))))
             {
-                Thread.Sleep(2000);
+                Thread.Sleep(3000);
                 Utils.searchWebElement("Oferta.ofertaSection").Click();
                 Thread.Sleep(2000);
                 Utils.searchWebElement("Oferta.ofertaTitleSelector").Click();
