@@ -9,6 +9,7 @@ namespace Lyntia.TestSet.Conditions
 {
     public class OfertaConditions
     {
+        readonly Utils utils = new Utils();
 
         private static IWebDriver driver;
         private static OfertaConditions ofertaCondition;
@@ -256,8 +257,7 @@ namespace Lyntia.TestSet.Conditions
 
         public void Resultado_Seleccionofertarazonadjudicada()
         {
-
-            //Assert.IsTrue(false, Utils.EncontrarElemento(By.XPath("//span[contains(@aria-label, 'Eliminar')]")));
+            Assert.AreEqual(false, utils.EncontrarElemento(By.XPath("//span[contains(@aria-label, 'Eliminar')]")));
         }
 
         public void OfertaNoCerrada()

@@ -5,7 +5,6 @@ using NUnit.Allure.Core;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using Lyntia.TestSet.Actions;
-using System;
 
 namespace Lyntia.TestSet
 {
@@ -609,7 +608,31 @@ namespace Lyntia.TestSet
 
             //Paso 6 - Regresar al grid de ofertas, seleccionar la Oferta Adjudicada con la que se trabaja.
             ofertaActions.Seleccionofertarazonadjudicada();
+
+            ofertaActions.editarOferta();
+
             ofertaCondition.Resultado_Seleccionofertarazonadjudicada();
+        }
+
+        [Test(Description = "CRM-COF0012 Oferta/Eliminar/Adjudicada")]
+        [AllureSubSuite("PRO ELIMINAR OFERTA")]
+        public void CRM_COF0012_Oferta_Cerrar_Adjudicada()
+        {
+            // Login y Acceso a Gestión de Cliente
+            commonActions.AccesoGestionCliente();//Acceso al modulo de Gestion de Cliente(Apliaciones)
+            commonCondition.AccedeGestionCliente();//Acceso correcto
+
+            // Paso 1 - Hacer click en Ofertas
+            commonActions.AccesoOferta();//Oferta menu
+            commonCondition.AccedeOferta();//comprobamos el acceso
+
+            //Paso 2 - Desde el listado de ofertas, seleccionamos una en estado ganada/adjudicada y se pulsa editar
+            ofertaActions.Seleccionofertarazonadjudicada();
+            
+            ofertaActions.editarOferta();
+
+            ofertaCondition.Resultado_Seleccionofertarazonadjudicada();
+
         }
     }
 }

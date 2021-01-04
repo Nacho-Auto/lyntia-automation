@@ -44,6 +44,7 @@ namespace Lyntia.TestSet.Actions
         {
             if (utils.EncontrarElemento(By.Id(Utils.getIdentifier("Oferta.ofertaSection"))))
             {
+                Thread.Sleep(2000);
                 Utils.searchWebElement("Oferta.ofertaSection").Click();
                 Thread.Sleep(2000);
                 Utils.searchWebElement("Oferta.ofertaTitleSelector").Click();
@@ -188,6 +189,7 @@ namespace Lyntia.TestSet.Actions
         public void EliminarOfertaActual(String opcion)
         {
             // Click en Eliminar
+            Thread.Sleep(2000);
             Utils.searchWebElement("Oferta.deleteButtonOferta").Click();
 
             // Confirmar Borrado
@@ -447,7 +449,8 @@ namespace Lyntia.TestSet.Actions
 
         public void SeleccionarTodasOfertaGrid()
         {
-            Utils.searchWebElement("Oferta.gridSelectAll").Click();   
+            Utils.searchWebElement("Oferta.gridSelectAll").Click();
+            Thread.Sleep(2000);
         }
 
         public void Eliminar_BarraMenu()
@@ -463,7 +466,6 @@ namespace Lyntia.TestSet.Actions
         {
             driver.FindElement(By.XPath("//div[contains(@title, 'Ganada')]")).Click();//seleccionamos una oferta ganada y pulsamos sobre el ckeck
             Thread.Sleep(3000);
-            driver.FindElement(By.XPath("//span[contains(@aria-label, 'Editar')]")).Click();//seleccionamos una oferta ganada y pulsamos sobre editar
         }
 
         public void Eliminar_Popup()//pulsamos sobre el eliminar del popup
@@ -476,6 +478,12 @@ namespace Lyntia.TestSet.Actions
         public void PresentarOferta()
         {
             Utils.searchWebElement("Oferta.buttonPresentOferta").Click();
+        }
+
+        internal void editarOferta()
+        {
+            Utils.searchWebElement("Oferta.buttonEditOferta").Click();
+            Thread.Sleep(2000);
         }
     }
 }
