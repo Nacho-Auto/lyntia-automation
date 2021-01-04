@@ -161,6 +161,7 @@ namespace Lyntia.TestSet.Actions
                 accionesSelenium.SendKeys(Keys.PageDown);
                 accionesSelenium.Build().Perform();
 
+                Thread.Sleep(1000);
                 Utils.searchWebElement("Oferta.kamResponsable").Click();
                 Thread.Sleep(1000);
 
@@ -253,8 +254,8 @@ namespace Lyntia.TestSet.Actions
             accionesSelenium.SendKeys(OpenQA.Selenium.Keys.Enter).Perform(); //y lo pulsa 
 
             Utils.searchWebElement("Oferta.inputNameOferta").SendKeys("Prueba_auto_NO_borrar_MODIFICADA");
-
-            driver.FindElement(By.XPath("//a[contains(@aria-label, 'Es permuta: No')]")).Click();//Toggle Switch
+            
+            Utils.searchWebElement("Oferta.labelPermutaDefault").Click(); //Toggle Switch
             driver.FindElement(By.XPath("//input[contains(@aria-label, 'Fecha de Fecha de presentación')]")).Click();//Calendario
             driver.FindElement(By.XPath("//button[contains(@aria-label, 'diciembre 16, 2020')]")).Click();//seleccionamos fecha del calendario
             Thread.Sleep(3000);
@@ -457,12 +458,14 @@ namespace Lyntia.TestSet.Actions
         {
             driver.FindElement(By.XPath("//button[contains(@aria-label, 'Cancelar')]")).Click();//cancelar del pop up
         }
+
         public void Seleccionofertarazonadjudicada()
         {
             driver.FindElement(By.XPath("//div[contains(@title, 'Ganada')]")).Click();//seleccionamos una oferta ganada y pulsamos sobre el ckeck
             Thread.Sleep(3000);
             driver.FindElement(By.XPath("//span[contains(@aria-label, 'Editar')]")).Click();//seleccionamos una oferta ganada y pulsamos sobre editar
         }
+
         public void Eliminar_Popup()//pulsamos sobre el eliminar del popup
         {
             Thread.Sleep(2000);
@@ -472,7 +475,7 @@ namespace Lyntia.TestSet.Actions
 
         public void PresentarOferta()
         {
-            driver.FindElement(By.XPath("//button[@title='Presentar Oferta']")).Click();
+            Utils.searchWebElement("Oferta.buttonPresentOferta").Click();
         }
     }
 }

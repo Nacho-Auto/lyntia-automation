@@ -5,6 +5,7 @@ using NUnit.Allure.Core;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using Lyntia.TestSet.Actions;
+using System;
 
 namespace Lyntia.TestSet
 {
@@ -170,12 +171,12 @@ namespace Lyntia.TestSet
             ofertaActions.AccesoNuevaOferta();
 
             // Paso 3 - Rellenar campos y click en Guardar
-            ofertaActions.RellenarCamposOferta("CRM-COF0005", "CLIENTE INTEGRACION", "Nuevo servicio", "# BizQA");
+            ofertaActions.RellenarCamposOferta("CRM-COF0005_" + Utils.getRandomString(), "CLIENTE INTEGRACION", "Nuevo servicio", "# BizQA");
             ofertaActions.GuardarOferta();
 
             driver.Navigate().Refresh();
 
-            ofertaCondition.OfertaGuardadaCorrectamente("CRM-COF0005", "Nuevo servicio");
+            ofertaCondition.OfertaGuardadaCorrectamente("CRM-COF0005_" + Utils.getRandomString(), "Nuevo servicio");
 
             ofertaActions.AccesoFechasOferta();
             ofertaCondition.FechasInformadasCorrectamente();
@@ -187,7 +188,7 @@ namespace Lyntia.TestSet
             // Paso 4 - Crear Nueva Oferta, pulsando Guardar y cerrar
             ofertaActions.AccesoNuevaOferta();
 
-            ofertaActions.RellenarCamposOferta("CRM-COF0005", "CLIENTE INTEGRACION", "Nuevo servicio", "# BizQA");
+            ofertaActions.RellenarCamposOferta("CRM-COF0005_" + Utils.getRandomString(), "CLIENTE INTEGRACION", "Nuevo servicio", "# BizQA");
             ofertaActions.GuardarYCerrarOferta();
 
             // Buscar Oferta creada
@@ -195,8 +196,8 @@ namespace Lyntia.TestSet
             ofertaCondition.OfertaGuardadaCorrectamenteEnGrid();
 
             // Paso 5 - Abrir la oferta anterior y comprobar datos cumplimentados
-            ofertaActions.AbrirOfertaEnVista("CRM-COF0005");
-            ofertaCondition.OfertaGuardadaCorrectamente("CRM-COF0005", "Nuevo servicio");
+            ofertaActions.AbrirOfertaEnVista("CRM-COF0005_" + Utils.getRandomString());
+            ofertaCondition.OfertaGuardadaCorrectamente("CRM-COF0005_" + Utils.getRandomString(), "Nuevo servicio");
 
             ofertaActions.AccesoFechasOferta();
             ofertaCondition.FechasInformadasCorrectamente();
@@ -572,7 +573,6 @@ namespace Lyntia.TestSet
         [AllureSubSuite("PRO ELIMINAR OFERTA")]
         public void CRM_COF0011_eliminarOferta_Adjudicada()
         {
-
 
             // Login y Acceso a Gestión de Cliente
             commonActions.AccesoGestionCliente();//Acceso al modulo de Gestion de Cliente(Apliaciones)
