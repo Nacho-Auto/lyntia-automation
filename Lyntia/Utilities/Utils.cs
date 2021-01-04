@@ -82,7 +82,7 @@ namespace Lyntia.Utilities
             }
             catch (NoSuchElementException)
             {
-               
+
                 return false;
 
             }
@@ -103,5 +103,11 @@ namespace Lyntia.Utilities
             }
         }
 
+        public static String getIdentifier(String identificador)
+        {
+            String ident = objRep.ObjectID(identificador);
+            return ident;
+        }
     }
 }
+

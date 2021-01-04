@@ -223,7 +223,7 @@ namespace Lyntia.TestSet.Conditions
             driver.FindElement(By.XPath("//select[contains(@title, 'Cambio de capacidad (Upgrade/Downgrade)')]")).Click();
             accionesSelenium.SendKeys(Keys.ArrowUp).Perform();
             accionesSelenium.SendKeys(Keys.Enter).Perform();
-            
+
             Thread.Sleep(7000);
             driver.FindElement(By.XPath("//li[contains(@aria-label, 'Guardar')]")).Click();
             driver.FindElement(By.XPath("//span[contains(@aria-label, 'Guardar y cerrar')]")).Click();
@@ -233,12 +233,12 @@ namespace Lyntia.TestSet.Conditions
         {
             Assert.AreEqual("Ganada", driver.FindElement(By.XPath("//div[contains(@title, 'Ganada')]")).Text);//la oferta esta en estado ganada
         }
-		
+
         public void Resultado_Eliminar_BarraMenu()
         {
             Assert.AreEqual("Confirmar eliminación", driver.FindElement(By.XPath("//h1[contains(@aria-label, 'Confirmar eliminación')]")).Text);//se comprueba texto de la ventana emergente
         }
-		
+
         public void Resultado_Cancelar()
         {
             Assert.AreEqual("Ganada", driver.FindElement(By.XPath("//div[contains(@title, 'Ganada')]")).Text);//la oferta esta en estado ganada
@@ -251,27 +251,43 @@ namespace Lyntia.TestSet.Conditions
             Console.WriteLine(AvisoPriv);
             String AvisoPriv2 = driver.FindElement(By.XPath("/html/body/section/div/div/div/div/div/div/div[1]/div[2]/h2")).Text;//imprime en consola el texto
             Console.WriteLine(AvisoPriv2);
-            
-
-
             driver.FindElement(By.XPath("//*[@id='cancelButton']")).Click();
             Thread.Sleep(2000);
         }
-		
+
         public void Resultado_Seleccionofertarazonadjudicada()
         {
-
-
 
             Assert.AreEqual(false, utils.EncontrarElemento(By.XPath("//span[contains(@aria-label, 'Eliminar')]")));//se comprueba que el elemento no esta presente
             Assert.AreEqual(false, utils.EncontrarElemento(By.XPath("//span[contains(@aria-label, 'Cerrar Oferta')]")));//se comprueba que el elemento no esta presente
             
         }
 
-        public void OfertaNoCancelada()
+        
+
+        public void OfertaNoCerrada()
         {
             // Se muestra label con mensaje "Por favor, completa los campos obligatorios"
-            Assert.AreEqual("Por favor, completa los campos obligatorios", driver.FindElement(By.XPath("//p[@id='error']]")).Text);
+            Assert.AreEqual("Por favor, completa los campos obligatorios", driver.FindElement(By.XPath("//p[@id='error']")).Text);
+        }
+
+        public void OfertaCerradaCorrectamenteEnGrid(String razonEstado)
+        {
+            // Se encuentra en estado borrador
+            Assert.AreEqual("Cerrada", driver.FindElement(By.XPath("//div[@data-id='cell-0-7']")).GetAttribute("title"));
+
+            // Se encuentra en Razon para el estado En elaboracion
+            Assert.AreEqual(razonEstado, driver.FindElement(By.XPath("//div[@data-id='cell-0-8']")).GetAttribute("title"));
+        }
+
+        public void OfertaPresentada()
+        {
+            Assert.AreEqual("Solo lectura: estado de este registro: Bloqueada", driver.FindElement(By.XPath("//span[@data-id='warningNotification']")).Text);
+        }
+
+        public void OfertaRevisadaCorrectamente()
+        {
+            Assert.AreEqual("2", Utils.searchWebElement("Oferta.gridCellsOferta").GetAttribute("data-row-count"));
         }
         public void Resultado_Seleccion_de_oferta_Borrador()
         {

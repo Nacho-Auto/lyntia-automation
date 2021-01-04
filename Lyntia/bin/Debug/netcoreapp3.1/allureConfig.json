@@ -1,0 +1,12 @@
+{
+  "allure": {
+    "directory": "allure-results", // optional, default value is "allure-results"
+    "title": "LYNTIA", // optional
+    "links": //optional 
+    [
+      "https://example.org/{link}",
+      "https://example.org/{issue}",
+      "https://example.org/{tms}"
+    ]
+  }
+}
