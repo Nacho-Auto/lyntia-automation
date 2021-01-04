@@ -3,6 +3,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using Lyntia.TestSet.Actions;
 using Lyntia.TestSet.Conditions;
+using System.Linq;
 
 namespace Lyntia.Utilities
 {
@@ -18,12 +19,17 @@ namespace Lyntia.Utilities
         private static ProductoConditions productoCondition;
         private static CommonActions commonActions;
         private static CommonConditions commonCondition;
-
-
+        private static String randomString;
+        private static Random random = new Random();
 
         public static OfertaActions getOfertaActions()
         {
             return ofertaActions;
+        }
+
+        public static String getRandomString()
+        {
+            return randomString;
         }
 
         public static OfertaConditions getOfertaConditions()
@@ -65,6 +71,8 @@ namespace Lyntia.Utilities
             productoCondition = new ProductoConditions();
             commonActions = new CommonActions();
             commonCondition = new CommonConditions();
+            randomString = RandomString(15);
+
 
             driver.Navigate().GoToUrl("https://ufinetprep2.crm4.dynamics.com/");
             driver.Manage().Window.Maximize();
@@ -88,6 +96,15 @@ namespace Lyntia.Utilities
             }
             return true;
 
+        }
+
+        
+        public static string RandomString(int length)
+        {
+
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return new string(Enumerable.Repeat(chars, length)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
         }
 
         public static IWebElement searchWebElement(String identificador)

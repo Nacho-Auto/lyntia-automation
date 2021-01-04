@@ -32,5 +32,8 @@ Oferta.gridFilterBuscarPor;XPATH;//button[@name='Filtrar por']
 Oferta.gridFilterBuscarPorInput;XPATH;//input[@aria-label='Filter by value']
 Oferta.gridFilterBuscarPorAceptarButton;XPATH;//button[@type='submit']
 Oferta.gridSelectAll;XPATH;//button[@title='Seleccionar todos']
+Oferta.buttonPresentOferta;XPATH;//button[@title='Presentar Oferta']
+Oferta.labelPermutaDefault;XPATH;//a[contains(@aria-label, 'Es permuta: No')]
+Oferta.buttonEditOferta;XPATH;//button[@aria-label='Editar']
 ############################# PRODUCTO ############################
 Producto.firstInput;ID;submit
