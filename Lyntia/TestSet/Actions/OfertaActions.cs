@@ -259,7 +259,7 @@ namespace Lyntia.TestSet.Actions
             
             Utils.searchWebElement("Oferta.labelPermutaDefault").Click(); //Toggle Switch
             driver.FindElement(By.XPath("//input[contains(@aria-label, 'Fecha de Fecha de presentación')]")).Click();//Calendario
-            driver.FindElement(By.XPath("//button[contains(@aria-label, 'diciembre 16, 2020')]")).Click();//seleccionamos fecha del calendario
+            driver.FindElement(By.XPath("//button[contains(@aria-label, 'enero 4, 2021')]")).Click();//seleccionamos fecha del calendario
             Thread.Sleep(3000);
             driver.FindElement(By.XPath("//input[contains(@aria-label, 'Código GVAL')]")).SendKeys("prue123456");//Escribimos prue123456 en codigo gval
             driver.FindElement(By.XPath("//textarea[contains(@aria-label, 'Descripción')]")).SendKeys("Prueba campo descripcion");//Escribimos Prueba campo descripcion en detalle de oferta
@@ -267,9 +267,9 @@ namespace Lyntia.TestSet.Actions
 
             driver.FindElement(By.XPath("//li[contains(@aria-label, 'Guardar')]")).Click();//Guardar
             Thread.Sleep(3000);
-            driver.FindElement(By.XPath("//input[contains(@aria-label, 'Fecha de Fecha de presentación')]")).Click();//Calendario
-            Thread.Sleep(1000);
-            driver.FindElement(By.XPath("//button[contains(@aria-label, 'diciembre 14, 2020')]")).Click();//seleccionamos fecha del calendario
+            //driver.FindElement(By.XPath("//input[contains(@aria-label, 'Fecha de Fecha de presentación')]")).Click();//Calendario
+            //Thread.Sleep(1000);
+            //driver.FindElement(By.XPath("//button[contains(@aria-label, 'diciembre 14, 2020')]")).Click();//seleccionamos fecha del calendario
             driver.FindElement(By.XPath("//li[contains(@title, 'Fechas')]")).Click();//Pestaña fechas
             ((ITakesScreenshot)driver).GetScreenshot().SaveAsFile("IntroduccirDatos.png");
             driver.FindElement(By.XPath("//span[contains(@aria-label, 'Guardar y cerrar')]")).Click();//Guarda y cierra
@@ -341,7 +341,7 @@ namespace Lyntia.TestSet.Actions
 
             driver.FindElement(By.XPath("//input[contains(@aria-label, 'Nombre oferta')]")).SendKeys("Automatica_MOD");
             driver.FindElement(By.XPath("//input[contains(@aria-label, 'Fecha de Fecha de presentación')]")).Click();
-            driver.FindElement(By.XPath("//button[contains(@aria-label, 'diciembre 10, 2020')]")).Click();
+            driver.FindElement(By.XPath("//button[contains(@aria-label, 'enero 2, 2021')]")).Click();
             driver.FindElement(By.XPath("//input[@aria-label='Código GVAL']")).Click();
             driver.FindElement(By.XPath("//input[@aria-label='Código GVAL']")).SendKeys(Keys.Control + "a");
             driver.FindElement(By.XPath("//input[@aria-label='Código GVAL']")).SendKeys(Keys.Delete);
@@ -488,7 +488,7 @@ namespace Lyntia.TestSet.Actions
         {
             Thread.Sleep(3000);
             driver.FindElement(By.XPath("//div[contains(@title, 'Ganada')]")).Click();//seleccionamos una oferta ganada y pulsamos sobre el ckeck
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
             driver.FindElement(By.XPath("//li[contains(@aria-label, 'Editar')]")).Click();//pulsamos sobre editar
             Thread.Sleep(3000);
         }

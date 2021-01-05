@@ -18,7 +18,7 @@ namespace Lyntia.TestSet.Conditions
         private static CommonActions commonActions;
         private static CommonConditions commonCondition;
         private static OpenQA.Selenium.Interactions.Actions accionesSelenium;
-        readonly Utils utils = new Utils();
+        
 
         public OfertaConditions()
         {

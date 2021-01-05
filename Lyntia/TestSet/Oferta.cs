@@ -534,7 +534,7 @@ namespace Lyntia.TestSet
             ofertaCondition.IntroduccionDatos();//los datos se introduccen correctamente
 
             // Paso - Reestabñecer datos
-            //ofertaActions.Restablecimiento_CRM_COF0003(driver);
+            ofertaActions.Restablecimiento_CRM_COF0003();
         }
 
 
@@ -610,7 +610,7 @@ namespace Lyntia.TestSet
             //Paso 6 - Regresar al grid de ofertas, seleccionar la Oferta Adjudicada con la que se trabaja.
             ofertaActions.Seleccionofertarazonadjudicada();
 
-            ofertaActions.editarOferta();
+            //ofertaActions.editarOferta();
 
             ofertaCondition.Resultado_Seleccionofertarazonadjudicada();
         }
@@ -631,7 +631,7 @@ namespace Lyntia.TestSet
             ofertaActions.Seleccionofertarazonadjudicada();
 
             
-            ofertaActions.editarOferta();
+            //ofertaActions.editarOferta();
 
             ofertaCondition.Resultado_Seleccionofertarazonadjudicada();
 
