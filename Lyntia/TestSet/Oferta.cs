@@ -21,10 +21,8 @@ namespace Lyntia.TestSet
         private static OfertaActions ofertaActions;
         private static OfertaConditions ofertaCondition;
         private static ProductoActions productoActions;
-        private static ProductoConditions productoCondition;
         private static CommonActions commonActions;
         private static CommonConditions commonCondition;
-
 
         [SetUp]
         public void Instanciador()
@@ -36,7 +34,6 @@ namespace Lyntia.TestSet
             ofertaActions = Utils.getOfertaActions();
             ofertaCondition = Utils.getOfertaConditions();
             productoActions = Utils.getProductoActions();
-            productoCondition = Utils.getProductoConditions();
             commonActions = Utils.getCommonActions();
             commonCondition = Utils.getCommonConditions();
 
@@ -526,7 +523,11 @@ namespace Lyntia.TestSet
             commonCondition.AccedeOferta();//comprobamos el acceso
 
             //Paso 3
-            ofertaActions.SeleccionOferta();//hacemos click en una oferta del listado
+            ofertaActions.BuscarOfertaEnVista("Automatica_MOD");
+            ofertaCondition.OfertaGuardadaCorrectamenteEnGrid();
+
+            // Paso 5 - Abrir la oferta anterior y comprobar datos cumplimentados
+            ofertaActions.AbrirOfertaEnVista("Automatica_MOD");
             ofertaCondition.AccederSeleccionOferta();//accede a la oferta
 
             //Paso 4
@@ -566,6 +567,9 @@ namespace Lyntia.TestSet
             //Paso 6
             ofertaActions.Tipo_de_oferta_Cambiodedireccion();
             ofertaCondition.Aviso_Cambiodedireccion();
+
+            ofertaActions.GuardarYCerrarOferta();
+            ofertaActions.ReestablecerDatosCRM_EOF0004();
 
         }
 
@@ -635,6 +639,39 @@ namespace Lyntia.TestSet
 
             ofertaCondition.Resultado_Seleccionofertarazonadjudicada();
 
+        }
+
+
+        [Test(Description = "CRM-POF0001 Presentar Oferta")]
+        [AllureSubSuite("PRO PRESENTAR OFERTA")]
+        public void CRM_POF0001_PresentarOferta()
+        {
+            // Login y Acceso a Gestión de Cliente
+            commonActions.AccesoGestionCliente();
+            commonCondition.AccedeGestionCliente();
+
+            // Paso 1 - Hacer click en Ofertas
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            // Paso 2 - Crear Nueva Oferta
+            ofertaActions.AccesoNuevaOferta();
+
+            // Rellenar campos y click en Guardar
+            ofertaActions.RellenarCamposOferta("CRM-POF0001-PRESENTAR", "CLIENTE INTEGRACION", "Cambio de capacidad (Upgrade/Downgrade)", "# BizQA");
+            ofertaActions.GuardarOferta();
+
+            // Paso 3 - Presentar la oferta
+            ofertaActions.PresentarOferta();
+
+            // Paso 4 - Regresar al grid, verificar oferta
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            ofertaActions.BuscarOfertaEnVista("CRM-POF0001-PRESENTAR");
+            ofertaCondition.OfertaPresentadaCorrectamente();
+
+            ofertaActions.SeleccionarOfertaGrid();
+
+            ofertaActions.EliminarOfertaActual("Eliminar");
         }
 
     }

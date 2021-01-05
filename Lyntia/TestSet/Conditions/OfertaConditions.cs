@@ -202,33 +202,7 @@ namespace Lyntia.TestSet.Conditions
         {
             Thread.Sleep(3000);
             Assert.AreEqual("La oferta de tipo “Migración” requiere el envío a construcción y cambia el código administrativo", driver.FindElement(By.XPath("//span[contains(@data-id, 'warningNotification')]")).Text);
-            driver.FindElement(By.XPath("//li[contains(@aria-label, 'Guardar')]")).Click();//Guardar
-            driver.FindElement(By.XPath("//span[contains(@aria-label, 'Guardar y cerrar')]")).Click();//Guarda y cierra
 
-            //reestablece datos CRM-EOF0004
-
-            driver.FindElement(By.LinkText("Prueba-Auto_NO_borrarCRM-EOF0004")).Click();
-            Thread.Sleep(3000);
-            driver.FindElement(By.XPath("//select[contains(@title, 'Cambio de dirección (Migración)')]")).Click();
-            driver.FindElement(By.XPath("//select[contains(@title, 'Cambio de dirección (Migración)')]")).SendKeys(Keys.ArrowUp);
-            
-            Thread.Sleep(3000);
-            driver.FindElement(By.XPath("//li[contains(@aria-label, 'Guardar')]")).Click();//Guardar
-
-            Thread.Sleep(3000);
-            driver.FindElement(By.XPath("//select[contains(@title, 'Cambio de solución técnica (Tecnología)')]")).SendKeys(Keys.ArrowUp);
-            driver.FindElement(By.XPath("//li[contains(@aria-label, 'Guardar')]")).Click();//Guardar
-            
-            Thread.Sleep(3000);
-            driver.FindElement(By.XPath("//li[contains(@aria-label, 'Guardar')]")).Click();//Guardar
-            driver.FindElement(By.XPath("//select[contains(@title, 'Cambio de precio/Renovación')]")).SendKeys(Keys.ArrowUp);
-            
-            Thread.Sleep(3000);
-            driver.FindElement(By.XPath("//li[contains(@aria-label, 'Guardar')]")).Click();//Guardar
-            driver.FindElement(By.XPath("//select[contains(@title, 'Cambio de capacidad (Upgrade/Downgrade)')]")).SendKeys(Keys.ArrowUp);
-            
-            Thread.Sleep(7000);
-            driver.FindElement(By.XPath("//span[contains(@aria-label, 'Guardar y cerrar')]")).Click();
         }
 
         public void Resultado_AccederOfertaestado_Adjudicada()
@@ -293,6 +267,7 @@ namespace Lyntia.TestSet.Conditions
         {
             Assert.AreEqual("2", Utils.searchWebElement("Oferta.gridCellsOferta").GetAttribute("data-row-count"));
         }
+
         public void Resultado_Seleccion_de_oferta_Borrador()
         {
             Assert.AreEqual(true, driver.FindElement(By.XPath("//li[contains(@aria-label, 'General')]")).Enabled);//la pestaña general esta activa
@@ -306,6 +281,17 @@ namespace Lyntia.TestSet.Conditions
         {
             Assert.AreEqual(true, driver.FindElement(By.XPath("//li[contains(@aria-label, 'General')]")).Enabled);//la pestaña general esta activa
             Assert.AreEqual("General", driver.FindElement(By.XPath("//li[contains(@aria-label, 'General')]")).Text);
+
+		}
+        public void OfertaPresentadaCorrectamente()
+        {
+            // Se encuentra en estado borrador
+            Assert.AreEqual("Bloqueada", driver.FindElement(By.XPath("//div[@data-id='cell-0-7']")).GetAttribute("title"));
+
+            // Se encuentra en Razon para el estado En elaboracion
+            Assert.AreEqual("Presentada", driver.FindElement(By.XPath("//div[@data-id='cell-0-8']")).GetAttribute("title"));
+
+
         }
     }
 }
