@@ -208,25 +208,26 @@ namespace Lyntia.TestSet.Conditions
             //reestablece datos CRM-EOF0004
 
             driver.FindElement(By.LinkText("Prueba-Auto_NO_borrarCRM-EOF0004")).Click();
+            Thread.Sleep(3000);
             driver.FindElement(By.XPath("//select[contains(@title, 'Cambio de dirección (Migración)')]")).Click();
+            driver.FindElement(By.XPath("//select[contains(@title, 'Cambio de dirección (Migración)')]")).SendKeys(Keys.ArrowUp);
+            
+            Thread.Sleep(3000);
+            driver.FindElement(By.XPath("//li[contains(@aria-label, 'Guardar')]")).Click();//Guardar
 
-            accionesSelenium.SendKeys(Keys.ArrowUp).Perform();
-            accionesSelenium.SendKeys(Keys.Enter).Perform();
-
-            driver.FindElement(By.XPath("//select[contains(@title, 'Cambio de solución técnica (Tecnología)')]")).Click();
-            accionesSelenium.SendKeys(Keys.ArrowUp).Perform();
-            accionesSelenium.SendKeys(Keys.Enter).Perform();
-
-            driver.FindElement(By.XPath("//select[contains(@title, 'Cambio de precio/Renovación')]")).Click();
-            accionesSelenium.SendKeys(Keys.ArrowUp).Perform();
-            accionesSelenium.SendKeys(Keys.Enter).Perform();
-
-            driver.FindElement(By.XPath("//select[contains(@title, 'Cambio de capacidad (Upgrade/Downgrade)')]")).Click();
-            accionesSelenium.SendKeys(Keys.ArrowUp).Perform();
-            accionesSelenium.SendKeys(Keys.Enter).Perform();
-
+            Thread.Sleep(3000);
+            driver.FindElement(By.XPath("//select[contains(@title, 'Cambio de solución técnica (Tecnología)')]")).SendKeys(Keys.ArrowUp);
+            driver.FindElement(By.XPath("//li[contains(@aria-label, 'Guardar')]")).Click();//Guardar
+            
+            Thread.Sleep(3000);
+            driver.FindElement(By.XPath("//li[contains(@aria-label, 'Guardar')]")).Click();//Guardar
+            driver.FindElement(By.XPath("//select[contains(@title, 'Cambio de precio/Renovación')]")).SendKeys(Keys.ArrowUp);
+            
+            Thread.Sleep(3000);
+            driver.FindElement(By.XPath("//li[contains(@aria-label, 'Guardar')]")).Click();//Guardar
+            driver.FindElement(By.XPath("//select[contains(@title, 'Cambio de capacidad (Upgrade/Downgrade)')]")).SendKeys(Keys.ArrowUp);
+            
             Thread.Sleep(7000);
-            driver.FindElement(By.XPath("//li[contains(@aria-label, 'Guardar')]")).Click();
             driver.FindElement(By.XPath("//span[contains(@aria-label, 'Guardar y cerrar')]")).Click();
         }
 

@@ -291,9 +291,10 @@ namespace Lyntia.TestSet.Actions
             Thread.Sleep(3000);
             accionesSelenium.SendKeys(OpenQA.Selenium.Keys.ArrowDown).Perform();//selecciona la opcion inferior
             Thread.Sleep(3000);
-            accionesSelenium.SendKeys(OpenQA.Selenium.Keys.Enter).Perform();//y lo pulsa 
+            //accionesSelenium.SendKeys(OpenQA.Selenium.Keys.Enter).Perform();//y lo pulsa 
             Thread.Sleep(3000);
             driver.FindElement(By.XPath("//li[contains(@aria-label, 'Guardar')]")).Click();//Guardar
+            Thread.Sleep(3000);
         }
 
         /// <summary>
@@ -301,10 +302,16 @@ namespace Lyntia.TestSet.Actions
         /// </summary>
         public void Tipo_de_oferta_Cambiodeprecio()
         {
-            Thread.Sleep(8000);
-            driver.FindElement(By.XPath("//select[contains(@title, 'Cambio de capacidad (Upgrade/Downgrade)')]")).Click();
-            accionesSelenium.SendKeys(OpenQA.Selenium.Keys.ArrowDown).Perform();////selecciona la opcion inferior
-            accionesSelenium.SendKeys(OpenQA.Selenium.Keys.Enter).Perform();//y lo pulsa 
+            Thread.Sleep(2000);
+            driver.FindElement(By.XPath("//select[contains(@title, 'Cambio de capacidad (Upgrade/Downgrade)')]")).SendKeys(Keys.ArrowDown);
+            Thread.Sleep(3000);
+
+            //((accionesSelenium.SendKeys(OpenQA.Selenium.Keys.ArrowDown).Perform();////selecciona la opcion inferior
+            //accionesSelenium.SendKeys(OpenQA.Selenium.Keys.Enter).Perform();//y lo pulsa
+            Thread.Sleep(3000);
+            driver.FindElement(By.XPath("//li[contains(@aria-label, 'Guardar')]")).Click();//Guardar
+            Thread.Sleep(3000);
+            
         }
 
         /// <summary>
@@ -313,9 +320,12 @@ namespace Lyntia.TestSet.Actions
         public void Tipo_de_oferta_Cambiodesolucion()
         {
             Thread.Sleep(3000);
-            driver.FindElement(By.XPath("//select[contains(@title, 'Cambio de precio/Renovación')]")).Click();
-            accionesSelenium.SendKeys(OpenQA.Selenium.Keys.ArrowDown).Perform();////selecciona la opcion inferior
-            accionesSelenium.SendKeys(OpenQA.Selenium.Keys.Enter).Perform();//y lo pulsa 
+            driver.FindElement(By.XPath("//select[contains(@title, 'Cambio de precio/Renovación')]")).SendKeys(Keys.ArrowDown);
+            //accionesSelenium.SendKeys(OpenQA.Selenium.Keys.ArrowDown).Perform();////selecciona la opcion inferior
+            //accionesSelenium.SendKeys(OpenQA.Selenium.Keys.Enter).Perform();//y lo pulsa 
+            Thread.Sleep(3000);
+            driver.FindElement(By.XPath("//li[contains(@aria-label, 'Guardar')]")).Click();//Guardar
+            Thread.Sleep(3000);
         }
 
         /// <summary>
@@ -324,9 +334,12 @@ namespace Lyntia.TestSet.Actions
         public void Tipo_de_oferta_Cambiodedireccion()
         {
             Thread.Sleep(3000);
-            driver.FindElement(By.XPath("//select[contains(@title, 'Cambio de solución técnica (Tecnología)')]")).Click();
-            accionesSelenium.SendKeys(OpenQA.Selenium.Keys.ArrowDown).Perform();////selecciona la opcion inferior
-            accionesSelenium.SendKeys(OpenQA.Selenium.Keys.Enter).Perform();//y lo pulsa 
+            driver.FindElement(By.XPath("//select[contains(@title, 'Cambio de solución técnica (Tecnología)')]")).SendKeys(Keys.ArrowDown);
+            //accionesSelenium.SendKeys(OpenQA.Selenium.Keys.ArrowDown).Perform();////selecciona la opcion inferior
+            //accionesSelenium.SendKeys(OpenQA.Selenium.Keys.Enter).Perform();//y lo pulsa
+            Thread.Sleep(3000);
+            driver.FindElement(By.XPath("//li[contains(@aria-label, 'Guardar')]")).Click();//Guardar
+            Thread.Sleep(3000);
         }
 
         /// <summary>
