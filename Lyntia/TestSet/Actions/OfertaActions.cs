@@ -256,7 +256,7 @@ namespace Lyntia.TestSet.Actions
             accionesSelenium.SendKeys(OpenQA.Selenium.Keys.Enter).Perform(); //y lo pulsa 
 
             Utils.searchWebElement("Oferta.inputNameOferta").SendKeys("Prueba_auto_NO_borrar_MODIFICADA");
-            
+
             Utils.searchWebElement("Oferta.labelPermutaDefault").Click(); //Toggle Switch
             driver.FindElement(By.XPath("//input[contains(@aria-label, 'Fecha de Fecha de presentación')]")).Click();//Calendario
             driver.FindElement(By.XPath("//button[contains(@aria-label, 'enero 4, 2021')]")).Click();//seleccionamos fecha del calendario
@@ -428,7 +428,7 @@ namespace Lyntia.TestSet.Actions
             //Thread.Sleep(2000);
             //driver.FindElement(By.LinkText("CLIENTE INTEGRACION")).Click();//click en la oferta
             //Thread.Sleep(3000);
-            
+
             Thread.Sleep(3000);
             driver.FindElement(By.XPath("//input[contains(@aria-label, 'Buscar en esta vista')]")).SendKeys("Automatica_MOD");//buscamos una oferta en el filtro
             Thread.Sleep(1000);
@@ -531,5 +531,15 @@ namespace Lyntia.TestSet.Actions
             driver.FindElement(By.XPath("//li[contains(@aria-label, 'Editar')]")).Click();//pulsamos editar la oferta
             Thread.Sleep(3000);
         }
+        public void Filtro_buscarEnestaVista(String busqueda)
+        {
+            driver.FindElement(By.XPath("//input[contains(@aria-label, 'Buscar en esta vista')]")).SendKeys(busqueda);//buscamos una oferta en el filtro
+            Thread.Sleep(1000);
+            driver.FindElement(By.XPath("//button[contains(@title, 'Iniciar búsqueda')]")).Click();
+            Thread.Sleep(3000);
+            driver.FindElement(By.LinkText(busqueda)).Click();//click en la oferta
+            Thread.Sleep(3000);
+        }
+       
     }
 }

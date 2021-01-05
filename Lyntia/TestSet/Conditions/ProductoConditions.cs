@@ -67,7 +67,7 @@ namespace Lyntia.TestSet.Conditions
         }
         public void Resultado_Cumplimentar_campos_y_guardar()
         {
-            Assert.AreEqual("Los cambios se han guardado.", driver.FindElement(By.XPath("//span[contains(@title,'Los cambios se han guardado.' )]")).Text);//Mensajes indicando que se ha guardado correctamente
+            Assert.AreEqual("Los cambios se han guardado.", driver.FindElement(By.XPath("//span[contains(@title,'Los cambios se han guardado.')]")).Text);//Mensajes indicando que se ha guardado correctamente
         }
         public void Resultado_Agregar_Producto_tipo_circuito_de_capacidad()
         {

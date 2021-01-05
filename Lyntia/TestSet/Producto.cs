@@ -62,7 +62,7 @@ namespace Lyntia.TestSet
             commonCondition.AccedeOferta();//comprobamos el acceso
 
             //Paso 3
-            ofertaActions.SeleccionOfertaAPR0001();//hacemos click en una oferta del listado para añadir producto
+            ofertaActions.Filtro_buscarEnestaVista("Prueba de productos");//hacemos click en una oferta del listado para añadir producto(filtro)
             ofertaCondition.AccederSeleccionOfertaAPR0001();//accede a la oferta
 
             //Paso 4
@@ -103,7 +103,7 @@ namespace Lyntia.TestSet
             commonCondition.AccedeOferta();//comprobamos el acceso
 
             //Paso 3
-            ofertaActions.Seleccion_de_oferta_Borrador();//en el listado seleccionamos una oferta borrardor y pulsamos Enter
+            ofertaActions.Filtro_buscarEnestaVista("Prueba de productos");//hacemos click en una oferta del listado para añadir producto(filtro)
             ofertaCondition.Resultado_Seleccion_de_oferta_Borrador();//se realizan comprobaciones
 
             //Paso 5
@@ -131,10 +131,13 @@ namespace Lyntia.TestSet
             commonCondition.AccedeOferta();//comprobamos el acceso 
 
             //Paso 3
+            ofertaActions.Filtro_buscarEnestaVista("CRM_APR0008_Producto_Cambio_de_Capacidad_CC");
+
+            //Paso 4
             productoActions.Agregar_servicio_heredado_y_guardar();
             productoCondition.Resultado_Agregar_servicio_heredado_y_guardar();
 
-            //Paso 3
+            //Paso 5
             productoActions.Cumplimentar_campos_y_guardar();
             productoCondition.Resultado_Cumplimentar_campos_y_guardar();
 
