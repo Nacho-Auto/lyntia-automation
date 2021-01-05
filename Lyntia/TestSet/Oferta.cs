@@ -567,6 +567,9 @@ namespace Lyntia.TestSet
             ofertaActions.Tipo_de_oferta_Cambiodedireccion();
             ofertaCondition.Aviso_Cambiodedireccion();
 
+            ofertaActions.GuardarYCerrarOferta();
+            ofertaActions.ReestablecerDatosCRM_EOF0004();
+
         }
 
         [Test(Description = "CRM-COF0011 Oferta/Eliminar/Adjudicada")]
