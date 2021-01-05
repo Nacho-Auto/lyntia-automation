@@ -258,7 +258,7 @@ namespace Lyntia.TestSet.Actions
             Utils.searchWebElement("Oferta.inputNameOferta").SendKeys("Prueba_auto_NO_borrar_MODIFICADA");
 
             Utils.searchWebElement("Oferta.inputNameOferta").SendKeys(Keys.PageDown);
-
+            Thread.Sleep(2000);
             Utils.searchWebElement("Oferta.labelPermutaDefault").Click(); //Toggle Switch
             Utils.searchWebElement("Oferta.inputCalendar").Click();
             Utils.searchWebElement("Oferta.calendarDateRandomDay").Click(); //seleccionamos fecha del calendario
@@ -272,6 +272,7 @@ namespace Lyntia.TestSet.Actions
             driver.FindElement(By.XPath("//li[contains(@aria-label, 'Guardar')]")).Click();//Guardar
             Thread.Sleep(3000);
             Utils.searchWebElement("Oferta.inputNameOferta").SendKeys(Keys.PageDown);
+            Thread.Sleep(2000);
             driver.FindElement(By.XPath("//input[contains(@aria-label, 'Fecha de Fecha de presentación')]")).Click();//Calendario
             driver.FindElement(By.XPath("//tr[contains(@class,'weekRow')]//button")).Click();//seleccionamos fecha del calendario
             driver.FindElement(By.XPath("//li[contains(@title, 'Fechas')]")).Click();//Pestaña fechas
@@ -347,15 +348,18 @@ namespace Lyntia.TestSet.Actions
             driver.FindElement(By.XPath("//input[@aria-label='Nombre oferta']")).Click();
             driver.FindElement(By.XPath("//input[@aria-label='Nombre oferta']")).SendKeys(Keys.Control + "a");
             driver.FindElement(By.XPath("//input[@aria-label='Nombre oferta']")).SendKeys(Keys.Delete);
+            Thread.Sleep(3000);
+            
 
             driver.FindElement(By.XPath("//input[contains(@aria-label, 'Nombre oferta')]")).SendKeys("Automatica_MOD");
             Utils.searchWebElement("Oferta.inputNameOferta").SendKeys(Keys.PageDown);
 
-            driver.FindElement(By.XPath("//input[contains(@aria-label, 'Fecha de Fecha de presentación')]")).Click();
-
-            Utils.searchWebElement("Oferta.calendarDateRandomDay").Click(); //seleccionamos fecha del calendario
-            Utils.searchWebElement("Oferta.inputReferenceOferta").SendKeys(Keys.PageDown);
+            driver.FindElement(By.XPath("//input[contains(@aria-label, 'Fecha de presentación')]")).SendKeys(Keys.Control + "a");
+            driver.FindElement(By.XPath("//input[contains(@aria-label, 'Fecha de presentación')]")).SendKeys(Keys.Delete);
+            //Utils.searchWebElement("Oferta.calendarDateRandomDay").Clear(); //seleccionamos fecha del calendario
+            //Utils.searchWebElement("Oferta.inputReferenceOferta").SendKeys(Keys.PageDown);
             Thread.Sleep(3000);
+            
             driver.FindElement(By.XPath("//input[@aria-label='Código GVAL']")).Click();
             driver.FindElement(By.XPath("//input[@aria-label='Código GVAL']")).SendKeys(Keys.Control + "a");
             driver.FindElement(By.XPath("//input[@aria-label='Código GVAL']")).SendKeys(Keys.Delete);
@@ -363,6 +367,8 @@ namespace Lyntia.TestSet.Actions
             driver.FindElement(By.XPath("//textarea[contains(@aria-label, 'Descripción')]")).SendKeys(Keys.Control + "a");
             driver.FindElement(By.XPath("//textarea[contains(@aria-label, 'Descripción')]")).SendKeys(Keys.Delete);
             driver.FindElement(By.XPath("//input[contains(@aria-label, 'Código GVAL')]")).Clear();
+            Thread.Sleep(3000);
+            Utils.searchWebElement("Oferta.labelPermutaDefaultReset").Click(); //Toggle Switch
             driver.FindElement(By.XPath("//li[contains(@aria-label, 'Guardar')]")).Click();//Guardar
             driver.FindElement(By.XPath("//input[@aria-label='Código GVAL']")).SendKeys(Keys.PageUp);
             Thread.Sleep(2000);

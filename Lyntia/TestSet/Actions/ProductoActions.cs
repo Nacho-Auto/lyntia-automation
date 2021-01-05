@@ -108,7 +108,7 @@ namespace Lyntia.TestSet.Actions
             Thread.Sleep(3000);
             Utils.searchWebElement("Producto.buttonAgregarProducto").Click();//pulsamos sobre agregar producto
             Thread.Sleep(4000);
-            Utils.searchWebElement("Producto.inpuServicioHeredado").SendKeys("c");
+            Utils.searchWebElement("Producto.inputServicioHeredado").SendKeys("c");
             accionesSelenium.SendKeys(Keys.ArrowDown).Perform();
             Thread.Sleep(3000);
             accionesSelenium.SendKeys(Keys.Enter).Perform();
@@ -132,7 +132,7 @@ namespace Lyntia.TestSet.Actions
             Utils.searchWebElement("Producto.inputNRC").SendKeys("4");
             Thread.Sleep(2000);
             Utils.searchWebElement("Producto.GuardarYCerrar_producto").Click();//Guarda y cierra
-            Thread.Sleep(8000);
+            Thread.Sleep(10000);
 
         }
 
