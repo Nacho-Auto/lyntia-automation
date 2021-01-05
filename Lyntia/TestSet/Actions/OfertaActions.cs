@@ -263,7 +263,7 @@ namespace Lyntia.TestSet.Actions
             Utils.searchWebElement("Oferta.calendarDateToday").Click(); //seleccionamos fecha del calendario
             Utils.searchWebElement("Oferta.inputReferenceOferta").SendKeys(Keys.PageDown);
             Thread.Sleep(3000);
-            
+
             Utils.searchWebElement("Oferta.inputGVAL").SendKeys("prue123456");//Escribimos prue123456 en codigo gval
             driver.FindElement(By.XPath("//textarea[contains(@aria-label, 'Descripción')]")).SendKeys("Prueba campo descripcion");//Escribimos Prueba campo descripcion en detalle de oferta
             Thread.Sleep(3000);
@@ -363,6 +363,7 @@ namespace Lyntia.TestSet.Actions
         /// </summary>
         public void SeleccionOfertaAPR0001()
         {
+            BuscarOfertaEnVista("Prueba_AUTO_CRM-APR");
             driver.FindElement(By.LinkText("Prueba_AUTO_CRM-APR")).Click();
 
         }
@@ -373,9 +374,13 @@ namespace Lyntia.TestSet.Actions
         public void Editar_añadir_producto()
         {
             driver.FindElement(By.XPath("//button[contains(@aria-label, 'Agregar producto')]")).Click();//pulsamos sobre agregar producto
-            driver.FindElement(By.XPath("//button[contains(@data-id, 'quickCreateSaveAndCloseBtn')]")).Click();//guardamos
-            Thread.Sleep(3000);
-            driver.FindElement(By.XPath("//button[contains(@data-id, 'quickCreateSaveAndCloseBtn')]")).Click();//guardamos y cerramos
+            if (utils.EncontrarElemento(By.XPath("//button[contains(@data-id, 'quickCreateSaveAndCloseBtn')]")))
+            {
+                driver.FindElement(By.XPath("//button[contains(@data-id, 'quickCreateSaveAndCloseBtn')]")).Click();//guardamos
+                Thread.Sleep(3000);
+                driver.FindElement(By.XPath("//button[contains(@data-id, 'quickCreateSaveAndCloseBtn')]")).Click();//guardamos y cerramos
+            }
+
         }
 
         internal void CerrarOfertaActual(string opcion, string razonOferta, string motivoCierre)

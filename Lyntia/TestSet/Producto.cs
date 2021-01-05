@@ -50,7 +50,7 @@ namespace Lyntia.TestSet
 
         //CRM-APR0001
         [Test]
-        [AllureSubSuite("PRO AÑADIR OFERTA")]
+        [AllureSubSuite("PRO AÑADIR PRODUCTO")]
         public void CRM_APR0001_añadir_producto()
         {
             //Paso 1 Login y acceso al modulo gestion de cliente
@@ -76,7 +76,7 @@ namespace Lyntia.TestSet
 
         //CRM-APR0002
         [Test]
-        [AllureSubSuite("PRO AÑADIR OFERTA")]
+        [AllureSubSuite("PRO AÑADIR PRODUCTO")]
         public void CRM_APR0002_añadir_producto_creacion_rapida()
         {
             //Paso 1 Login y acceso al modulo gestion de cliente

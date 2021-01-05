@@ -656,7 +656,6 @@ namespace Lyntia.TestSet
 
             // Paso 3 - Presentar la oferta
             ofertaActions.PresentarOferta();
-            ofertaCondition.OfertaPresentada();
 
             // Paso 4 - Regresar al grid, verificar oferta
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
