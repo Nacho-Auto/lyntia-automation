@@ -284,5 +284,15 @@ namespace Lyntia.TestSet.Conditions
         {
             Assert.AreEqual("2", Utils.searchWebElement("Oferta.gridCellsOferta").GetAttribute("data-row-count"));
         }
+
+        public void OfertaPresentadaCorrectamente()
+        {
+            // Se encuentra en estado borrador
+            Assert.AreEqual("Bloqueada", driver.FindElement(By.XPath("//div[@data-id='cell-0-7']")).GetAttribute("title"));
+
+            // Se encuentra en Razon para el estado En elaboracion
+            Assert.AreEqual("Presentada", driver.FindElement(By.XPath("//div[@data-id='cell-0-8']")).GetAttribute("title"));
+
+        }
     }
 }

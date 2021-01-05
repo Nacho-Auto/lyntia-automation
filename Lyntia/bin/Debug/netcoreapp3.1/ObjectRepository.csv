@@ -35,5 +35,9 @@ Oferta.gridSelectAll;XPATH;//button[@title='Seleccionar todos']
 Oferta.buttonPresentOferta;XPATH;//button[@title='Presentar Oferta']
 Oferta.labelPermutaDefault;XPATH;//a[contains(@aria-label, 'Es permuta: No')]
 Oferta.buttonEditOferta;XPATH;//button[@aria-label='Editar']
+Oferta.inputCalendar;XPATH;//input[contains(@aria-label, 'Fecha de Fecha de presentación')]
+Oferta.calendarDateToday;XPATH;//button[contains(@class,'dayIsToday')]
+Oferta.calendarDateRandomDay;XPATH;//tr[contains(@class,'weekRow')]//button
+Oferta.inputGVAL;XPATH;//input[contains(@aria-label, 'Código GVAL')]
 ############################# PRODUCTO ############################
 Producto.firstInput;ID;submit
