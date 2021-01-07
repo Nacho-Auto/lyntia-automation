@@ -342,10 +342,13 @@ namespace Lyntia.TestSet.Actions
             driver.FindElement(By.XPath("//input[contains(@aria-label, 'Nombre oferta')]")).SendKeys("Automatica_MOD");
             Utils.searchWebElement("Oferta.inputNameOferta").SendKeys(Keys.PageDown);
 
-            driver.FindElement(By.XPath("//input[contains(@aria-label, 'Fecha de Fecha de presentación')]")).Click();
-            Utils.searchWebElement("Oferta.calendarDateRandomDay").Click(); //seleccionamos fecha del calendario
-            Utils.searchWebElement("Oferta.inputReferenceOferta").SendKeys(Keys.PageDown);
+            driver.FindElement(By.XPath("//input[contains(@aria-label, 'Fecha de presentación')]")).SendKeys(Keys.Control + "a");
+            driver.FindElement(By.XPath("//input[contains(@aria-label, 'Fecha de presentación')]")).SendKeys(Keys.Delete);
+            //Utils.searchWebElement("Oferta.calendarDateRandomDay").Clear(); //seleccionamos fecha del calendario
+            //Utils.searchWebElement("Oferta.inputReferenceOferta").SendKeys(Keys.PageDown);
             Thread.Sleep(3000);
+            Utils.searchWebElement("Oferta.labelPermutaDefaultReset").Click(); //Toggle Switch
+
             driver.FindElement(By.XPath("//input[@aria-label='Código GVAL']")).Click();
             driver.FindElement(By.XPath("//input[@aria-label='Código GVAL']")).SendKeys(Keys.Control + "a");
             driver.FindElement(By.XPath("//input[@aria-label='Código GVAL']")).SendKeys(Keys.Delete);
