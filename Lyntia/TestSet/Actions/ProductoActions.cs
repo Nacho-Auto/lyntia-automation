@@ -51,11 +51,13 @@ namespace Lyntia.TestSet.Actions
                 drop.SelectByText(uso);
             }
 
+
             if (!unidadVenta.Equals(""))
             {
                 // Seleccionar Producto existente del desplegable si esta vacio
                 if (utils.EncontrarElemento(By.XPath("//input[contains(@id,'Dropdown_uomid')]")))
                 {
+
                     Utils.searchWebElement("Producto.inputUnidaddeVenta").Click();
                     Thread.Sleep(1000);
 
@@ -65,7 +67,6 @@ namespace Lyntia.TestSet.Actions
                     Utils.searchWebElement("Producto.inputUnidaddeVenta").SendKeys(Keys.Delete);
                     Utils.searchWebElement("Producto.inputUnidaddeVenta").SendKeys(unidadVenta);
                     Thread.Sleep(1000);
-
 
                     driver.FindElement(By.XPath("//span[contains(text(), '" + unidadVenta + "')]")).Click();
                     Thread.Sleep(2000);
