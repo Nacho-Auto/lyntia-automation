@@ -2,6 +2,8 @@
 using Lyntia.Utilities;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using System;
+using System.Threading;
 
 namespace Lyntia.TestSet.Conditions
 {
@@ -61,6 +63,12 @@ namespace Lyntia.TestSet.Conditions
             Assert.AreEqual("Los cambios se han guardado.", driver.FindElement(By.XPath("//span[contains(@title,'Los cambios se han guardado.' )]")).Text);//Mensajes indicando que se ha guardado correctamente
             
         }
+
+        public void ProductoNoCreado()
+        {
+            Assert.AreEqual("Tiene 2 notificaciones. Seleccione esta opción para verlas.", Utils.searchWebElement("Producto.notCreatedMessage").Text);
+        }
+
         public void Resultado_Agregar_servicio_heredado_y_guardar()
         {
             Assert.AreEqual("Tiene 3 notificaciones. Seleccione esta opción para verlas.", driver.FindElement(By.XPath("/html/body/section/div/div/div/div/section/div[1]/div/div/div/span[2]")).Text);//Mensajes indicando que faltan campos

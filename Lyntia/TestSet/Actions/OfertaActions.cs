@@ -190,21 +190,24 @@ namespace Lyntia.TestSet.Actions
         {
             // Click en Eliminar
             Thread.Sleep(2000);
-            Utils.searchWebElement("Oferta.deleteButtonOferta").Click();
-
-            // Confirmar Borrado
-            if (opcion.Equals("Eliminar"))
+            if (utils.EncontrarElemento(By.XPath(Utils.getIdentifier("Oferta.deleteButtonOferta"))))
             {
-                Utils.searchWebElement("Oferta.confirmDeleteOferta").Click();
-                Thread.Sleep(4000);
+                Utils.searchWebElement("Oferta.deleteButtonOferta").Click();
 
-            }
-            else
-            {
-                Utils.searchWebElement("Oferta.cancelDeleteOferta").Click();
-                Thread.Sleep(4000);
+                // Confirmar Borrado
+                if (opcion.Equals("Eliminar"))
+                {
+                    Utils.searchWebElement("Oferta.confirmDeleteOferta").Click();
+                    Thread.Sleep(4000);
 
-            }
+                }
+                else
+                {
+                    Utils.searchWebElement("Oferta.cancelDeleteOferta").Click();
+                    Thread.Sleep(4000);
+
+                }
+            }   
         }
 
         /// <summary>
@@ -357,9 +360,12 @@ namespace Lyntia.TestSet.Actions
             driver.FindElement(By.XPath("//input[contains(@aria-label, 'Fecha de presentación')]")).SendKeys(Keys.Control + "a");
             driver.FindElement(By.XPath("//input[contains(@aria-label, 'Fecha de presentación')]")).SendKeys(Keys.Delete);
             //Utils.searchWebElement("Oferta.calendarDateRandomDay").Clear(); //seleccionamos fecha del calendario
-            //Utils.searchWebElement("Oferta.inputReferenceOferta").SendKeys(Keys.PageDown);
+
+            Utils.searchWebElement("Oferta.inputReferenceOferta").SendKeys(Keys.PageDown);
             Thread.Sleep(3000);
-            
+            Utils.searchWebElement("Oferta.labelPermutaDefaultReset").Click(); //Toggle Switch
+
+
             driver.FindElement(By.XPath("//input[@aria-label='Código GVAL']")).Click();
             driver.FindElement(By.XPath("//input[@aria-label='Código GVAL']")).SendKeys(Keys.Control + "a");
             driver.FindElement(By.XPath("//input[@aria-label='Código GVAL']")).SendKeys(Keys.Delete);

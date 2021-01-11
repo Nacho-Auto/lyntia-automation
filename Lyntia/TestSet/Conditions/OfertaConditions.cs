@@ -241,7 +241,12 @@ namespace Lyntia.TestSet.Conditions
 
         }
 
-        
+
+        public void CerrarOfertaNoVisible()
+        {
+            Assert.AreEqual(false, utils.EncontrarElemento(By.XPath("//button[@title='Cerrar Oferta']")));
+        }
+
 
         public void OfertaNoCerrada()
         {

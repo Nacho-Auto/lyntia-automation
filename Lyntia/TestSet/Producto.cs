@@ -48,8 +48,7 @@ namespace Lyntia.TestSet
             driver.Quit();
         }
 
-        //CRM-APR0001
-        [Test]
+        [Test(Description = "CRM-APR0001 Añadir producto")]
         [AllureSubSuite("PRO AÑADIR PRODUCTO")]
         public void CRM_APR0001_añadir_producto()
         {
@@ -72,8 +71,7 @@ namespace Lyntia.TestSet
             
         }
 
-        //CRM-APR0002
-        [Test]
+        [Test(Description = "CRM-APR0002 Añadir producto correctamente")]
         [AllureSubSuite("PRO AÑADIR PRODUCTO")]
         public void CRM_APR0002_añadir_producto_creacion_rapida()
         {
@@ -89,6 +87,7 @@ namespace Lyntia.TestSet
             productoActions.Añadirproducto_vistarapida();//entramos en añadir producto vista rapida
             productoCondition.Resultado2_Editar_añadir_producto();//se accede a pantalla añadir producto
         }
+
         //CRM-APR0003
         [Test]
         [AllureSubSuite("PRO AÑADIR OFERTA")]
@@ -145,6 +144,5 @@ namespace Lyntia.TestSet
             productoActions.Borrado_de_producto();
 
         }
-        
     }
 }

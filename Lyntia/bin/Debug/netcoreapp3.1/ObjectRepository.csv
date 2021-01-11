@@ -70,8 +70,5 @@ Producto.buttonCerrar;XPATH;/html/body/section[2]/div/div/div/div/div/div/div[1]
 Producto.buttonDescartarCambios;XPATH;//button[contins(@aria-label, 'Descartar cambios')]
 Producto.buttonGuardaryContinuar;XPATH;//button[contains(@aria-label, 'Guardar y continuar')]
 Producto.LabelOfertaCamposObligatorios;XPATH;//span[contains(@data-id, 'quoteid-error-message')]
-
-
-
-
+Producto.notCreatedMessage;XPATH;//div[contains(@id,'notificationWrapper')]//span[contains(@id,'message')]
 
