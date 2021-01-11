@@ -245,7 +245,8 @@ namespace Lyntia.TestSet.Actions
         public void Borrado_de_producto()//metodo por el cual borramos una linea de producto que anteriormente hemos dado de alta en añadir producto.
         {
             Utils.searchWebElement("Producto.ListProductoOfertaPrimerregistro").Click();
-            
+            Thread.Sleep(3000);
+            Utils.searchWebElement("Producto.buttonMasComandos").Click();
             Thread.Sleep(3000);
             Utils.searchWebElement("Producto.buttonEliminarProductodeOferta").Click();
             Thread.Sleep(2000);

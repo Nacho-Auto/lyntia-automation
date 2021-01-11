@@ -79,7 +79,7 @@ namespace Lyntia.TestSet.Conditions
         }
         public void Resultado_Agregar_Producto_tipo_circuito_de_capacidad()
         {
-            Assert.AreEqual("Tiene 2 notificaciones. Seleccione esta opción para verlas.", driver.FindElement(By.XPath("/html/body/section/div/div/div/div/section/div[1]/div/div/div/span[2]")).Text);//Mensajes indicando que faltan campos
+            Assert.IsTrue(driver.FindElement(By.XPath("/html/body/section/div/div/div/div/section/div[1]/div/div/div/span[2]")).Text.Contains("notificaciones. Seleccione esta opción para verlas."));//Mensajes indicando que faltan campos
             Assert.AreEqual("Uso (Línea de negocio): Es necesario rellenar los campos obligatorios.", driver.FindElement(By.XPath("//span[contains(@data-id, 'lyn_uso-error-message')]")).Text);//comprobamos advertencia Uso linea de negocio 
             Assert.AreEqual("Unidad de venta: Es necesario rellenar los campos obligatorios.", driver.FindElement(By.XPath("//span[contains(@data-id, 'uomid-error-message')]")).Text);//comprobamos advertencia Unidad de venta
         }
