@@ -374,14 +374,10 @@ namespace Lyntia.TestSet.Actions
             driver.FindElement(By.XPath("//textarea[contains(@aria-label, 'Descripción')]")).SendKeys(Keys.Delete);
             driver.FindElement(By.XPath("//input[contains(@aria-label, 'Código GVAL')]")).Clear();
             Thread.Sleep(3000);
-            Utils.searchWebElement("Oferta.labelPermutaDefaultReset").Click(); //Toggle Switch
-            driver.FindElement(By.XPath("//li[contains(@aria-label, 'Guardar')]")).Click();//Guardar
-            driver.FindElement(By.XPath("//input[@aria-label='Código GVAL']")).SendKeys(Keys.PageUp);
-            Thread.Sleep(2000);
-            Utils.searchWebElement("Oferta.inputReferenceOferta").SendKeys(Keys.PageUp);
-            Thread.Sleep(2000);
-            driver.FindElement(By.XPath("/html/body/div[2]/div/div[4]/div[2]/div/div/div/div/div/div[1]/div[1]/div[2]/div/div/div/section[1]/section[1]/div/div/div/div[9]/div/div/div[2]/div/div[3]/div[2]/div/div[2]/div[1]/div[2]/div/div[3]/div/div")).Click();//Toggle Switch
-            driver.FindElement(By.XPath("//li[contains(@aria-label, 'Guardar')]")).Click();//Guardar
+            
+            Thread.Sleep(3000);
+            driver.FindElement(By.XPath("//span[contains(@aria-label, 'Guardar y cerrar')]")).Click();//Guarda y cierra
+            
 
         }
 
