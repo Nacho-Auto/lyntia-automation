@@ -51,30 +51,19 @@ namespace Lyntia.TestSet.Actions
                 drop.SelectByText(uso);
             }
 
-
-                Utils.searchWebElement("Producto.inputUnidaddeVenta").Click();
-                Thread.Sleep(1000);
-
-                Utils.searchWebElement("Producto.inputUnidaddeVenta").SendKeys(unidadVenta);
-                Thread.Sleep(1000);
-                Utils.searchWebElement("Producto.inputUnidaddeVenta").SendKeys(Keys.Control + "a");
-                Utils.searchWebElement("Producto.inputUnidaddeVenta").SendKeys(Keys.Delete);
-                Utils.searchWebElement("Producto.inputUnidaddeVenta").SendKeys(unidadVenta);
-                Thread.Sleep(1000);
-
             if (!unidadVenta.Equals(""))
             {
                 // Seleccionar Producto existente del desplegable si esta vacio
                 if (utils.EncontrarElemento(By.XPath("//input[contains(@id,'Dropdown_uomid')]")))
                 {
-                    driver.FindElement(By.XPath("//input[contains(@data-id,'uomid')]")).Click();
+                    Utils.searchWebElement("Producto.inputUnidaddeVenta").Click();
                     Thread.Sleep(1000);
 
-                    driver.FindElement(By.XPath("//input[contains(@data-id,'uomid')]")).SendKeys(unidadVenta);
+                    Utils.searchWebElement("Producto.inputUnidaddeVenta").SendKeys(unidadVenta);
                     Thread.Sleep(1000);
-                    driver.FindElement(By.XPath("//input[contains(@data-id,'uomid')]")).SendKeys(Keys.Control + "a");
-                    driver.FindElement(By.XPath("//input[contains(@data-id,'uomid')]")).SendKeys(Keys.Delete);
-                    driver.FindElement(By.XPath("//input[contains(@data-id,'uomid')]")).SendKeys(unidadVenta);
+                    Utils.searchWebElement("Producto.inputUnidaddeVenta").SendKeys(Keys.Control + "a");
+                    Utils.searchWebElement("Producto.inputUnidaddeVenta").SendKeys(Keys.Delete);
+                    Utils.searchWebElement("Producto.inputUnidaddeVenta").SendKeys(unidadVenta);
                     Thread.Sleep(1000);
 
 
