@@ -117,6 +117,10 @@ namespace Lyntia.TestSet.Actions
 
             if (!nombre.Equals(""))
             {
+                Utils.searchWebElement("Oferta.inputNameOferta").Click();
+                Utils.searchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Control + "a");
+                Utils.searchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Delete);
+
                 // Rellenar Cliente de Oferta
                 Utils.searchWebElement("Oferta.inputNameOferta").Click();
                 Thread.Sleep(1000);

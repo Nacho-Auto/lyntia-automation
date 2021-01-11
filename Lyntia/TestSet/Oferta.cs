@@ -417,7 +417,7 @@ namespace Lyntia.TestSet
             // Paso 2 - Acceder a una Oferta que esté en estado Borrador con producto añadido.
             ofertaActions.AccesoNuevaOferta();
 
-            ofertaActions.RellenarCamposOferta("CRM-COF0005-ELIMINAR", "CLIENTE INTEGRACION", "Nuevo servicio", "# BizQA");
+            ofertaActions.RellenarCamposOferta("CRM-COF0005-ELIMINAR_" + Utils.getRandomString(), "CLIENTE INTEGRACION", "Nuevo servicio", "# BizQA");
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la Oferta
@@ -430,11 +430,11 @@ namespace Lyntia.TestSet
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
 
             // Buscar Oferta creada
-            ofertaActions.BuscarOfertaEnVista("CRM-COF0005-ELIMINAR");
+            ofertaActions.BuscarOfertaEnVista("CRM-COF0005-ELIMINAR_" + Utils.getRandomString());
             ofertaCondition.OfertaGuardadaCorrectamenteEnGrid();
 
             // Abrir la oferta anterior y comprobar datos cumplimentados
-            ofertaActions.AbrirOfertaEnVista("CRM-COF0005-ELIMINAR");
+            ofertaActions.AbrirOfertaEnVista("CRM-COF0005-ELIMINAR_" + Utils.getRandomString());
 
             // Paso 5 - Eliminar definitivamente
             ofertaActions.EliminarOfertaActual("Eliminar");
@@ -608,7 +608,7 @@ namespace Lyntia.TestSet
             // Paso 2 - Acceder a una Oferta que esté en estado Borrador con producto añadido.
             ofertaActions.AccesoNuevaOferta();
 
-            ofertaActions.RellenarCamposOferta("CRM-COF00010-CIERRE", "CLIENTE INTEGRACION", "Nuevo servicio", "# BizQA");
+            ofertaActions.RellenarCamposOferta("CRM-COF00010-CIERRE_" + Utils.getRandomString(), "CLIENTE INTEGRACION", "Nuevo servicio", "# BizQA");
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la Oferta
@@ -618,12 +618,12 @@ namespace Lyntia.TestSet
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
 
             // Paso 2 Seleccionar la Oferta del grid
-            ofertaActions.BuscarOfertaEnVista("CRM-COF00010-CIERRE");
+            ofertaActions.BuscarOfertaEnVista("CRM-COF00010-CIERRE_" + Utils.getRandomString());
             ofertaCondition.OfertaGuardadaCorrectamenteEnGrid();
 
             // Seleccionar la Oferta del grid
             ofertaActions.SeleccionarOfertaGrid();
-            ofertaActions.AbrirOfertaEnVista("CRM-COF00010-CIERRE");
+            ofertaActions.AbrirOfertaEnVista("CRM-COF00010-CIERRE_" + Utils.getRandomString());
 
             // Presentar la Oferta
             ofertaActions.PresentarOferta();
@@ -638,7 +638,7 @@ namespace Lyntia.TestSet
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
 
             // Paso 7 - Se busca la Oferta, que debe aparecer duplicada
-            ofertaActions.BuscarOfertaEnVista("CRM-COF00010-CIERRE");
+            ofertaActions.BuscarOfertaEnVista("CRM-COF00010-CIERRE_" + Utils.getRandomString());
             ofertaCondition.OfertaRevisadaCorrectamente();
 
             ofertaActions.FiltrarPorIDRevision("0");
@@ -650,7 +650,7 @@ namespace Lyntia.TestSet
             driver.Navigate().Refresh();
 
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
-            ofertaActions.BuscarOfertaEnVista("CRM-COF00010-CIERRE");
+            ofertaActions.BuscarOfertaEnVista("CRM-COF00010-CIERRE_" + Utils.getRandomString());
 
             // Eliminar las dos ofertas
             ofertaActions.SeleccionarTodasOfertaGrid();
@@ -764,7 +764,6 @@ namespace Lyntia.TestSet
             ofertaActions.Seleccionofertarazonadjudicada();
 
             //ofertaActions.editarOferta();
-
             ofertaCondition.Resultado_Seleccionofertarazonadjudicada();
         }
 
@@ -782,11 +781,6 @@ namespace Lyntia.TestSet
 
             //Paso 2 - Desde el listado de ofertas, seleccionamos una en estado ganada/adjudicada y se pulsa editar
             ofertaActions.Seleccionofertarazonadjudicada();
-
-            ofertaCondition.CerrarOfertaNoVisible();
-
-            ofertaActions.editarOferta();
-
 
             ofertaCondition.CerrarOfertaNoVisible();
 
