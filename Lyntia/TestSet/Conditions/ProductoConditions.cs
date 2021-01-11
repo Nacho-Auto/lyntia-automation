@@ -88,6 +88,11 @@ namespace Lyntia.TestSet.Conditions
             Assert.AreEqual(true, driver.FindElement(By.XPath("//li[contains(@aria-label, 'General')]")).Enabled);//la pestaña general esta activa
             Assert.AreEqual("General", driver.FindElement(By.XPath("//li[contains(@aria-label, 'General')]")).Text);
         }
+        public void Resultado_Agregar_Liena_de_nogocio_y_Unidad_de_venta2()
+        {
+            Assert.AreEqual(true, driver.FindElement(By.XPath("//li[contains(@aria-label, 'General')]")).Enabled);//la pestaña general esta activa
+            Assert.AreEqual("General", driver.FindElement(By.XPath("//li[contains(@aria-label, 'General')]")).Text);
+        }
 
     }
 }
