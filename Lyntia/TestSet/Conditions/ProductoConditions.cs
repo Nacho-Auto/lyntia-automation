@@ -88,11 +88,6 @@ namespace Lyntia.TestSet.Conditions
             Assert.AreEqual(true, driver.FindElement(By.XPath("//li[contains(@aria-label, 'General')]")).Enabled);//la pestaña general esta activa
             Assert.AreEqual("General", driver.FindElement(By.XPath("//li[contains(@aria-label, 'General')]")).Text);
         }
-        
-
-
-
-
 
     }
 }
