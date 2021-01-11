@@ -252,8 +252,158 @@ namespace Lyntia.TestSet
 
         }
 
+        [Test(Description = "CRM-COF0007 Creación de Oferta de tipo Cambio de Precio/Renovación")]
+        [AllureSubSuite("PRO CREAR OFERTA")]
+        public void CRM_COF0007_creacionOfertaCambioPrecioRenovacion()
+        {
+            // Login y Acceso a Gestión de Cliente
+            commonActions.AccesoGestionCliente();
+            commonCondition.AccedeGestionCliente();
+
+            // Paso 1 - Hacer click en Ofertas
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            // Paso 2 - Crear Nueva Oferta
+            ofertaActions.AccesoNuevaOferta();
+
+            // Paso 3 - Rellenar campos y click en Guardar
+            ofertaActions.RellenarCamposOferta("CRM-COF0007", "CLIENTE INTEGRACION", "Cambio de precio/Renovación", "# BizQA");
+            ofertaActions.GuardarOferta();
+
+            driver.Navigate().Refresh();
+
+            ofertaCondition.OfertaGuardadaCorrectamente("CRM-COF0007", "Cambio de precio/Renovación");
+
+            ofertaActions.AccesoFechasOferta();
+            ofertaCondition.FechasInformadasCorrectamente();
+
+            ofertaActions.EliminarOfertaActual("Eliminar");
+
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            // Paso 4 - Crear Nueva Oferta, pulsando Guardar y cerrar
+            ofertaActions.AccesoNuevaOferta();
+
+            ofertaActions.RellenarCamposOferta("CRM-COF0007", "CLIENTE INTEGRACION", "Cambio de precio/Renovación", "# BizQA");
+            ofertaActions.GuardarYCerrarOferta();
+
+            // Buscar Oferta creada
+            ofertaActions.BuscarOfertaEnVista("CRM-COF0007");
+            ofertaCondition.OfertaGuardadaCorrectamenteEnGrid();
+
+            // Paso 5 - Abrir la oferta anterior y comprobar datos cumplimentados
+            ofertaActions.AbrirOfertaEnVista("CRM-COF0007");
+            ofertaCondition.OfertaGuardadaCorrectamente("CRM-COF0007", "Cambio de precio/Renovación");
+
+            ofertaActions.AccesoFechasOferta();
+            ofertaCondition.FechasInformadasCorrectamente();
+
+            ofertaActions.EliminarOfertaActual("Eliminar");
+
+        }
+
+        [Test(Description = "CRM-COF0008 Creación de Oferta de tipo Cambio de Solución Técnica (Tecnología)")]
+        [AllureSubSuite("PRO CREAR OFERTA")]
+        public void CRM_COF0008_creacionOfertaCambioSolucionTecnica()
+        {
+            // Login y Acceso a Gestión de Cliente
+            commonActions.AccesoGestionCliente();
+            commonCondition.AccedeGestionCliente();
+
+            // Paso 1 - Hacer click en Ofertas
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            // Paso 2 - Crear Nueva Oferta
+            ofertaActions.AccesoNuevaOferta();
+
+            // Paso 3 - Rellenar campos y click en Guardar
+            ofertaActions.RellenarCamposOferta("CRM-COF0008", "CLIENTE INTEGRACION", "Cambio de solución técnica (Tecnología)", "# BizQA");
+            ofertaActions.GuardarOferta();
+
+            driver.Navigate().Refresh();
+
+            ofertaCondition.OfertaGuardadaCorrectamente("CRM-COF0008", "Cambio de solución técnica (Tecnología)");
+
+            ofertaActions.AccesoFechasOferta();
+            ofertaCondition.FechasInformadasCorrectamente();
+
+            ofertaActions.EliminarOfertaActual("Eliminar");
+
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            // Paso 4 - Crear Nueva Oferta, pulsando Guardar y cerrar
+            ofertaActions.AccesoNuevaOferta();
+
+            ofertaActions.RellenarCamposOferta("CRM-COF0008", "CLIENTE INTEGRACION", "Cambio de solución técnica (Tecnología)", "# BizQA");
+            ofertaActions.GuardarYCerrarOferta();
+
+            // Buscar Oferta creada
+            ofertaActions.BuscarOfertaEnVista("CRM-COF0008");
+            ofertaCondition.OfertaGuardadaCorrectamenteEnGrid();
+
+            // Paso 5 - Abrir la oferta anterior y comprobar datos cumplimentados
+            ofertaActions.AbrirOfertaEnVista("CRM-COF0008");
+            ofertaCondition.OfertaGuardadaCorrectamente("CRM-COF0008", "Cambio de solución técnica (Tecnología)");
+
+            ofertaActions.AccesoFechasOferta();
+            ofertaCondition.FechasInformadasCorrectamente();
+
+            ofertaActions.EliminarOfertaActual("Eliminar");
+
+        }
+
+        [Test(Description = "CRM-COF0009 Creación de Oferta de tipo Cambio de dirección (Migración)")]
+        [AllureSubSuite("PRO CREAR OFERTA")]
+        public void CRM_COF0009_creacionOfertaCambioSolucionTecnica()
+        {
+            // Login y Acceso a Gestión de Cliente
+            commonActions.AccesoGestionCliente();
+            commonCondition.AccedeGestionCliente();
+
+            // Paso 1 - Hacer click en Ofertas
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            // Paso 2 - Crear Nueva Oferta
+            ofertaActions.AccesoNuevaOferta();
+
+            // Paso 3 - Rellenar campos y click en Guardar
+            ofertaActions.RellenarCamposOferta("CRM-COF0009", "CLIENTE INTEGRACION", "Cambio de dirección (Migración)", "# BizQA");
+            ofertaActions.GuardarOferta();
+
+            driver.Navigate().Refresh();
+
+            ofertaCondition.OfertaGuardadaCorrectamente("CRM-COF0009", "Cambio de dirección (Migración)");
+
+            ofertaActions.AccesoFechasOferta();
+            ofertaCondition.FechasInformadasCorrectamente();
+
+            ofertaActions.EliminarOfertaActual("Eliminar");
+
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            // Paso 4 - Crear Nueva Oferta, pulsando Guardar y cerrar
+            ofertaActions.AccesoNuevaOferta();
+
+            ofertaActions.RellenarCamposOferta("CRM-COF0009", "CLIENTE INTEGRACION", "Cambio de dirección (Migración)", "# BizQA");
+            ofertaActions.GuardarYCerrarOferta();
+
+            // Buscar Oferta creada
+            ofertaActions.BuscarOfertaEnVista("CRM-COF0009");
+            ofertaCondition.OfertaGuardadaCorrectamenteEnGrid();
+
+            // Paso 5 - Abrir la oferta anterior y comprobar datos cumplimentados
+            ofertaActions.AbrirOfertaEnVista("CRM-COF0009");
+            ofertaCondition.OfertaGuardadaCorrectamente("CRM-COF0009", "Cambio de dirección (Migración)");
+
+            ofertaActions.AccesoFechasOferta();
+            ofertaCondition.FechasInformadasCorrectamente();
+
+            ofertaActions.EliminarOfertaActual("Eliminar");
+
+        }
+
         [Test(Description = "CRM-COF0005 Eliminar Oferta en borrador con producto añadido")]
-        [AllureSubSuite("PRO ELIMINAR OFERTA")]
+        [AllureSubSuite("PRO ELIMINAR-CERRAR OFERTA")]
         public void CRM_COF0005_eliminarOfertaProductoAnadido()
         {
             // Login y Acceso a Gestión de Cliente
@@ -290,7 +440,7 @@ namespace Lyntia.TestSet
         }
 
         [Test(Description = "CRM-COF0006 Eliminar Oferta en borrador con producto añadido desde el grid")]
-        [AllureSubSuite("PRO ELIMINAR OFERTA")]
+        [AllureSubSuite("PRO ELIMINAR-CERRAR OFERTA")]
         public void CRM_COF0006_eliminarOfertaProductoAnadidoDesdeGrid()
         {
             // Login y Acceso a Gestión de Cliente
@@ -335,7 +485,7 @@ namespace Lyntia.TestSet
         }
 
         [Test(Description = "CRM-COF0007 Cerrar Oferta en borrador con producto añadido")]
-        [AllureSubSuite("PRO ELIMINAR OFERTA")]
+        [AllureSubSuite("PRO ELIMINAR-CERRAR OFERTA")]
         public void CRM_COF0007_cerrarOfertaProductoAnadido()
         {
             // Login y Acceso a Gestión de Cliente
@@ -394,7 +544,7 @@ namespace Lyntia.TestSet
         }
 
         [Test(Description = "CRM-COF0008 Cerrar Oferta en borrador con producto añadido, No viable")]
-        [AllureSubSuite("PRO ELIMINAR OFERTA")]
+        [AllureSubSuite("PRO ELIMINAR-CERRAR OFERTA")]
         public void CRM_COF0008_cerrarOfertaProductoAnadidoNoViable()
         {
             // Login y Acceso a Gestión de Cliente
@@ -444,7 +594,7 @@ namespace Lyntia.TestSet
         }
 
         [Test(Description = "CRM-COF00010 Cerrar Oferta Presentada con producto añadido, Revisada")]
-        [AllureSubSuite("PRO ELIMINAR OFERTA")]
+        [AllureSubSuite("PRO ELIMINAR-CERRAR OFERTA")]
         public void CRM_COF00010_cerrarOfertaPresentadaProductoAnadidoRevisada()
         {
             // Login y Acceso a Gestión de Cliente
@@ -508,8 +658,7 @@ namespace Lyntia.TestSet
 
         }
 
-        //CRM-EOF0003
-        [Test]
+        [Test(Description = "CRM_EOF0003 Editar campos de una Oferta")]
         [AllureSubSuite("PRO EDITAR OFERTA")]
         public void CRM_EOF0003_Editar_campos_de_una_oferta()
         {
@@ -539,7 +688,7 @@ namespace Lyntia.TestSet
 
 
         //CRM-EOF0004
-        [Test]
+        [Test(Description = "CRM_EOF0004 Editar campo 'Tipo de oferta' de una Oferta")]
         [AllureSubSuite("PRO EDITAR OFERTA")]
         public void CRM_EOF0004_Editar_campo_tipo_de_Oferta()
         {
@@ -572,8 +721,8 @@ namespace Lyntia.TestSet
 
         }
 
-        [Test(Description = "CRM-COF0011 Oferta/Eliminar/Adjudicada")]
-        [AllureSubSuite("PRO ELIMINAR OFERTA")]
+        [Test(Description = "CRM-COF0011 Eliminar una Oferta Adjudicada")]
+        [AllureSubSuite("PRO ELIMINAR-CERRAR OFERTA")]
         public void CRM_COF0011_eliminarOferta_Adjudicada()
         {
 
@@ -618,8 +767,8 @@ namespace Lyntia.TestSet
             ofertaCondition.Resultado_Seleccionofertarazonadjudicada();
         }
 
-        [Test(Description = "CRM-COF0012 Oferta/Eliminar/Adjudicada")]
-        [AllureSubSuite("PRO ELIMINAR OFERTA")]
+        [Test(Description = "CRM-COF0012 Cerrar Oferta Adjudicada")]
+        [AllureSubSuite("PRO ELIMINAR-CERRAR OFERTA")]
         public void CRM_COF0012_Oferta_Cerrar_Adjudicada()
         {
             // Login y Acceso a Gestión de Cliente
@@ -632,10 +781,11 @@ namespace Lyntia.TestSet
 
             //Paso 2 - Desde el listado de ofertas, seleccionamos una en estado ganada/adjudicada y se pulsa editar
             ofertaActions.Seleccionofertarazonadjudicada();
-            
+            ofertaCondition.CerrarOfertaNoVisible();
+
             ofertaActions.editarOferta();
 
-            ofertaCondition.Resultado_Seleccionofertarazonadjudicada();
+            ofertaCondition.CerrarOfertaNoVisible();
 
         }
 

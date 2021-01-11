@@ -29,7 +29,7 @@ namespace Lyntia.TestSet.Actions
             commonCondition = Utils.getCommonConditions();
             accionesSelenium = new OpenQA.Selenium.Interactions.Actions(driver);
         }
-		
+
         public void CreacionProducto(String productoExistente, String uso, String unidadVenta)
         {
             // Click en "+ Agregar producto"
@@ -45,26 +45,31 @@ namespace Lyntia.TestSet.Actions
             Thread.Sleep(6000);
 
             // Seleccionar Uso(Línea de negocio)
-            SelectElement drop = new SelectElement(driver.FindElement(By.XPath("//select[contains(@id,'uso')]")));
-            drop.SelectByText(uso);
-
-            // Seleccionar Producto existente del desplegable si esta vacio
-            if (utils.EncontrarElemento(By.XPath("//input[contains(@id,'Dropdown_uomid')]")))
+            if (!uso.Equals(""))
             {
+                SelectElement drop = new SelectElement(driver.FindElement(By.XPath("//select[contains(@id,'uso')]")));
+                drop.SelectByText(uso);
+            }
 
-                driver.FindElement(By.XPath("//input[contains(@data-id,'uomid')]")).Click();
-                Thread.Sleep(1000);
+            if (!unidadVenta.Equals(""))
+            {
+                // Seleccionar Producto existente del desplegable si esta vacio
+                if (utils.EncontrarElemento(By.XPath("//input[contains(@id,'Dropdown_uomid')]")))
+                {
+                    driver.FindElement(By.XPath("//input[contains(@data-id,'uomid')]")).Click();
+                    Thread.Sleep(1000);
 
-                driver.FindElement(By.XPath("//input[contains(@data-id,'uomid')]")).SendKeys(unidadVenta);
-                Thread.Sleep(1000);
-                driver.FindElement(By.XPath("//input[contains(@data-id,'uomid')]")).SendKeys(Keys.Control + "a");
-                driver.FindElement(By.XPath("//input[contains(@data-id,'uomid')]")).SendKeys(Keys.Delete);
-                driver.FindElement(By.XPath("//input[contains(@data-id,'uomid')]")).SendKeys(unidadVenta);
-                Thread.Sleep(1000);
+                    driver.FindElement(By.XPath("//input[contains(@data-id,'uomid')]")).SendKeys(unidadVenta);
+                    Thread.Sleep(1000);
+                    driver.FindElement(By.XPath("//input[contains(@data-id,'uomid')]")).SendKeys(Keys.Control + "a");
+                    driver.FindElement(By.XPath("//input[contains(@data-id,'uomid')]")).SendKeys(Keys.Delete);
+                    driver.FindElement(By.XPath("//input[contains(@data-id,'uomid')]")).SendKeys(unidadVenta);
+                    Thread.Sleep(1000);
 
-                driver.FindElement(By.XPath("//span[contains(text(), '" + unidadVenta + "')]")).Click();
-                Thread.Sleep(2000);
+                    driver.FindElement(By.XPath("//span[contains(text(), '" + unidadVenta + "')]")).Click();
+                    Thread.Sleep(2000);
 
+                }
             }
 
             // Guardar y Cerrar Producto actual
@@ -72,12 +77,13 @@ namespace Lyntia.TestSet.Actions
             Thread.Sleep(10000);
         }
 
-        public void Añadirproducto_vistarapida() {
+        public void Añadirproducto_vistarapida()
+        {
             driver.FindElement(By.Id("quickCreateLauncher_buttoncrm_header_global")).Click();
             driver.FindElements(By.XPath("//div[contains(@data-id, '__flyoutRootNode')]//button"))[5].Click();
             Thread.Sleep(2000);
         }
-		
+
         public void Añadir_producto_circuito_de_capacidad_sin_campos_oblitatorios()//solo vamoa a rellenar el tipo de producto
         {
             driver.FindElement(By.XPath("//button[contains(@aria-label, 'Agregar producto')]")).Click();//pulsamos sobre agregar producto
@@ -89,7 +95,7 @@ namespace Lyntia.TestSet.Actions
             accionesSelenium.SendKeys(Keys.Enter).Perform();
             driver.FindElement(By.XPath("//span[contains(@aria-label, 'Guardar y cerrar')]")).Click();//Guarda y cierra
         }
-		
+
         public void Añadir_producto_circuito_de_capacidad_con_campos_oblitatorio()//completamos todos los campos
         {
             driver.FindElement(By.XPath("//select[contains(@aria-label, 'Uso (Línea de negocio)')]")).SendKeys("FT");
@@ -99,8 +105,8 @@ namespace Lyntia.TestSet.Actions
             accionesSelenium.SendKeys(Keys.ArrowDown).Perform();
             accionesSelenium.SendKeys(Keys.Enter).Perform();
             driver.FindElement(By.XPath("//span[contains(@aria-label, 'Guardar y cerrar')]")).Click();//Guarda y cierra
-        } 
-		
+        }
+
         //Metodo en el que agregamos un producto a un servicio tipo cambio de capacidad, seleccionamos un producto heredado con campos obligatorios sin rellenar y se guarda.
         public void Agregar_servicio_heredado_y_guardar()
         {
@@ -110,6 +116,57 @@ namespace Lyntia.TestSet.Actions
             accionesSelenium.SendKeys(Keys.ArrowDown).Perform();
             accionesSelenium.SendKeys(Keys.Enter).Perform();
             driver.FindElement(By.XPath("//span[contains(@aria-label, 'Guardar y cerrar')]")).Click();//Guarda y cierra
+        }
+
+        public void HeredarProducto(String productoHeredado, String precioMensual, String duracionContrato, String nrc)
+        {
+            // Click en "+ Agregar producto"
+            driver.FindElement(By.XPath("//button[contains(@title,'Agregar producto')]")).Click();
+            Thread.Sleep(4000);
+
+            if (!productoHeredado.Equals(""))
+            {
+                driver.FindElement(By.XPath("//input[contains(@aria-label, 'Servicio heredado, Búsqueda')]")).Click();
+                driver.FindElement(By.XPath("//input[contains(@aria-label, 'Servicio heredado, Búsqueda')]")).SendKeys(Keys.Control + "a");
+                driver.FindElement(By.XPath("//input[contains(@aria-label, 'Servicio heredado, Búsqueda')]")).SendKeys(Keys.Delete);
+
+                driver.FindElement(By.XPath("//input[contains(@aria-label, 'Servicio heredado, Búsqueda')]")).SendKeys(productoHeredado);
+                driver.FindElement(By.XPath("//span[contains(text(), '" + productoHeredado + "')]")).Click();
+
+                driver.FindElement(By.XPath("//input[@aria-label='Cód. admin. servicio heredado']")).SendKeys(Keys.PageDown);
+                Thread.Sleep(6000);
+            }
+
+            if (!precioMensual.Equals(""))
+            {
+                driver.FindElement(By.XPath("//input[@aria-label='Precio mensual']")).Click();
+                driver.FindElement(By.XPath("//input[@aria-label='Precio mensual']")).SendKeys(Keys.Control + "a");
+                driver.FindElement(By.XPath("//input[@aria-label='Precio mensual']")).SendKeys(Keys.Delete);
+
+                driver.FindElement(By.XPath("//input[@aria-label='Precio mensual']")).SendKeys(precioMensual);
+
+            }
+
+            if (!duracionContrato.Equals(""))
+            {                
+                driver.FindElement(By.XPath("//input[@aria-label='Duración del contrato (meses)']")).Click();
+                driver.FindElement(By.XPath("//input[@aria-label='Duración del contrato (meses)']")).SendKeys(Keys.Control + "a");
+                driver.FindElement(By.XPath("//input[@aria-label='Duración del contrato (meses)']")).SendKeys(Keys.Delete);
+
+                driver.FindElement(By.XPath("//input[@aria-label='Duración del contrato (meses)']")).SendKeys(duracionContrato);
+            }
+
+            if (!nrc.Equals(""))
+            {
+                driver.FindElement(By.XPath("//input[@aria-label='NRC']")).Click();
+                driver.FindElement(By.XPath("//input[@aria-label='NRC']")).SendKeys(Keys.Control + "a");
+                driver.FindElement(By.XPath("//input[@aria-label='NRC']")).SendKeys(Keys.Delete);
+
+                driver.FindElement(By.XPath("//input[@aria-label='NRC']")).SendKeys(nrc);
+            }
+
+            driver.FindElement(By.XPath("//button[@id='quickCreateSaveAndCloseBtn']")).Click();
+            Thread.Sleep(10000);
         }
 
         //Metodo en el que una vez agregado un producto heredado se cumplimentan los campos obligatorios, se guarda y se cierra

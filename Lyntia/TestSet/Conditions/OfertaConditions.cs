@@ -235,6 +235,11 @@ namespace Lyntia.TestSet.Conditions
             Assert.AreEqual(false, utils.EncontrarElemento(By.XPath("//span[contains(@aria-label, 'Eliminar')]")));
         }
 
+        public void CerrarOfertaNoVisible()
+        {
+            Assert.AreEqual(false, utils.EncontrarElemento(By.XPath("//button[@title='Cerrar Oferta']")));
+        }
+
         public void OfertaNoCerrada()
         {
             // Se muestra label con mensaje "Por favor, completa los campos obligatorios"

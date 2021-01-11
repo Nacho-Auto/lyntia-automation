@@ -42,3 +42,4 @@ Oferta.calendarDateRandomDay;XPATH;//tr[contains(@class,'weekRow')]//button
 Oferta.inputGVAL;XPATH;//input[contains(@aria-label, 'Código GVAL')]
 ############################# PRODUCTO ############################
 Producto.firstInput;ID;submit
+Producto.notCreatedMessage;XPATH;//div[contains(@id,'notificationWrapper')]//span[contains(@id,'message')]
