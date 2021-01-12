@@ -60,7 +60,7 @@ namespace Lyntia.TestSet.Actions
         {
             try
             { 
-                Utils.searchWebElement("Login.firsInput").SendKeys("rgomezs.ext@lyntia.com"); //usuario de lyntia
+                Utils.searchWebElement("Login.firstInput").SendKeys("rgomezs.ext@lyntia.com"); //usuario de lyntia
                 Utils.searchWebElement("Login.firstSubmitButton").Click();
                 Utils.searchWebElement("Login.secondInput").Clear();
                 Utils.searchWebElement("Login.secondInput").SendKeys("rgomezs@lyntia.com"); //usuario de entorno lyntia

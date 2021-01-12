@@ -356,9 +356,9 @@ namespace Lyntia.TestSet.Actions
             Utils.searchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Control + "a");
             Utils.searchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Delete);
             Thread.Sleep(3000);
-            
 
-            driver.FindElement(By.XPath("Oferta.inputNameOferta")).SendKeys("Automatica_MOD");
+
+            Utils.searchWebElement("Oferta.inputNameOferta").SendKeys("Automatica_MOD");
             Utils.searchWebElement("Oferta.inputNameOferta").SendKeys(Keys.PageDown);
 
             driver.FindElement(By.XPath("//input[contains(@aria-label, 'Fecha de presentación')]")).SendKeys(Keys.Control + "a");
