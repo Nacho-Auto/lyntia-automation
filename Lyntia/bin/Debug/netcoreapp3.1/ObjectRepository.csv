@@ -42,6 +42,9 @@ Oferta.inputCalendar;XPATH;//input[contains(@aria-label, 'Fecha de Fecha de pres
 Oferta.calendarDateToday;XPATH;//button[contains(@class,'dayIsToday')]
 Oferta.calendarDateRandomDay;XPATH;//tr[contains(@class,'weekRow')]//button
 Oferta.inputGVAL;XPATH;//input[contains(@aria-label, 'Código GVAL')]
+Oferta.LabelFechaspestaña;XPATH;//li[contains(@title, 'Fechas')]
+Oferta.ButtonGuardarYcerrar;XPATH;//span[contains(@aria-label, 'Guardar y cerrar')]
+Oferta.calendarFechadepresentacion;XPATH;//input[contains(@aria-label, 'Fecha de presentación')]
 ############################# PRODUCTO ############################
 Producto.firstInput;ID;submit
 Producto.GuardarYCerrar_producto;XPATH;//button[@id='quickCreateSaveAndCloseBtn']
@@ -72,4 +75,12 @@ Producto.buttonDescartarCambios;XPATH;//button[contins(@aria-label, 'Descartar c
 Producto.buttonGuardaryContinuar;XPATH;//button[contains(@aria-label, 'Guardar y continuar')]
 Producto.LabelOfertaCamposObligatorios;XPATH;//span[contains(@data-id, 'quoteid-error-message')]
 Producto.notCreatedMessage;XPATH;//div[contains(@id,'notificationWrapper')]//span[contains(@id,'message')]
+Producto.LabelCambiosSeHanGuardado;XPATH;//span[contains(@title,'Los cambios se han guardado.' )]
+Producto.ButtonGuardar;XPATH;//button[contains(@data-id, 'quickCreateSaveAndCloseBtn')]
+Producto.SelectLineaDeNegocioDesplegable;XPATH;//select[contains(@id,'uso')]"
+Producto.selectPrecioMensual;XPATH;//input[@aria-label='Precio mensual']
+Producto.selectDuracionContrato;XPATH;//input[@aria-label='Duración del contrato (meses)']
+Producto.selectNRC;XPATH;//input[@aria-label='NRC']
+
+
 
