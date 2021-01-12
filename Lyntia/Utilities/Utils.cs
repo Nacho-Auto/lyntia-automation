@@ -109,15 +109,25 @@ namespace Lyntia.Utilities
 
         public static IWebElement searchWebElement(String identificador)
         {
-            switch (objRep.TypeObjectID(identificador))
+            try
             {
-                case "XPATH":
-                    return driver.FindElement(By.XPath(objRep.ObjectID(identificador)));
-                case "ID":
-                    return driver.FindElement(By.Id(objRep.ObjectID(identificador)));
-                default:
-                    return null;
+                switch (objRep.TypeObjectID(identificador))
+                {
+                    case "XPATH":
+                        return driver.FindElement(By.XPath(objRep.ObjectID(identificador)));
+                    case "ID":
+                        return driver.FindElement(By.Id(objRep.ObjectID(identificador)));
+                    default:
+                        return null;
+                }
+            }catch(NoSuchElementException e)
+            {
+                Console.WriteLine("No se pudo interactuar con el elemento " + identificador + " de tipo " + objRep.TypeObjectID(identificador));
+                Console.WriteLine("Excepción : " + e);
+
+                return null;
             }
+            
         }
 
         public static String getIdentifier(String identificador)

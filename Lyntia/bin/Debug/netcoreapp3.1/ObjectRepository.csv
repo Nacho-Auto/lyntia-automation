@@ -6,6 +6,9 @@ Login.secondInput;ID;userNameInput
 Login.thirdInput;ID;passwordInput
 Login.secondSubmitButton;ID;submitButton
 Login.notPersistanceButton;ID;idBtn_Back
+############################## MODULOS ############################
+Modulo.frameModulos;ID;AppLandingPage
+Modulo.gestionCliente;XPATH;//a[contains(@aria-label, 'Cliente')]
 ############################## OFERTA #############################
 Oferta.ofertaSection;ID;sitemap-entity-oferta
 Oferta.ofertaTitleSelector;XPATH;//h1[@title='Seleccionar vista']
