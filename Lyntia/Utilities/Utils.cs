@@ -4,6 +4,7 @@ using OpenQA.Selenium.Chrome;
 using Lyntia.TestSet.Actions;
 using Lyntia.TestSet.Conditions;
 using System.Linq;
+using OpenQA.Selenium.Support.UI;
 
 namespace Lyntia.Utilities
 {
@@ -72,7 +73,6 @@ namespace Lyntia.Utilities
             commonActions = new CommonActions();
             commonCondition = new CommonConditions();
             randomString = RandomString(15);
-
 
             driver.Navigate().GoToUrl("https://ufinetprep2.crm4.dynamics.com/");
             driver.Manage().Window.Maximize();

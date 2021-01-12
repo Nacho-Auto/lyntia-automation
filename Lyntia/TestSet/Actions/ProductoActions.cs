@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading;
-using Lyntia.TestSet.Conditions;
 using Lyntia.Utilities;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
@@ -22,16 +21,18 @@ namespace Lyntia.TestSet.Actions
 
         public void CreacionProducto(String productoExistente, String uso, String unidadVenta)
         {
-            // Click en "+ Agregar producto"
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(45));
+
             Utils.searchWebElement("Producto.buttonAgregarProducto").Click();
-            Thread.Sleep(4000);
 
             // Seleccionar Producto existente del desplegable
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath(Utils.getIdentifier("Producto.inputProductoExistente"))));
+            Thread.Sleep(3000);
             Utils.searchWebElement("Producto.inputProductoExistente").Click();
             Thread.Sleep(1000);
             Utils.searchWebElement("Producto.inputProductoExistente").SendKeys(productoExistente);
             Thread.Sleep(1000);
-            Utils.searchWebElement("//span[contains(text(), '" + productoExistente + "')]").Click();
+            driver.FindElement(By.XPath(("//span[contains(text(), '" + productoExistente + "')]"))).Click();
             Thread.Sleep(6000);
 
             // Seleccionar Uso(Línea de negocio)
@@ -42,26 +43,22 @@ namespace Lyntia.TestSet.Actions
             }
 
 
-            if (!unidadVenta.Equals(""))
+            if (!unidadVenta.Equals("") && utils.EncontrarElemento(By.XPath(Utils.getIdentifier("Producto.inputUnidaddeVenta"))))
             {
                 // Seleccionar Producto existente del desplegable si esta vacio
-                if (utils.EncontrarElemento(By.XPath("//input[contains(@id,'Dropdown_uomid')]")))
-                {
+                Utils.searchWebElement("Producto.inputUnidaddeVenta").Click();
+                Thread.Sleep(1000);
 
-                    Utils.searchWebElement("Producto.inputUnidaddeVenta").Click();
-                    Thread.Sleep(1000);
+                Utils.searchWebElement("Producto.inputUnidaddeVenta").SendKeys(unidadVenta);
+                Thread.Sleep(1000);
+                Utils.searchWebElement("Producto.inputUnidaddeVenta").SendKeys(Keys.Control + "a");
+                Utils.searchWebElement("Producto.inputUnidaddeVenta").SendKeys(Keys.Delete);
+                Utils.searchWebElement("Producto.inputUnidaddeVenta").SendKeys(unidadVenta);
+                Thread.Sleep(1000);
 
-                    Utils.searchWebElement("Producto.inputUnidaddeVenta").SendKeys(unidadVenta);
-                    Thread.Sleep(1000);
-                    Utils.searchWebElement("Producto.inputUnidaddeVenta").SendKeys(Keys.Control + "a");
-                    Utils.searchWebElement("Producto.inputUnidaddeVenta").SendKeys(Keys.Delete);
-                    Utils.searchWebElement("Producto.inputUnidaddeVenta").SendKeys(unidadVenta);
-                    Thread.Sleep(1000);
-
-                    Utils.searchWebElement("//span[contains(text(), '" + unidadVenta + "')]").Click();
-                    Thread.Sleep(2000);
-
-                }
+                driver.FindElement(By.XPath("//span[contains(text(), '" + unidadVenta + "')]")).Click();
+                Thread.Sleep(2000);
+                    
             }
 
             // Guardar y Cerrar Producto actual
@@ -129,7 +126,7 @@ namespace Lyntia.TestSet.Actions
                 Utils.searchWebElement("Producto.inputServicioHeredado").SendKeys(Keys.Delete);
 
                 Utils.searchWebElement("Producto.inputServicioHeredado").SendKeys(productoHeredado);
-                Utils.searchWebElement("//span[contains(text(), '" + productoHeredado + "')]").Click();
+                driver.FindElement(By.XPath("//span[contains(text(), '" + productoHeredado + "')]")).Click();
 
                 Utils.searchWebElement("//input[@aria-label='Cód. admin. servicio heredado']").SendKeys(Keys.PageDown);
                 Thread.Sleep(6000);
@@ -193,7 +190,6 @@ namespace Lyntia.TestSet.Actions
             Thread.Sleep(4000);
 
             // Seleccionar Producto existente del desplegable
-
             Utils.searchWebElement("Producto.inputProductoExistente").Click();
             Thread.Sleep(1000);
             Utils.searchWebElement("Producto.inputProductoExistente").SendKeys(productoExistente);

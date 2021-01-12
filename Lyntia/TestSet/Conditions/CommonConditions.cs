@@ -2,6 +2,8 @@
 using Lyntia.Utilities;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
+using System;
 
 namespace Lyntia.TestSet.Conditions
 {
@@ -15,6 +17,7 @@ namespace Lyntia.TestSet.Conditions
         private static CommonActions commonActions;
         private static CommonConditions commonCondition;
         private static OpenQA.Selenium.Interactions.Actions accionesSelenium;
+        private static WebDriverWait wait;
 
         public CommonConditions()
         {
@@ -25,6 +28,8 @@ namespace Lyntia.TestSet.Conditions
             commonActions = Utils.getCommonActions();
             commonCondition = Utils.getCommonConditions();
             accionesSelenium = new OpenQA.Selenium.Interactions.Actions(driver);
+            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(45));
+
         }
 
         public void AccedeGestionCliente()
@@ -36,6 +41,7 @@ namespace Lyntia.TestSet.Conditions
 
         public void AccedeOferta()
         {
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//li[contains(@id, 'Todos_listItem')]")));
             Assert.AreEqual(true, driver.FindElement(By.XPath("//li[contains(@id, 'Todos_listItem')]")).Enabled);//el componente Todos esta activo
             Assert.AreEqual("Todos", driver.FindElement(By.XPath("//li[contains(@id, 'Todos_listItem')]")).Text);
             ((ITakesScreenshot)driver).GetScreenshot().SaveAsFile(" AccedeOferta.png");
