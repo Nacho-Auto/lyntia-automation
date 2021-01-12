@@ -31,13 +31,13 @@ namespace Lyntia.TestSet.Actions
             Thread.Sleep(1000);
             Utils.searchWebElement("Producto.inputProductoExistente").SendKeys(productoExistente);
             Thread.Sleep(1000);
-            driver.FindElement(By.XPath("//span[contains(text(), '" + productoExistente + "')]")).Click();
+            Utils.searchWebElement("//span[contains(text(), '" + productoExistente + "')]").Click();
             Thread.Sleep(6000);
 
             // Seleccionar Uso(Línea de negocio)
             if (!uso.Equals(""))
             {
-                SelectElement drop = new SelectElement(driver.FindElement(By.XPath("//select[contains(@id,'uso')]")));
+                SelectElement drop = new SelectElement(Utils.searchWebElement("Producto.SelectLineaDeNegocioDesplegable"));
                 drop.SelectByText(uso);
             }
 
@@ -58,7 +58,7 @@ namespace Lyntia.TestSet.Actions
                     Utils.searchWebElement("Producto.inputUnidaddeVenta").SendKeys(unidadVenta);
                     Thread.Sleep(1000);
 
-                    driver.FindElement(By.XPath("//span[contains(text(), '" + unidadVenta + "')]")).Click();
+                    Utils.searchWebElement("//span[contains(text(), '" + unidadVenta + "')]").Click();
                     Thread.Sleep(2000);
 
                 }
@@ -71,7 +71,7 @@ namespace Lyntia.TestSet.Actions
 
         public void Añadirproducto_vistarapida()
         {
-            driver.FindElement(By.Id("quickCreateLauncher_buttoncrm_header_global")).Click();
+            Utils.searchWebElement("Producto.buttonCrearRegistroNuevo").Click();
             driver.FindElements(By.XPath("//div[contains(@data-id, '__flyoutRootNode')]//button"))[5].Click();
             Thread.Sleep(2000);
         }
@@ -119,51 +119,51 @@ namespace Lyntia.TestSet.Actions
         public void HeredarProducto(String productoHeredado, String precioMensual, String duracionContrato, String nrc)
         {
             // Click en "+ Agregar producto"
-            driver.FindElement(By.XPath("//button[contains(@title,'Agregar producto')]")).Click();
+            Utils.searchWebElement("Producto.buttonAgregarProducto").Click();
             Thread.Sleep(4000);
 
             if (!productoHeredado.Equals(""))
             {
-                driver.FindElement(By.XPath("//input[contains(@aria-label, 'Servicio heredado, Búsqueda')]")).Click();
-                driver.FindElement(By.XPath("//input[contains(@aria-label, 'Servicio heredado, Búsqueda')]")).SendKeys(Keys.Control + "a");
-                driver.FindElement(By.XPath("//input[contains(@aria-label, 'Servicio heredado, Búsqueda')]")).SendKeys(Keys.Delete);
+                Utils.searchWebElement("Producto.inputServicioHeredado").Click();
+                Utils.searchWebElement("Producto.inputServicioHeredado").SendKeys(Keys.Control + "a");
+                Utils.searchWebElement("Producto.inputServicioHeredado").SendKeys(Keys.Delete);
 
-                driver.FindElement(By.XPath("//input[contains(@aria-label, 'Servicio heredado, Búsqueda')]")).SendKeys(productoHeredado);
-                driver.FindElement(By.XPath("//span[contains(text(), '" + productoHeredado + "')]")).Click();
+                Utils.searchWebElement("Producto.inputServicioHeredado").SendKeys(productoHeredado);
+                Utils.searchWebElement("//span[contains(text(), '" + productoHeredado + "')]").Click();
 
-                driver.FindElement(By.XPath("//input[@aria-label='Cód. admin. servicio heredado']")).SendKeys(Keys.PageDown);
+                Utils.searchWebElement("//input[@aria-label='Cód. admin. servicio heredado']").SendKeys(Keys.PageDown);
                 Thread.Sleep(6000);
             }
 
             if (!precioMensual.Equals(""))
             {
-                driver.FindElement(By.XPath("//input[@aria-label='Precio mensual']")).Click();
-                driver.FindElement(By.XPath("//input[@aria-label='Precio mensual']")).SendKeys(Keys.Control + "a");
-                driver.FindElement(By.XPath("//input[@aria-label='Precio mensual']")).SendKeys(Keys.Delete);
+                Utils.searchWebElement("Producto.selectPrecioMensual").Click();
+                Utils.searchWebElement("Producto.selectPrecioMensual").SendKeys(Keys.Control + "a");
+                Utils.searchWebElement("Producto.selectPrecioMensual").SendKeys(Keys.Delete);
 
-                driver.FindElement(By.XPath("//input[@aria-label='Precio mensual']")).SendKeys(precioMensual);
+                Utils.searchWebElement("//input[@aria-label='Precio mensual']").SendKeys(precioMensual);
 
             }
 
             if (!duracionContrato.Equals(""))
-            {                
-                driver.FindElement(By.XPath("//input[@aria-label='Duración del contrato (meses)']")).Click();
-                driver.FindElement(By.XPath("//input[@aria-label='Duración del contrato (meses)']")).SendKeys(Keys.Control + "a");
-                driver.FindElement(By.XPath("//input[@aria-label='Duración del contrato (meses)']")).SendKeys(Keys.Delete);
+            {
+                Utils.searchWebElement("Producto.selectDuracionContrato").Click();
+                Utils.searchWebElement("Producto.selectDuracionContrato").SendKeys(Keys.Control + "a");
+                Utils.searchWebElement("Producto.selectDuracionContrato").SendKeys(Keys.Delete);
 
-                driver.FindElement(By.XPath("//input[@aria-label='Duración del contrato (meses)']")).SendKeys(duracionContrato);
+                Utils.searchWebElement("Producto.selectDuracionContrato").SendKeys(duracionContrato);
             }
 
             if (!nrc.Equals(""))
             {
-                driver.FindElement(By.XPath("//input[@aria-label='NRC']")).Click();
-                driver.FindElement(By.XPath("//input[@aria-label='NRC']")).SendKeys(Keys.Control + "a");
-                driver.FindElement(By.XPath("//input[@aria-label='NRC']")).SendKeys(Keys.Delete);
+                Utils.searchWebElement("Producto.selectNRC").Click();
+                Utils.searchWebElement("Producto.selectNRC").SendKeys(Keys.Control + "a");
+                Utils.searchWebElement("Producto.selectNRC").SendKeys(Keys.Delete);
 
-                driver.FindElement(By.XPath("//input[@aria-label='NRC']")).SendKeys(nrc);
+                Utils.searchWebElement("Producto.selectNRC").SendKeys(nrc);
             }
 
-            driver.FindElement(By.XPath("//button[@id='quickCreateSaveAndCloseBtn']")).Click();
+            Utils.searchWebElement("Producto.GuardarYCerrar_producto").Click();
             Thread.Sleep(10000);
         }
 
@@ -207,7 +207,7 @@ namespace Lyntia.TestSet.Actions
         public void Agregar_Liena_de_nogocio_y_Unidad_de_venta(String uso, String unidadVenta)
         {
             // Seleccionar Uso(Línea de negocio)
-            SelectElement drop = new SelectElement(driver.FindElement(By.XPath("//select[contains(@id,'uso')]")));
+            SelectElement drop = new SelectElement(Utils.searchWebElement("//select[contains(@id,'uso')]"));
             drop.SelectByText(uso);
 
             // Seleccionar unidad de venta
@@ -226,7 +226,7 @@ namespace Lyntia.TestSet.Actions
             driver.FindElement(By.XPath("//span[contains(text(), '" + unidadVenta + "')]")).Click();
             Thread.Sleep(2000);
             Utils.searchWebElement("Producto.GuardarYCerrar_producto").Click();//guardamos y cerramos
-            Thread.Sleep(8000);
+            Thread.Sleep(14000);
 
 
 
@@ -255,7 +255,7 @@ namespace Lyntia.TestSet.Actions
             Thread.Sleep(1000);
             Utils.searchWebElement("Producto.inpuServicioHeredado").SendKeys(ProdHeredado);
             Thread.Sleep(1000);
-            driver.FindElement(By.XPath("//span[contains(text(), '" + ProdHeredado + "')]")).Click();
+            Utils.searchWebElement("//span[contains(text(), '" + ProdHeredado + "')]").Click();
             Thread.Sleep(6000);
 
 
