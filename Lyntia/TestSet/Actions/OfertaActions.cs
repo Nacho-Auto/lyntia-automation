@@ -37,13 +37,13 @@ namespace Lyntia.TestSet.Actions
             commonCondition = Utils.getCommonConditions();
             accionesSelenium = new OpenQA.Selenium.Interactions.Actions(driver);
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(45));
-    }
+        }
 
-    /// <summary>
-    /// Método usado seleccionar vista de Ofertas (Mis Ofertas Lyntia, Todas las ofertas ...)
-    /// </summary>
-    /// <param name="seccion"></param>
-    public void AccesoOfertasLyntia(String seccion)
+        /// <summary>
+        /// Método usado seleccionar vista de Ofertas (Mis Ofertas Lyntia, Todas las ofertas ...)
+        /// </summary>
+        /// <param name="seccion"></param>
+        public void AccesoOfertasLyntia(String seccion)
         {
             if (utils.EncontrarElemento(By.Id(Utils.getIdentifier("Oferta.ofertaSection"))))
             {
@@ -125,7 +125,6 @@ namespace Lyntia.TestSet.Actions
                 Utils.searchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Delete);
 
                 // Rellenar Cliente de Oferta
-                Utils.searchWebElement("Oferta.inputNameOferta").Click();
                 Thread.Sleep(1000);
                 Utils.searchWebElement("Oferta.inputNameOferta").SendKeys(nombre);
                 Thread.Sleep(1000);
@@ -214,7 +213,7 @@ namespace Lyntia.TestSet.Actions
                     Thread.Sleep(4000);
 
                 }
-            }   
+            }
         }
 
         /// <summary>
@@ -314,7 +313,7 @@ namespace Lyntia.TestSet.Actions
         /// </summary>
         public void Tipo_de_oferta_Cambiodeprecio()
         {
-            
+
             Thread.Sleep(3000);
 
             SelectElement drop = new SelectElement(Utils.searchWebElement("Oferta.selectOfertaType"));
@@ -381,10 +380,10 @@ namespace Lyntia.TestSet.Actions
             driver.FindElement(By.XPath("//textarea[contains(@aria-label, 'Descripción')]")).SendKeys(Keys.Delete);
             driver.FindElement(By.XPath("//input[contains(@aria-label, 'Código GVAL')]")).Clear();
             Thread.Sleep(3000);
-            
+
             Thread.Sleep(3000);
             driver.FindElement(By.XPath("//span[contains(@aria-label, 'Guardar y cerrar')]")).Click();//Guarda y cierra
-            
+
 
         }
 
@@ -495,10 +494,14 @@ namespace Lyntia.TestSet.Actions
         public void FiltrarPorIDRevision(string idRevision)
         {
             Utils.searchWebElement("Oferta.gridFilterIdRevision").Click();
+
             Utils.searchWebElement("Oferta.gridFilterBuscarPor").Click();
-            Utils.searchWebElement("Oferta.gridFilterBuscarPorInput").Clear();
+            Utils.searchWebElement("Oferta.gridFilterBuscarPorInput").SendKeys(Keys.Control + "a");
+            Utils.searchWebElement("Oferta.gridFilterBuscarPorInput").SendKeys(Keys.Delete);
+
             Utils.searchWebElement("Oferta.gridFilterBuscarPorInput").SendKeys(idRevision);
             Thread.Sleep(2000);
+
             Utils.searchWebElement("Oferta.gridFilterBuscarPorAceptarButton").Click();
             Thread.Sleep(2000);
 
@@ -587,7 +590,7 @@ namespace Lyntia.TestSet.Actions
             }
             
         }
-       
+
 
 
         public void ReestablecerDatosCRM_EOF0004()

@@ -355,7 +355,7 @@ namespace Lyntia.TestSet
 
         [Test(Description = "CRM-COF0009 Creación de Oferta de tipo Cambio de dirección (Migración)")]
         [AllureSubSuite("PRO CREAR OFERTA")]
-        public void CRM_COF0009_creacionOfertaCambioSolucionTecnica()
+        public void CRM_COF0009_creacionOfertaCambioDireccion()
         {
             // Login y Acceso a Gestión de Cliente
             commonActions.AccesoGestionCliente();

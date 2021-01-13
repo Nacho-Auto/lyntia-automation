@@ -295,8 +295,6 @@ namespace Lyntia.TestSet.Conditions
 
             // Se encuentra en Razon para el estado En elaboracion
             Assert.AreEqual("Presentada", driver.FindElement(By.XPath("//div[@data-id='cell-0-8']")).GetAttribute("title"));
-
-
         }
     }
 }
