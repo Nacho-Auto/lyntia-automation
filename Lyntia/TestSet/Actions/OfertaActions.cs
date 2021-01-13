@@ -362,7 +362,7 @@ namespace Lyntia.TestSet.Actions
             Utils.searchWebElement("Oferta.inputNameOferta").SendKeys(Keys.PageDown);
 
             Utils.searchWebElement("Oferta.calendarFechadepresentacion").SendKeys(Keys.Control + "a");
-            Utils.searchWebElement("Oferta.calendarFechadepresentacion").SendKeys(Keys.Delete)
+            Utils.searchWebElement("Oferta.calendarFechadepresentacion").SendKeys(Keys.Delete);
 
             Utils.searchWebElement("Oferta.inputReferenceOferta").SendKeys(Keys.PageDown);
             Thread.Sleep(3000);
