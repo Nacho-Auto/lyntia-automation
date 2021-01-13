@@ -49,7 +49,6 @@ namespace Lyntia.TestSet.Actions
                 // Seleccionar Producto existente del desplegable si esta vacio
                 if (utils.EncontrarElemento(By.XPath("//input[contains(@id,'Dropdown_uomid')]")))
                 {
-
                     Utils.searchWebElement("Producto.inputUnidaddeVenta").Click();
                     Thread.Sleep(1000);
 
@@ -62,7 +61,6 @@ namespace Lyntia.TestSet.Actions
 
                     driver.FindElement(By.XPath("//span[contains(text(), '" + unidadVenta + "')]")).Click();
                     Thread.Sleep(2000);
-
                 }
             }
 
@@ -81,11 +79,10 @@ namespace Lyntia.TestSet.Actions
 
                 Console.WriteLine("Se añade el producto en la vista rapida correctamente");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                CommonActions.CapturadorExcepcion(e, "Añadir_producto_vista_rapida.png", "El producto en vista rapida no se ha añadido correctamente"); 
+                CommonActions.CapturadorExcepcion(e, "Añadir_producto_vista_rapida.png", "El producto en vista rapida no se ha añadido correctamente");
             }
-            
         }
 
         public void Añadir_producto_circuito_de_capacidad_sin_campos_oblitatorios()//solo vamoa a rellenar el tipo de producto
@@ -108,12 +105,9 @@ namespace Lyntia.TestSet.Actions
             Utils.searchWebElement("Producto.SelectUnidadDeVenta").SendKeys("10");
             accionesSelenium.SendKeys(Keys.ArrowDown).Perform();
             accionesSelenium.SendKeys(Keys.Enter).Perform();
-
-            
         }
 
         //Metodo en el que agregamos un producto a un servicio tipo cambio de capacidad, seleccionamos un producto heredado con campos obligatorios sin rellenar y se guarda.
-
         public void Agregar_servicio_heredado_y_guardar()
         {
             try
@@ -130,11 +124,10 @@ namespace Lyntia.TestSet.Actions
 
                 Console.WriteLine("Se agrega un producto heredado correctamente y se guarda");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "Agregar_servicio_heredado_y_guarda.png", "No se agrega un producto heredado correctamente y no se guarda");
             }
-            
         }
 
         public void HeredarProducto(String productoHeredado, String precioMensual, String duracionContrato, String nrc)
@@ -163,7 +156,6 @@ namespace Lyntia.TestSet.Actions
                 Utils.searchWebElement("Producto.selectPrecioMensual").SendKeys(Keys.Delete);
 
                 Utils.searchWebElement("//input[@aria-label='Precio mensual']").SendKeys(precioMensual);
-
             }
 
             if (!duracionContrato.Equals(""))
@@ -189,7 +181,7 @@ namespace Lyntia.TestSet.Actions
         }
 
         //Metodo en el que una vez agregado un producto heredado se cumplimentan los campos obligatorios, se guarda y se cierra
-        public void Cumplimentar_campos_y_guardar() 
+        public void Cumplimentar_campos_y_guardar()
         {
             try
             {
@@ -209,12 +201,10 @@ namespace Lyntia.TestSet.Actions
 
                 Console.WriteLine("Precio mensual, duracion del contrato y NRC se guardan correctamente");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "Precio mensual, duracion del contrato y NRC.png", "Precio mensual, duracion del contrato y NRC no se guardan correctamente");
             }
-                
-
         }
 
         public void Agregar_Producto_tipo_circuito_de_capacidad(String productoExistente)
@@ -226,7 +216,6 @@ namespace Lyntia.TestSet.Actions
                 Thread.Sleep(4000);
 
                 // Seleccionar Producto existente del desplegable
-
                 Utils.searchWebElement("Producto.inputProductoExistente").Click();
                 Thread.Sleep(1000);
                 Utils.searchWebElement("Producto.inputProductoExistente").SendKeys(productoExistente);
@@ -238,12 +227,12 @@ namespace Lyntia.TestSet.Actions
 
                 Console.WriteLine("El producto existente tipo circuito de capacidad se ha añadido correctamente");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "Agregar_Producto_tipo_circuito_de_capacidad.png", "El producto existente tipo circuito de capacidad no se ha añadido correctamente");
             }
         }
-      
+
         public void Agregar_Liena_de_nogocio_y_Unidad_de_venta(String uso, String unidadVenta)
         {
             try
@@ -253,7 +242,6 @@ namespace Lyntia.TestSet.Actions
                 drop.SelectByText(uso);
 
                 // Seleccionar unidad de venta
-
                 Thread.Sleep(2000);
                 Utils.searchWebElement("Producto.inputUnidaddeVenta").Click();
                 Thread.Sleep(1000);
@@ -272,15 +260,10 @@ namespace Lyntia.TestSet.Actions
 
                 Console.WriteLine("La linea de negocio y la unidad de venta se han agregado correctamente");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "Agregar_Liena_de_nogocio_y_Unidad_de_venta.png", "La linea de negocio y la unidad de venta no se han agregado correctamente");
             }
-
-
-
-
-
         }
         public void Borrado_de_producto()//metodo por el cual borramos una linea de producto que anteriormente hemos dado de alta en añadir producto.
         {
@@ -296,9 +279,8 @@ namespace Lyntia.TestSet.Actions
                 Thread.Sleep(3000);
 
                 Console.WriteLine("El reestablecimiento de la prueba se ha realizado correctamente");
-                
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "reestablecimiento de la prueba.png", "El reestablecimiento de la prueba no se ha realizado correctamente");
             }
@@ -310,23 +292,12 @@ namespace Lyntia.TestSet.Actions
             Thread.Sleep(4000);
 
             //Metodo para ir cumplimentado los campos
-
             Utils.searchWebElement("Producto.inpuServicioHeredado").Click();
             Thread.Sleep(1000);
             Utils.searchWebElement("Producto.inpuServicioHeredado").SendKeys(ProdHeredado);
             Thread.Sleep(1000);
             Utils.searchWebElement("//span[contains(text(), '" + ProdHeredado + "')]").Click();
             Thread.Sleep(6000);
-
-
-            // Metodo para seleccionar el primero de la lista con los parametros elegidos(solo campo producto heredado)
-
-            //Utils.searchWebElement("Producto.inpuServicioHeredado").SendKeys(ProdHeredado);
-            //accionesSelenium.SendKeys(Keys.ArrowDown).Perform();
-            //Thread.Sleep(3000);
-            //accionesSelenium.SendKeys(Keys.Enter).Perform();
-            //Thread.Sleep(2000);
-
             Utils.searchWebElement("Producto.inputPrecioMensual").Click();
             Utils.searchWebElement("Producto.inputPrecioMensual").SendKeys(preciomen);
             Thread.Sleep(3000);
@@ -340,6 +311,20 @@ namespace Lyntia.TestSet.Actions
             Utils.searchWebElement("Producto.GuardarYCerrar_producto").Click();
             Thread.Sleep(10000);
         }
-       
+
+        /// <summary>
+        /// Método para Agregar producto
+        /// </summary>
+        public void Editar_añadir_producto()
+        {
+            Utils.searchWebElement("Producto.buttonAgregarProducto").Click(); //pulsamos sobre agregar producto
+            if (utils.EncontrarElemento(By.XPath(Utils.getIdentifier("Producto.GuardarYCerrar_producto"))))
+            {
+                Thread.Sleep(2000);
+                Utils.searchWebElement("Producto.GuardarYCerrar_producto").Click(); //guardamos
+                Thread.Sleep(3000);
+                Utils.searchWebElement("Producto.GuardarYCerrar_producto").Click(); //guardamos y cerramos
+            }
+        }
     }
 }

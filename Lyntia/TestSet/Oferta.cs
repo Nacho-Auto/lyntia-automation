@@ -57,7 +57,6 @@ namespace Lyntia.TestSet
 
             // Paso 1 - Hacer click en Ofertas
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
-
         }
 
         [Test(Description = "CRM-COF0002 Consultar Oferta")]
@@ -72,19 +71,7 @@ namespace Lyntia.TestSet
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
 
             // Paso 2A - Comprobar si hay alguna Oferta para abrir
-
-            if (utils.EncontrarElemento(By.XPath("//div[@title='No hay datos disponibles.']")))
-            {
-                // Paso 2AA - Crear Oferta Nueva
-                ofertaActions.AccesoNuevaOferta();
-            }
-            else
-            {
-                // Paso 2AB - Abrir Oferta existente 
-                //div[@data-id='cell-1-4']
-                ofertaActions.abrirOferta();
-            }
-
+            ofertaActions.abrirOferta();
         }
 
         [Test(Description = "CRM-COF0003 Creación de Oferta")]
@@ -355,7 +342,7 @@ namespace Lyntia.TestSet
 
         [Test(Description = "CRM-COF0009 Creación de Oferta de tipo Cambio de dirección (Migración)")]
         [AllureSubSuite("PRO CREAR OFERTA")]
-        public void CRM_COF0009_creacionOfertaCambioSolucionTecnica()
+        public void CRM_COF0009_creacionOfertaCambioDireccion()
         {
             // Login y Acceso a Gestión de Cliente
             commonActions.AccesoGestionCliente();
@@ -675,15 +662,15 @@ namespace Lyntia.TestSet
             ofertaActions.BuscarOfertaEnVista("Automatica_MOD");
             ofertaCondition.OfertaGuardadaCorrectamenteEnGrid();
 
-            // Paso 5 - Abrir la oferta anterior y comprobar datos cumplimentados
+            // Paso 4 - Abrir la oferta anterior y comprobar datos cumplimentados
             ofertaActions.AbrirOfertaEnVista("Automatica_MOD");
-            ofertaCondition.AccederSeleccionOferta();//accede a la oferta
+            ofertaCondition.AccederSeleccionOferta(); //accede a la oferta
 
-            //Paso 4
-            ofertaActions.IntroduccirDatos();//introduccir campos de la oferta
-            ofertaCondition.IntroduccionDatos();//los datos se introduccen correctamente
+            // Paso 5
+            ofertaActions.IntroduccirDatos(); //introduccir campos de la oferta
+            ofertaCondition.IntroduccionDatos(); //los datos se introduccen correctamente
 
-            // Paso - Reestabñecer datos
+            // Paso 6 - Reestablecer datos
             ofertaActions.Restablecimiento_CRM_COF0003();
         }
 
