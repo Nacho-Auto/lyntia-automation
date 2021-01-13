@@ -818,6 +818,5 @@ namespace Lyntia.TestSet
 
             ofertaActions.EliminarOfertaActual("Eliminar");
         }
-
     }
 }

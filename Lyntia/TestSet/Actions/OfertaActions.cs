@@ -21,6 +21,8 @@ namespace Lyntia.TestSet.Actions
         private static CommonActions commonActions;
         private static CommonConditions commonCondition;
         private static OpenQA.Selenium.Interactions.Actions accionesSelenium;
+        private static WebDriverWait wait;
+
 
         /// <summary>
         /// OfertaActions
@@ -34,17 +36,18 @@ namespace Lyntia.TestSet.Actions
             commonActions = Utils.getCommonActions();
             commonCondition = Utils.getCommonConditions();
             accionesSelenium = new OpenQA.Selenium.Interactions.Actions(driver);
-        }
+            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(45));
+    }
 
-        /// <summary>
-        /// Método usado seleccionar vista de Ofertas (Mis Ofertas Lyntia, Todas las ofertas ...)
-        /// </summary>
-        /// <param name="seccion"></param>
-        public void AccesoOfertasLyntia(String seccion)
+    /// <summary>
+    /// Método usado seleccionar vista de Ofertas (Mis Ofertas Lyntia, Todas las ofertas ...)
+    /// </summary>
+    /// <param name="seccion"></param>
+    public void AccesoOfertasLyntia(String seccion)
         {
             if (utils.EncontrarElemento(By.Id(Utils.getIdentifier("Oferta.ofertaSection"))))
             {
-                Thread.Sleep(3000);
+                Thread.Sleep(6000);
                 Utils.searchWebElement("Oferta.ofertaSection").Click();
                 Thread.Sleep(2000);
                 Utils.searchWebElement("Oferta.ofertaTitleSelector").Click();
@@ -193,7 +196,7 @@ namespace Lyntia.TestSet.Actions
         public void EliminarOfertaActual(String opcion)
         {
             // Click en Eliminar
-            Thread.Sleep(2000);
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath(Utils.getIdentifier("Oferta.deleteButtonOferta"))));
             if (utils.EncontrarElemento(By.XPath(Utils.getIdentifier("Oferta.deleteButtonOferta"))))
             {
                 Utils.searchWebElement("Oferta.deleteButtonOferta").Click();
