@@ -20,32 +20,30 @@ namespace Lyntia.Utilities
 			}
 		}
 
-		Dictionary<String, List<String>> database = new Dictionary<String, List<String>>();
+        readonly Dictionary<String, List<String>> database = new Dictionary<String, List<String>>();
 
 		/**
 		 * Read all data of the csv and store as a database.
 		 */
-		public void testDataReader(String csvFile)
+		public void TestDataReader(String csvFile)
 		{
-			String line = "";
+			String line;
 			String csvSplitBy = ";";
 
-			using (var reader = new StreamReader(csvFile))
-			{
-				while (!reader.EndOfStream)
-				{
-					List<String> dataList = new List<string>();
-					line = reader.ReadLine();
+            using var reader = new StreamReader(csvFile);
+            while (!reader.EndOfStream)
+            {
+                List<String> dataList = new List<string>();
+                line = reader.ReadLine();
 
-					foreach (String value in line.Split(csvSplitBy)) 
-					{
-						dataList.Add(value);
-					}
+                foreach (String value in line.Split(csvSplitBy))
+                {
+                    dataList.Add(value);
+                }
 
-					database.TryAdd(dataList[0], dataList.GetRange(1, dataList.Count-1));
-				}
-			}
-		}
+                database.TryAdd(dataList[0], dataList.GetRange(1, dataList.Count - 1));
+            }
+        }
 
 		/**
 		 * Take the data from csv file with objectName and the name of the column data.

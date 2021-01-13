@@ -11,25 +11,12 @@ namespace Lyntia.TestSet.Conditions
 	{
         
         private static IWebDriver driver;
-        private static OfertaConditions ofertaCondition;
-        private static ProductoActions productoActions;
-        private static ProductoConditions productoCondition;
-        private static CommonActions commonActions;
-        private static CommonConditions commonCondition;
-        private static OpenQA.Selenium.Interactions.Actions accionesSelenium;
         private static WebDriverWait wait;
 
         public CommonConditions()
         {
             driver = Utils.driver;
-            ofertaCondition = Utils.getOfertaConditions();
-            productoActions = Utils.getProductoActions();
-            productoCondition = Utils.getProductoConditions();
-            commonActions = Utils.getCommonActions();
-            commonCondition = Utils.getCommonConditions();
-            accionesSelenium = new OpenQA.Selenium.Interactions.Actions(driver);
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(45));
-
         }
 
         public void AccedeGestionCliente()

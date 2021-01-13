@@ -15,11 +15,6 @@ namespace Lyntia.TestSet.Actions
         readonly Utils utils = new Utils();
 
         private static IWebDriver driver;
-        private static OfertaConditions ofertaCondition;
-        private static ProductoActions productoActions;
-        private static ProductoConditions productoCondition;
-        private static CommonActions commonActions;
-        private static CommonConditions commonCondition;
         private static OpenQA.Selenium.Interactions.Actions accionesSelenium;
         private static WebDriverWait wait;
 
@@ -29,11 +24,6 @@ namespace Lyntia.TestSet.Actions
         public OfertaActions()
         {
             driver = Utils.driver;
-            ofertaCondition = Utils.getOfertaConditions();
-            productoActions = Utils.getProductoActions();
-            productoCondition = Utils.getProductoConditions();
-            commonActions = Utils.getCommonActions();
-            commonCondition = Utils.getCommonConditions();
             accionesSelenium = new OpenQA.Selenium.Interactions.Actions(driver);
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(45));
         }
@@ -44,19 +34,19 @@ namespace Lyntia.TestSet.Actions
         /// <param name="seccion"></param>
         public void AccesoOfertasLyntia(String seccion)
         {
-            if (utils.EncontrarElemento(By.Id(Utils.getIdentifier("Oferta.ofertaSection"))))
+            if (utils.EncontrarElemento(By.Id(Utils.GetIdentifier("Oferta.ofertaSection"))))
             {
                 try
                 {
-                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(Utils.getIdentifier("Oferta.ofertaSection"))));
+                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(Utils.GetIdentifier("Oferta.ofertaSection"))));
                     Thread.Sleep(6000);
-                    Utils.searchWebElement("Oferta.ofertaSection").Click();
+                    Utils.SearchWebElement("Oferta.ofertaSection").Click();
                     Thread.Sleep(2000);
-                    Utils.searchWebElement("Oferta.ofertaTitleSelector").Click();
+                    Utils.SearchWebElement("Oferta.ofertaTitleSelector").Click();
                     driver.FindElement(By.XPath("//span[contains(text(), '" + seccion + "')]")).Click(); //Opción escalable
                     Thread.Sleep(2000);
 
-                }catch(NoSuchElementException e)
+                }catch(Exception e)
                 {
                     CommonActions.CapturadorExcepcion(e, "AccesoSeccionOfertas.png", "No se pudo acceder a la sección " + seccion);
                 }
@@ -68,16 +58,16 @@ namespace Lyntia.TestSet.Actions
         /// </summary>
         public void AccesoNuevaOferta()
         {
-            Utils.searchWebElement("Oferta.newOferta").Click();
+            Utils.SearchWebElement("Oferta.newOferta").Click();
             Thread.Sleep(3000);
         }
 
         /// <summary>
         /// Método para abrir la primera Oferta del grid
         /// </summary>
-        public void abrirOferta()
+        public void AbrirOferta()
         {
-            Utils.searchWebElement("Oferta.firstFromGrid").Click();
+            Utils.SearchWebElement("Oferta.firstFromGrid").Click();
             Thread.Sleep(2000);
         }
 
@@ -87,7 +77,7 @@ namespace Lyntia.TestSet.Actions
         public void AccesoFechasOferta()
         {
             // Click en pestaña Fechas
-            Utils.searchWebElement("Oferta.datesSection").Click();
+            Utils.SearchWebElement("Oferta.datesSection").Click();
         }
 
         /// <summary>
@@ -95,7 +85,7 @@ namespace Lyntia.TestSet.Actions
         /// </summary>
         public void GuardarOferta()
         {
-            Utils.searchWebElement("Oferta.saveOferta").Click();
+            Utils.SearchWebElement("Oferta.saveOferta").Click();
             Thread.Sleep(3000);
         }
 
@@ -104,7 +94,7 @@ namespace Lyntia.TestSet.Actions
         /// </summary>
         public void GuardarYCerrarOferta()
         {
-            Utils.searchWebElement("Oferta.saveAndCloseOferta").Click();
+            Utils.SearchWebElement("Oferta.saveAndCloseOferta").Click();
             Thread.Sleep(3000);
         }
 
@@ -118,19 +108,19 @@ namespace Lyntia.TestSet.Actions
         public void RellenarCamposOferta(String nombre, String cliente, String tipoOferta, String kam)
         {
 
-            Utils.searchWebElement("Oferta.inputNameOferta").Click();
-            Utils.searchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Control + "a");
-            Utils.searchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Delete);
+            Utils.SearchWebElement("Oferta.inputNameOferta").Click();
+            Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Control + "a");
+            Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Delete);
 
             if (!nombre.Equals(""))
             {
-                Utils.searchWebElement("Oferta.inputNameOferta").Click();
-                Utils.searchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Control + "a");
-                Utils.searchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Delete);
+                Utils.SearchWebElement("Oferta.inputNameOferta").Click();
+                Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Control + "a");
+                Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Delete);
 
                 // Rellenar Cliente de Oferta
                 Thread.Sleep(1000);
-                Utils.searchWebElement("Oferta.inputNameOferta").SendKeys(nombre);
+                Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(nombre);
                 Thread.Sleep(1000);
 
             }
@@ -142,9 +132,9 @@ namespace Lyntia.TestSet.Actions
                 accionesSelenium.Build().Perform();
                 Thread.Sleep(3000);
 
-                Utils.searchWebElement("Oferta.inputCustomerId").Click();
+                Utils.SearchWebElement("Oferta.inputCustomerId").Click();
                 Thread.Sleep(1000);
-                Utils.searchWebElement("Oferta.inputCustomerId").SendKeys(cliente);
+                Utils.SearchWebElement("Oferta.inputCustomerId").SendKeys(cliente);
                 Thread.Sleep(1000);
                 // Seleccionar cliente del desplegable
                 driver.FindElement(By.XPath("//span[contains(text(), '" + cliente + "')]")).Click();
@@ -158,11 +148,11 @@ namespace Lyntia.TestSet.Actions
                 accionesSelenium.SendKeys(Keys.PageDown);
                 accionesSelenium.Build().Perform();
 
-                SelectElement drop = new SelectElement(Utils.searchWebElement("Oferta.selectOfertaType"));
+                SelectElement drop = new SelectElement(Utils.SearchWebElement("Oferta.selectOfertaType"));
 
                 drop.SelectByText(tipoOferta);
 
-                Utils.searchWebElement("Oferta.inputReferenceOferta").SendKeys(Keys.PageDown);
+                Utils.SearchWebElement("Oferta.inputReferenceOferta").SendKeys(Keys.PageDown);
 
             }
 
@@ -173,13 +163,13 @@ namespace Lyntia.TestSet.Actions
                 accionesSelenium.Build().Perform();
 
                 Thread.Sleep(1000);
-                Utils.searchWebElement("Oferta.kamResponsable").Click();
+                Utils.SearchWebElement("Oferta.kamResponsable").Click();
                 Thread.Sleep(1000);
 
-                Utils.searchWebElement("Oferta.kamResponsable").SendKeys(Keys.Control + "a");
-                Utils.searchWebElement("Oferta.kamResponsable").SendKeys(Keys.Delete);
+                Utils.SearchWebElement("Oferta.kamResponsable").SendKeys(Keys.Control + "a");
+                Utils.SearchWebElement("Oferta.kamResponsable").SendKeys(Keys.Delete);
 
-                Utils.searchWebElement("Oferta.kamResponsable").SendKeys(kam);
+                Utils.SearchWebElement("Oferta.kamResponsable").SendKeys(kam);
                 Thread.Sleep(1000);
 
                 accionesSelenium.SendKeys(Keys.PageDown);
@@ -199,21 +189,21 @@ namespace Lyntia.TestSet.Actions
         public void EliminarOfertaActual(String opcion)
         {
             // Click en Eliminar
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath(Utils.getIdentifier("Oferta.deleteButtonOferta"))));
-            if (utils.EncontrarElemento(By.XPath(Utils.getIdentifier("Oferta.deleteButtonOferta"))))
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath(Utils.GetIdentifier("Oferta.deleteButtonOferta"))));
+            if (utils.EncontrarElemento(By.XPath(Utils.GetIdentifier("Oferta.deleteButtonOferta"))))
             {
-                Utils.searchWebElement("Oferta.deleteButtonOferta").Click();
+                Utils.SearchWebElement("Oferta.deleteButtonOferta").Click();
 
                 // Confirmar Borrado
                 if (opcion.Equals("Eliminar"))
                 {
-                    Utils.searchWebElement("Oferta.confirmDeleteOferta").Click();
+                    Utils.SearchWebElement("Oferta.confirmDeleteOferta").Click();
                     Thread.Sleep(4000);
 
                 }
                 else
                 {
-                    Utils.searchWebElement("Oferta.cancelDeleteOferta").Click();
+                    Utils.SearchWebElement("Oferta.cancelDeleteOferta").Click();
                     Thread.Sleep(4000);
 
                 }
@@ -226,8 +216,8 @@ namespace Lyntia.TestSet.Actions
         /// <param name="parametroBusqueda"></param>
         public void BuscarOfertaEnVista(string parametroBusqueda)
         {
-            Utils.searchWebElement("Oferta.inputQuickFindOferta").SendKeys(parametroBusqueda);
-            Utils.searchWebElement("Oferta.buttonQuickFindOferta").Click();
+            Utils.SearchWebElement("Oferta.inputQuickFindOferta").SendKeys(parametroBusqueda);
+            Utils.SearchWebElement("Oferta.buttonQuickFindOferta").Click();
             Thread.Sleep(2000);
 
         }
@@ -248,7 +238,7 @@ namespace Lyntia.TestSet.Actions
         /// </summary>
         public void SeleccionarOfertaGrid()
         {
-            Utils.searchWebElement("Oferta.selectOfertaGrid").Click();
+            Utils.SearchWebElement("Oferta.selectOfertaGrid").Click();
             Thread.Sleep(2000);
         }
 
@@ -258,40 +248,40 @@ namespace Lyntia.TestSet.Actions
         public void IntroduccirDatos()//Cumplimentar datos de la oferta(campos contacto, fecha...)
         {
             // campos de la oferta
-            Utils.searchWebElement("Oferta.buttonSearchContact").Click(); //contacto oferta
+            Utils.SearchWebElement("Oferta.buttonSearchContact").Click(); //contacto oferta
             Thread.Sleep(2000);
 
-            Utils.searchWebElement("Oferta.inputContactId").Click();
+            Utils.SearchWebElement("Oferta.inputContactId").Click();
             Thread.Sleep(1000);
-            Utils.searchWebElement("Oferta.inputContactId").SendKeys("ddd ddd");
+            Utils.SearchWebElement("Oferta.inputContactId").SendKeys("ddd ddd");
             Thread.Sleep(1000);
             // Seleccionar contacto
             driver.FindElement(By.XPath("//span[contains(text(), 'ddd ddd')]")).Click();
             Thread.Sleep(2000);
 
-            Utils.searchWebElement("Oferta.inputNameOferta").SendKeys("Prueba_auto_NO_borrar_MODIFICADA");
+            Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys("Prueba_auto_NO_borrar_MODIFICADA");
 
-            Utils.searchWebElement("Oferta.inputNameOferta").SendKeys(Keys.PageDown);
+            Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.PageDown);
             Thread.Sleep(2000);
 
-            Utils.searchWebElement("Oferta.labelPermutaDefault").Click(); //Toggle Switch
-            Utils.searchWebElement("Oferta.inputCalendar").Click();
-            Utils.searchWebElement("Oferta.calendarDateRandomDay").Click(); //seleccionamos fecha del calendario
-            Utils.searchWebElement("Oferta.inputReferenceOferta").SendKeys(Keys.PageDown);
+            Utils.SearchWebElement("Oferta.labelPermutaDefault").Click(); //Toggle Switch
+            Utils.SearchWebElement("Oferta.inputCalendar").Click();
+            Utils.SearchWebElement("Oferta.calendarDateRandomDay").Click(); //seleccionamos fecha del calendario
+            Utils.SearchWebElement("Oferta.inputReferenceOferta").SendKeys(Keys.PageDown);
             Thread.Sleep(3000);
 
-            Utils.searchWebElement("Oferta.inputGVAL").SendKeys("prue123456");//Escribimos prue123456 en codigo gval
-            Utils.searchWebElement("Oferta.inputCampoDescripcion").SendKeys("Prueba campo descripcion");//Escribimos Prueba campo descripcion en detalle de oferta
+            Utils.SearchWebElement("Oferta.inputGVAL").SendKeys("prue123456");//Escribimos prue123456 en codigo gval
+            Utils.SearchWebElement("Oferta.inputCampoDescripcion").SendKeys("Prueba campo descripcion");//Escribimos Prueba campo descripcion en detalle de oferta
             Thread.Sleep(3000);
 
-            Utils.searchWebElement("Oferta.buttonGuardar").Click();//Guardar
+            Utils.SearchWebElement("Oferta.buttonGuardar").Click();//Guardar
             Thread.Sleep(3000);
-            Utils.searchWebElement("Oferta.inputNameOferta").SendKeys(Keys.PageDown);
+            Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.PageDown);
             Thread.Sleep(2000);
-            Utils.searchWebElement("Oferta.inputCalendar").Click();//Calendario
-            Utils.searchWebElement("Oferta.calendarDateRandomDay").Click();//seleccionamos fecha del calendario
-            Utils.searchWebElement("Oferta.LabelFechaspestaña").Click();//Pestaña fechas
-            Utils.searchWebElement("Oferta.ButtonGuardarYcerrar").Click();//Guarda y cierra
+            Utils.SearchWebElement("Oferta.inputCalendar").Click();//Calendario
+            Utils.SearchWebElement("Oferta.calendarDateRandomDay").Click();//seleccionamos fecha del calendario
+            Utils.SearchWebElement("Oferta.LabelFechaspestaña").Click();//Pestaña fechas
+            Utils.SearchWebElement("Oferta.ButtonGuardarYcerrar").Click();//Guarda y cierra
             Thread.Sleep(2000);
         }
 
@@ -304,9 +294,9 @@ namespace Lyntia.TestSet.Actions
             AbrirOfertaEnVista("Prueba-Auto_NO_borrarCRM-EOF0004");
             Thread.Sleep(3000);
 
-            Utils.searchWebElement("Oferta.inputNameOferta").SendKeys(Keys.PageDown);
+            Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.PageDown);
 
-            SelectElement drop = new SelectElement(Utils.searchWebElement("Oferta.selectOfertaType"));
+            SelectElement drop = new SelectElement(Utils.SearchWebElement("Oferta.selectOfertaType"));
 
             drop.SelectByText("Cambio de capacidad (Upgrade/Downgrade)");
         }
@@ -318,7 +308,7 @@ namespace Lyntia.TestSet.Actions
         {
             Thread.Sleep(3000);
 
-            SelectElement drop = new SelectElement(Utils.searchWebElement("Oferta.selectOfertaType"));
+            SelectElement drop = new SelectElement(Utils.SearchWebElement("Oferta.selectOfertaType"));
 
             drop.SelectByText("Cambio de precio/Renovación");
         }
@@ -330,7 +320,7 @@ namespace Lyntia.TestSet.Actions
         {
             Thread.Sleep(3000);
 
-            SelectElement drop = new SelectElement(Utils.searchWebElement("Oferta.selectOfertaType"));
+            SelectElement drop = new SelectElement(Utils.SearchWebElement("Oferta.selectOfertaType"));
 
             drop.SelectByText("Cambio de solución técnica (Tecnología)");
         }
@@ -342,7 +332,7 @@ namespace Lyntia.TestSet.Actions
         {
             Thread.Sleep(3000);
 
-            SelectElement drop = new SelectElement(Utils.searchWebElement("Oferta.selectOfertaType"));
+            SelectElement drop = new SelectElement(Utils.SearchWebElement("Oferta.selectOfertaType"));
 
             drop.SelectByText("Cambio de dirección (Migración)");
         }
@@ -353,32 +343,32 @@ namespace Lyntia.TestSet.Actions
         public void Restablecimiento_CRM_COF0003()
         {
             AbrirOfertaEnVista("Automatica_MODPrueba_auto_NO_borrar_MODIFICADA");
-            Utils.searchWebElement("Oferta.inputNameOferta").Click();
-            Utils.searchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Control + "a");
-            Utils.searchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Delete);
+            Utils.SearchWebElement("Oferta.inputNameOferta").Click();
+            Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Control + "a");
+            Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Delete);
             Thread.Sleep(3000);
 
-            Utils.searchWebElement("Oferta.inputNameOferta").SendKeys("Automatica_MOD");
-            Utils.searchWebElement("Oferta.inputNameOferta").SendKeys(Keys.PageDown);
+            Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys("Automatica_MOD");
+            Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.PageDown);
 
-            Utils.searchWebElement("Oferta.calendarFechadepresentacion").SendKeys(Keys.Control + "a");
-            Utils.searchWebElement("Oferta.calendarFechadepresentacion").SendKeys(Keys.Delete);
+            Utils.SearchWebElement("Oferta.calendarFechadepresentacion").SendKeys(Keys.Control + "a");
+            Utils.SearchWebElement("Oferta.calendarFechadepresentacion").SendKeys(Keys.Delete);
 
-            Utils.searchWebElement("Oferta.inputReferenceOferta").SendKeys(Keys.PageDown);
+            Utils.SearchWebElement("Oferta.inputReferenceOferta").SendKeys(Keys.PageDown);
             Thread.Sleep(3000);
-            Utils.searchWebElement("Oferta.labelPermutaDefaultReset").Click(); //Toggle Switch
+            Utils.SearchWebElement("Oferta.labelPermutaDefaultReset").Click(); //Toggle Switch
 
-            Utils.searchWebElement("Oferta.inputGVAL").Click();
-            Utils.searchWebElement("Oferta.inputGVAL").SendKeys(Keys.Control + "a");
-            Utils.searchWebElement("Oferta.inputGVAL").SendKeys(Keys.Delete);
-            Utils.searchWebElement("Oferta.inputCampoDescripcion").Click();
-            Utils.searchWebElement("Oferta.inputCampoDescripcion").SendKeys(Keys.Control + "a");
-            Utils.searchWebElement("Oferta.inputCampoDescripcion").SendKeys(Keys.Delete);
-            Utils.searchWebElement("Oferta.inputGVAL").Clear();
+            Utils.SearchWebElement("Oferta.inputGVAL").Click();
+            Utils.SearchWebElement("Oferta.inputGVAL").SendKeys(Keys.Control + "a");
+            Utils.SearchWebElement("Oferta.inputGVAL").SendKeys(Keys.Delete);
+            Utils.SearchWebElement("Oferta.inputCampoDescripcion").Click();
+            Utils.SearchWebElement("Oferta.inputCampoDescripcion").SendKeys(Keys.Control + "a");
+            Utils.SearchWebElement("Oferta.inputCampoDescripcion").SendKeys(Keys.Delete);
+            Utils.SearchWebElement("Oferta.inputGVAL").Clear();
             Thread.Sleep(3000);
 
             Thread.Sleep(3000);
-            Utils.searchWebElement("Oferta.ButtonGuardarYcerrar").Click();//Guarda y cierra
+            Utils.SearchWebElement("Oferta.ButtonGuardarYcerrar").Click();//Guarda y cierra
         }
 
         /// <summary>
@@ -395,13 +385,13 @@ namespace Lyntia.TestSet.Actions
         /// </summary>
         public void Editar_añadir_producto()
         {
-            Utils.searchWebElement("Oferta.buttonAgregarProducto").Click();//pulsamos sobre agregar producto
+            Utils.SearchWebElement("Oferta.buttonAgregarProducto").Click();//pulsamos sobre agregar producto
             if (utils.EncontrarElemento(By.XPath("//button[contains(@data-id, 'quickCreateSaveAndCloseBtn')]")))
             {
                 Thread.Sleep(2000);
-                Utils.searchWebElement("Producto.ButtonGuardar").Click();//guardamos
+                Utils.SearchWebElement("Producto.ButtonGuardar").Click();//guardamos
                 Thread.Sleep(3000);
-                Utils.searchWebElement("Oferta.buttonGuardarYcerrarProd").Click();//guardamos y cerramos
+                Utils.SearchWebElement("Oferta.buttonGuardarYcerrarProd").Click();//guardamos y cerramos
             }
 
         }
@@ -413,34 +403,34 @@ namespace Lyntia.TestSet.Actions
         {
             // Click en Cerrar Oferta
             Thread.Sleep(2000);
-            Utils.searchWebElement("Oferta.buttonCerrar").Click();
+            Utils.SearchWebElement("Oferta.buttonCerrar").Click();
             Thread.Sleep(2000);
 
             // Cambiar al frame de Cierre de Ofertas
-            driver.SwitchTo().Frame(Utils.searchWebElement("Oferta.frameCerrarOferta"));
+            driver.SwitchTo().Frame(Utils.SearchWebElement("Oferta.frameCerrarOferta"));
 
             if (!razonOferta.Equals(""))
             {
-                SelectElement drop = new SelectElement(Utils.searchWebElement("Oferta.selectRazonEstado"));
+                SelectElement drop = new SelectElement(Utils.SearchWebElement("Oferta.selectRazonEstado"));
                 drop.SelectByText(razonOferta);
             }
 
             if (!motivoCierre.Equals(""))
             {
-                SelectElement drop = new SelectElement(Utils.searchWebElement("Oferta.selectMotivoCierre"));
+                SelectElement drop = new SelectElement(Utils.SearchWebElement("Oferta.selectMotivoCierre"));
                 drop.SelectByText(motivoCierre);
             }
 
             if (opcion.Equals("Aceptar"))
             {
                 // Cancelación realizada
-                Utils.searchWebElement("Oferta.buttonConfirmarCierre").Click();
+                Utils.SearchWebElement("Oferta.buttonConfirmarCierre").Click();
                 Thread.Sleep(3000);
             }
             else
             {
                 // Cancelación anulada
-                Utils.searchWebElement("Oferta.buttonCancelarCierre").Click();
+                Utils.SearchWebElement("Oferta.buttonCancelarCierre").Click();
                 Thread.Sleep(3000);
             }
         }
@@ -453,63 +443,63 @@ namespace Lyntia.TestSet.Actions
 
         public void FiltrarPorIDRevision(string idRevision)
         {
-            Utils.searchWebElement("Oferta.gridFilterIdRevision").Click();
+            Utils.SearchWebElement("Oferta.gridFilterIdRevision").Click();
 
-            Utils.searchWebElement("Oferta.gridFilterBuscarPor").Click();
-            Utils.searchWebElement("Oferta.gridFilterBuscarPorInput").SendKeys(Keys.Control + "a");
-            Utils.searchWebElement("Oferta.gridFilterBuscarPorInput").SendKeys(Keys.Delete);
+            Utils.SearchWebElement("Oferta.gridFilterBuscarPor").Click();
+            Utils.SearchWebElement("Oferta.gridFilterBuscarPorInput").SendKeys(Keys.Control + "a");
+            Utils.SearchWebElement("Oferta.gridFilterBuscarPorInput").SendKeys(Keys.Delete);
 
-            Utils.searchWebElement("Oferta.gridFilterBuscarPorInput").SendKeys(idRevision);
+            Utils.SearchWebElement("Oferta.gridFilterBuscarPorInput").SendKeys(idRevision);
             Thread.Sleep(2000);
 
-            Utils.searchWebElement("Oferta.gridFilterBuscarPorAceptarButton").Click();
+            Utils.SearchWebElement("Oferta.gridFilterBuscarPorAceptarButton").Click();
             Thread.Sleep(2000);
         }
 
         public void SeleccionarTodasOfertaGrid()
         {
-            Utils.searchWebElement("Oferta.gridSelectAll").Click();
+            Utils.SearchWebElement("Oferta.gridSelectAll").Click();
             Thread.Sleep(2000);
         }
 
         public void Eliminar_BarraMenu()
         {
-            Utils.searchWebElement("Oferta.buttonEliminar").Click();//pulsamos sobre eliminar de la barra superior del menu
+            Utils.SearchWebElement("Oferta.buttonEliminar").Click();//pulsamos sobre eliminar de la barra superior del menu
         }
 
         public void Cancelar()
         {
-            Utils.searchWebElement("Producto.buttonCancelar").Click();//cancelar del pop up
+            Utils.SearchWebElement("Producto.buttonCancelar").Click();//cancelar del pop up
         }
 
         public void Seleccionofertarazonadjudicada()
         {
             Thread.Sleep(3000);
-            Utils.searchWebElement("Oferta.labelOfertaestadoGanada").Click();//seleccionamos una oferta ganada y pulsamos sobre el ckeck
+            Utils.SearchWebElement("Oferta.labelOfertaestadoGanada").Click();//seleccionamos una oferta ganada y pulsamos sobre el ckeck
             Thread.Sleep(2000);
-            Utils.searchWebElement("Oferta.buttonEditar").Click();//pulsamos sobre editar
+            Utils.SearchWebElement("Oferta.buttonEditar").Click();//pulsamos sobre editar
             Thread.Sleep(3000);
         }
 
         public void Eliminar_Popup()//pulsamos sobre el eliminar del popup
         {
             Thread.Sleep(2000);
-            Utils.searchWebElement("Producto.buttonEliminarProductodeOfertaConfirm").Click();
+            Utils.SearchWebElement("Producto.buttonEliminarProductodeOfertaConfirm").Click();
 
         }
 
         public void PresentarOferta()
         {
-            Utils.searchWebElement("Oferta.buttonPresentOferta").Click();
+            Utils.SearchWebElement("Oferta.buttonPresentOferta").Click();
         }
 
         public void Filtro_buscarEnestaVista(String busqueda)
         {
             try
             {
-                Utils.searchWebElement("Oferta.inputFilter").SendKeys(busqueda);//buscamos una oferta en el filtro
+                Utils.SearchWebElement("Oferta.inputFilter").SendKeys(busqueda);//buscamos una oferta en el filtro
                 Thread.Sleep(1000);
-                Utils.searchWebElement("Oferta.buttonLupaFiltro").Click();
+                Utils.SearchWebElement("Oferta.buttonLupaFiltro").Click();
                 Thread.Sleep(3000);
                 driver.FindElement(By.LinkText(busqueda)).Click();//click en la oferta
                 Thread.Sleep(3000);
@@ -526,9 +516,9 @@ namespace Lyntia.TestSet.Actions
         {
             //reestablece datos CRM-EOF0004
             driver.FindElement(By.LinkText("Prueba-Auto_NO_borrarCRM-EOF0004")).Click();
-            Utils.searchWebElement("Oferta.inputNameOferta").SendKeys(Keys.PageDown);
+            Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.PageDown);
 
-            SelectElement drop = new SelectElement(Utils.searchWebElement("Oferta.selectOfertaType"));
+            SelectElement drop = new SelectElement(Utils.SearchWebElement("Oferta.selectOfertaType"));
 
             drop.SelectByText("Nuevo servicio");
 

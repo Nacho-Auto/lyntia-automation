@@ -13,7 +13,6 @@ namespace Lyntia.TestSet
     [AllureSuite("PRODUCTO")]
     class Producto
     {
-
         readonly Utils utils = new Utils();
 
         private static IWebDriver driver;
@@ -31,12 +30,12 @@ namespace Lyntia.TestSet
             utils.Instanciador();
 
             driver = Utils.driver;
-            ofertaActions = Utils.getOfertaActions();
-            ofertaCondition = Utils.getOfertaConditions();
-            productoActions = Utils.getProductoActions();
-            productoCondition = Utils.getProductoConditions();
-            commonActions = Utils.getCommonActions();
-            commonCondition = Utils.getCommonConditions();
+            ofertaActions = Utils.GetOfertaActions();
+            ofertaCondition = Utils.GetOfertaConditions();
+            productoActions = Utils.GetProductoActions();
+            productoCondition = Utils.GetProductoConditions();
+            commonActions = Utils.GetCommonActions();
+            commonCondition = Utils.GetCommonConditions();
 
             // Realizar login
             commonActions.Login();
@@ -89,8 +88,8 @@ namespace Lyntia.TestSet
         }
 
         //CRM-APR0003
-        [Test]
-        [AllureSubSuite("PRO AÑADIR OFERTA")]
+        [Test(Description = "CRM-APR0003 Añadir producto Circuito de Capacidad correctamente")]
+        [AllureSubSuite("PRO AÑADIR PRODUCTO")]
         public void CRM_APR0003_Producto_Añadir_CC()
         {
             //Paso 1 Login y acceso al modulo gestion de cliente
@@ -110,15 +109,15 @@ namespace Lyntia.TestSet
             productoCondition.Resultado_Agregar_Producto_tipo_circuito_de_capacidad();//se realizan comprobaciones
 
             //Paso 6
-            productoActions.Agregar_Liena_de_nogocio_y_Unidad_de_venta("FTTT", "10");
-            productoCondition.Resultado_Agregar_Liena_de_nogocio_y_Unidad_de_venta();
+            productoActions.Agregar_Liena_de_negocio_y_Unidad_de_venta("FTTT", "10");
+            productoCondition.Resultado_Agregar_Liena_de_negocio_y_Unidad_de_venta();
 
             // Reestablece datos
             productoActions.Borrado_de_producto();
         }
         //CRM-APR0008
-        [Test]
-        [AllureSubSuite("PRO AÑADIR OFERTA")]
+        [Test(Description = "CRM-APR0008 Añadir producto correctamente, Cambio de Capacidad")]
+        [AllureSubSuite("PRO AÑADIR PRODUCTO")]
         public void CRM_APR0008_Producto_Cambio_de_Capacidad_CC()
         {
             //Paso 1 Login y acceso al modulo gestion de cliente

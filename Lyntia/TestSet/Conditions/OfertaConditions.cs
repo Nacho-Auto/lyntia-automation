@@ -12,24 +12,10 @@ namespace Lyntia.TestSet.Conditions
         readonly Utils utils = new Utils();
 
         private static IWebDriver driver;
-        private static OfertaConditions ofertaCondition;
-        private static ProductoActions productoActions;
-        private static ProductoConditions productoCondition;
-        private static CommonActions commonActions;
-        private static CommonConditions commonCondition;
-        private static OpenQA.Selenium.Interactions.Actions accionesSelenium;
-        
 
         public OfertaConditions()
         {
             driver = Utils.driver;
-            ofertaCondition = Utils.getOfertaConditions();
-            productoActions = Utils.getProductoActions();
-            productoCondition = Utils.getProductoConditions();
-            commonActions = Utils.getCommonActions();
-            commonCondition = Utils.getCommonConditions();
-            accionesSelenium = new OpenQA.Selenium.Interactions.Actions(driver);
-
         }
 
         public void CreaOferta()
@@ -241,7 +227,7 @@ namespace Lyntia.TestSet.Conditions
 
         public void OfertaRevisadaCorrectamente()
         {
-            Assert.AreEqual("2", Utils.searchWebElement("Oferta.gridCellsOferta").GetAttribute("data-row-count"));
+            Assert.AreEqual("2", Utils.SearchWebElement("Oferta.gridCellsOferta").GetAttribute("data-row-count"));
         }
 
         public void Resultado_Seleccion_de_oferta_Borrador()

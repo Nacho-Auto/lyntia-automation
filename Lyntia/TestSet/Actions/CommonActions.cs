@@ -7,8 +7,6 @@ namespace Lyntia.TestSet.Actions
 {
 	public class CommonActions
 	{
-        readonly Utils utils = new Utils();
-
         private static IWebDriver driver;
 
         public CommonActions()
@@ -23,8 +21,8 @@ namespace Lyntia.TestSet.Actions
         {
             try
             { 
-                driver.SwitchTo().Frame(Utils.searchWebElement("Modulo.frameModulos")); // Cambiar al frame de Apps   
-                Utils.searchWebElement("Modulo.gestionCliente").Click(); //modulo gestion de clientes     
+                driver.SwitchTo().Frame(Utils.SearchWebElement("Modulo.frameModulos")); // Cambiar al frame de Apps   
+                Utils.SearchWebElement("Modulo.gestionCliente").Click(); //modulo gestion de clientes     
 
                 Console.WriteLine("Se accede correctamente a Gestión de Cliente");
 
@@ -60,13 +58,13 @@ namespace Lyntia.TestSet.Actions
         {
             try
             { 
-                Utils.searchWebElement("Login.firstInput").SendKeys("rgomezs.ext@lyntia.com"); //usuario de lyntia
-                Utils.searchWebElement("Login.firstSubmitButton").Click();
-                Utils.searchWebElement("Login.secondInput").Clear();
-                Utils.searchWebElement("Login.secondInput").SendKeys("rgomezs@lyntia.com"); //usuario de entorno lyntia
-                Utils.searchWebElement("Login.thirdInput").SendKeys("W1nter20$"); //pass de entorno lyntia
-                Utils.searchWebElement("Login.secondSubmitButton").Click();
-                Utils.searchWebElement("Login.notPersistanceButton").Click(); //Desea mantener la sesion iniciada NO
+                Utils.SearchWebElement("Login.firstInput").SendKeys("rgomezs.ext@lyntia.com"); //usuario de lyntia
+                Utils.SearchWebElement("Login.firstSubmitButton").Click();
+                Utils.SearchWebElement("Login.secondInput").Clear();
+                Utils.SearchWebElement("Login.secondInput").SendKeys("rgomezs@lyntia.com"); //usuario de entorno lyntia
+                Utils.SearchWebElement("Login.thirdInput").SendKeys("W1nter20$"); //pass de entorno lyntia
+                Utils.SearchWebElement("Login.secondSubmitButton").Click();
+                Utils.SearchWebElement("Login.notPersistanceButton").Click(); //Desea mantener la sesion iniciada NO
 
                 Console.WriteLine("Se realiza login de manera correcta");
 

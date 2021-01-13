@@ -4,13 +4,11 @@ using OpenQA.Selenium.Chrome;
 using Lyntia.TestSet.Actions;
 using Lyntia.TestSet.Conditions;
 using System.Linq;
-using OpenQA.Selenium.Support.UI;
 
 namespace Lyntia.Utilities
 {
     public class Utils
     {
-
         public static IWebDriver driver;
         public static ObjectRepositoryUtils objRep;
         public static TestDataUtils dataRep;
@@ -21,49 +19,49 @@ namespace Lyntia.Utilities
         private static CommonActions commonActions;
         private static CommonConditions commonCondition;
         private static String randomString;
-        private static Random random = new Random();
+        private static readonly Random random = new Random();
 
-        public static OfertaActions getOfertaActions()
+        public static OfertaActions GetOfertaActions()
         {
             return ofertaActions;
         }
 
-        public static String getRandomString()
+        public static String GetRandomString()
         {
             return randomString;
         }
 
-        public static OfertaConditions getOfertaConditions()
+        public static OfertaConditions GetOfertaConditions()
         {
             return ofertaCondition;
         }
 
-        public static ProductoActions getProductoActions()
+        public static ProductoActions GetProductoActions()
         {
             return productoActions;
         }
 
-        public static ProductoConditions getProductoConditions()
+        public static ProductoConditions GetProductoConditions()
         {
             return productoCondition;
         }
 
-        public static CommonActions getCommonActions()
+        public static CommonActions GetCommonActions()
         {
             return commonActions;
         }
 
-        public static CommonConditions getCommonConditions()
+        public static CommonConditions GetCommonConditions()
         {
             return commonCondition;
         }
 
         public void Instanciador()
         {
-            driver = new ChromeDriver(@"C:\chromedriver");
+            driver = new ChromeDriver(@"\chromedriver");
 
             objRep = ObjectRepositoryUtils.Instance;
-            objRep.testDataReader(@"ObjectRepository.csv");
+            objRep.TestDataReader(@"ObjectRepository.csv");
             dataRep = TestDataUtils.Instance;
             dataRep.testDataReader(@"DataRepository.csv");
             ofertaActions = new OfertaActions();
@@ -82,55 +80,45 @@ namespace Lyntia.Utilities
 
         public bool EncontrarElemento(By by)
         {
-            IWebElement element = null;
+            IWebElement element;
             try
             {
                 element = driver.FindElement(by);
-
             }
             catch (NoSuchElementException)
             {
-
                 return false;
-
             }
             return true;
-
         }
-
-        
         public static string RandomString(int length)
         {
-
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.*?¿%$/()ºªÇ-Ñ";
             return new string(Enumerable.Repeat(chars, length)
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
 
-        public static IWebElement searchWebElement(String identificador)
+        public static IWebElement SearchWebElement(String identificador)
         {
             try
             {
-                switch (objRep.TypeObjectID(identificador))
+                return (objRep.TypeObjectID(identificador)) switch
                 {
-                    case "XPATH":
-                        return driver.FindElement(By.XPath(objRep.ObjectID(identificador)));
-                    case "ID":
-                        return driver.FindElement(By.Id(objRep.ObjectID(identificador)));
-                    default:
-                        return null;
-                }
-            }catch(NoSuchElementException e)
+                    "XPATH" => driver.FindElement(By.XPath(objRep.ObjectID(identificador))),
+                    "ID" => driver.FindElement(By.Id(objRep.ObjectID(identificador))),
+                    _ => null,
+                };
+            }
+            catch(NoSuchElementException e)
             {
                 Console.WriteLine("No se pudo interactuar con el elemento " + identificador + " de tipo " + objRep.TypeObjectID(identificador));
                 Console.WriteLine("Excepción : " + e);
 
                 return null;
-            }
-            
+            }  
         }
 
-        public static String getIdentifier(String identificador)
+        public static String GetIdentifier(String identificador)
         {
             String ident = objRep.ObjectID(identificador);
             return ident;
