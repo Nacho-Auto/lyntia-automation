@@ -84,13 +84,13 @@ namespace Lyntia.TestSet.Actions
         /// <param name="e"></param>
         /// <param name="fileName"></param>
         /// <param name="message"></param>
-        private static void CapturadorExcepcion(Exception e, String fileName, String message)
+        public static void CapturadorExcepcion(Exception e, String fileName, String message)
         {
             ((ITakesScreenshot)driver).GetScreenshot().SaveAsFile(fileName);
             AllureLifecycle.Instance.AddAttachment(fileName);
 
             Console.WriteLine(message);
-            Console.WriteLine("Excepción: " + e);
+            AllureLifecycle.Instance.AddAttachment("Log de Error", e.ToString());
 
         }
     }
