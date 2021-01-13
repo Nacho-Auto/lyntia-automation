@@ -362,7 +362,7 @@ namespace Lyntia.TestSet.Actions
             Utils.searchWebElement("Oferta.inputNameOferta").SendKeys(Keys.PageDown);
 
             Utils.searchWebElement("Oferta.calendarFechadepresentacion").SendKeys(Keys.Control + "a");
-            Utils.searchWebElement("Oferta.calendarFechadepresentacion").SendKeys(Keys.Delete);
+            Utils.searchWebElement("Oferta.calendarFechadepresentacion").SendKeys(Keys.Delete)
 
             Utils.searchWebElement("Oferta.inputReferenceOferta").SendKeys(Keys.PageDown);
             Thread.Sleep(3000);
@@ -393,6 +393,19 @@ namespace Lyntia.TestSet.Actions
         /// <summary>
         /// Cerrar la Oferta actualmente abierta pasando los parámetros:
         /// </summary>
+        public void Editar_añadir_producto()
+        {
+            Utils.searchWebElement("Oferta.buttonAgregarProducto").Click();//pulsamos sobre agregar producto
+            if (utils.EncontrarElemento(By.XPath("//button[contains(@data-id, 'quickCreateSaveAndCloseBtn')]")))
+            {
+                Thread.Sleep(2000);
+                Utils.searchWebElement("Producto.ButtonGuardar").Click();//guardamos
+                Thread.Sleep(3000);
+                Utils.searchWebElement("Oferta.buttonGuardarYcerrarProd").Click();//guardamos y cerramos
+            }
+
+        }
+      
         /// <param name="opcion"></param>
         /// <param name="razonOferta"></param>
         /// <param name="motivoCierre"></param>
@@ -461,27 +474,27 @@ namespace Lyntia.TestSet.Actions
 
         public void Eliminar_BarraMenu()
         {
-            driver.FindElement(By.XPath("//span[contains(@aria-label, 'Eliminar')]")).Click();//pulsamos sobre eliminar de la barra superior del menu
+            Utils.searchWebElement("Oferta.buttonEliminar").Click();//pulsamos sobre eliminar de la barra superior del menu
         }
 
         public void Cancelar()
         {
-            driver.FindElement(By.XPath("//button[contains(@aria-label, 'Cancelar')]")).Click();//cancelar del pop up
+            Utils.searchWebElement("Producto.buttonCancelar").Click();//cancelar del pop up
         }
 
         public void Seleccionofertarazonadjudicada()
         {
             Thread.Sleep(3000);
-            driver.FindElement(By.XPath("//div[contains(@title, 'Ganada')]")).Click();//seleccionamos una oferta ganada y pulsamos sobre el ckeck
+            Utils.searchWebElement("Oferta.labelOfertaestadoGanada").Click();//seleccionamos una oferta ganada y pulsamos sobre el ckeck
             Thread.Sleep(2000);
-            driver.FindElement(By.XPath("//li[contains(@aria-label, 'Editar')]")).Click();//pulsamos sobre editar
+            Utils.searchWebElement("Oferta.buttonEditar").Click();//pulsamos sobre editar
             Thread.Sleep(3000);
         }
 
         public void Eliminar_Popup()//pulsamos sobre el eliminar del popup
         {
             Thread.Sleep(2000);
-            driver.FindElement(By.XPath("//*[@id='confirmButtonText']")).Click();
+            Utils.searchWebElement("Producto.buttonEliminarProductodeOfertaConfirm").Click();
 
         }
 
@@ -494,9 +507,9 @@ namespace Lyntia.TestSet.Actions
         {
             try
             {
-                driver.FindElement(By.XPath("//input[contains(@aria-label, 'Buscar en esta vista')]")).SendKeys(busqueda);//buscamos una oferta en el filtro
+                Utils.searchWebElement("Oferta.inputFilter").SendKeys(busqueda);//buscamos una oferta en el filtro
                 Thread.Sleep(1000);
-                driver.FindElement(By.XPath("//button[contains(@title, 'Iniciar búsqueda')]")).Click();
+                Utils.searchWebElement("Oferta.buttonLupaFiltro").Click();
                 Thread.Sleep(3000);
                 driver.FindElement(By.LinkText(busqueda)).Click();//click en la oferta
                 Thread.Sleep(3000);

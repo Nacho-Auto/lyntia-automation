@@ -11,6 +11,8 @@ Modulo.frameModulos;ID;AppLandingPage
 Modulo.gestionCliente;XPATH;//a[contains(@aria-label, 'Cliente')]
 ############################## OFERTA #############################
 Oferta.ofertaSection;ID;sitemap-entity-oferta
+Oferta.inputFilter;XPATH;//input[contains(@aria-label, 'Buscar en esta vista')]
+Oferta.buttonLupaFiltro;XPATH;//button[contains(@title, 'Iniciar búsqueda')]
 Oferta.ofertaTitleSelector;XPATH;//h1[@title='Seleccionar vista']
 Oferta.newOferta;XPATH;//button[@aria-label='Nuevo']
 Oferta.saveOferta;XPATH;//button[@aria-label='Guardar']
@@ -51,6 +53,11 @@ Oferta.ButtonGuardarYcerrar;XPATH;//span[contains(@aria-label, 'Guardar y cerrar
 Oferta.calendarFechadepresentacion;XPATH;//input[contains(@aria-label, 'Fecha de presentación')]
 Oferta.inputCampoDescripcion;XPATH;//textarea[contains(@aria-label, 'Descripción')]
 Oferta.buttonGuardar;XPATH;//li[contains(@aria-label, 'Guardar')]
+Oferta.buttonGuardarYcerrarProd;XPATH;//button{contains(@aria-label, 'Guardar y cerrar')]
+Oferta.buttonAgregarProducto;XPATH;//button[contains(@aria-label, 'Agregar producto')]
+Oferta.labelOfertaestadoGanada;XPATH;//div[contains(@title, 'Ganada')]
+Oferta.buttonEditar;XPATH;//li[contains(@aria-label, 'Editar')]
+Oferta.buttonEliminar;XPATH;//span[contains(@aria-label, 'Eliminar')]
 Oferta.buttonCerrar;XPATH;//button[@title='Cerrar Oferta']
 Oferta.frameCerrarOferta;ID;FullPageWebResource
 Oferta.selectRazonEstado;XPATH;//select[@id='razonestado']
