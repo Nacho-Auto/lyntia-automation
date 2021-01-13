@@ -65,8 +65,8 @@ namespace Lyntia.TestSet
             ofertaCondition.AccederSeleccionOfertaAPR0001();//accede a la oferta
 
             //Paso 4
-            ofertaActions.Editar_añadir_producto();//se pulsa añadir producto en la pestaña general y realizamos unas comprobaciones
-            ofertaCondition.Resultado_Editar_añadir_producto();//se verifican cambios
+            productoActions.Editar_añadir_producto();//se pulsa añadir producto en la pestaña general y realizamos unas comprobaciones
+            productoCondition.Resultado_Editar_añadir_producto();//se verifican cambios
 
             
         }
