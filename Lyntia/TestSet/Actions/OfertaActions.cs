@@ -276,10 +276,10 @@ namespace Lyntia.TestSet.Actions
             Thread.Sleep(3000);
 
             Utils.searchWebElement("Oferta.inputGVAL").SendKeys("prue123456");//Escribimos prue123456 en codigo gval
-            Utils.searchWebElement("//textarea[contains(@aria-label, 'Descripción')]").SendKeys("Prueba campo descripcion");//Escribimos Prueba campo descripcion en detalle de oferta
+            Utils.searchWebElement("Oferta.inputCampoDescripcion").SendKeys("Prueba campo descripcion");//Escribimos Prueba campo descripcion en detalle de oferta
             Thread.Sleep(3000);
 
-            Utils.searchWebElement("//li[contains(@aria-label, 'Guardar')]").Click();//Guardar
+            Utils.searchWebElement("Oferta.buttonGuardar").Click();//Guardar
             Thread.Sleep(3000);
             Utils.searchWebElement("Oferta.inputNameOferta").SendKeys(Keys.PageDown);
             Thread.Sleep(2000);
@@ -569,12 +569,23 @@ namespace Lyntia.TestSet.Actions
         }
         public void Filtro_buscarEnestaVista(String busqueda)
         {
-            driver.FindElement(By.XPath("//input[contains(@aria-label, 'Buscar en esta vista')]")).SendKeys(busqueda);//buscamos una oferta en el filtro
-            Thread.Sleep(1000);
-            driver.FindElement(By.XPath("//button[contains(@title, 'Iniciar búsqueda')]")).Click();
-            Thread.Sleep(3000);
-            driver.FindElement(By.LinkText(busqueda)).Click();//click en la oferta
-            Thread.Sleep(3000);
+            try
+            {
+                driver.FindElement(By.XPath("//input[contains(@aria-label, 'Buscar en esta vista')]")).SendKeys(busqueda);//buscamos una oferta en el filtro
+                Thread.Sleep(1000);
+                driver.FindElement(By.XPath("//button[contains(@title, 'Iniciar búsqueda')]")).Click();
+                Thread.Sleep(3000);
+                driver.FindElement(By.LinkText(busqueda)).Click();//click en la oferta
+                Thread.Sleep(3000);
+
+                Console.WriteLine("Se ha filtrado correctamente la oferta");
+
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e ,"Filtro_buscarEnestaVista.png", "No se ha podido filtrar correctamente la oferta");
+            }
+            
         }
        
 

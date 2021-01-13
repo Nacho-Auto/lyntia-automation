@@ -90,10 +90,10 @@ namespace Lyntia.TestSet.Actions
             AllureLifecycle.Instance.AddAttachment(fileName);
 
             Console.WriteLine(message);
+
             Console.WriteLine("---------------------");
             Console.WriteLine("---------------------");
             Console.WriteLine("Excepción: " + e);
-
         }
     }
 }
