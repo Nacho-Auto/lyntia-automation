@@ -119,7 +119,7 @@ namespace Lyntia.TestSet.Actions
                 Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Delete);
 
                 // Rellenar Cliente de Oferta
-                Thread.Sleep(1000);
+                Thread.Sleep(2000);
                 Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(nombre);
                 Thread.Sleep(1000);
 
@@ -266,14 +266,11 @@ namespace Lyntia.TestSet.Actions
 
             // Seleccionar referencia
 
-            Utils.SearchWebElement("Oferta.inputReferenceOferta").Click();
-            Thread.Sleep(1000);
             Utils.SearchWebElement("Oferta.inputReferenceOferta").SendKeys("1234");
             Thread.Sleep(1000);
 
             // Resto de campos
-
-            Utils.SearchWebElement("Oferta.labelPermutaDefault").Click(); //Toggle Switch
+            Utils.SearchWebElement("Oferta.labelPermutaDefault").SendKeys(Keys.Enter); //Toggle Switch
             Utils.SearchWebElement("Oferta.inputCalendar").Click();
             Utils.SearchWebElement("Oferta.calendarDateRandomDay").Click(); //seleccionamos fecha del calendario
             Utils.SearchWebElement("Oferta.inputReferenceOferta").SendKeys(Keys.PageDown);
@@ -365,7 +362,7 @@ namespace Lyntia.TestSet.Actions
 
             Utils.SearchWebElement("Oferta.inputReferenceOferta").SendKeys(Keys.PageDown);
             Thread.Sleep(3000);
-            Utils.SearchWebElement("Oferta.labelPermutaDefaultReset").Click(); //Toggle Switch
+            Utils.SearchWebElement("Oferta.labelPermutaDefaultReset").SendKeys(Keys.Enter); //Toggle Switch
             Thread.Sleep(3000);
 
            // Borrado contacto y referencia

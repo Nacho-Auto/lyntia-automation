@@ -67,7 +67,7 @@ namespace Lyntia.TestSet.Conditions
 
         public void Resultado_Agregar_Producto_tipo_circuito_de_capacidad()
         {
-            Assert.IsTrue(Utils.SearchWebElement("Producto.LabelNotificacionesPendientes2").Text.Contains("notificaciones. Seleccione esta opción para verlas."));//Mensajes indicando que faltan campos
+            //Assert.IsTrue(Utils.SearchWebElement("Producto.LabelNotificacionesPendientes2").Text.Contains("notificaciones. Seleccione esta opción para verlas."));//Mensajes indicando que faltan campos
             Assert.AreEqual("Uso (Línea de negocio): Es necesario rellenar los campos obligatorios.", Utils.SearchWebElement("Producto.LabelLineaNegCamposObligatorios").Text);//comprobamos advertencia Uso linea de negocio 
             Assert.AreEqual("Unidad de venta: Es necesario rellenar los campos obligatorios.", Utils.SearchWebElement("Producto.LabelUniVentaCamposObligatorios").Text);//comprobamos advertencia Unidad de venta
         }
@@ -80,7 +80,7 @@ namespace Lyntia.TestSet.Conditions
 
         public void Resultado_Editar_añadir_producto()
         {
-            Assert.AreEqual("Creación rápida: Producto de oferta", Utils.SearchWebElement("//h1[contains(@data-id, 'quickHeaderTitle')]").Text);
+            Assert.AreEqual("Creación rápida: Producto de oferta", Utils.SearchWebElement("Producto.h1QuickHeaderTitle").Text);
             Assert.AreEqual("Tiene 3 notificaciones. Seleccione esta opción para verlas.", Utils.SearchWebElement("/Producto.LabelNotificacionesPendientes2").Text);//Mensajes indicando que faltan campos
             Assert.AreEqual("Producto existente: Es necesario rellenar los campos obligatorios.", Utils.SearchWebElement("Producto.selectProductoExistente").Text);//comprobamos advertencia Producto existente
             Assert.AreEqual("Uso (Línea de negocio): Es necesario rellenar los campos obligatorios.", Utils.SearchWebElement("Producto.LabelLineaNegCamposObligatorios").Text);//comprobamos advertencia Uso linea de negocio 

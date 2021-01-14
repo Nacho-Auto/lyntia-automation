@@ -102,3 +102,4 @@ Producto.selectNRC;XPATH;//input[@aria-label='NRC']
 Producto.selectProductoExistente;XPATH;//span[contains(@data-id, 'productid-error-message')]
 Producto.LabelMensajeDeseaguardarcambios;XPATH;/html/body/section[2]/div/div/div/div/div/div/div[2]/span
 Producto.LabelMensajeDescartarCambios;XPATH;//button[contains(@aria-label, 'Descartar cambios')]
+Producto.h1QuickHeaderTitle;XPATH;//h1[contains(@data-id, 'quickHeaderTitle')]
