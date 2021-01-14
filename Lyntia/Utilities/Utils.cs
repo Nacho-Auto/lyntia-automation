@@ -60,8 +60,8 @@ namespace Lyntia.Utilities
         {
             var chromeOptions = new ChromeOptions();
             chromeOptions.AddArguments("headless");
-
-            driver = new ChromeDriver(chromeOptions);
+            chromeOptions.AddArguments("window-size=1920x1080");
+            driver = new ChromeDriver();
 
             objRep = ObjectRepositoryUtils.Instance;
             objRep.TestDataReader(@"ObjectRepository.csv");

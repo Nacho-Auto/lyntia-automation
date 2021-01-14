@@ -248,21 +248,30 @@ namespace Lyntia.TestSet.Actions
         public void IntroduccirDatos()//Cumplimentar datos de la oferta(campos contacto, fecha...)
         {
             // campos de la oferta
-            Utils.SearchWebElement("Oferta.buttonSearchContact").Click(); //contacto oferta
-            Thread.Sleep(2000);
+            //Utils.SearchWebElement("Oferta.buttonSearchContact").Click(); //contacto oferta
+            //Thread.Sleep(2000);
 
             Utils.SearchWebElement("Oferta.inputContactId").Click();
             Thread.Sleep(1000);
             Utils.SearchWebElement("Oferta.inputContactId").SendKeys("ddd ddd");
             Thread.Sleep(1000);
+            
             // Seleccionar contacto
-            driver.FindElement(By.XPath("//span[contains(text(), 'ddd ddd')]")).Click();
-            Thread.Sleep(2000);
+            //driver.FindElement(By.XPath("//span[contains(text(), 'ddd ddd')]")).Click();
+            //Thread.Sleep(2000);
 
             Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys("Prueba_auto_NO_borrar_MODIFICADA");
-
             Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.PageDown);
             Thread.Sleep(2000);
+
+            // Seleccionar referencia
+
+            Utils.SearchWebElement("Oferta.inputReferenceOferta").Click();
+            Thread.Sleep(1000);
+            Utils.SearchWebElement("Oferta.inputReferenceOferta").SendKeys("1234");
+            Thread.Sleep(1000);
+
+            // Resto de campos
 
             Utils.SearchWebElement("Oferta.labelPermutaDefault").Click(); //Toggle Switch
             Utils.SearchWebElement("Oferta.inputCalendar").Click();
@@ -357,10 +366,25 @@ namespace Lyntia.TestSet.Actions
             Utils.SearchWebElement("Oferta.inputReferenceOferta").SendKeys(Keys.PageDown);
             Thread.Sleep(3000);
             Utils.SearchWebElement("Oferta.labelPermutaDefaultReset").Click(); //Toggle Switch
+            Thread.Sleep(3000);
+
+           // Borrado contacto y referencia
+
+            Utils.SearchWebElement("Oferta.inputContactId").SendKeys(Keys.Control + "a");
+            Utils.SearchWebElement("Oferta.inputContactId").SendKeys(Keys.Delete);
+            Thread.Sleep(2000);
+
+
+            Utils.SearchWebElement("Oferta.inputReferenceOferta").SendKeys(Keys.Control + "a");
+            Utils.SearchWebElement("Oferta.inputReferenceOferta").SendKeys(Keys.Delete);
+            Thread.Sleep(2000);
+            
+
 
             Utils.SearchWebElement("Oferta.inputGVAL").Click();
             Utils.SearchWebElement("Oferta.inputGVAL").SendKeys(Keys.Control + "a");
             Utils.SearchWebElement("Oferta.inputGVAL").SendKeys(Keys.Delete);
+
             Utils.SearchWebElement("Oferta.inputCampoDescripcion").Click();
             Utils.SearchWebElement("Oferta.inputCampoDescripcion").SendKeys(Keys.Control + "a");
             Utils.SearchWebElement("Oferta.inputCampoDescripcion").SendKeys(Keys.Delete);
