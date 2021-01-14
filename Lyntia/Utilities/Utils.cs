@@ -60,6 +60,7 @@ namespace Lyntia.Utilities
         {
             var chromeOptions = new ChromeOptions();
             chromeOptions.AddArguments("headless");
+            chromeOptions.AddArguments("window-size=1920x1080");
 
             driver = new ChromeDriver(chromeOptions);
 
