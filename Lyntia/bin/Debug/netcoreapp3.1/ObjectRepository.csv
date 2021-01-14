@@ -99,3 +99,6 @@ Producto.ButtonGuardar;XPATH;//button[contains(@data-id, 'quickCreateSaveAndClos
 Producto.selectPrecioMensual;XPATH;//input[@aria-label='Precio mensual']
 Producto.selectDuracionContrato;XPATH;//input[@aria-label='Duración del contrato (meses)']
 Producto.selectNRC;XPATH;//input[@aria-label='NRC']
+Producto.selectProductoExistente;XPATH;//span[contains(@data-id, 'productid-error-message')]
+Producto.LabelMensajeDeseaguardarcambios;XPATH;/html/body/section[2]/div/div/div/div/div/div/div[2]/span
+Producto.LabelMensajeDescartarCambios;XPATH;//button[contains(@aria-label, 'Descartar cambios')]
