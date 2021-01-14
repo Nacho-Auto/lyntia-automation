@@ -58,7 +58,10 @@ namespace Lyntia.Utilities
 
         public void Instanciador()
         {
-            driver = new ChromeDriver(@"\chromedriver");
+            var chromeOptions = new ChromeOptions();
+            chromeOptions.AddArguments("headless");
+
+            driver = new ChromeDriver(chromeOptions);
 
             objRep = ObjectRepositoryUtils.Instance;
             objRep.TestDataReader(@"ObjectRepository.csv");
