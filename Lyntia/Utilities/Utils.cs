@@ -61,6 +61,7 @@ namespace Lyntia.Utilities
             var chromeOptions = new ChromeOptions();
             chromeOptions.AddArguments("headless");
             chromeOptions.AddArguments("window-size=1920x1080");
+
             driver = new ChromeDriver();
 
             objRep = ObjectRepositoryUtils.Instance;
@@ -96,7 +97,7 @@ namespace Lyntia.Utilities
         }
         public static string RandomString(int length)
         {
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.*?¿%$/()ºªÇ-Ñ";
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789*";
             return new string(Enumerable.Repeat(chars, length)
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
