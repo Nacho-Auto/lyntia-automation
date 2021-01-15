@@ -1,6 +1,7 @@
 ﻿using System;
 using Allure.Commons;
 using Lyntia.Utilities;
+using NUnit.Framework;
 using OpenQA.Selenium;
 
 namespace Lyntia.TestSet.Actions
@@ -27,7 +28,7 @@ namespace Lyntia.TestSet.Actions
                 Console.WriteLine("Se accede correctamente a Gestión de Cliente");
 
             }
-            catch (NoSuchElementException e)
+            catch (Exception e)
             {
                 CapturadorExcepcion(e, "AccesoGestionCliente.png", "No se pudo acceder a Gestión de Cliente");
             }
@@ -86,12 +87,15 @@ namespace Lyntia.TestSet.Actions
         {
             ((ITakesScreenshot)driver).GetScreenshot().SaveAsFile(fileName);
             AllureLifecycle.Instance.AddAttachment(fileName);
+            TestContext.AddTestAttachment(fileName);
 
             Console.WriteLine(message);
+            TestContext.AddTestAttachment(message);
 
             Console.WriteLine("---------------------");
             Console.WriteLine("---------------------");
             Console.WriteLine("Excepción: " + e);
+            TestContext.AddTestAttachment("Excepción: " + e);
         }
     }
 }

@@ -46,9 +46,12 @@ namespace Lyntia.TestSet.Actions
                     driver.FindElement(By.XPath("//span[contains(text(), '" + seccion + "')]")).Click(); //Opción escalable
                     Thread.Sleep(2000);
 
+                    Console.WriteLine("Se accede correctamente a la sección " + seccion);
+
                 }catch(Exception e)
                 {
                     CommonActions.CapturadorExcepcion(e, "AccesoSeccionOfertas.png", "No se pudo acceder a la sección " + seccion);
+                    driver.Quit();
                 }
             }
         }
@@ -58,8 +61,18 @@ namespace Lyntia.TestSet.Actions
         /// </summary>
         public void AccesoNuevaOferta()
         {
-            Utils.SearchWebElement("Oferta.newOferta").Click();
-            Thread.Sleep(3000);
+            try
+            {
+                Utils.SearchWebElement("Oferta.newOferta").Click();
+                Thread.Sleep(3000);
+
+                Console.WriteLine("Nueva Oferta creada correctamente");
+            }
+            catch (Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "AccesoNuevaOferta.png", "No se pudo crear una nueva Oferta");
+                driver.Quit();
+            }
         }
 
         /// <summary>
@@ -85,8 +98,18 @@ namespace Lyntia.TestSet.Actions
         /// </summary>
         public void GuardarOferta()
         {
-            Utils.SearchWebElement("Oferta.saveOferta").Click();
-            Thread.Sleep(3000);
+            try
+            {
+                Utils.SearchWebElement("Oferta.saveOferta").Click();
+                Thread.Sleep(3000);
+
+                Console.WriteLine("La Oferta se guarda correctamente");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "GuardarOferta.png", "No se pudo guardar la Oferta");
+                driver.Quit();
+            }  
         }
 
         /// <summary>
@@ -107,77 +130,82 @@ namespace Lyntia.TestSet.Actions
         /// <param name="kam"></param>
         public void RellenarCamposOferta(String nombre, String cliente, String tipoOferta, String kam)
         {
-
-            Utils.SearchWebElement("Oferta.inputNameOferta").Click();
-            Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Control + "a");
-            Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Delete);
-
-            if (!nombre.Equals(""))
+            try
             {
                 Utils.SearchWebElement("Oferta.inputNameOferta").Click();
                 Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Control + "a");
                 Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Delete);
 
-                // Rellenar Cliente de Oferta
-                Thread.Sleep(2000);
-                Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(nombre);
-                Thread.Sleep(1000);
+                if (!nombre.Equals(""))
+                {
+                    Utils.SearchWebElement("Oferta.inputNameOferta").Click();
+                    Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Control + "a");
+                    Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Delete);
 
+                    // Rellenar Cliente de Oferta
+                    Thread.Sleep(2000);
+                    Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(nombre);
+                    Thread.Sleep(1000);
+                }
+
+                if (!cliente.Equals(""))
+                {
+                    // Rellenar Cliente de Oferta
+                    accionesSelenium.SendKeys(Keys.PageDown);
+                    accionesSelenium.Build().Perform();
+                    Thread.Sleep(3000);
+
+                    Utils.SearchWebElement("Oferta.inputCustomerId").Click();
+                    Thread.Sleep(1000);
+                    Utils.SearchWebElement("Oferta.inputCustomerId").SendKeys(cliente);
+                    Thread.Sleep(1000);
+                    // Seleccionar cliente del desplegable
+                    driver.FindElement(By.XPath("//span[contains(text(), '" + cliente + "')]")).Click();
+                    Thread.Sleep(2000);
+                }
+
+                if (!tipoOferta.Equals(""))
+                {
+                    // Rellenar Tipo de Oferta
+                    accionesSelenium.SendKeys(Keys.PageDown);
+                    accionesSelenium.Build().Perform();
+
+                    SelectElement drop = new SelectElement(Utils.SearchWebElement("Oferta.selectOfertaType"));
+
+                    drop.SelectByText(tipoOferta);
+
+                    Utils.SearchWebElement("Oferta.inputReferenceOferta").SendKeys(Keys.PageDown);
+                }
+
+                if (!kam.Equals(""))
+                {
+                    // Rellenar Tipo de Oferta
+                    accionesSelenium.SendKeys(Keys.PageDown);
+                    accionesSelenium.Build().Perform();
+
+                    Thread.Sleep(1000);
+                    Utils.SearchWebElement("Oferta.kamResponsable").Click();
+                    Thread.Sleep(1000);
+
+                    Utils.SearchWebElement("Oferta.kamResponsable").SendKeys(Keys.Control + "a");
+                    Utils.SearchWebElement("Oferta.kamResponsable").SendKeys(Keys.Delete);
+
+                    Utils.SearchWebElement("Oferta.kamResponsable").SendKeys(kam);
+                    Thread.Sleep(1000);
+
+                    accionesSelenium.SendKeys(Keys.PageDown);
+                    accionesSelenium.Build().Perform();
+
+                    driver.FindElement(By.XPath("//span[contains(text(), '" + kam + "')]")).Click();
+                    Thread.Sleep(2000);
+                }
+
+                Console.WriteLine("Se han introducido correctamente los campos de la Oferta: " + nombre + ", " + cliente + ", " + tipoOferta + ", " + kam);
             }
-
-            if (!cliente.Equals(""))
+            catch(Exception e)
             {
-                // Rellenar Cliente de Oferta
-                accionesSelenium.SendKeys(Keys.PageDown);
-                accionesSelenium.Build().Perform();
-                Thread.Sleep(3000);
-
-                Utils.SearchWebElement("Oferta.inputCustomerId").Click();
-                Thread.Sleep(1000);
-                Utils.SearchWebElement("Oferta.inputCustomerId").SendKeys(cliente);
-                Thread.Sleep(1000);
-                // Seleccionar cliente del desplegable
-                driver.FindElement(By.XPath("//span[contains(text(), '" + cliente + "')]")).Click();
-                Thread.Sleep(2000);
-
-            }
-
-            if (!tipoOferta.Equals(""))
-            {
-                // Rellenar Tipo de Oferta
-                accionesSelenium.SendKeys(Keys.PageDown);
-                accionesSelenium.Build().Perform();
-
-                SelectElement drop = new SelectElement(Utils.SearchWebElement("Oferta.selectOfertaType"));
-
-                drop.SelectByText(tipoOferta);
-
-                Utils.SearchWebElement("Oferta.inputReferenceOferta").SendKeys(Keys.PageDown);
-
-            }
-
-            if (!kam.Equals(""))
-            {
-                // Rellenar Tipo de Oferta
-                accionesSelenium.SendKeys(Keys.PageDown);
-                accionesSelenium.Build().Perform();
-
-                Thread.Sleep(1000);
-                Utils.SearchWebElement("Oferta.kamResponsable").Click();
-                Thread.Sleep(1000);
-
-                Utils.SearchWebElement("Oferta.kamResponsable").SendKeys(Keys.Control + "a");
-                Utils.SearchWebElement("Oferta.kamResponsable").SendKeys(Keys.Delete);
-
-                Utils.SearchWebElement("Oferta.kamResponsable").SendKeys(kam);
-                Thread.Sleep(1000);
-
-                accionesSelenium.SendKeys(Keys.PageDown);
-                accionesSelenium.Build().Perform();
-
-                driver.FindElement(By.XPath("//span[contains(text(), '" + kam + "')]")).Click();
-                Thread.Sleep(2000);
-
+                CommonActions.CapturadorExcepcion(e, "AddDatosOferta.png", "No se introducen los datos de la Oferta: " + nombre + ", " + cliente + ", " + tipoOferta + ", " + kam);
+                driver.Quit();
             }
         }
 
@@ -530,6 +558,7 @@ namespace Lyntia.TestSet.Actions
             catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "Filtro_buscarEnestaVista.png", "No se ha podido filtrar correctamente la oferta");
+                driver.Quit();
             }
         }
 
