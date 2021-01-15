@@ -1,21 +1,12 @@
-﻿using Lyntia.TestSet.Actions;
-using Lyntia.Utilities;
+﻿using Lyntia.Utilities;
 using NUnit.Framework;
-using OpenQA.Selenium;
 using System.Threading;
 
 namespace Lyntia.TestSet.Conditions
 {
 
     public class ProductoConditions
-    {
-        private static IWebDriver driver;
-
-        public ProductoConditions()
-        {
-            driver = Utils.driver;
-        }
-
+    {     
         public void Resultado_Añadirproducto_vistarapida()
         {
             Assert.AreEqual(true, Utils.SearchWebElement("Producto.buttonCrearRegistroNuevo").Enabled);
@@ -81,7 +72,7 @@ namespace Lyntia.TestSet.Conditions
         public void Resultado_Editar_añadir_producto()
         {
             Assert.AreEqual("Creación rápida: Producto de oferta", Utils.SearchWebElement("Producto.h1QuickHeaderTitle").Text);
-            Assert.AreEqual("Tiene 3 notificaciones. Seleccione esta opción para verlas.", Utils.SearchWebElement("Producto.LabelNotificacionesPendientes2").Text);//Mensajes indicando que faltan campos
+            Assert.AreEqual("Tiene 3 notificaciones. Seleccione esta opción para verlas.", Utils.SearchWebElement("/Producto.LabelNotificacionesPendientes2").Text);//Mensajes indicando que faltan campos
             Assert.AreEqual("Producto existente: Es necesario rellenar los campos obligatorios.", Utils.SearchWebElement("Producto.selectProductoExistente").Text);//comprobamos advertencia Producto existente
             Assert.AreEqual("Uso (Línea de negocio): Es necesario rellenar los campos obligatorios.", Utils.SearchWebElement("Producto.LabelLineaNegCamposObligatorios").Text);//comprobamos advertencia Uso linea de negocio 
             Assert.AreEqual("Unidad de venta: Es necesario rellenar los campos obligatorios.", Utils.SearchWebElement("Producto.LabelUniVentaCamposObligatorios").Text);//comprobamos advertencia Unidad de venta

@@ -11,62 +11,85 @@ namespace Lyntia.TestSet.Actions
         readonly Utils utils = new Utils();
 
         private static IWebDriver driver;
+        private static WebDriverWait wait;
         private static OpenQA.Selenium.Interactions.Actions accionesSelenium;
 
         public ProductoActions()
         {
             driver = Utils.driver;
             accionesSelenium = new OpenQA.Selenium.Interactions.Actions(driver);
+            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(45));
         }
 
         public void CreacionProducto(String productoExistente, String uso, String unidadVenta)
         {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(45));
-
-            Utils.SearchWebElement("Producto.buttonAgregarProducto").Click();
-
-            // Seleccionar Producto existente del desplegable
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath(Utils.GetIdentifier("Producto.inputProductoExistente"))));
-            Thread.Sleep(3000);
-            Utils.SearchWebElement("Producto.inputProductoExistente").Click();
-            Thread.Sleep(1000);
-            Utils.SearchWebElement("Producto.inputProductoExistente").SendKeys(productoExistente);
-            Thread.Sleep(1000);
-
-            driver.FindElement(By.XPath("//span[contains(text(), '" + productoExistente + "')]")).Click();
-            Thread.Sleep(6000);
-
-            // Seleccionar Uso(Línea de negocio)
-            if (!uso.Equals(""))
+            try
             {
-                SelectElement drop = new SelectElement(Utils.SearchWebElement("Producto.SelectUsoLineaNegocio"));
-                drop.SelectByText(uso);
-            }
+                Utils.SearchWebElement("Producto.buttonAgregarProducto").Click();
 
+                // Seleccionar Producto existente del desplegable
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath(Utils.GetIdentifier("Producto.inputProductoExistente"))));
+                Thread.Sleep(3000);
+                Utils.SearchWebElement("Producto.inputProductoExistente").Click();
+                Thread.Sleep(1000);
+                Utils.SearchWebElement("Producto.inputProductoExistente").SendKeys(productoExistente);
+                Thread.Sleep(1000);
+
+                driver.FindElement(By.XPath("//span[contains(text(), '" + productoExistente + "')]")).Click();
+                Thread.Sleep(6000);
+
+                // Seleccionar Uso(Línea de negocio)
+                if (!uso.Equals(""))
+                {
+                    SelectElement drop = new SelectElement(Utils.SearchWebElement("Producto.SelectUsoLineaNegocio"));
+                    drop.SelectByText(uso);
+                }
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "AddProducto.png", "No se añaden correctamente los datos del Producto: " + productoExistente + ", " + uso + ", " + unidadVenta);
+                driver.Quit();
+            }
 
             if (!unidadVenta.Equals("") && utils.EncontrarElemento(By.XPath(Utils.GetIdentifier("Producto.inputUnidaddeVenta"))))
             {
                 // Seleccionar Producto existente del desplegable si esta vacio
                 if (utils.EncontrarElemento(By.XPath("//input[contains(@id,'Dropdown_uomid')]")))
                 {
-                    Utils.SearchWebElement("Producto.inputUnidaddeVenta").Click();
-                    Thread.Sleep(1000);
+                    try
+                    {
+                        Utils.SearchWebElement("Producto.inputUnidaddeVenta").Click();
+                        Thread.Sleep(1000);
 
-                    Utils.SearchWebElement("Producto.inputUnidaddeVenta").SendKeys(unidadVenta);
-                    Thread.Sleep(1000);
-                    Utils.SearchWebElement("Producto.inputUnidaddeVenta").SendKeys(Keys.Control + "a");
-                    Utils.SearchWebElement("Producto.inputUnidaddeVenta").SendKeys(Keys.Delete);
-                    Utils.SearchWebElement("Producto.inputUnidaddeVenta").SendKeys(unidadVenta);
-                    Thread.Sleep(1000);
+                        Utils.SearchWebElement("Producto.inputUnidaddeVenta").SendKeys(unidadVenta);
+                        Thread.Sleep(1000);
+                        Utils.SearchWebElement("Producto.inputUnidaddeVenta").SendKeys(Keys.Control + "a");
+                        Utils.SearchWebElement("Producto.inputUnidaddeVenta").SendKeys(Keys.Delete);
+                        Utils.SearchWebElement("Producto.inputUnidaddeVenta").SendKeys(unidadVenta);
+                        Thread.Sleep(1000);
+                        driver.FindElement(By.XPath("//span[contains(text(), '" + unidadVenta + "')]")).Click();
+                        Thread.Sleep(2000);
+                    }
+                    catch(Exception e)
+                    {
+                        CommonActions.CapturadorExcepcion(e, "AddProducto.png", "No se añaden correctamente los datos del Producto: " + productoExistente + ", " + uso + ", " + unidadVenta);
+                        driver.Quit();
+                    }
 
-                    driver.FindElement(By.XPath("//span[contains(text(), '" + unidadVenta + "')]")).Click();
-                    Thread.Sleep(2000);
+                    try
+                    {
+                        // Guardar y Cerrar Producto actual
+                        Utils.SearchWebElement("Producto.GuardarYCerrar_producto").Click();
+                        Thread.Sleep(10000);
+
+                        Console.WriteLine("Producto guardado correctamente: " + productoExistente + ", " + uso + ", " + unidadVenta);
+                    }catch(Exception e)
+                    {
+                        CommonActions.CapturadorExcepcion(e, "GuardarProducto.png", "El producto no fue creado: " + productoExistente + ", " + uso + ", " + unidadVenta);
+                        driver.Quit();
+                    }
                 }
-            }
-
-            // Guardar y Cerrar Producto actual
-            Utils.SearchWebElement("Producto.GuardarYCerrar_producto").Click();
-            Thread.Sleep(10000);
+            }    
         }
 
         public void Añadirproducto_vistarapida()
@@ -82,6 +105,7 @@ namespace Lyntia.TestSet.Actions
             catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "Añadir_producto_vista_rapida.png", "El producto en vista rapida no se ha añadido correctamente");
+                driver.Quit();
             }
         }
 
@@ -127,6 +151,7 @@ namespace Lyntia.TestSet.Actions
             catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "Agregar_servicio_heredado_y_guarda.png", "No se agrega un producto heredado correctamente y no se guarda");
+                driver.Quit();
             }
         }
 
@@ -204,6 +229,7 @@ namespace Lyntia.TestSet.Actions
             catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "Precio mensual, duracion del contrato y NRC.png", "Precio mensual, duracion del contrato y NRC no se guardan correctamente");
+                driver.Quit();
             }
         }
 
@@ -230,6 +256,7 @@ namespace Lyntia.TestSet.Actions
             catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "Agregar_Producto_tipo_circuito_de_capacidad.png", "El producto existente tipo circuito de capacidad no se ha añadido correctamente");
+                driver.Quit();
             }
         }
 
@@ -263,6 +290,7 @@ namespace Lyntia.TestSet.Actions
             catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "Agregar_Liena_de_nogocio_y_Unidad_de_venta.png", "La linea de negocio y la unidad de venta no se han agregado correctamente");
+                driver.Quit();
             }
         }
         public void Borrado_de_producto()//metodo por el cual borramos una linea de producto que anteriormente hemos dado de alta en añadir producto.
@@ -283,6 +311,7 @@ namespace Lyntia.TestSet.Actions
             catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "reestablecimiento de la prueba.png", "El reestablecimiento de la prueba no se ha realizado correctamente");
+                driver.Quit();
             }
         }
         public void Creacion_de_producto_tipo_cambio_de_capacidad(String ProdHeredado, String preciomen, String duracion, String NRC)//Metodo de añadir producto a un tipo de oferta cambio de capacidad

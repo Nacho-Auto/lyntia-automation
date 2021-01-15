@@ -23,7 +23,6 @@ namespace Lyntia.TestSet.Conditions
         {
             Assert.AreEqual(true, driver.FindElement(By.LinkText("Gestión del Cliente")).Enabled);
             Assert.AreEqual("Gestión del Cliente", driver.FindElement(By.LinkText("Gestión del Cliente")).Text);
-            ((ITakesScreenshot)driver).GetScreenshot().SaveAsFile("AccedeGestionCliente.png");
         }
 
         public void AccedeOferta()
