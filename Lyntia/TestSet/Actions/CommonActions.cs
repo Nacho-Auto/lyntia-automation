@@ -90,12 +90,10 @@ namespace Lyntia.TestSet.Actions
             TestContext.AddTestAttachment(fileName);
 
             Console.WriteLine(message);
-            TestContext.AddTestAttachment(message);
 
             Console.WriteLine("---------------------");
             Console.WriteLine("---------------------");
             Console.WriteLine("Excepción: " + e);
-            TestContext.AddTestAttachment("Excepción: " + e);
         }
     }
 }
