@@ -645,8 +645,7 @@ namespace Lyntia.TestSet
             // Eliminar las dos ofertas
             ofertaActions.SeleccionarTodasOfertaGrid();
 
-            ofertaActions.EliminarOfertaActual("Eliminar");
-
+            ofertaActions.EliminarOfertaActual("Eliminar");        
         }
 
         [Test(Description = "CRM_EOF0003 Editar campos de una Oferta")]

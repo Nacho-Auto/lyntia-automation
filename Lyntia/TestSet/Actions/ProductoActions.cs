@@ -48,7 +48,6 @@ namespace Lyntia.TestSet.Actions
             catch(Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "AddProducto.png", "No se añaden correctamente los datos del Producto: " + productoExistente + ", " + uso + ", " + unidadVenta);
-                driver.Quit();
             }
 
             if (!unidadVenta.Equals("") && utils.EncontrarElemento(By.XPath(Utils.GetIdentifier("Producto.inputUnidaddeVenta"))))
@@ -73,23 +72,21 @@ namespace Lyntia.TestSet.Actions
                     catch(Exception e)
                     {
                         CommonActions.CapturadorExcepcion(e, "AddProducto.png", "No se añaden correctamente los datos del Producto: " + productoExistente + ", " + uso + ", " + unidadVenta);
-                        driver.Quit();
-                    }
-
-                    try
-                    {
-                        // Guardar y Cerrar Producto actual
-                        Utils.SearchWebElement("Producto.GuardarYCerrar_producto").Click();
-                        Thread.Sleep(15000);
-
-                        Console.WriteLine("Producto guardado correctamente: " + productoExistente + ", " + uso + ", " + unidadVenta);
-                    }catch(Exception e)
-                    {
-                        CommonActions.CapturadorExcepcion(e, "GuardarProducto.png", "El producto no fue creado: " + productoExistente + ", " + uso + ", " + unidadVenta);
-                        driver.Quit();
                     }
                 }
-            }    
+            }
+            try
+            {
+                // Guardar y Cerrar Producto actual
+                Utils.SearchWebElement("Producto.GuardarYCerrar_producto").Click();
+                Thread.Sleep(15000);
+
+                Console.WriteLine("Producto guardado correctamente: " + productoExistente + ", " + uso + ", " + unidadVenta);
+            }
+            catch (Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "GuardarProducto.png", "El producto no fue creado: " + productoExistente + ", " + uso + ", " + unidadVenta);
+            }
         }
 
         public void Añadirproducto_vistarapida()
