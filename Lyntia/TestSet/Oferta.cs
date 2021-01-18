@@ -75,6 +75,8 @@ namespace Lyntia.TestSet
 
             // Paso 2A - Comprobar si hay alguna Oferta para abrir
             ofertaActions.AbrirOferta();
+
+            Console.WriteLine("LA PRUEBA CRM-COF0002 SE EJECUTÓ CORRECTAMENTE");
         }
 
         [Test(Description = "CRM-COF0003 Creación de Oferta")]
@@ -96,6 +98,7 @@ namespace Lyntia.TestSet
             ofertaActions.AccesoFechasOferta();
             ofertaCondition.FechasSinInformar();
 
+            Console.WriteLine("LA PRUEBA CRM-COF0003 SE EJECUTÓ CORRECTAMENTE");
         }
 
         [Test(Description = "CRM-COF0004 Creación de Oferta sin informar campos obligatorios")]
@@ -141,6 +144,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarYCerrarOferta();
             ofertaCondition.OfertaNoCreada();
 
+            Console.WriteLine("LA PRUEBA CRM-COF0004 SE EJECUTÓ CORRECTAMENTE");
         }
 
         [Test(Description = "CRM-COF0005 Creación de Oferta de tipo Nuevo servicio")]
@@ -191,6 +195,7 @@ namespace Lyntia.TestSet
 
             ofertaActions.EliminarOfertaActual("Eliminar");
 
+            Console.WriteLine("LA PRUEBA CRM-COF0005 SE EJECUTÓ CORRECTAMENTE");
         }
 
         [Test(Description = "CRM-COF0006 Creación de Oferta de tipo Cambio de capacidad")]
@@ -241,6 +246,7 @@ namespace Lyntia.TestSet
 
             ofertaActions.EliminarOfertaActual("Eliminar");
 
+            Console.WriteLine("LA PRUEBA CRM-COF0006 SE EJECUTÓ CORRECTAMENTE");
         }
 
         [Test(Description = "CRM-COF0007 Creación de Oferta de tipo Cambio de Precio/Renovación")]
@@ -291,6 +297,7 @@ namespace Lyntia.TestSet
 
             ofertaActions.EliminarOfertaActual("Eliminar");
 
+            Console.WriteLine("LA PRUEBA CRM-COF0007 SE EJECUTÓ CORRECTAMENTE");
         }
 
         [Test(Description = "CRM-COF0008 Creación de Oferta de tipo Cambio de Solución Técnica (Tecnología)")]
@@ -341,6 +348,7 @@ namespace Lyntia.TestSet
 
             ofertaActions.EliminarOfertaActual("Eliminar");
 
+            Console.WriteLine("LA PRUEBA CRM-COF0008 SE EJECUTÓ CORRECTAMENTE");
         }
 
         [Test(Description = "CRM-COF0009 Creación de Oferta de tipo Cambio de dirección (Migración)")]
@@ -391,6 +399,7 @@ namespace Lyntia.TestSet
 
             ofertaActions.EliminarOfertaActual("Eliminar");
 
+            Console.WriteLine("LA PRUEBA CRM-COF0009 SE EJECUTÓ CORRECTAMENTE");
         }
 
         [Test(Description = "CRM-COF0005 Eliminar Oferta en borrador con producto añadido")]
@@ -428,6 +437,8 @@ namespace Lyntia.TestSet
 
             // Paso 5 - Eliminar definitivamente
             ofertaActions.EliminarOfertaActual("Eliminar");
+
+            Console.WriteLine("LA PRUEBA CRM-COF0005 ELIMINAR SE EJECUTÓ CORRECTAMENTE");
         }
 
         [Test(Description = "CRM-COF0006 Eliminar Oferta en borrador con producto añadido desde el grid")]
@@ -473,6 +484,7 @@ namespace Lyntia.TestSet
 
             ofertaActions.EliminarOfertaActual("Eliminar");
 
+            Console.WriteLine("LA PRUEBA CRM-COF0006 ELIMINAR SE EJECUTÓ CORRECTAMENTE");
         }
 
         [Test(Description = "CRM-COF0007 Cerrar Oferta en borrador con producto añadido")]
@@ -532,6 +544,7 @@ namespace Lyntia.TestSet
 
             ofertaActions.EliminarOfertaActual("Eliminar");
 
+            Console.WriteLine("LA PRUEBA CRM-COF0007 CERRAR SE EJECUTÓ CORRECTAMENTE");
         }
 
         [Test(Description = "CRM-COF0008 Cerrar Oferta en borrador con producto añadido, No viable")]
@@ -582,6 +595,7 @@ namespace Lyntia.TestSet
 
             ofertaActions.EliminarOfertaActual("Eliminar");
 
+            Console.WriteLine("LA PRUEBA CRM-COF0008 CERRAR SE EJECUTÓ CORRECTAMENTE");
         }
 
         [Test(Description = "CRM-COF00010 Cerrar Oferta Presentada con producto añadido, Revisada")]
@@ -645,7 +659,9 @@ namespace Lyntia.TestSet
             // Eliminar las dos ofertas
             ofertaActions.SeleccionarTodasOfertaGrid();
 
-            ofertaActions.EliminarOfertaActual("Eliminar");        
+            ofertaActions.EliminarOfertaActual("Eliminar");
+
+            Console.WriteLine("LA PRUEBA CRM-COF0008 CERRAR ADJUDICADA SE EJECUTÓ CORRECTAMENTE");
         }
 
         [Test(Description = "CRM_EOF0003 Editar campos de una Oferta")]
@@ -674,6 +690,8 @@ namespace Lyntia.TestSet
 
             // Paso 6 - Reestablecer datos
             ofertaActions.Restablecimiento_CRM_COF0003();
+
+            Console.WriteLine("LA PRUEBA CRM-EOF0003 SE EJECUTÓ CORRECTAMENTE");
         }
 
 
@@ -709,6 +727,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarYCerrarOferta();
             ofertaActions.ReestablecerDatosCRM_EOF0004();
 
+            Console.WriteLine("LA PRUEBA CRM-EOF0004 SE EJECUTÓ CORRECTAMENTE");
         }
 
         [Test(Description = "CRM-COF0011 Eliminar una Oferta Adjudicada")]
@@ -754,6 +773,8 @@ namespace Lyntia.TestSet
 
             //ofertaActions.editarOferta();
             ofertaCondition.Resultado_Seleccionofertarazonadjudicada();
+
+            Console.WriteLine("LA PRUEBA CRM-COF0011 ELIMINAR SE EJECUTÓ CORRECTAMENTE");
         }
 
         [Test(Description = "CRM-COF0012 Cerrar Oferta Adjudicada")]
@@ -773,6 +794,7 @@ namespace Lyntia.TestSet
 
             ofertaCondition.CerrarOfertaNoVisible();
 
+            Console.WriteLine("LA PRUEBA CRM-COF0012 CERRAR SE EJECUTÓ CORRECTAMENTE");
         }
 
 
@@ -806,6 +828,8 @@ namespace Lyntia.TestSet
             ofertaActions.SeleccionarOfertaGrid();
 
             ofertaActions.EliminarOfertaActual("Eliminar");
+
+            Console.WriteLine("LA PRUEBA CRM-POF0001 SE EJECUTÓ CORRECTAMENTE");
         }
     }
 }

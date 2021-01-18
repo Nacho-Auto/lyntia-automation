@@ -23,11 +23,11 @@ namespace Lyntia.TestSet.Conditions
             Utils.SearchWebElement("Producto.buttonGuardaryContinuar").Click();//pulsamos en guardar y continuar de se comprueba que siguen faltando los campos
 
             //se comprueba que los campos continuan sin registro
-           // Assert.AreEqual("Tiene 2 notificaciones. Seleccione esta opción para verlas.", Utils.SearchWebElement("Producto.LabelNotificacionesPendientes2").Text);//Mensajes indicando que faltan campos
-           // Assert.AreEqual("Oferta: Es necesario rellenar los campos obligatorios.", Utils.SearchWebElement("Producto.LabelOfertaCamposObligatorios").Text);//Mensajes indicando que faltan campos
+            // Assert.AreEqual("Tiene 2 notificaciones. Seleccione esta opción para verlas.", Utils.SearchWebElement("Producto.LabelNotificacionesPendientes2").Text);//Mensajes indicando que faltan campos
+            // Assert.AreEqual("Oferta: Es necesario rellenar los campos obligatorios.", Utils.SearchWebElement("Producto.LabelOfertaCamposObligatorios").Text);//Mensajes indicando que faltan campos
             //Assert.AreEqual("Uso (Línea de negocio): Es necesario rellenar los campos obligatorios.", Utils.SearchWebElement("Producto.LabelLineaNegCamposObligatorios").Text);//comprobamos advertencia Uso linea de negocio
-           // Utils.SearchWebElement("Producto.buttonCancelar").Click();//boton cancelar añadir producto
-           // Utils.SearchWebElement("Producto.buttonCerrar").Click();//cerrar
+            // Utils.SearchWebElement("Producto.buttonCancelar").Click();//boton cancelar añadir producto
+            // Utils.SearchWebElement("Producto.buttonCerrar").Click();//cerrar
         }
 
         public void Resultado_Añadir_producto_ciercuito_de_capacidad()
