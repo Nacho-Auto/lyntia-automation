@@ -100,11 +100,18 @@ namespace Lyntia.TestSet.Conditions
 
         public void OfertaGuardadaCorrectamenteEnGrid()
         {
-            // Se encuentra en estado borrador
-            Assert.AreEqual("Borrador", driver.FindElement(By.XPath("//div[@data-id='cell-0-7']")).GetAttribute("title"));
+            try
+            {
+                // Se encuentra en estado borrador
+                Assert.AreEqual("Borrador", driver.FindElement(By.XPath("//div[@data-id='cell-0-7']")).GetAttribute("title"));
 
-            // Se encuentra en Razon para el estado En elaboracion
-            Assert.AreEqual("En elaboración", driver.FindElement(By.XPath("//div[@data-id='cell-0-8']")).GetAttribute("title"));
+                // Se encuentra en Razon para el estado En elaboracion
+                Assert.AreEqual("En elaboración", driver.FindElement(By.XPath("//div[@data-id='cell-0-8']")).GetAttribute("title"));
+                Console.WriteLine("*Se cumple la condición de Oferta guardada Correctamente.");
+            }catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "CondicionOfertaGuardada.png", "**No se cumple la condición de Oferta guardada Correctamente.");
+            }
         }
 
         public void AccederSeleccionOfertaAPR0001()

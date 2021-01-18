@@ -4,6 +4,7 @@ using OpenQA.Selenium.Chrome;
 using Lyntia.TestSet.Actions;
 using Lyntia.TestSet.Conditions;
 using System.Linq;
+using System.IO;
 
 namespace Lyntia.Utilities
 {
@@ -75,6 +76,7 @@ namespace Lyntia.Utilities
             commonActions = new CommonActions();
             commonCondition = new CommonConditions();
             randomString = RandomString(15);
+            BorradoScreenshots();
 
             driver.Navigate().GoToUrl("https://ufinetprep2.crm4.dynamics.com/");
             driver.Manage().Window.Maximize();
@@ -100,6 +102,22 @@ namespace Lyntia.Utilities
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789*";
             return new string(Enumerable.Repeat(chars, length)
               .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+
+        public void BorradoScreenshots()
+        {
+            DirectoryInfo Dr = new DirectoryInfo(Directory.GetCurrentDirectory());
+            FileInfo[] files = Dr.GetFiles("*.png").Where(p => p.Extension == ".png").ToArray();
+            foreach (FileInfo file in files)
+                try
+                {
+                    file.Attributes = FileAttributes.Normal;
+                    File.Delete(file.FullName);
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine(e);
+                }
         }
 
         public static IWebElement SearchWebElement(String identificador)

@@ -80,7 +80,7 @@ namespace Lyntia.TestSet.Actions
                     {
                         // Guardar y Cerrar Producto actual
                         Utils.SearchWebElement("Producto.GuardarYCerrar_producto").Click();
-                        Thread.Sleep(10000);
+                        Thread.Sleep(15000);
 
                         Console.WriteLine("Producto guardado correctamente: " + productoExistente + ", " + uso + ", " + unidadVenta);
                     }catch(Exception e)
