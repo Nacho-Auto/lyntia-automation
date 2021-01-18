@@ -75,7 +75,7 @@ Producto.buttonAgregarProducto;XPATH;//button[contains(@title,'Agregar producto'
 Producto.ListProductoOfertaPrimerregistro;XPATH;//div[contains(@aria-label, 'Seleccionar fila 2')]
 Producto.buttonEliminarProductodeOferta;XPATH;//span[contains(@aria-label, 'Eliminar Producto de oferta')]
 Producto.buttonMasComandos;XPATH;//button[@title='Más comandos para Producto de oferta']
-Producto.buttonEliminarProductodeOfertaConfirm;XPATH;//*[@id='confirmButtonText']
+Producto.buttonEliminarProductodeOfertaConfirm;XPATH;//html/body/section/div/div/div/div/section/div[1]/div/div/div/span[2]
 Producto.inputUnidaddeVenta;XPATH;//input[contains(@data-id,'uomid')]
 Producto.SelectUsoLineaNegocio;XPATH;//select[contains(@id,'uso')]
 Producto.inputProductoExistente;XPATH;//input[contains(@data-id,'productid')]
@@ -85,7 +85,7 @@ Producto.buttonCrearRegistroNuevo;ID;quickCreateLauncher_buttoncrm_header_global
 Producto.SelectCrearRegistroNuevoProductoDeOferta;XPATH;//div[contains(@data-id, '__flyoutRootNode')]//button
 Producto.LabelUniVentaCamposObligatorios;XPATH;//span[contains(@data-id, 'uomid-error-message')]
 Producto.LabelLineaNegCamposObligatorios;XPATH;//span[contains(@data-id, 'lyn_uso-error-message')]
-Producto.LabelNotificacionesPendientes2;XPATH;/html/body/section/div/div/div/div/section/div[1]/div/div/div/span[2]
+Producto.LabelNotificacionesPendientes2;XPATH;//*[@id='notificationWrapper11_message']
 Producto.LabelNotificacionesPendientes3;XPATH;/html/body/section/div/div/div/div/section/div[1]/div/div/div/span[2]
 Producto.LabelCambiosSeHanGuardado;XPATH;//span[contains(@title,'Los cambios se han guardado.')]
 Producto.buttonCancelar;XPATH;//button[contains(@aria-label, 'Cancelar')]

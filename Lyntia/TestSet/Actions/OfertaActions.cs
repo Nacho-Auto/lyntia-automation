@@ -80,8 +80,18 @@ namespace Lyntia.TestSet.Actions
         /// </summary>
         public void AbrirOferta()
         {
-            Utils.SearchWebElement("Oferta.firstFromGrid").Click();
-            Thread.Sleep(2000);
+            try
+            {
+                Utils.SearchWebElement("Oferta.firstFromGrid").Click();
+                Thread.Sleep(2000);
+
+                Console.WriteLine("La oferta se abre correctamente");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "AbrirOferta.png", "La oferta no se abre correctamente");
+                driver.Quit();
+            }
         }
 
         /// <summary>
@@ -89,8 +99,18 @@ namespace Lyntia.TestSet.Actions
         /// </summary>
         public void AccesoFechasOferta()
         {
-            // Click en pestaña Fechas
-            Utils.SearchWebElement("Oferta.datesSection").Click();
+            try
+            {
+                // Click en pestaña Fechas
+                Utils.SearchWebElement("Oferta.datesSection").Click();
+                Console.WriteLine("Se accede correctamente a la pestaña fechas de la oferta");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "AccesoFechasOferta.png", "No se accede correctamente a la pestaña fechas de la oferta");
+                driver.Quit();
+            }
+            
         }
 
         /// <summary>
@@ -117,8 +137,17 @@ namespace Lyntia.TestSet.Actions
         /// </summary>
         public void GuardarYCerrarOferta()
         {
-            Utils.SearchWebElement("Oferta.saveAndCloseOferta").Click();
-            Thread.Sleep(3000);
+            try
+            {
+                Utils.SearchWebElement("Oferta.saveAndCloseOferta").Click();
+                Thread.Sleep(3000);
+                Console.WriteLine("Se guarda y se cierra correctamente");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "GuardarYCerrarOferta.png", "No se guarda y cierra correctamente");
+                driver.Quit();
+            }
         }
 
         /// <summary>
@@ -216,26 +245,38 @@ namespace Lyntia.TestSet.Actions
         /// <param name="opcion"></param>
         public void EliminarOfertaActual(String opcion)
         {
-            // Click en Eliminar
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath(Utils.GetIdentifier("Oferta.deleteButtonOferta"))));
-            if (utils.EncontrarElemento(By.XPath(Utils.GetIdentifier("Oferta.deleteButtonOferta"))))
+            try
             {
-                Utils.SearchWebElement("Oferta.deleteButtonOferta").Click();
-
-                // Confirmar Borrado
-                if (opcion.Equals("Eliminar"))
+                // Click en Eliminar
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath(Utils.GetIdentifier("Oferta.deleteButtonOferta"))));
+                if (utils.EncontrarElemento(By.XPath(Utils.GetIdentifier("Oferta.deleteButtonOferta"))))
                 {
-                    Utils.SearchWebElement("Oferta.confirmDeleteOferta").Click();
-                    Thread.Sleep(4000);
+                    Utils.SearchWebElement("Oferta.deleteButtonOferta").Click();
 
-                }
-                else
-                {
-                    Utils.SearchWebElement("Oferta.cancelDeleteOferta").Click();
-                    Thread.Sleep(4000);
+                    // Confirmar Borrado
+                    if (opcion.Equals("Eliminar"))
+                    {
+                        Utils.SearchWebElement("Oferta.confirmDeleteOferta").Click();
+                        Thread.Sleep(4000);
 
+                    }
+                    else
+                    {
+                        Utils.SearchWebElement("Oferta.cancelDeleteOferta").Click();
+                        Thread.Sleep(4000);
+
+                        Console.WriteLine("La oferta se elimina correctamente");
+
+                    }
                 }
+               
             }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "EliminarOfertaActual.png", "La oferta no se elimina correctamente");
+                driver.Quit();
+            }
+            
         }
 
         /// <summary>
@@ -244,9 +285,19 @@ namespace Lyntia.TestSet.Actions
         /// <param name="parametroBusqueda"></param>
         public void BuscarOfertaEnVista(string parametroBusqueda)
         {
-            Utils.SearchWebElement("Oferta.inputQuickFindOferta").SendKeys(parametroBusqueda);
-            Utils.SearchWebElement("Oferta.buttonQuickFindOferta").Click();
-            Thread.Sleep(2000);
+            try
+            {
+                Utils.SearchWebElement("Oferta.inputQuickFindOferta").SendKeys(parametroBusqueda);
+                Utils.SearchWebElement("Oferta.buttonQuickFindOferta").Click();
+                Thread.Sleep(2000);
+
+                Console.WriteLine("La busqueda con el filtro funciona correctamente");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "BuscarOfertaEnVista", "La busqueda con el filtro no funciona correctamente");
+                driver.Quit();
+            }
 
         }
 
@@ -256,8 +307,17 @@ namespace Lyntia.TestSet.Actions
         /// <param name="nombreOferta"></param>
         public void AbrirOfertaEnVista(string nombreOferta)
         {
-            driver.FindElement(By.XPath("//a[@title='" + nombreOferta + "']")).Click();
-            Thread.Sleep(2000);
+            try
+            {
+                driver.FindElement(By.XPath("//a[@title='" + nombreOferta + "']")).Click();
+                Thread.Sleep(2000);
+                Console.WriteLine("La oferta se abre correctamente desde el filtro");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "AbrirOfertaEnVista.png", "La oferta no se abre correctamente desde el filtro");
+                driver.Quit();
+            }
 
         }
 
@@ -266,8 +326,17 @@ namespace Lyntia.TestSet.Actions
         /// </summary>
         public void SeleccionarOfertaGrid()
         {
-            Utils.SearchWebElement("Oferta.selectOfertaGrid").Click();
-            Thread.Sleep(2000);
+            try
+            {
+                Utils.SearchWebElement("Oferta.selectOfertaGrid").Click();
+                Thread.Sleep(2000);
+                Console.WriteLine("Se selecciona una oferta del grid correctamente");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "SeleecionarOfertaGrid.png", "No se selecciona una oferta del grid correctamente");
+                driver.Quit();
+            }
         }
 
         /// <summary>
@@ -275,48 +344,57 @@ namespace Lyntia.TestSet.Actions
         /// </summary>
         public void IntroduccirDatos()//Cumplimentar datos de la oferta(campos contacto, fecha...)
         {
-            // campos de la oferta
-            //Utils.SearchWebElement("Oferta.buttonSearchContact").Click(); //contacto oferta
-            //Thread.Sleep(2000);
+            try
+            {
+                // campos de la oferta
+                //Utils.SearchWebElement("Oferta.buttonSearchContact").Click(); //contacto oferta
+                //Thread.Sleep(2000);
 
-            Utils.SearchWebElement("Oferta.inputContactId").Click();
-            Thread.Sleep(1000);
-            Utils.SearchWebElement("Oferta.inputContactId").SendKeys("ddd ddd");
-            Thread.Sleep(1000);
-            
-            // Seleccionar contacto
-            //driver.FindElement(By.XPath("//span[contains(text(), 'ddd ddd')]")).Click();
-            //Thread.Sleep(2000);
+                Utils.SearchWebElement("Oferta.inputContactId").Click();
+                Thread.Sleep(1000);
+                Utils.SearchWebElement("Oferta.inputContactId").SendKeys("ddd ddd");
+                Thread.Sleep(1000);
 
-            Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys("Prueba_auto_NO_borrar_MODIFICADA");
-            Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.PageDown);
-            Thread.Sleep(2000);
+                // Seleccionar contacto
+                //driver.FindElement(By.XPath("//span[contains(text(), 'ddd ddd')]")).Click();
+                //Thread.Sleep(2000);
 
-            // Seleccionar referencia
+                Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys("Prueba_auto_NO_borrar_MODIFICADA");
+                Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.PageDown);
+                Thread.Sleep(2000);
 
-            Utils.SearchWebElement("Oferta.inputReferenceOferta").SendKeys("1234");
-            Thread.Sleep(1000);
+                // Seleccionar referencia
 
-            // Resto de campos
-            Utils.SearchWebElement("Oferta.labelPermutaDefault").SendKeys(Keys.Enter); //Toggle Switch
-            Utils.SearchWebElement("Oferta.inputCalendar").Click();
-            Utils.SearchWebElement("Oferta.calendarDateRandomDay").Click(); //seleccionamos fecha del calendario
-            Utils.SearchWebElement("Oferta.inputReferenceOferta").SendKeys(Keys.PageDown);
-            Thread.Sleep(3000);
+                Utils.SearchWebElement("Oferta.inputReferenceOferta").SendKeys("1234");
+                Thread.Sleep(1000);
 
-            Utils.SearchWebElement("Oferta.inputGVAL").SendKeys("prue123456");//Escribimos prue123456 en codigo gval
-            Utils.SearchWebElement("Oferta.inputCampoDescripcion").SendKeys("Prueba campo descripcion");//Escribimos Prueba campo descripcion en detalle de oferta
-            Thread.Sleep(3000);
+                // Resto de campos
+                Utils.SearchWebElement("Oferta.labelPermutaDefault").SendKeys(Keys.Enter); //Toggle Switch
+                Utils.SearchWebElement("Oferta.inputCalendar").Click();
+                Utils.SearchWebElement("Oferta.calendarDateRandomDay").Click(); //seleccionamos fecha del calendario
+                Utils.SearchWebElement("Oferta.inputReferenceOferta").SendKeys(Keys.PageDown);
+                Thread.Sleep(3000);
 
-            Utils.SearchWebElement("Oferta.buttonGuardar").Click();//Guardar
-            Thread.Sleep(3000);
-            Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.PageDown);
-            Thread.Sleep(2000);
-            Utils.SearchWebElement("Oferta.inputCalendar").Click();//Calendario
-            Utils.SearchWebElement("Oferta.calendarDateRandomDay").Click();//seleccionamos fecha del calendario
-            Utils.SearchWebElement("Oferta.LabelFechaspestaña").Click();//Pestaña fechas
-            Utils.SearchWebElement("Oferta.ButtonGuardarYcerrar").Click();//Guarda y cierra
-            Thread.Sleep(2000);
+                Utils.SearchWebElement("Oferta.inputGVAL").SendKeys("prue123456");//Escribimos prue123456 en codigo gval
+                Utils.SearchWebElement("Oferta.inputCampoDescripcion").SendKeys("Prueba campo descripcion");//Escribimos Prueba campo descripcion en detalle de oferta
+                Thread.Sleep(3000);
+
+                Utils.SearchWebElement("Oferta.buttonGuardar").Click();//Guardar
+                Thread.Sleep(3000);
+                Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.PageDown);
+                Thread.Sleep(2000);
+                Utils.SearchWebElement("Oferta.inputCalendar").Click();//Calendario
+                Utils.SearchWebElement("Oferta.calendarDateRandomDay").Click();//seleccionamos fecha del calendario
+                Utils.SearchWebElement("Oferta.LabelFechaspestaña").Click();//Pestaña fechas
+                Utils.SearchWebElement("Oferta.ButtonGuardarYcerrar").Click();//Guarda y cierra
+                Thread.Sleep(2000);
+                Console.WriteLine("La introduccion de datos de la oferta se ha realizado correctamente");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "IntroduccirDatos.png", "La introduccion de datos de la oferta no se ha realizado correctamente");
+                driver.Quit();
+            }
         }
 
         /// <summary>
@@ -324,15 +402,25 @@ namespace Lyntia.TestSet.Actions
         /// </summary>
         public void Tipo_de_oferta_Cambiodecapacidad()
         {
-            BuscarOfertaEnVista("Prueba-Auto_NO_borrarCRM-EOF0004");
-            AbrirOfertaEnVista("Prueba-Auto_NO_borrarCRM-EOF0004");
-            Thread.Sleep(3000);
+            try
+            {
+                BuscarOfertaEnVista("Prueba-Auto_NO_borrarCRM-EOF0004");
+                AbrirOfertaEnVista("Prueba-Auto_NO_borrarCRM-EOF0004");
+                Thread.Sleep(3000);
 
-            Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.PageDown);
+                Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.PageDown);
 
-            SelectElement drop = new SelectElement(Utils.SearchWebElement("Oferta.selectOfertaType"));
+                SelectElement drop = new SelectElement(Utils.SearchWebElement("Oferta.selectOfertaType"));
 
-            drop.SelectByText("Cambio de capacidad (Upgrade/Downgrade)");
+                drop.SelectByText("Cambio de capacidad (Upgrade/Downgrade)");
+
+                Console.WriteLine("Tipo de oferta cambio de capacidad OK");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "Tipo de oferta cambio de capacidad.png", "Tipo de oferta cambio de capacidad KO");
+                driver.Quit();
+            }
         }
 
         /// <summary>
@@ -340,11 +428,21 @@ namespace Lyntia.TestSet.Actions
         /// </summary>
         public void Tipo_de_oferta_Cambiodeprecio()
         {
-            Thread.Sleep(3000);
+            try
+            {
+                Thread.Sleep(3000);
 
-            SelectElement drop = new SelectElement(Utils.SearchWebElement("Oferta.selectOfertaType"));
+                SelectElement drop = new SelectElement(Utils.SearchWebElement("Oferta.selectOfertaType"));
 
-            drop.SelectByText("Cambio de precio/Renovación");
+                drop.SelectByText("Cambio de precio/Renovación");
+
+                Console.WriteLine("Tipo de oferta cambio de precio OK");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "Tipo_de_oferta_cambiodeprecio.png", "Tipo de oferta cambio de precio KO");
+                driver.Quit();
+            }
         }
 
         /// <summary>
@@ -352,11 +450,21 @@ namespace Lyntia.TestSet.Actions
         /// </summary>
         public void Tipo_de_oferta_Cambiodesolucion()
         {
-            Thread.Sleep(3000);
+            try
+            {
+                Thread.Sleep(3000);
 
-            SelectElement drop = new SelectElement(Utils.SearchWebElement("Oferta.selectOfertaType"));
+                SelectElement drop = new SelectElement(Utils.SearchWebElement("Oferta.selectOfertaType"));
 
-            drop.SelectByText("Cambio de solución técnica (Tecnología)");
+                drop.SelectByText("Cambio de solución técnica (Tecnología)");
+
+                Console.WriteLine("Tipo de oferta cambio de solucion OK");
+            }
+           catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "Tipo de oferta cambio de resolucion.png", "Tipo de oferta cambio de solucion KO");
+                driver.Quit();
+            }
         }
 
         /// <summary>
@@ -364,11 +472,21 @@ namespace Lyntia.TestSet.Actions
         /// </summary>
         public void Tipo_de_oferta_Cambiodedireccion()
         {
-            Thread.Sleep(3000);
+            try
+            {
+                Thread.Sleep(3000);
 
-            SelectElement drop = new SelectElement(Utils.SearchWebElement("Oferta.selectOfertaType"));
+                SelectElement drop = new SelectElement(Utils.SearchWebElement("Oferta.selectOfertaType"));
 
-            drop.SelectByText("Cambio de dirección (Migración)");
+                drop.SelectByText("Cambio de dirección (Migración)");
+
+                Console.WriteLine("Tipo de oferta cambio de direccion OK");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "Tipo de oferta cambio de direccion.png", "Tipo de oferta cambio de direccion KO");
+                driver.Quit();
+            }
         }
 
         /// <summary>
@@ -376,48 +494,58 @@ namespace Lyntia.TestSet.Actions
         /// </summary>
         public void Restablecimiento_CRM_COF0003()
         {
-            AbrirOfertaEnVista("Automatica_MODPrueba_auto_NO_borrar_MODIFICADA");
-            Utils.SearchWebElement("Oferta.inputNameOferta").Click();
-            Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Control + "a");
-            Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Delete);
-            Thread.Sleep(3000);
+            try
+            {
+                AbrirOfertaEnVista("Automatica_MODPrueba_auto_NO_borrar_MODIFICADA");
+                Utils.SearchWebElement("Oferta.inputNameOferta").Click();
+                Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Control + "a");
+                Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Delete);
+                Thread.Sleep(3000);
 
-            Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys("Automatica_MOD");
-            Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.PageDown);
+                Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys("Automatica_MOD");
+                Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.PageDown);
 
-            Utils.SearchWebElement("Oferta.calendarFechadepresentacion").SendKeys(Keys.Control + "a");
-            Utils.SearchWebElement("Oferta.calendarFechadepresentacion").SendKeys(Keys.Delete);
+                Utils.SearchWebElement("Oferta.calendarFechadepresentacion").SendKeys(Keys.Control + "a");
+                Utils.SearchWebElement("Oferta.calendarFechadepresentacion").SendKeys(Keys.Delete);
 
-            Utils.SearchWebElement("Oferta.inputReferenceOferta").SendKeys(Keys.PageDown);
-            Thread.Sleep(3000);
-            Utils.SearchWebElement("Oferta.labelPermutaDefaultReset").SendKeys(Keys.Enter); //Toggle Switch
-            Thread.Sleep(3000);
+                Utils.SearchWebElement("Oferta.inputReferenceOferta").SendKeys(Keys.PageDown);
+                Thread.Sleep(3000);
+                Utils.SearchWebElement("Oferta.labelPermutaDefaultReset").SendKeys(Keys.Enter); //Toggle Switch
+                Thread.Sleep(3000);
 
-           // Borrado contacto y referencia
+                // Borrado contacto y referencia
 
-            Utils.SearchWebElement("Oferta.inputContactId").SendKeys(Keys.Control + "a");
-            Utils.SearchWebElement("Oferta.inputContactId").SendKeys(Keys.Delete);
-            Thread.Sleep(2000);
-
-
-            Utils.SearchWebElement("Oferta.inputReferenceOferta").SendKeys(Keys.Control + "a");
-            Utils.SearchWebElement("Oferta.inputReferenceOferta").SendKeys(Keys.Delete);
-            Thread.Sleep(2000);
-            
+                Utils.SearchWebElement("Oferta.inputContactId").SendKeys(Keys.Control + "a");
+                Utils.SearchWebElement("Oferta.inputContactId").SendKeys(Keys.Delete);
+                Thread.Sleep(2000);
 
 
-            Utils.SearchWebElement("Oferta.inputGVAL").Click();
-            Utils.SearchWebElement("Oferta.inputGVAL").SendKeys(Keys.Control + "a");
-            Utils.SearchWebElement("Oferta.inputGVAL").SendKeys(Keys.Delete);
+                Utils.SearchWebElement("Oferta.inputReferenceOferta").SendKeys(Keys.Control + "a");
+                Utils.SearchWebElement("Oferta.inputReferenceOferta").SendKeys(Keys.Delete);
+                Thread.Sleep(2000);
 
-            Utils.SearchWebElement("Oferta.inputCampoDescripcion").Click();
-            Utils.SearchWebElement("Oferta.inputCampoDescripcion").SendKeys(Keys.Control + "a");
-            Utils.SearchWebElement("Oferta.inputCampoDescripcion").SendKeys(Keys.Delete);
-            Utils.SearchWebElement("Oferta.inputGVAL").Clear();
-            Thread.Sleep(3000);
 
-            Thread.Sleep(3000);
-            Utils.SearchWebElement("Oferta.ButtonGuardarYcerrar").Click();//Guarda y cierra
+
+                Utils.SearchWebElement("Oferta.inputGVAL").Click();
+                Utils.SearchWebElement("Oferta.inputGVAL").SendKeys(Keys.Control + "a");
+                Utils.SearchWebElement("Oferta.inputGVAL").SendKeys(Keys.Delete);
+
+                Utils.SearchWebElement("Oferta.inputCampoDescripcion").Click();
+                Utils.SearchWebElement("Oferta.inputCampoDescripcion").SendKeys(Keys.Control + "a");
+                Utils.SearchWebElement("Oferta.inputCampoDescripcion").SendKeys(Keys.Delete);
+                Utils.SearchWebElement("Oferta.inputGVAL").Clear();
+                Thread.Sleep(3000);
+
+                Thread.Sleep(3000);
+                Utils.SearchWebElement("Oferta.ButtonGuardarYcerrar").Click();//Guarda y cierra
+
+                Console.WriteLine("El reestablecimiento de la prueba se ha realizado correctamente");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "Reestablecimiento.png", "El reestablecimiento de la prueba no se ha realizado correctamente");
+                driver.Quit();
+            }
         }
 
         /// <summary>
@@ -450,96 +578,178 @@ namespace Lyntia.TestSet.Actions
         /// <param name="motivoCierre"></param>
         public void CerrarOfertaActual(string opcion, string razonOferta, string motivoCierre)
         {
-            // Click en Cerrar Oferta
-            Thread.Sleep(2000);
-            Utils.SearchWebElement("Oferta.buttonCerrar").Click();
-            Thread.Sleep(2000);
-
-            // Cambiar al frame de Cierre de Ofertas
-            driver.SwitchTo().Frame(Utils.SearchWebElement("Oferta.frameCerrarOferta"));
-
-            if (!razonOferta.Equals(""))
+            try
             {
-                SelectElement drop = new SelectElement(Utils.SearchWebElement("Oferta.selectRazonEstado"));
-                drop.SelectByText(razonOferta);
-            }
+                // Click en Cerrar Oferta
+                Thread.Sleep(2000);
+                Utils.SearchWebElement("Oferta.buttonCerrar").Click();
+                Thread.Sleep(2000);
 
-            if (!motivoCierre.Equals(""))
-            {
-                SelectElement drop = new SelectElement(Utils.SearchWebElement("Oferta.selectMotivoCierre"));
-                drop.SelectByText(motivoCierre);
-            }
+                // Cambiar al frame de Cierre de Ofertas
+                driver.SwitchTo().Frame(Utils.SearchWebElement("Oferta.frameCerrarOferta"));
 
-            if (opcion.Equals("Aceptar"))
-            {
-                // Cancelación realizada
-                Utils.SearchWebElement("Oferta.buttonConfirmarCierre").Click();
-                Thread.Sleep(3000);
+                if (!razonOferta.Equals(""))
+                {
+                    SelectElement drop = new SelectElement(Utils.SearchWebElement("Oferta.selectRazonEstado"));
+                    drop.SelectByText(razonOferta);
+                }
+
+                if (!motivoCierre.Equals(""))
+                {
+                    SelectElement drop = new SelectElement(Utils.SearchWebElement("Oferta.selectMotivoCierre"));
+                    drop.SelectByText(motivoCierre);
+                }
+
+                if (opcion.Equals("Aceptar"))
+                {
+                    // Cancelación realizada
+                    Utils.SearchWebElement("Oferta.buttonConfirmarCierre").Click();
+                    Thread.Sleep(3000);
+                }
+                else
+                {
+                    // Cancelación anulada
+                    Utils.SearchWebElement("Oferta.buttonCancelarCierre").Click();
+                    Thread.Sleep(3000);
+                    Console.WriteLine("La oferta actual se cierra correctamente");
+                }
             }
-            else
+            catch(Exception e)
             {
-                // Cancelación anulada
-                Utils.SearchWebElement("Oferta.buttonCancelarCierre").Click();
-                Thread.Sleep(3000);
+                CommonActions.CapturadorExcepcion(e, "CerrarOfertaActual.png", "La oferta actual no se cierra correctamente");
+                driver.Quit();
             }
+            
         }
 
         public void AccederOfertaestado_Adjudicada()
         {
-            driver.FindElement(By.XPath("//div[contains(@title, 'Ganada')]")).Click();//seleccionamos una oferta ganada y pulsamos sobre el ckeck
-            Thread.Sleep(3000);
+            try
+            {
+                driver.FindElement(By.XPath("//div[contains(@title, 'Ganada')]")).Click();//seleccionamos una oferta ganada y pulsamos sobre el ckeck
+                Thread.Sleep(3000);
+                Console.WriteLine("Se accede correctamente a un oferta en estado adjudicada");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "Acceder oferta estado adjudicada.png", "No se accede correctamente a una oferta en estado adjudicada");
+                driver.Quit();
+            }
         }
 
         public void FiltrarPorIDRevision(string idRevision)
         {
-            Utils.SearchWebElement("Oferta.gridFilterIdRevision").Click();
+            try
+            {
+                Utils.SearchWebElement("Oferta.gridFilterIdRevision").Click();
 
-            Utils.SearchWebElement("Oferta.gridFilterBuscarPor").Click();
-            Utils.SearchWebElement("Oferta.gridFilterBuscarPorInput").SendKeys(Keys.Control + "a");
-            Utils.SearchWebElement("Oferta.gridFilterBuscarPorInput").SendKeys(Keys.Delete);
+                Utils.SearchWebElement("Oferta.gridFilterBuscarPor").Click();
+                Utils.SearchWebElement("Oferta.gridFilterBuscarPorInput").SendKeys(Keys.Control + "a");
+                Utils.SearchWebElement("Oferta.gridFilterBuscarPorInput").SendKeys(Keys.Delete);
 
-            Utils.SearchWebElement("Oferta.gridFilterBuscarPorInput").SendKeys(idRevision);
-            Thread.Sleep(2000);
+                Utils.SearchWebElement("Oferta.gridFilterBuscarPorInput").SendKeys(idRevision);
+                Thread.Sleep(2000);
 
-            Utils.SearchWebElement("Oferta.gridFilterBuscarPorAceptarButton").Click();
-            Thread.Sleep(2000);
+                Utils.SearchWebElement("Oferta.gridFilterBuscarPorAceptarButton").Click();
+                Thread.Sleep(2000);
+                Console.WriteLine("El filtrado por IDRevision se realiza correctamente");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "FiltrarPorIDRevision.png", "El filtrado por IDRevision no se realiza correctamente");
+                driver.Quit();
+            }
         }
 
         public void SeleccionarTodasOfertaGrid()
         {
-            Utils.SearchWebElement("Oferta.gridSelectAll").Click();
-            Thread.Sleep(2000);
+            try
+            {
+                Utils.SearchWebElement("Oferta.gridSelectAll").Click();
+                Thread.Sleep(2000);
+                Console.WriteLine("Seleccionar todas ofertas del grid funciona correctamente");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "SeleccionarTodasOfertaGrid.png", "Seleccionar todas ofertas del grid no funciona correctamente");
+                driver.Quit();
+            }
         }
 
         public void Eliminar_BarraMenu()
         {
-            Utils.SearchWebElement("Oferta.buttonEliminar").Click();//pulsamos sobre eliminar de la barra superior del menu
+            try
+            {
+                Utils.SearchWebElement("Oferta.buttonEliminar").Click();//pulsamos sobre eliminar de la barra superior del menu
+                Console.WriteLine("Se pulsa correctamente con la barra de menu");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "Eliminar_barramenu.png", "No se pulsa correctamente sobre la opcion eliminar barra de menu");
+                driver.Quit();
+            }
         }
 
         public void Cancelar()
         {
-            Utils.SearchWebElement("Producto.buttonCancelar").Click();//cancelar del pop up
+            try
+            {
+                Utils.SearchWebElement("Producto.buttonCancelar").Click();//cancelar del pop up
+                Console.WriteLine("Se pulsa cancelar correctamente");
+            }
+           catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "Cancelar.png", "No se pulsa cancelar correctamente");
+                driver.Quit();
+            }
         }
 
         public void Seleccionofertarazonadjudicada()
         {
-            Thread.Sleep(3000);
-            Utils.SearchWebElement("Oferta.labelOfertaestadoGanada").Click();//seleccionamos una oferta ganada y pulsamos sobre el ckeck
-            Thread.Sleep(2000);
-            Utils.SearchWebElement("Oferta.buttonEditar").Click();//pulsamos sobre editar
-            Thread.Sleep(3000);
+            try
+            {
+                Thread.Sleep(3000);
+                Utils.SearchWebElement("Oferta.labelOfertaestadoGanada").Click();//seleccionamos una oferta ganada y pulsamos sobre el ckeck
+                Thread.Sleep(2000);
+                Utils.SearchWebElement("Oferta.buttonEditar").Click();//pulsamos sobre editar
+                Thread.Sleep(3000);
+                Console.WriteLine("se selecciona una oferta del listado y se edita correctamente");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "Seleccion de oferta razon adjudicada.png", "no se selecciona una oferta del listado y no se edita correctamente");
+                driver.Quit();
+            }
         }
 
         public void Eliminar_Popup()//pulsamos sobre el eliminar del popup
         {
-            Thread.Sleep(2000);
-            Utils.SearchWebElement("Producto.buttonEliminarProductodeOfertaConfirm").Click();
+            try
+            {
+                Thread.Sleep(2000);
+                Utils.SearchWebElement("Producto.buttonEliminarProductodeOfertaConfirm").Click();
+                Console.WriteLine("Se pulsa eliminar del pop up correctamene");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "Eliminar PopUp.png", "No se pulsa eliminar del pop up correctamene");
+                driver.Quit();
+            }
 
         }
 
         public void PresentarOferta()
         {
-            Utils.SearchWebElement("Oferta.buttonPresentOferta").Click();
+            try
+            {
+                Utils.SearchWebElement("Oferta.buttonPresentOferta").Click();
+                Console.WriteLine("Se pulsa presentar oferta correctamente");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "PresentarOferta.png", "No se pulsa presentar oferta correctamente");
+                driver.Quit();
+            }
         }
 
         public void Filtro_buscarEnestaVista(String busqueda)
@@ -564,15 +774,25 @@ namespace Lyntia.TestSet.Actions
 
         public void ReestablecerDatosCRM_EOF0004()
         {
-            //reestablece datos CRM-EOF0004
-            driver.FindElement(By.LinkText("Prueba-Auto_NO_borrarCRM-EOF0004")).Click();
-            Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.PageDown);
+            try
+            {
+                //reestablece datos CRM-EOF0004
+                driver.FindElement(By.LinkText("Prueba-Auto_NO_borrarCRM-EOF0004")).Click();
+                Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.PageDown);
 
-            SelectElement drop = new SelectElement(Utils.SearchWebElement("Oferta.selectOfertaType"));
+                SelectElement drop = new SelectElement(Utils.SearchWebElement("Oferta.selectOfertaType"));
 
-            drop.SelectByText("Nuevo servicio");
+                drop.SelectByText("Nuevo servicio");
 
-            GuardarYCerrarOferta();
+                GuardarYCerrarOferta();
+
+                Console.WriteLine("reestablecimiento de datos EOF0004 correcto");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "Reestablecimiento datos EOF0004.png", "reestablecimiento de datos EOF0004 incorrecto");
+                driver.Quit();
+            }
         }
     }
 }

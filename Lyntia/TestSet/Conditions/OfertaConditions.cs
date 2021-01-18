@@ -67,6 +67,7 @@ namespace Lyntia.TestSet.Conditions
 
         public void FechasInformadasCorrectamente()
         {
+
             // Assert de Fecha de creación vacía
             Assert.IsFalse(driver.FindElement(By.XPath("//input[contains(@data-id,'createdon')]")).GetAttribute("value").Equals(""));
 
