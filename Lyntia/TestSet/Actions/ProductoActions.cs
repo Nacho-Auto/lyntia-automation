@@ -98,7 +98,7 @@ namespace Lyntia.TestSet.Actions
             {
                 Utils.SearchWebElement("Producto.buttonCrearRegistroNuevo").Click();
                 driver.FindElements(By.XPath("//div[contains(@data-id, '__flyoutRootNode')]//button"))[5].Click();
-                Thread.Sleep(2000);
+                Thread.Sleep(3000);
 
                 Console.WriteLine("Se añade el producto en la vista rapida correctamente");
             }
@@ -316,29 +316,39 @@ namespace Lyntia.TestSet.Actions
         }
         public void Creacion_de_producto_tipo_cambio_de_capacidad(String ProdHeredado, String preciomen, String duracion, String NRC)//Metodo de añadir producto a un tipo de oferta cambio de capacidad
         {
-            // Click en "+ Agregar producto"
-            Utils.SearchWebElement("Producto.buttonAgregarProducto").Click();
-            Thread.Sleep(4000);
+            try
+            {
+                // Click en "+ Agregar producto"
+                Utils.SearchWebElement("Producto.buttonAgregarProducto").Click();
+                Thread.Sleep(4000);
 
-            //Metodo para ir cumplimentado los campos
-            Utils.SearchWebElement("Producto.inpuServicioHeredado").Click();
-            Thread.Sleep(1000);
-            Utils.SearchWebElement("Producto.inpuServicioHeredado").SendKeys(ProdHeredado);
-            Thread.Sleep(1000);
-            Utils.SearchWebElement("//span[contains(text(), '" + ProdHeredado + "')]").Click();
-            Thread.Sleep(6000);
-            Utils.SearchWebElement("Producto.inputPrecioMensual").Click();
-            Utils.SearchWebElement("Producto.inputPrecioMensual").SendKeys(preciomen);
-            Thread.Sleep(3000);
-            Utils.SearchWebElement("Producto.inputDuracionContrato").Click();
-            Utils.SearchWebElement("Producto.inputDuracionContrato").SendKeys(duracion);
-            Utils.SearchWebElement("Producto.inputDuracionContrato").SendKeys(Keys.PageDown);
-            Utils.SearchWebElement("Producto.inputNRC").Click();
-            Utils.SearchWebElement("Producto.inputNRC").SendKeys(NRC);
+                //Metodo para ir cumplimentado los campos
+                Utils.SearchWebElement("Producto.inpuServicioHeredado").Click();
+                Thread.Sleep(1000);
+                Utils.SearchWebElement("Producto.inpuServicioHeredado").SendKeys(ProdHeredado);
+                Thread.Sleep(1000);
+                Utils.SearchWebElement("//span[contains(text(), '" + ProdHeredado + "')]").Click();
+                Thread.Sleep(6000);
+                Utils.SearchWebElement("Producto.inputPrecioMensual").Click();
+                Utils.SearchWebElement("Producto.inputPrecioMensual").SendKeys(preciomen);
+                Thread.Sleep(3000);
+                Utils.SearchWebElement("Producto.inputDuracionContrato").Click();
+                Utils.SearchWebElement("Producto.inputDuracionContrato").SendKeys(duracion);
+                Utils.SearchWebElement("Producto.inputDuracionContrato").SendKeys(Keys.PageDown);
+                Utils.SearchWebElement("Producto.inputNRC").Click();
+                Utils.SearchWebElement("Producto.inputNRC").SendKeys(NRC);
 
-            // Guardar y Cerrar Producto actual
-            Utils.SearchWebElement("Producto.GuardarYCerrar_producto").Click();
-            Thread.Sleep(10000);
+                // Guardar y Cerrar Producto actual
+                Utils.SearchWebElement("Producto.GuardarYCerrar_producto").Click();
+                Thread.Sleep(10000);
+                
+                Console.WriteLine("Se crea correctamente un producto del tipo cambio de capacidad");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "Creacion_de_producto_tipo_cambio_de_capacidad.png", "No se crea correctamente un producto del tipo cambio de capacidad");
+                driver.Quit();
+            }
         }
 
         /// <summary>
@@ -346,13 +356,22 @@ namespace Lyntia.TestSet.Actions
         /// </summary>
         public void Editar_añadir_producto()
         {
-            Utils.SearchWebElement("Producto.buttonAgregarProducto").Click(); //pulsamos sobre agregar producto
-            if (utils.EncontrarElemento(By.XPath(Utils.GetIdentifier("Producto.GuardarYCerrar_producto"))))
+            try
             {
-                Thread.Sleep(2000);
-                Utils.SearchWebElement("Producto.GuardarYCerrar_producto").Click(); //guardamos
-                Thread.Sleep(3000);
-                Utils.SearchWebElement("Producto.GuardarYCerrar_producto").Click(); //guardamos y cerramos
+                Utils.SearchWebElement("Producto.buttonAgregarProducto").Click(); //pulsamos sobre agregar producto
+                if (utils.EncontrarElemento(By.XPath(Utils.GetIdentifier("Producto.GuardarYCerrar_producto"))))
+                {
+                    Thread.Sleep(2000);
+                    Utils.SearchWebElement("Producto.GuardarYCerrar_producto").Click(); //guardamos
+                    Thread.Sleep(3000);
+                    Utils.SearchWebElement("Producto.GuardarYCerrar_producto").Click(); //guardamos y cerramos
+                    Console.WriteLine("Se pulsa correctamente sobre agregar producto");
+                }
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "Editar_añadir_producto.png", "No se pulsa correctamente sobre agregar producto");
+                driver.Quit();
             }
         }
     }
