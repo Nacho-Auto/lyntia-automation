@@ -3,7 +3,7 @@ using System.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using Lyntia.Utilities;
-using Lyntia.TestSet.Conditions;
+using NUnit.Framework;
 
 namespace Lyntia.TestSet.Actions
 {
@@ -46,7 +46,7 @@ namespace Lyntia.TestSet.Actions
                     driver.FindElement(By.XPath("//span[contains(text(), '" + seccion + "')]")).Click(); //Opción escalable
                     Thread.Sleep(2000);
 
-                    Console.WriteLine("Se accede correctamente a la sección " + seccion);
+                    TestContext.WriteLine("Se accede correctamente a la sección " + seccion);
 
                 }
                 catch (Exception e)
@@ -67,7 +67,7 @@ namespace Lyntia.TestSet.Actions
                 Utils.SearchWebElement("Oferta.newOferta").Click();
                 Thread.Sleep(3000);
 
-                Console.WriteLine("Nueva Oferta creada correctamente");
+                TestContext.WriteLine("Nueva Oferta creada correctamente");
             }
             catch (Exception e)
             {
@@ -86,7 +86,7 @@ namespace Lyntia.TestSet.Actions
                 Utils.SearchWebElement("Oferta.firstFromGrid").Click();
                 Thread.Sleep(2000);
 
-                Console.WriteLine("Se accede a la primera Oferta del grid.");
+                TestContext.WriteLine("Se accede a la primera Oferta del grid.");
             }
             catch (Exception e)
             {
@@ -104,7 +104,7 @@ namespace Lyntia.TestSet.Actions
             {
                 Utils.SearchWebElement("Oferta.datesSection").Click();
 
-                Console.WriteLine("Se accede correctamente a la pestaña Fechas de la Oferta.");
+                TestContext.WriteLine("Se accede correctamente a la pestaña Fechas de la Oferta.");
             }
             catch (Exception e)
             {
@@ -123,7 +123,7 @@ namespace Lyntia.TestSet.Actions
                 Utils.SearchWebElement("Oferta.saveOferta").Click();
                 Thread.Sleep(3000);
 
-                Console.WriteLine("La Oferta se guarda correctamente.");
+                TestContext.WriteLine("La Oferta se guarda correctamente.");
             }
             catch (Exception e)
             {
@@ -142,7 +142,7 @@ namespace Lyntia.TestSet.Actions
                 Utils.SearchWebElement("Oferta.saveAndCloseOferta").Click();
                 Thread.Sleep(3000);
 
-                Console.WriteLine("La Oferta se guarda y cierra correctamente.");
+                TestContext.WriteLine("La Oferta se guarda y cierra correctamente.");
             }
             catch (Exception e)
             {
@@ -242,7 +242,7 @@ namespace Lyntia.TestSet.Actions
                     Thread.Sleep(2000);
                 }
 
-                Console.WriteLine("Se han introducido correctamente los campos de la Oferta: " + nombre + ", " + cliente + ", " + tipoOferta + ", " + kam + ".");
+                TestContext.WriteLine("Se han introducido correctamente los campos de la Oferta: " + nombre + ", " + cliente + ", " + tipoOferta + ", " + kam + ".");
             }
             catch (Exception e)
             {
@@ -271,13 +271,13 @@ namespace Lyntia.TestSet.Actions
                     {
                         Utils.SearchWebElement("Oferta.confirmDeleteOferta").Click();
                         Thread.Sleep(4000);
-                        Console.WriteLine("Se elimina la Oferta correctamente.");
+                        TestContext.WriteLine("Se elimina la Oferta correctamente.");
                     }
                     else
                     {
                         Utils.SearchWebElement("Oferta.cancelDeleteOferta").Click();
                         Thread.Sleep(4000);
-                        Console.WriteLine("Se cancela el proceso de eliminación.");
+                        TestContext.WriteLine("Se cancela el proceso de eliminación.");
                     }
                 }
                 catch (Exception e)
@@ -299,7 +299,7 @@ namespace Lyntia.TestSet.Actions
                 Utils.SearchWebElement("Oferta.inputQuickFindOferta").SendKeys(parametroBusqueda);
                 Utils.SearchWebElement("Oferta.buttonQuickFindOferta").Click();
                 Thread.Sleep(2000);
-                Console.WriteLine("Se busca la Oferta por parámetro: " + parametroBusqueda + ".");
+                TestContext.WriteLine("Se busca la Oferta por parámetro: " + parametroBusqueda + ".");
             }
             catch (Exception e)
             {
@@ -318,11 +318,11 @@ namespace Lyntia.TestSet.Actions
             {
                 driver.FindElement(By.XPath("//a[@title='" + nombreOferta + "']")).Click();
                 Thread.Sleep(2000);
-                Console.WriteLine("Se abre la Oferta " + nombreOferta + " se abre correctamente.");
+                TestContext.WriteLine("Se abre la Oferta " + nombreOferta + " se abre correctamente.");
             }
             catch (Exception e)
             {
-                CommonActions.CapturadorExcepcion(e, "AbrirOferta.png", "No se abre la Oferta " + nombreOferta + " se abre correctamente.");
+                CommonActions.CapturadorExcepcion(e, "AbrirOferta.png", "No se abre la Oferta " + nombreOferta + ".");
                 throw e;
             }
         }
@@ -336,7 +336,7 @@ namespace Lyntia.TestSet.Actions
             {
                 Utils.SearchWebElement("Oferta.selectOfertaGrid").Click();
                 Thread.Sleep(2000);
-                Console.WriteLine("Se selecciona la Oferta del grid.");
+                TestContext.WriteLine("Se selecciona la Oferta del grid.");
             }
             catch (Exception e)
             {
@@ -385,7 +385,7 @@ namespace Lyntia.TestSet.Actions
                 Utils.SearchWebElement("Oferta.LabelFechaspestaña").Click();//Pestaña fechas
                 Utils.SearchWebElement("Oferta.ButtonGuardarYcerrar").Click();//Guarda y cierra
                 Thread.Sleep(2000);
-                Console.WriteLine("Se modifican los datos de la prueba CRM-EOF0003.");
+                TestContext.WriteLine("Se modifican los datos de la prueba CRM-EOF0003.");
             }
             catch (Exception e)
             {
@@ -410,7 +410,7 @@ namespace Lyntia.TestSet.Actions
                 SelectElement drop = new SelectElement(Utils.SearchWebElement("Oferta.selectOfertaType"));
 
                 drop.SelectByText("Cambio de capacidad (Upgrade/Downgrade)");
-                Console.WriteLine("Se modifica el tipo de Oferta de la prueba CRM-EOF0004: Cambio de capacidad (Upgrade/Downgrade).");
+                TestContext.WriteLine("Se modifica el tipo de Oferta de la prueba CRM-EOF0004: Cambio de capacidad (Upgrade/Downgrade).");
             }
             catch (Exception e)
             {
@@ -431,7 +431,7 @@ namespace Lyntia.TestSet.Actions
                 SelectElement drop = new SelectElement(Utils.SearchWebElement("Oferta.selectOfertaType"));
 
                 drop.SelectByText("Cambio de precio/Renovación");
-                Console.WriteLine("Se modifica el tipo de Oferta de la prueba CRM-EOF0004: Cambio de precio/Renovación.");
+                TestContext.WriteLine("Se modifica el tipo de Oferta de la prueba CRM-EOF0004: Cambio de precio/Renovación.");
             }
             catch (Exception e)
             {
@@ -452,7 +452,7 @@ namespace Lyntia.TestSet.Actions
                 SelectElement drop = new SelectElement(Utils.SearchWebElement("Oferta.selectOfertaType"));
 
                 drop.SelectByText("Cambio de solución técnica (Tecnología)");
-                Console.WriteLine("Se modifica el tipo de Oferta de la prueba CRM-EOF0004: Cambio de solución técnica (Tecnología).");
+                TestContext.WriteLine("Se modifica el tipo de Oferta de la prueba CRM-EOF0004: Cambio de solución técnica (Tecnología).");
             }
             catch (Exception e)
             {
@@ -473,7 +473,7 @@ namespace Lyntia.TestSet.Actions
                 SelectElement drop = new SelectElement(Utils.SearchWebElement("Oferta.selectOfertaType"));
 
                 drop.SelectByText("Cambio de dirección (Migración)");
-                Console.WriteLine("Se modifica el tipo de Oferta de la prueba CRM-EOF0004: Cambio de dirección (Migración).");
+                TestContext.WriteLine("Se modifica el tipo de Oferta de la prueba CRM-EOF0004: Cambio de dirección (Migración).");
             }
             catch (Exception e)
             {
@@ -527,7 +527,7 @@ namespace Lyntia.TestSet.Actions
 
                 Thread.Sleep(3000);
                 Utils.SearchWebElement("Oferta.ButtonGuardarYcerrar").Click(); //Guarda y cierra
-                Console.WriteLine("Se reestablecen los datos originales de la prueba CRM-EOF0004.");
+                TestContext.WriteLine("Se reestablecen los datos originales de la prueba CRM-EOF0004.");
             }
             catch (Exception e)
             {
@@ -571,14 +571,14 @@ namespace Lyntia.TestSet.Actions
                     // Cierre realizado
                     Utils.SearchWebElement("Oferta.buttonConfirmarCierre").Click();
                     Thread.Sleep(3000);
-                    Console.WriteLine("Se completa correctamente el proceso de cierre de Oferta.");
+                    TestContext.WriteLine("Se completa correctamente el proceso de cierre de Oferta.");
                 }
                 else
                 {
                     // Cierre anulado
                     Utils.SearchWebElement("Oferta.buttonCancelarCierre").Click();
                     Thread.Sleep(3000);
-                    Console.WriteLine("Se cancela correctamente el proceso de cierre de Oferta.");
+                    TestContext.WriteLine("Se cancela correctamente el proceso de cierre de Oferta.");
                 }
             }
             catch (Exception e)
@@ -598,7 +598,7 @@ namespace Lyntia.TestSet.Actions
                 BuscarOfertaEnVista("test");
                 driver.FindElement(By.XPath("//div[contains(@title, 'Ganada')]")).Click();//seleccionamos una oferta ganada y pulsamos sobre el ckeck
                 Thread.Sleep(3000);
-                Console.WriteLine("Se accede a una Oferta Adjudicada.");
+                TestContext.WriteLine("Se accede a una Oferta Adjudicada.");
             }
             catch (Exception e)
             {
@@ -626,7 +626,7 @@ namespace Lyntia.TestSet.Actions
 
                 Utils.SearchWebElement("Oferta.gridFilterBuscarPorAceptarButton").Click();
                 Thread.Sleep(2000);
-                Console.WriteLine("Se filtra correctamente la Oferta por ID de revisión: " + idRevision + ".");
+                TestContext.WriteLine("Se filtra correctamente la Oferta por ID de revisión: " + idRevision + ".");
             }
             catch (Exception e)
             {
@@ -644,7 +644,7 @@ namespace Lyntia.TestSet.Actions
             {
                 Utils.SearchWebElement("Oferta.gridSelectAll").Click();
                 Thread.Sleep(2000);
-                Console.WriteLine("Se seleccionan todas las ofertas en vista del grid.");
+                TestContext.WriteLine("Se seleccionan todas las ofertas en vista del grid.");
             }
             catch (Exception e)
             {
@@ -661,7 +661,7 @@ namespace Lyntia.TestSet.Actions
             try
             {
                 Utils.SearchWebElement("Oferta.buttonEliminar").Click(); //pulsamos sobre eliminar de la barra superior del menu
-                Console.WriteLine("Se pulsa correctamente Eliminar.");
+                TestContext.WriteLine("Se pulsa correctamente Eliminar.");
             }
             catch (Exception e)
             {
@@ -678,7 +678,7 @@ namespace Lyntia.TestSet.Actions
             try
             {
                 Utils.SearchWebElement("Producto.buttonCancelar").Click(); //cancelar del pop up
-                Console.WriteLine("Se cancela el popup de error al intentar eliminar.");
+                TestContext.WriteLine("Se cancela el popup de error al intentar eliminar.");
             }
             catch (Exception e)
             {
@@ -700,7 +700,7 @@ namespace Lyntia.TestSet.Actions
                 Thread.Sleep(2000);
                 Utils.SearchWebElement("Oferta.buttonEditar").Click(); //pulsamos sobre editar
                 Thread.Sleep(3000);
-                Console.WriteLine("Se accede a Oferta adjudicada.");
+                TestContext.WriteLine("Se accede a Oferta adjudicada.");
             }
             catch (Exception e)
             {
@@ -718,7 +718,7 @@ namespace Lyntia.TestSet.Actions
             {
                 Thread.Sleep(2000);
                 Utils.SearchWebElement("Oferta.confirmDeleteOferta").Click();
-                Console.WriteLine("Se confirma el borrado desde el popup.");
+                TestContext.WriteLine("Se confirma el borrado desde el popup.");
             }
             catch (Exception e)
             {
@@ -735,7 +735,7 @@ namespace Lyntia.TestSet.Actions
             try
             {
                 Utils.SearchWebElement("Oferta.buttonPresentOferta").Click();
-                Console.WriteLine("Se accede a la ventana de Presentar Oferta.");
+                TestContext.WriteLine("Se accede a la ventana de Presentar Oferta.");
             }
             catch (Exception e)
             {
@@ -759,7 +759,7 @@ namespace Lyntia.TestSet.Actions
                 driver.FindElement(By.LinkText(busqueda)).Click();//click en la oferta
                 Thread.Sleep(3000);
 
-                Console.WriteLine("Se ha filtrado correctamente la oferta por: " + busqueda + ".");
+                TestContext.WriteLine("Se ha filtrado correctamente la oferta por: " + busqueda + ".");
             }
             catch (Exception e)
             {
@@ -784,7 +784,7 @@ namespace Lyntia.TestSet.Actions
                 drop.SelectByText("Nuevo servicio");
 
                 GuardarYCerrarOferta();
-                Console.WriteLine("Se reestablecen los datos de la prueba EOF0004.");           
+                TestContext.WriteLine("Se reestablecen los datos de la prueba EOF0004.");           
             }
             catch (Exception e)
             {

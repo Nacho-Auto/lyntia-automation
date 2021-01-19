@@ -6,8 +6,8 @@ using OpenQA.Selenium;
 
 namespace Lyntia.TestSet.Actions
 {
-	public class CommonActions
-	{
+    public class CommonActions
+    {
         private static IWebDriver driver;
 
         public CommonActions()
@@ -21,19 +21,18 @@ namespace Lyntia.TestSet.Actions
         public void AccesoGestionCliente()
         {
             try
-            { 
+            {
                 driver.SwitchTo().Frame(Utils.SearchWebElement("Modulo.frameModulos")); // Cambiar al frame de Apps   
                 Utils.SearchWebElement("Modulo.gestionCliente").Click(); //modulo gestion de clientes     
 
-                Console.WriteLine("Se accede correctamente a Gestión de Cliente");
-
+                TestContext.WriteLine("Se accede correctamente a Gestión de Cliente");
             }
             catch (Exception e)
             {
                 CapturadorExcepcion(e, "AccesoGestionCliente.png", "No se pudo acceder a Gestión de Cliente");
                 throw e;
             }
-        } 
+        }
 
         /// <summary>
         /// Acceso a la sección Ofertas en la barra lateral izquierda
@@ -43,15 +42,14 @@ namespace Lyntia.TestSet.Actions
             try
             {
                 driver.FindElement(By.XPath("//li[@title='Ofertas']")).Click();
-                Console.WriteLine("Se accede correctamente a sección de Ofertas");
+                TestContext.WriteLine("Se accede correctamente a sección de Ofertas");
 
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 CapturadorExcepcion(e, "AccesoOfertas.png", "No se pudo acceder a la sección de Ofertas");
                 throw e;
             }
-
         }
 
         /// <summary>
@@ -60,7 +58,7 @@ namespace Lyntia.TestSet.Actions
         public void Login()
         {
             try
-            { 
+            {
                 Utils.SearchWebElement("Login.firstInput").SendKeys("rgomezs.ext@lyntia.com"); //usuario de lyntia
                 Utils.SearchWebElement("Login.firstSubmitButton").Click();
                 Utils.SearchWebElement("Login.secondInput").Clear();
@@ -69,19 +67,19 @@ namespace Lyntia.TestSet.Actions
                 Utils.SearchWebElement("Login.secondSubmitButton").Click();
                 Utils.SearchWebElement("Login.notPersistanceButton").Click(); //Desea mantener la sesion iniciada NO
 
-                Console.WriteLine("Se realiza login de manera correcta");
-
+                TestContext.WriteLine("Se realiza login de manera correcta");
             }
             catch (Exception e)
             {
                 CapturadorExcepcion(e, "Login.png", "No se pudo realizar el login de forma correcta");
                 throw e;
             }
-
         }
 
         /// <summary>
-        /// Método capturador de excepciones, extensible a toda la aplicación
+        /// Método capturador de excepciones, extensible a toda la aplicación.
+        /// Realiza captura en formato .png del momento del error, histórico de
+        /// la prueba y la excepción completa.
         /// </summary>
         /// <param name="e"></param>
         /// <param name="fileName"></param>
@@ -92,11 +90,11 @@ namespace Lyntia.TestSet.Actions
             AllureLifecycle.Instance.AddAttachment(fileName);
             TestContext.AddTestAttachment(fileName);
 
-            Console.WriteLine(message);
+            TestContext.WriteLine(message);
 
-            Console.WriteLine("---------------------");
-            Console.WriteLine("---------------------");
-            Console.WriteLine("Excepción: " + e);
+            TestContext.WriteLine("-------------------- - ");
+            TestContext.WriteLine("-------------------- - ");
+            TestContext.WriteLine("Excepción: " + e);
         }
     }
 }

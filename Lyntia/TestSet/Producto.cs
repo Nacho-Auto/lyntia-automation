@@ -67,7 +67,7 @@ namespace Lyntia.TestSet
             productoActions.Editar_añadir_producto();//se pulsa añadir producto en la pestaña general y realizamos unas comprobaciones
             productoCondition.Resultado_Editar_añadir_producto();//se verifican cambios
 
-            
+            TestContext.WriteLine("LA PRUEBA CRM-APR0001 SE EJECUTÓ CORRECTAMENTE");
         }
 
         [Test(Description = "CRM-APR0002 Añadir producto correctamente")]
@@ -85,6 +85,8 @@ namespace Lyntia.TestSet
             //Paso 3
             productoActions.Añadirproducto_vistarapida();//entramos en añadir producto vista rapida
             productoCondition.Resultado2_Editar_añadir_producto();//se accede a pantalla añadir producto
+
+            TestContext.WriteLine("LA PRUEBA CRM-APR0002 SE EJECUTÓ CORRECTAMENTE");
         }
 
         //CRM-APR0003
@@ -109,11 +111,13 @@ namespace Lyntia.TestSet
             productoCondition.Resultado_Agregar_Producto_tipo_circuito_de_capacidad();//se realizan comprobaciones
 
             //Paso 6
-            productoActions.Agregar_Liena_de_negocio_y_Unidad_de_venta("FTTT", "10");
+            productoActions.Agregar_Linea_de_negocio_y_Unidad_de_venta("FTTT", "10");
             productoCondition.Resultado_Agregar_Linea_de_negocio_y_Unidad_de_venta();
 
             // Reestablece datos
             productoActions.Borrado_de_producto();
+
+            TestContext.WriteLine("LA PRUEBA CRM-APR0003 SE EJECUTÓ CORRECTAMENTE");
         }
         //CRM-APR0008
         [Test(Description = "CRM-APR0008 Añadir producto correctamente, Cambio de Capacidad")]
@@ -142,6 +146,7 @@ namespace Lyntia.TestSet
             // Reestablece datos
             productoActions.Borrado_de_producto();
 
+            TestContext.WriteLine("LA PRUEBA CRM-APR0008 SE EJECUTÓ CORRECTAMENTE");
         }
     }
 }

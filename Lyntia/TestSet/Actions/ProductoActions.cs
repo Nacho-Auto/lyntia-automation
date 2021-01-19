@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using Lyntia.Utilities;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
@@ -83,7 +84,7 @@ namespace Lyntia.TestSet.Actions
                 Utils.SearchWebElement("Producto.GuardarYCerrar_producto").Click();
                 Thread.Sleep(15000);
 
-                Console.WriteLine("Producto guardado correctamente: " + productoExistente + ", " + uso + ", " + unidadVenta);
+                TestContext.WriteLine("Producto guardado correctamente: " + productoExistente + ", " + uso + ", " + unidadVenta);
             }
             catch (Exception e)
             {
@@ -100,7 +101,7 @@ namespace Lyntia.TestSet.Actions
                 driver.FindElements(By.XPath("//div[contains(@data-id, '__flyoutRootNode')]//button"))[5].Click();
                 Thread.Sleep(3000);
 
-                Console.WriteLine("Se añade el producto en la vista rapida correctamente");
+                TestContext.WriteLine("Se añade el producto en la vista rapida correctamente");
             }
             catch (Exception e)
             {
@@ -144,7 +145,7 @@ namespace Lyntia.TestSet.Actions
                 Thread.Sleep(2000);
                 Utils.SearchWebElement("Producto.GuardarYCerrar_producto").Click();//Guarda y cierra
 
-                Console.WriteLine("Se agrega un producto heredado correctamente y se guarda");
+                TestContext.WriteLine("Se agrega un producto heredado correctamente y se guarda");
             }
             catch (Exception e)
             {
@@ -222,7 +223,7 @@ namespace Lyntia.TestSet.Actions
                 Utils.SearchWebElement("Producto.GuardarYCerrar_producto").Click();//Guarda y cierra
                 Thread.Sleep(10000);
 
-                Console.WriteLine("Precio mensual, duracion del contrato y NRC se guardan correctamente");
+                TestContext.WriteLine("Precio mensual, duracion del contrato y NRC se guardan correctamente");
             }
             catch (Exception e)
             {
@@ -249,7 +250,7 @@ namespace Lyntia.TestSet.Actions
                 Utils.SearchWebElement("Producto.GuardarYCerrar_producto").Click();
                 Thread.Sleep(3000);
 
-                Console.WriteLine("El producto existente tipo circuito de capacidad se ha añadido correctamente");
+                TestContext.WriteLine("El producto existente tipo circuito de capacidad se ha añadido correctamente");
             }
             catch (Exception e)
             {
@@ -258,7 +259,7 @@ namespace Lyntia.TestSet.Actions
             }
         }
 
-        public void Agregar_Liena_de_negocio_y_Unidad_de_venta(String uso, String unidadVenta)
+        public void Agregar_Linea_de_negocio_y_Unidad_de_venta(String uso, String unidadVenta)
         {
             // Seleccionar Uso(Línea de negocio)
             SelectElement drop = new SelectElement(driver.FindElement(By.XPath("//select[contains(@id,'uso')]")));
@@ -285,14 +286,22 @@ namespace Lyntia.TestSet.Actions
                 }
                 catch (Exception e)
                 {
-                    CommonActions.CapturadorExcepcion(e, "Agregar_Liena_de_nogocio_y_Unidad_de_venta.png", "La linea de negocio y la unidad de venta no se han agregado correctamente");
+                    CommonActions.CapturadorExcepcion(e, "AddLineaNegocioProducto.png", "La linea de negocio y la unidad de venta no se han agregado correctamente.");
                     throw e;
                 }
-            }    
-            Utils.SearchWebElement("Producto.GuardarYCerrar_producto").Click(); //guardamos y cerramos
-            Thread.Sleep(14000);
+            }
 
-            Console.WriteLine("La linea de negocio y la unidad de venta se han agregado correctamente"); 
+            try
+            {
+                Utils.SearchWebElement("Producto.GuardarYCerrar_producto").Click(); //guardamos y cerramos
+                Thread.Sleep(14000);
+
+                TestContext.WriteLine("***El producto se guarda de manera correcta.");
+            }catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "Agregar_Linea_de_negocio_y_Unidad_de_venta.png", "La linea de negocio y la unidad de venta no se han agregado correctamente");
+                throw e;
+            }
         }
 
         public void Borrado_de_producto()//metodo por el cual borramos una linea de producto que anteriormente hemos dado de alta en añadir producto.
@@ -310,11 +319,11 @@ namespace Lyntia.TestSet.Actions
                 Utils.SearchWebElement("Oferta.confirmDeleteOferta").Click();
                 Thread.Sleep(3000);
 
-                Console.WriteLine("El reestablecimiento de la prueba se ha realizado correctamente");
+                TestContext.WriteLine("El reestablecimiento de la prueba se ha realizado correctamente");
             }
             catch (Exception e)
             {
-                CommonActions.CapturadorExcepcion(e, "reestablecimiento de la prueba.png", "El reestablecimiento de la prueba no se ha realizado correctamente");
+                CommonActions.CapturadorExcepcion(e, "ReestablecimientoPrueba.png", "El reestablecimiento de la prueba no se ha realizado correctamente");
                 throw e;
             }
         }
@@ -346,7 +355,7 @@ namespace Lyntia.TestSet.Actions
                 Utils.SearchWebElement("Producto.GuardarYCerrar_producto").Click();
                 Thread.Sleep(10000);
                 
-                Console.WriteLine("Se crea correctamente un producto del tipo cambio de capacidad");
+                TestContext.WriteLine("Se crea correctamente un producto del tipo cambio de capacidad");
             }
             catch(Exception e)
             {
@@ -369,7 +378,7 @@ namespace Lyntia.TestSet.Actions
                     Utils.SearchWebElement("Producto.GuardarYCerrar_producto").Click(); //guardamos
                     Thread.Sleep(3000);
                     Utils.SearchWebElement("Producto.GuardarYCerrar_producto").Click(); //guardamos y cerramos
-                    Console.WriteLine("Se pulsa correctamente sobre agregar producto");
+                    TestContext.WriteLine("Se pulsa correctamente sobre agregar producto");
                 }
             }
             catch(Exception e)

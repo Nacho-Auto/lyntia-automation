@@ -59,7 +59,7 @@ namespace Lyntia.TestSet
             // Paso 1 - Hacer click en Ofertas
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
 
-            Console.WriteLine("LA PRUEBA CRM-COF0001 SE EJECUTÓ CORRECTAMENTE");
+            TestContext.WriteLine("LA PRUEBA CRM-COF0001 SE EJECUTÓ CORRECTAMENTE");
         }
 
         [Test(Description = "CRM-COF0002 Consultar Oferta")]
@@ -76,7 +76,7 @@ namespace Lyntia.TestSet
             // Paso 2A - Comprobar si hay alguna Oferta para abrir
             ofertaActions.AbrirOferta();
 
-            Console.WriteLine("LA PRUEBA CRM-COF0002 SE EJECUTÓ CORRECTAMENTE");
+            TestContext.WriteLine("LA PRUEBA CRM-COF0002 SE EJECUTÓ CORRECTAMENTE");
         }
 
         [Test(Description = "CRM-COF0003 Creación de Oferta")]
@@ -98,7 +98,7 @@ namespace Lyntia.TestSet
             ofertaActions.AccesoFechasOferta();
             ofertaCondition.FechasSinInformar();
 
-            Console.WriteLine("LA PRUEBA CRM-COF0003 SE EJECUTÓ CORRECTAMENTE");
+            TestContext.WriteLine("LA PRUEBA CRM-COF0003 SE EJECUTÓ CORRECTAMENTE");
         }
 
         [Test(Description = "CRM-COF0004 Creación de Oferta sin informar campos obligatorios")]
@@ -144,7 +144,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarYCerrarOferta();
             ofertaCondition.OfertaNoCreada();
 
-            Console.WriteLine("LA PRUEBA CRM-COF0004 SE EJECUTÓ CORRECTAMENTE");
+            TestContext.WriteLine("LA PRUEBA CRM-COF0004 SE EJECUTÓ CORRECTAMENTE");
         }
 
         [Test(Description = "CRM-COF0005 Creación de Oferta de tipo Nuevo servicio")]
@@ -195,7 +195,7 @@ namespace Lyntia.TestSet
 
             ofertaActions.EliminarOfertaActual("Eliminar");
 
-            Console.WriteLine("LA PRUEBA CRM-COF0005 SE EJECUTÓ CORRECTAMENTE");
+            TestContext.WriteLine("LA PRUEBA CRM-COF0005 SE EJECUTÓ CORRECTAMENTE");
         }
 
         [Test(Description = "CRM-COF0006 Creación de Oferta de tipo Cambio de capacidad")]
@@ -213,12 +213,12 @@ namespace Lyntia.TestSet
             ofertaActions.AccesoNuevaOferta();
 
             // Paso 3 - Rellenar campos y click en Guardar
-            ofertaActions.RellenarCamposOferta("CRM-COF0006", "CLIENTE INTEGRACION", "Cambio de capacidad (Upgrade/Downgrade)", "# BizQA");
+            ofertaActions.RellenarCamposOferta("CRM-COF0006E_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Cambio de capacidad (Upgrade/Downgrade)", "# BizQA");
             ofertaActions.GuardarOferta();
 
             driver.Navigate().Refresh();
 
-            ofertaCondition.OfertaGuardadaCorrectamente("CRM-COF0006", "Cambio de capacidad (Upgrade/Downgrade)");
+            ofertaCondition.OfertaGuardadaCorrectamente("CRM-COF0006E_" + Utils.GetRandomString(), "Cambio de capacidad (Upgrade/Downgrade)");
 
             ofertaActions.AccesoFechasOferta();
             ofertaCondition.FechasInformadasCorrectamente();
@@ -230,23 +230,23 @@ namespace Lyntia.TestSet
             // Paso 4 - Crear Nueva Oferta, pulsando Guardar y cerrar
             ofertaActions.AccesoNuevaOferta();
 
-            ofertaActions.RellenarCamposOferta("CRM-COF0006", "CLIENTE INTEGRACION", "Cambio de capacidad (Upgrade/Downgrade)", "# BizQA");
+            ofertaActions.RellenarCamposOferta("CRM-COF0006E_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Cambio de capacidad (Upgrade/Downgrade)", "# BizQA");
             ofertaActions.GuardarYCerrarOferta();
 
             // Buscar Oferta creada
-            ofertaActions.BuscarOfertaEnVista("CRM-COF0006");
+            ofertaActions.BuscarOfertaEnVista("CRM-COF0006E_" + Utils.GetRandomString());
             ofertaCondition.OfertaGuardadaCorrectamenteEnGrid();
 
             // Paso 5 - Abrir la oferta anterior y comprobar datos cumplimentados
-            ofertaActions.AbrirOfertaEnVista("CRM-COF0006");
-            ofertaCondition.OfertaGuardadaCorrectamente("CRM-COF0006", "Cambio de capacidad (Upgrade/Downgrade)");
+            ofertaActions.AbrirOfertaEnVista("CRM-COF0006E_" + Utils.GetRandomString());
+            ofertaCondition.OfertaGuardadaCorrectamente("CRM-COF0006E_" + Utils.GetRandomString(), "Cambio de capacidad (Upgrade/Downgrade)");
 
             ofertaActions.AccesoFechasOferta();
             ofertaCondition.FechasInformadasCorrectamente();
 
             ofertaActions.EliminarOfertaActual("Eliminar");
 
-            Console.WriteLine("LA PRUEBA CRM-COF0006 SE EJECUTÓ CORRECTAMENTE");
+            TestContext.WriteLine("LA PRUEBA CRM-COF0006 SE EJECUTÓ CORRECTAMENTE");
         }
 
         [Test(Description = "CRM-COF0007 Creación de Oferta de tipo Cambio de Precio/Renovación")]
@@ -264,12 +264,12 @@ namespace Lyntia.TestSet
             ofertaActions.AccesoNuevaOferta();
 
             // Paso 3 - Rellenar campos y click en Guardar
-            ofertaActions.RellenarCamposOferta("CRM-COF0007", "CLIENTE INTEGRACION", "Cambio de precio/Renovación", "# BizQA");
+            ofertaActions.RellenarCamposOferta("CRM-COF0007_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Cambio de precio/Renovación", "# BizQA");
             ofertaActions.GuardarOferta();
 
             driver.Navigate().Refresh();
 
-            ofertaCondition.OfertaGuardadaCorrectamente("CRM-COF0007", "Cambio de precio/Renovación");
+            ofertaCondition.OfertaGuardadaCorrectamente("CRM-COF0007_" + Utils.GetRandomString(), "Cambio de precio/Renovación");
 
             ofertaActions.AccesoFechasOferta();
             ofertaCondition.FechasInformadasCorrectamente();
@@ -281,23 +281,23 @@ namespace Lyntia.TestSet
             // Paso 4 - Crear Nueva Oferta, pulsando Guardar y cerrar
             ofertaActions.AccesoNuevaOferta();
 
-            ofertaActions.RellenarCamposOferta("CRM-COF0007", "CLIENTE INTEGRACION", "Cambio de precio/Renovación", "# BizQA");
+            ofertaActions.RellenarCamposOferta("CRM-COF0007_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Cambio de precio/Renovación", "# BizQA");
             ofertaActions.GuardarYCerrarOferta();
 
             // Buscar Oferta creada
-            ofertaActions.BuscarOfertaEnVista("CRM-COF0007");
+            ofertaActions.BuscarOfertaEnVista("CRM-COF0007_" + Utils.GetRandomString());
             ofertaCondition.OfertaGuardadaCorrectamenteEnGrid();
 
             // Paso 5 - Abrir la oferta anterior y comprobar datos cumplimentados
-            ofertaActions.AbrirOfertaEnVista("CRM-COF0007");
-            ofertaCondition.OfertaGuardadaCorrectamente("CRM-COF0007", "Cambio de precio/Renovación");
+            ofertaActions.AbrirOfertaEnVista("CRM-COF0007_" + Utils.GetRandomString());
+            ofertaCondition.OfertaGuardadaCorrectamente("CRM-COF0007_" + Utils.GetRandomString(), "Cambio de precio/Renovación");
 
             ofertaActions.AccesoFechasOferta();
             ofertaCondition.FechasInformadasCorrectamente();
 
             ofertaActions.EliminarOfertaActual("Eliminar");
 
-            Console.WriteLine("LA PRUEBA CRM-COF0007 SE EJECUTÓ CORRECTAMENTE");
+            TestContext.WriteLine("LA PRUEBA CRM-COF0007 SE EJECUTÓ CORRECTAMENTE");
         }
 
         [Test(Description = "CRM-COF0008 Creación de Oferta de tipo Cambio de Solución Técnica (Tecnología)")]
@@ -315,12 +315,12 @@ namespace Lyntia.TestSet
             ofertaActions.AccesoNuevaOferta();
 
             // Paso 3 - Rellenar campos y click en Guardar
-            ofertaActions.RellenarCamposOferta("CRM-COF0008", "CLIENTE INTEGRACION", "Cambio de solución técnica (Tecnología)", "# BizQA");
+            ofertaActions.RellenarCamposOferta("CRM-COF0008_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Cambio de solución técnica (Tecnología)", "# BizQA");
             ofertaActions.GuardarOferta();
 
             driver.Navigate().Refresh();
 
-            ofertaCondition.OfertaGuardadaCorrectamente("CRM-COF0008", "Cambio de solución técnica (Tecnología)");
+            ofertaCondition.OfertaGuardadaCorrectamente("CRM-COF0008_" + Utils.GetRandomString(), "Cambio de solución técnica (Tecnología)");
 
             ofertaActions.AccesoFechasOferta();
             ofertaCondition.FechasInformadasCorrectamente();
@@ -332,23 +332,23 @@ namespace Lyntia.TestSet
             // Paso 4 - Crear Nueva Oferta, pulsando Guardar y cerrar
             ofertaActions.AccesoNuevaOferta();
 
-            ofertaActions.RellenarCamposOferta("CRM-COF0008", "CLIENTE INTEGRACION", "Cambio de solución técnica (Tecnología)", "# BizQA");
+            ofertaActions.RellenarCamposOferta("CRM-COF0008_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Cambio de solución técnica (Tecnología)", "# BizQA");
             ofertaActions.GuardarYCerrarOferta();
 
             // Buscar Oferta creada
-            ofertaActions.BuscarOfertaEnVista("CRM-COF0008");
+            ofertaActions.BuscarOfertaEnVista("CRM-COF0008_" + Utils.GetRandomString());
             ofertaCondition.OfertaGuardadaCorrectamenteEnGrid();
 
             // Paso 5 - Abrir la oferta anterior y comprobar datos cumplimentados
-            ofertaActions.AbrirOfertaEnVista("CRM-COF0008");
-            ofertaCondition.OfertaGuardadaCorrectamente("CRM-COF0008", "Cambio de solución técnica (Tecnología)");
+            ofertaActions.AbrirOfertaEnVista("CRM-COF0008_" + Utils.GetRandomString());
+            ofertaCondition.OfertaGuardadaCorrectamente("CRM-COF0008_" + Utils.GetRandomString(), "Cambio de solución técnica (Tecnología)");
 
             ofertaActions.AccesoFechasOferta();
             ofertaCondition.FechasInformadasCorrectamente();
 
             ofertaActions.EliminarOfertaActual("Eliminar");
 
-            Console.WriteLine("LA PRUEBA CRM-COF0008 SE EJECUTÓ CORRECTAMENTE");
+            TestContext.WriteLine("LA PRUEBA CRM-COF0008 SE EJECUTÓ CORRECTAMENTE");
         }
 
         [Test(Description = "CRM-COF0009 Creación de Oferta de tipo Cambio de dirección (Migración)")]
@@ -366,12 +366,12 @@ namespace Lyntia.TestSet
             ofertaActions.AccesoNuevaOferta();
 
             // Paso 3 - Rellenar campos y click en Guardar
-            ofertaActions.RellenarCamposOferta("CRM-COF0009", "CLIENTE INTEGRACION", "Cambio de dirección (Migración)", "# BizQA");
+            ofertaActions.RellenarCamposOferta("CRM-COF0009_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Cambio de dirección (Migración)", "# BizQA");
             ofertaActions.GuardarOferta();
 
             driver.Navigate().Refresh();
 
-            ofertaCondition.OfertaGuardadaCorrectamente("CRM-COF0009", "Cambio de dirección (Migración)");
+            ofertaCondition.OfertaGuardadaCorrectamente("CRM-COF0009_" + Utils.GetRandomString(), "Cambio de dirección (Migración)");
 
             ofertaActions.AccesoFechasOferta();
             ofertaCondition.FechasInformadasCorrectamente();
@@ -383,23 +383,23 @@ namespace Lyntia.TestSet
             // Paso 4 - Crear Nueva Oferta, pulsando Guardar y cerrar
             ofertaActions.AccesoNuevaOferta();
 
-            ofertaActions.RellenarCamposOferta("CRM-COF0009", "CLIENTE INTEGRACION", "Cambio de dirección (Migración)", "# BizQA");
+            ofertaActions.RellenarCamposOferta("CRM-COF0009_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Cambio de dirección (Migración)", "# BizQA");
             ofertaActions.GuardarYCerrarOferta();
 
             // Buscar Oferta creada
-            ofertaActions.BuscarOfertaEnVista("CRM-COF0009");
+            ofertaActions.BuscarOfertaEnVista("CRM-COF0009_" + Utils.GetRandomString());
             ofertaCondition.OfertaGuardadaCorrectamenteEnGrid();
 
             // Paso 5 - Abrir la oferta anterior y comprobar datos cumplimentados
-            ofertaActions.AbrirOfertaEnVista("CRM-COF0009");
-            ofertaCondition.OfertaGuardadaCorrectamente("CRM-COF0009", "Cambio de dirección (Migración)");
+            ofertaActions.AbrirOfertaEnVista("CRM-COF0009_" + Utils.GetRandomString());
+            ofertaCondition.OfertaGuardadaCorrectamente("CRM-COF0009_" + Utils.GetRandomString(), "Cambio de dirección (Migración)");
 
             ofertaActions.AccesoFechasOferta();
             ofertaCondition.FechasInformadasCorrectamente();
 
             ofertaActions.EliminarOfertaActual("Eliminar");
 
-            Console.WriteLine("LA PRUEBA CRM-COF0009 SE EJECUTÓ CORRECTAMENTE");
+            TestContext.WriteLine("LA PRUEBA CRM-COF0009 SE EJECUTÓ CORRECTAMENTE");
         }
 
         [Test(Description = "CRM-COF0005 Eliminar Oferta en borrador con producto añadido")]
@@ -438,7 +438,7 @@ namespace Lyntia.TestSet
             // Paso 5 - Eliminar definitivamente
             ofertaActions.EliminarOfertaActual("Eliminar");
 
-            Console.WriteLine("LA PRUEBA CRM-COF0005 ELIMINAR SE EJECUTÓ CORRECTAMENTE");
+            TestContext.WriteLine("LA PRUEBA CRM-COF0005 ELIMINAR SE EJECUTÓ CORRECTAMENTE");
         }
 
         [Test(Description = "CRM-COF0006 Eliminar Oferta en borrador con producto añadido desde el grid")]
@@ -455,7 +455,7 @@ namespace Lyntia.TestSet
             // Paso 2 - Acceder a una Oferta que esté en estado Borrador con producto añadido.
             ofertaActions.AccesoNuevaOferta();
 
-            ofertaActions.RellenarCamposOferta("CRM-COF0006-ELIMINAR", "CLIENTE INTEGRACION", "Nuevo servicio", "# BizQA");
+            ofertaActions.RellenarCamposOferta("CRM-COF0006-ELIMINAR_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Nuevo servicio", "# BizQA");
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la Oferta
@@ -465,7 +465,7 @@ namespace Lyntia.TestSet
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
 
             // Paso 2 Seleccionar la Oferta del grid
-            ofertaActions.BuscarOfertaEnVista("CRM-COF0006-ELIMINAR");
+            ofertaActions.BuscarOfertaEnVista("CRM-COF0006-ELIMINAR_" + Utils.GetRandomString());
             ofertaCondition.OfertaGuardadaCorrectamenteEnGrid();
 
             // Seleccionar la Oferta del grid
@@ -476,7 +476,7 @@ namespace Lyntia.TestSet
 
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
 
-            ofertaActions.BuscarOfertaEnVista("CRM-COF0006-ELIMINAR");
+            ofertaActions.BuscarOfertaEnVista("CRM-COF0006-ELIMINAR_" + Utils.GetRandomString());
             ofertaCondition.OfertaGuardadaCorrectamenteEnGrid();
 
             // Paso 4 - Repetir paso anterior eliminando la oferta
@@ -484,7 +484,7 @@ namespace Lyntia.TestSet
 
             ofertaActions.EliminarOfertaActual("Eliminar");
 
-            Console.WriteLine("LA PRUEBA CRM-COF0006 ELIMINAR SE EJECUTÓ CORRECTAMENTE");
+            TestContext.WriteLine("LA PRUEBA CRM-COF0006 ELIMINAR SE EJECUTÓ CORRECTAMENTE");
         }
 
         [Test(Description = "CRM-COF0007 Cerrar Oferta en borrador con producto añadido")]
@@ -501,7 +501,7 @@ namespace Lyntia.TestSet
             // Paso 2 - Acceder a una Oferta que esté en estado Borrador con producto añadido.
             ofertaActions.AccesoNuevaOferta();
 
-            ofertaActions.RellenarCamposOferta("CRM-COF0007-CIERRE", "CLIENTE INTEGRACION", "Nuevo servicio", "# BizQA");
+            ofertaActions.RellenarCamposOferta("CRM-COF0007-CIERRE_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Nuevo servicio", "# BizQA");
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la Oferta
@@ -511,12 +511,12 @@ namespace Lyntia.TestSet
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
 
             // Paso 2 Seleccionar la Oferta del grid
-            ofertaActions.BuscarOfertaEnVista("CRM-COF0007-CIERRE");
+            ofertaActions.BuscarOfertaEnVista("CRM-COF0007-CIERRE_" + Utils.GetRandomString());
             ofertaCondition.OfertaGuardadaCorrectamenteEnGrid();
 
             // Seleccionar la Oferta del grid
             ofertaActions.SeleccionarOfertaGrid();
-            ofertaActions.AbrirOfertaEnVista("CRM-COF0007-CIERRE");
+            ofertaActions.AbrirOfertaEnVista("CRM-COF0007-CIERRE_" + Utils.GetRandomString());
 
             // Paso 3 y 4 - Pulsar Cerrar en la barra de herramientas y cancelar el cierre
             ofertaActions.CerrarOfertaActual("Cancelar", "Cancelada", "Sin información");
@@ -536,7 +536,7 @@ namespace Lyntia.TestSet
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
 
             // Paso 7 - Repetir el paso anterior pero cerrando de manera correcta
-            ofertaActions.BuscarOfertaEnVista("CRM-COF0007-CIERRE");
+            ofertaActions.BuscarOfertaEnVista("CRM-COF0007-CIERRE_" + Utils.GetRandomString());
             ofertaCondition.OfertaCerradaCorrectamenteEnGrid("Cancelada");
 
             // Eliminar Oferta
@@ -544,7 +544,7 @@ namespace Lyntia.TestSet
 
             ofertaActions.EliminarOfertaActual("Eliminar");
 
-            Console.WriteLine("LA PRUEBA CRM-COF0007 CERRAR SE EJECUTÓ CORRECTAMENTE");
+            TestContext.WriteLine("LA PRUEBA CRM-COF0007 CERRAR SE EJECUTÓ CORRECTAMENTE");
         }
 
         [Test(Description = "CRM-COF0008 Cerrar Oferta en borrador con producto añadido, No viable")]
@@ -561,22 +561,22 @@ namespace Lyntia.TestSet
             // Paso 2 - Acceder a una Oferta que esté en estado Borrador con producto añadido.
             ofertaActions.AccesoNuevaOferta();
 
-            ofertaActions.RellenarCamposOferta("CRM-COF0008-CIERRE", "CLIENTE INTEGRACION", "Nuevo servicio", "# BizQA");
+            ofertaActions.RellenarCamposOferta("CRM-COF0008-CIERRE_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Nuevo servicio", "# BizQA");
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la Oferta
-            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps");
+            productoActions.CreacionProducto("Circuitos de capacidad_" + Utils.GetRandomString(), "FTTT", "3 Mbps");
 
             // Volver al grid
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
 
             // Paso 2 Seleccionar la Oferta del grid
-            ofertaActions.BuscarOfertaEnVista("CRM-COF0008-CIERRE");
+            ofertaActions.BuscarOfertaEnVista("CRM-COF0008-CIERRE_" + Utils.GetRandomString());
             ofertaCondition.OfertaGuardadaCorrectamenteEnGrid();
 
             // Seleccionar la Oferta del grid
             ofertaActions.SeleccionarOfertaGrid();
-            ofertaActions.AbrirOfertaEnVista("CRM-COF0008-CIERRE");
+            ofertaActions.AbrirOfertaEnVista("CRM-COF0008-CIERRE_" + Utils.GetRandomString());
 
             // Paso 6 - Repetir el paso anterior pero cerrando de manera correcta
             ofertaActions.CerrarOfertaActual("Aceptar", "No viable", "Sin información");
@@ -587,7 +587,7 @@ namespace Lyntia.TestSet
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
 
             // Paso 7 - Repetir el paso anterior pero cerrando de manera correcta
-            ofertaActions.BuscarOfertaEnVista("CRM-COF0008-CIERRE");
+            ofertaActions.BuscarOfertaEnVista("CRM-COF0008-CIERRE_" + Utils.GetRandomString());
             ofertaCondition.OfertaCerradaCorrectamenteEnGrid("No viable");
 
             // Eliminar Oferta
@@ -595,7 +595,7 @@ namespace Lyntia.TestSet
 
             ofertaActions.EliminarOfertaActual("Eliminar");
 
-            Console.WriteLine("LA PRUEBA CRM-COF0008 CERRAR SE EJECUTÓ CORRECTAMENTE");
+            TestContext.WriteLine("LA PRUEBA CRM-COF0008 CERRAR SE EJECUTÓ CORRECTAMENTE");
         }
 
         [Test(Description = "CRM-COF00010 Cerrar Oferta Presentada con producto añadido, Revisada")]
@@ -661,7 +661,7 @@ namespace Lyntia.TestSet
 
             ofertaActions.EliminarOfertaActual("Eliminar");
 
-            Console.WriteLine("LA PRUEBA CRM-COF0008 CERRAR ADJUDICADA SE EJECUTÓ CORRECTAMENTE");
+            TestContext.WriteLine("LA PRUEBA CRM-COF0008 CERRAR ADJUDICADA SE EJECUTÓ CORRECTAMENTE");
         }
 
         [Test(Description = "CRM_EOF0003 Editar campos de una Oferta")]
@@ -691,7 +691,7 @@ namespace Lyntia.TestSet
             // Paso 6 - Reestablecer datos
             ofertaActions.Restablecimiento_CRM_COF0003();
 
-            Console.WriteLine("LA PRUEBA CRM-EOF0003 SE EJECUTÓ CORRECTAMENTE");
+            TestContext.WriteLine("LA PRUEBA CRM-EOF0003 SE EJECUTÓ CORRECTAMENTE");
         }
 
 
@@ -775,7 +775,7 @@ namespace Lyntia.TestSet
             //ofertaActions.editarOferta();
             ofertaCondition.Resultado_Seleccionofertarazonadjudicada();
 
-            Console.WriteLine("LA PRUEBA CRM-COF0011 ELIMINAR SE EJECUTÓ CORRECTAMENTE");
+            TestContext.WriteLine("LA PRUEBA CRM-COF0011 ELIMINAR SE EJECUTÓ CORRECTAMENTE");
         }
 
         [Test(Description = "CRM-COF0012 Cerrar Oferta Adjudicada")]
@@ -795,7 +795,7 @@ namespace Lyntia.TestSet
 
             ofertaCondition.CerrarOfertaNoVisible();
 
-            Console.WriteLine("LA PRUEBA CRM-COF0012 CERRAR SE EJECUTÓ CORRECTAMENTE");
+            TestContext.WriteLine("LA PRUEBA CRM-COF0012 CERRAR SE EJECUTÓ CORRECTAMENTE");
         }
 
 
@@ -814,7 +814,7 @@ namespace Lyntia.TestSet
             ofertaActions.AccesoNuevaOferta();
 
             // Rellenar campos y click en Guardar
-            ofertaActions.RellenarCamposOferta("CRM-POF0001-PRESENTAR", "CLIENTE INTEGRACION", "Cambio de capacidad (Upgrade/Downgrade)", "# BizQA");
+            ofertaActions.RellenarCamposOferta("CRM-POF0001-PRESENTAR_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Cambio de capacidad (Upgrade/Downgrade)", "# BizQA");
             ofertaActions.GuardarOferta();
 
             // Paso 3 - Presentar la oferta
@@ -823,14 +823,14 @@ namespace Lyntia.TestSet
             // Paso 4 - Regresar al grid, verificar oferta
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
 
-            ofertaActions.BuscarOfertaEnVista("CRM-POF0001-PRESENTAR");
+            ofertaActions.BuscarOfertaEnVista("CRM-POF0001-PRESENTAR_" + Utils.GetRandomString());
             ofertaCondition.OfertaPresentadaCorrectamente();
 
             ofertaActions.SeleccionarOfertaGrid();
 
             ofertaActions.EliminarOfertaActual("Eliminar");
 
-            Console.WriteLine("LA PRUEBA CRM-POF0001 SE EJECUTÓ CORRECTAMENTE");
+            TestContext.WriteLine("LA PRUEBA CRM-POF0001 SE EJECUTÓ CORRECTAMENTE");
         }
     }
 }

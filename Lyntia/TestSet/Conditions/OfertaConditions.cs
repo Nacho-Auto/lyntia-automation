@@ -108,7 +108,7 @@ namespace Lyntia.TestSet.Conditions
 
                 // Se encuentra en Razon para el estado En elaboracion
                 Assert.AreEqual("En elaboración", driver.FindElement(By.XPath("//div[@data-id='cell-0-8']")).GetAttribute("title"));
-                Console.WriteLine("***Se cumple la condición de Oferta guardada Correctamente.");
+                TestContext.WriteLine("***Se cumple la condición de Oferta guardada Correctamente.");
             }catch(Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "CondicionOfertaGuardada.png", "***No se cumple la condición de Oferta guardada Correctamente.");
@@ -130,7 +130,7 @@ namespace Lyntia.TestSet.Conditions
         public void IntroduccionDatos()//Comprobamos que todos los campos se introducen correctamente
         {
             String OfertaMOD = driver.FindElement(By.LinkText("Automatica_MODPrueba_auto_NO_borrar_MODIFICADA")).Text;//muestra por consola la nueva oferta modificada
-            Console.WriteLine(OfertaMOD);
+            TestContext.WriteLine(OfertaMOD);
         }
 
         public void IntroduccionDatos2()//comprobamos todas las modificaciones realizadas
@@ -189,9 +189,9 @@ namespace Lyntia.TestSet.Conditions
         {
             Assert.AreEqual("Acceso denegado", driver.FindElement(By.XPath("//h1[contains(@aria-label, 'Acceso denegado')]")).Text);//muestra un mensaje informativo
             String AvisoPriv = driver.FindElement(By.XPath("//h1[contains(@aria-label, 'Acceso denegado')]")).Text;//imprime en consola el texto
-            Console.WriteLine(AvisoPriv);
+            TestContext.WriteLine(AvisoPriv);
             String AvisoPriv2 = driver.FindElement(By.XPath("/html/body/section/div/div/div/div/div/div/div[1]/div[2]/h2")).Text;//imprime en consola el texto
-            Console.WriteLine(AvisoPriv2);
+            TestContext.WriteLine(AvisoPriv2);
             driver.FindElement(By.XPath("//*[@id='cancelButton']")).Click();
             Thread.Sleep(2000);
         }
