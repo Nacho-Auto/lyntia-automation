@@ -304,6 +304,7 @@ namespace Lyntia.TestSet.Actions
             catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "BuscaOferta.png", "El proceso de búsqueda de Oferta por parámetro " + parametroBusqueda + " ha fallado.");
+                throw e;
             }
         }
 

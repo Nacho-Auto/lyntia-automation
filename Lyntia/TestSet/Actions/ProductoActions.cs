@@ -48,6 +48,7 @@ namespace Lyntia.TestSet.Actions
             catch(Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "AddProducto.png", "No se añaden correctamente los datos del Producto: " + productoExistente + ", " + uso + ", " + unidadVenta);
+                throw e;
             }
 
             if (!unidadVenta.Equals("") && utils.EncontrarElemento(By.XPath(Utils.GetIdentifier("Producto.inputUnidaddeVenta"))))
@@ -72,6 +73,7 @@ namespace Lyntia.TestSet.Actions
                     catch(Exception e)
                     {
                         CommonActions.CapturadorExcepcion(e, "AddProducto.png", "No se añaden correctamente los datos del Producto: " + productoExistente + ", " + uso + ", " + unidadVenta);
+                        throw e;
                     }
                 }
             }
@@ -86,6 +88,7 @@ namespace Lyntia.TestSet.Actions
             catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "GuardarProducto.png", "El producto no fue creado: " + productoExistente + ", " + uso + ", " + unidadVenta);
+                throw e;
             }
         }
 
