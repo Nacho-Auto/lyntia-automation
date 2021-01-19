@@ -565,7 +565,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la Oferta
-            productoActions.CreacionProducto("Circuitos de capacidad_" + Utils.GetRandomString(), "FTTT", "3 Mbps");
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps");
 
             // Volver al grid
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
