@@ -31,6 +31,7 @@ namespace Lyntia.TestSet.Actions
             catch (Exception e)
             {
                 CapturadorExcepcion(e, "AccesoGestionCliente.png", "No se pudo acceder a Gestión de Cliente");
+                throw e;
             }
         } 
 
@@ -45,9 +46,10 @@ namespace Lyntia.TestSet.Actions
                 Console.WriteLine("Se accede correctamente a sección de Ofertas");
 
             }
-            catch(NoSuchElementException e)
+            catch(Exception e)
             {
                 CapturadorExcepcion(e, "AccesoOfertas.png", "No se pudo acceder a la sección de Ofertas");
+                throw e;
             }
 
         }
@@ -73,6 +75,7 @@ namespace Lyntia.TestSet.Actions
             catch (Exception e)
             {
                 CapturadorExcepcion(e, "Login.png", "No se pudo realizar el login de forma correcta");
+                throw e;
             }
 
         }

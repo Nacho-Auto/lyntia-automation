@@ -108,10 +108,10 @@ namespace Lyntia.TestSet.Conditions
 
                 // Se encuentra en Razon para el estado En elaboracion
                 Assert.AreEqual("En elaboración", driver.FindElement(By.XPath("//div[@data-id='cell-0-8']")).GetAttribute("title"));
-                Console.WriteLine("*Se cumple la condición de Oferta guardada Correctamente.");
+                Console.WriteLine("***Se cumple la condición de Oferta guardada Correctamente.");
             }catch(Exception e)
             {
-                CommonActions.CapturadorExcepcion(e, "CondicionOfertaGuardada.png", "**No se cumple la condición de Oferta guardada Correctamente.");
+                CommonActions.CapturadorExcepcion(e, "CondicionOfertaGuardada.png", "***No se cumple la condición de Oferta guardada Correctamente.");
                 throw e;
             }
         }
@@ -125,7 +125,6 @@ namespace Lyntia.TestSet.Conditions
         {
             Assert.AreEqual(true, driver.FindElement(By.XPath("//li[contains(@aria-label, 'General')]")).Enabled);//la pestaña general esta activa
             Assert.AreEqual("General", driver.FindElement(By.XPath("//li[contains(@aria-label, 'General')]")).Text);
-            ((ITakesScreenshot)driver).GetScreenshot().SaveAsFile("AccederSeleccionOferta.png");
         }
 
         public void IntroduccionDatos()//Comprobamos que todos los campos se introducen correctamente

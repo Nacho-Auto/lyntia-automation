@@ -727,7 +727,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarYCerrarOferta();
             ofertaActions.ReestablecerDatosCRM_EOF0004();
 
-            Console.WriteLine("LA PRUEBA CRM-EOF0004 SE EJECUTÓ CORRECTAMENTE");
+            TestContext.WriteLine("LA PRUEBA CRM-EOF0004 SE EJECUTÓ CORRECTAMENTE");
         }
 
         [Test(Description = "CRM-COF0011 Eliminar una Oferta Adjudicada")]

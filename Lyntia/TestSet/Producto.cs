@@ -110,7 +110,7 @@ namespace Lyntia.TestSet
 
             //Paso 6
             productoActions.Agregar_Liena_de_negocio_y_Unidad_de_venta("FTTT", "10");
-            productoCondition.Resultado_Agregar_Liena_de_negocio_y_Unidad_de_venta();
+            productoCondition.Resultado_Agregar_Linea_de_negocio_y_Unidad_de_venta();
 
             // Reestablece datos
             productoActions.Borrado_de_producto();
