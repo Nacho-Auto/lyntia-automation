@@ -756,6 +756,7 @@ namespace Lyntia.TestSet
             ofertaCondition.Resultado_Cancelar();
 
             //Paso 5 - Repetir pasos 2 y 3 Acceso
+            commonActions.AccesoOferta();//Oferta menu
             ofertaActions.AccederOfertaestado_Adjudicada();
             ofertaCondition.Resultado_AccederOfertaestado_Adjudicada();
 
@@ -764,11 +765,11 @@ namespace Lyntia.TestSet
             ofertaCondition.Resultado_Eliminar_BarraMenu();
 
             // Paso 7 - Eliminar la oferta desde popup
-
             ofertaActions.Eliminar_Popup();
             ofertaCondition.Resultado_Eliminar_Popup();
 
             //Paso 6 - Regresar al grid de ofertas, seleccionar la Oferta Adjudicada con la que se trabaja.
+            commonActions.AccesoOferta();//Oferta menu
             ofertaActions.Seleccionofertarazonadjudicada();
 
             //ofertaActions.editarOferta();

@@ -112,6 +112,7 @@ namespace Lyntia.TestSet.Conditions
             }catch(Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "CondicionOfertaGuardada.png", "**No se cumple la condición de Oferta guardada Correctamente.");
+                throw e;
             }
         }
 

@@ -52,7 +52,7 @@ namespace Lyntia.TestSet.Actions
                 catch (Exception e)
                 {
                     CommonActions.CapturadorExcepcion(e, "AccesoSeccionOfertas.png", "No se pudo acceder a la sección " + seccion + ".");
-                    driver.Quit();
+                    throw e;
                 }
             }
         }
@@ -72,7 +72,7 @@ namespace Lyntia.TestSet.Actions
             catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "AccesoNuevaOferta.png", "No se pudo crear una nueva Oferta.");
-                driver.Quit();
+                throw e;
             }
         }
 
@@ -91,7 +91,7 @@ namespace Lyntia.TestSet.Actions
             catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "PrimeraOfertaGrid.png", "No se pudo acceder a la primera Oferta del grid.");
-                driver.Quit();
+                throw e;
             }
         }
 
@@ -109,7 +109,7 @@ namespace Lyntia.TestSet.Actions
             catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "AccesoFechas.png", "No se pudo acceder a la pestaña Fechas de la OFerta.");
-                driver.Quit();
+                throw e;
             }
         }
 
@@ -128,7 +128,7 @@ namespace Lyntia.TestSet.Actions
             catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "GuardarOferta.png", "No se pudo guardar la Oferta.");
-                driver.Quit();
+                throw e;
             }
         }
 
@@ -147,7 +147,7 @@ namespace Lyntia.TestSet.Actions
             catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "GuardarCerrarOferta.png", "No se pudo guardar y cerrar la Oferta.");
-                driver.Quit();
+                throw e;
             }
         }
 
@@ -162,32 +162,18 @@ namespace Lyntia.TestSet.Actions
         {
             try
             {
-                Utils.SearchWebElement("Oferta.inputNameOferta").Click();
-                Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Control + "a");
-                Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Delete);
-
                 if (!nombre.Equals(""))
                 {
                     Utils.SearchWebElement("Oferta.inputNameOferta").Click();
+                    Utils.SearchWebElement("Oferta.inputNameOferta").Clear();
+                    Thread.Sleep(2000);
                     Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Control + "a");
                     Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Delete);
 
-                    // Rellenar Cliente de Oferta
+                    // Rellenar Nombre de Oferta
                     Thread.Sleep(2000);
                     Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(nombre);
-                    Thread.Sleep(1000);
-
-                    if (Utils.SearchWebElement("Oferta.inputNameOferta").Text.Contains("---"))
-                    {
-                        Utils.SearchWebElement("Oferta.inputNameOferta").Click();
-                        Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Control + "a");
-                        Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Delete);
-
-                        // Rellenar Cliente de Oferta
-                        Thread.Sleep(2000);
-                        Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(nombre);
-                        Thread.Sleep(1000);
-                    }
+                    Thread.Sleep(1000);            
                 }
 
                 if (!cliente.Equals(""))
@@ -204,6 +190,20 @@ namespace Lyntia.TestSet.Actions
                     // Seleccionar cliente del desplegable
                     driver.FindElement(By.XPath("//span[contains(text(), '" + cliente + "')]")).Click();
                     Thread.Sleep(2000);
+
+                    if (!nombre.Equals("") && Utils.SearchWebElement("Oferta.inputNameOferta").Text.Contains("---"))
+                    {
+                        Utils.SearchWebElement("Oferta.inputNameOferta").Click();
+                        Utils.SearchWebElement("Oferta.inputNameOferta").Clear();
+                        Thread.Sleep(2000);
+                        Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Control + "a");
+                        Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Delete);
+
+                        // Rellenar Cliente de Oferta
+                        Thread.Sleep(2000);
+                        Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(nombre);
+                        Thread.Sleep(1000);
+                    }
                 }
 
                 if (!tipoOferta.Equals(""))
@@ -247,7 +247,7 @@ namespace Lyntia.TestSet.Actions
             catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "AddDatosOferta.png", "No se introducen los datos de la Oferta: " + nombre + ", " + cliente + ", " + tipoOferta + ", " + kam + ".");
-                driver.Quit();
+                throw e;
             }
         }
 
@@ -283,7 +283,7 @@ namespace Lyntia.TestSet.Actions
                 catch (Exception e)
                 {
                     CommonActions.CapturadorExcepcion(e, "EliminarOferta.png", "No se puede completar el proceso de eliminación (" + opcion + ").");
-                    driver.Quit();
+                    throw e;
                 }
             }
         }
@@ -322,7 +322,7 @@ namespace Lyntia.TestSet.Actions
             catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "AbrirOferta.png", "No se abre la Oferta " + nombreOferta + " se abre correctamente.");
-                driver.Quit();
+                throw e;
             }
         }
 
@@ -340,7 +340,7 @@ namespace Lyntia.TestSet.Actions
             catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "SeleccionOferta.png", "Se selecciona la Oferta del grid.");
-                driver.Quit();
+                throw e;
             }
         }
 
@@ -389,7 +389,7 @@ namespace Lyntia.TestSet.Actions
             catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "ModificacionOfertaEOF0003.png", "No se modifican los datos de la prueba CRM-EOF0003.");
-                driver.Quit();
+                throw e;
             }
         }
 
@@ -414,7 +414,7 @@ namespace Lyntia.TestSet.Actions
             catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "TipoOfertaCambioCapacidadEOF0004.png", "No se modifica el tipo de Oferta de la prueba CRM-EOF0004: Cambio de capacidad (Upgrade/Downgrade).");
-                driver.Quit();
+                throw e;
             }
         }
 
@@ -435,7 +435,7 @@ namespace Lyntia.TestSet.Actions
             catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "TipoOfertaCambioPrecioEOF0004.png", "No se modifica el tipo de Oferta de la prueba CRM-EOF0004: Cambio de precio/Renovación");
-                driver.Quit();
+                throw e;
             }
         }
 
@@ -456,7 +456,7 @@ namespace Lyntia.TestSet.Actions
             catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "TipoOfertaCambioSolucionEOF0004.png", "No se modifica el tipo de Oferta de la prueba CRM-EOF0004: Cambio de solución técnica (Tecnología).");
-                driver.Quit();
+                throw e;
             }
         }
 
@@ -477,7 +477,7 @@ namespace Lyntia.TestSet.Actions
             catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "TipoOfertaCambioPrecioEOF0004.png", "No se modifica el tipo de Oferta de la prueba CRM-EOF0004: Cambio de dirección (Migración).");
-                driver.Quit();
+                throw e;
             }
         }
 
@@ -531,7 +531,7 @@ namespace Lyntia.TestSet.Actions
             catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "ReestablecimientoEOF0003.png", "No se reestablecen los datos originales de la prueba CRM-EOF0004.");
-                driver.Quit();
+                throw e;
             }
         }
 
@@ -583,7 +583,7 @@ namespace Lyntia.TestSet.Actions
             catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "CierreOferta.png", "No se completa el proceso de cierre de Oferta (" + opcion + ").");
-                driver.Quit();
+                throw e;
             }
         }
 
@@ -594,6 +594,7 @@ namespace Lyntia.TestSet.Actions
         {
             try
             {
+                BuscarOfertaEnVista("test");
                 driver.FindElement(By.XPath("//div[contains(@title, 'Ganada')]")).Click();//seleccionamos una oferta ganada y pulsamos sobre el ckeck
                 Thread.Sleep(3000);
                 Console.WriteLine("Se accede a una Oferta Adjudicada.");
@@ -601,7 +602,7 @@ namespace Lyntia.TestSet.Actions
             catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "AccesoOfertaAdjudicada.png", "No se accede a una Oferta Adjudicada.");
-                driver.Quit();
+                throw e;
             }
         }
 
@@ -629,7 +630,7 @@ namespace Lyntia.TestSet.Actions
             catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "FiltradoIdRevisionOferta.png", "No se filtra la Oferta por ID de revisión: " + idRevision + ".");
-                driver.Quit();
+                throw e;
             }
         }
 
@@ -647,7 +648,7 @@ namespace Lyntia.TestSet.Actions
             catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "SeleccionTodasOfertas.png", "No se seleccionan todas las ofertas en vista del grid.");
-                driver.Quit();
+                throw e;
             }
         }
 
@@ -664,7 +665,7 @@ namespace Lyntia.TestSet.Actions
             catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "EliminarBarraMenuOfertas.png", "No se pulsa Eliminar.");
-                driver.Quit();
+                throw e;
             }
         }
 
@@ -681,7 +682,7 @@ namespace Lyntia.TestSet.Actions
             catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "PopupEliminarOfertas.png", "No se cancelar el popup de eliminar Oferta.");
-                driver.Quit();
+                throw e;
             }
         }
 
@@ -692,6 +693,7 @@ namespace Lyntia.TestSet.Actions
         {
             try
             {
+                BuscarOfertaEnVista("test");
                 Thread.Sleep(3000);
                 Utils.SearchWebElement("Oferta.labelOfertaestadoGanada").Click(); //seleccionamos una oferta ganada y pulsamos sobre el ckeck
                 Thread.Sleep(2000);
@@ -702,7 +704,7 @@ namespace Lyntia.TestSet.Actions
             catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "EditarOfertaAdjudicada.png", "No se accede a Oferta adjudicada.");
-                driver.Quit();
+                throw e;
             }
         }
 
@@ -714,13 +716,13 @@ namespace Lyntia.TestSet.Actions
             try
             {
                 Thread.Sleep(2000);
-                Utils.SearchWebElement("Producto.buttonEliminarProductodeOfertaConfirm").Click();
+                Utils.SearchWebElement("Oferta.confirmDeleteOferta").Click();
                 Console.WriteLine("Se confirma el borrado desde el popup.");
             }
             catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "ConfirmarPopupEliminarOferta.png", "No se confirma el borrado desde el popup.");
-                driver.Quit();
+                throw e;
             }
         }
 
@@ -737,7 +739,7 @@ namespace Lyntia.TestSet.Actions
             catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "PresentarOferta.png", "No se accede a la ventana de Presentar Oferta.");
-                driver.Quit();
+                throw e;
             }
         }
 
@@ -761,7 +763,7 @@ namespace Lyntia.TestSet.Actions
             catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "FiltroBuscarEnestaVista.png", "No se ha podido filtrar correctamente la oferta por: " + busqueda + ".");
-                driver.Quit();
+                throw e;
             }
         }
 
@@ -786,7 +788,7 @@ namespace Lyntia.TestSet.Actions
             catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "ReestablecimientoEOF0004.png", "No se reestablecen los datos de la prueba EOF0004.");
-                driver.Quit();
+                throw e;
             }
         }
     }
