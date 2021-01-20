@@ -373,8 +373,6 @@ namespace Lyntia.TestSet.Conditions
                 CommonActions.CapturadorExcepcion(e, "Resultado seleccion oferta adjudicada.png", "***No se cumple la condicion seleccion oferta adjudicada");
                 throw e;
             }
-            
-
         }
 
 
