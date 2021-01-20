@@ -20,49 +20,79 @@ namespace Lyntia.TestSet.Conditions
 
         public void CreaOferta()
         {
-            // Assert de título "Nuevo Oferta" del formulario
-            Assert.AreEqual("Nuevo Oferta", driver.FindElement(By.XPath("//h1[@data-id='header_title']")).Text);
+            try
+            {
+                // Assert de título "Nuevo Oferta" del formulario
+                Assert.AreEqual("Nuevo Oferta", driver.FindElement(By.XPath("//h1[@data-id='header_title']")).Text);
 
-            // Assert de tab por defecto "General"
-            Assert.IsTrue(driver.FindElement(By.XPath("//li[@aria-label='General']")).GetAttribute("aria-selected").Equals("true"));
+                // Assert de tab por defecto "General"
+                Assert.IsTrue(driver.FindElement(By.XPath("//li[@aria-label='General']")).GetAttribute("aria-selected").Equals("true"));
 
-            // Assert de Razón para el estado de la Oferta "En elaboración" 
-            Assert.AreEqual("En elaboración", driver.FindElement(By.XPath("//section[@id='quote information']//span[@aria-label='Razón para el estado']//span")).Text);
+                // Assert de Razón para el estado de la Oferta "En elaboración" 
+                Assert.AreEqual("En elaboración", driver.FindElement(By.XPath("//section[@id='quote information']//span[@aria-label='Razón para el estado']//span")).Text);
 
-            // Assert de Tipo de Oferta Nuevo Servicio
-            driver.FindElement(By.XPath("//input[@aria-label='Nombre oferta']")).SendKeys(Keys.PageDown);
-            Assert.AreEqual(driver.FindElement(By.XPath("//select[contains(@aria-label,'Tipo de oferta')]")).GetAttribute("title"), "Nuevo servicio");
+                // Assert de Tipo de Oferta Nuevo Servicio
+                driver.FindElement(By.XPath("//input[@aria-label='Nombre oferta']")).SendKeys(Keys.PageDown);
+                Assert.AreEqual(driver.FindElement(By.XPath("//select[contains(@aria-label,'Tipo de oferta')]")).GetAttribute("title"), "Nuevo servicio");
 
-            driver.FindElement(By.XPath("//input[contains(@id,'referencia_oferta')]")).SendKeys(Keys.PageDown);
-            driver.FindElement(By.XPath("//input[contains(@id,'referencia_oferta')]")).SendKeys(Keys.PageDown);
+                driver.FindElement(By.XPath("//input[contains(@id,'referencia_oferta')]")).SendKeys(Keys.PageDown);
+                driver.FindElement(By.XPath("//input[contains(@id,'referencia_oferta')]")).SendKeys(Keys.PageDown);
 
-            // Assert de Divisa
-            Assert.AreEqual("Euro", driver.FindElement(By.XPath("//div[contains(@data-id,'transactioncurrencyid_selected_tag_text')]")).GetAttribute("title"));
+                // Assert de Divisa
+                Assert.AreEqual("Euro", driver.FindElement(By.XPath("//div[contains(@data-id,'transactioncurrencyid_selected_tag_text')]")).GetAttribute("title"));
+
+                TestContext.WriteLine("Se cumplen las condiciones de crear oferta");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "CreaOferta.png", "***No se cumplen las condiciones para crear oferta correctamente");
+                throw e;
+            }
 
         }
 
         public void FechasSinInformar()
         {
-            // Assert de Fecha de creación vacía
-            Assert.IsTrue(driver.FindElement(By.XPath("//input[contains(@data-id,'createdon')]")).Text.Equals(""));
+            try
+            {
+                // Assert de Fecha de creación vacía
+                Assert.IsTrue(driver.FindElement(By.XPath("//input[contains(@data-id,'createdon')]")).Text.Equals(""));
 
-            // Assert de Hora de creación vacía
-            Assert.IsTrue(driver.FindElement(By.XPath("//input[contains(@aria-label,'Hora de Fecha de creación')]")).Text.Equals(""));
+                // Assert de Hora de creación vacía
+                Assert.IsTrue(driver.FindElement(By.XPath("//input[contains(@aria-label,'Hora de Fecha de creación')]")).Text.Equals(""));
 
-            // Assert de Fecha de modificación vacía
-            Assert.IsTrue(driver.FindElement(By.XPath("//input[contains(@data-id,'modifiedon')]")).Text.Equals(""));
+                // Assert de Fecha de modificación vacía
+                Assert.IsTrue(driver.FindElement(By.XPath("//input[contains(@data-id,'modifiedon')]")).Text.Equals(""));
 
-            // Assert de Hora de modificación vacía
-            Assert.IsTrue(driver.FindElement(By.XPath("//input[contains(@aria-label,'Hora de Fecha de modificación')]")).Text.Equals(""));
+                // Assert de Hora de modificación vacía
+                Assert.IsTrue(driver.FindElement(By.XPath("//input[contains(@aria-label,'Hora de Fecha de modificación')]")).Text.Equals(""));
+
+                TestContext.WriteLine("Se cumplen las condiciones con fechas sin informar");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "FechasSinInformar.png", "***No se cumplen las condiciones con fechas sin informar correctamente");
+                throw e;
+            }
 
         }
 
         public void OfertaNoCreada()
         {
-            // Assert de alerta con los campos obligatorios sin informar
-            //div[@data-id="notificationWrapper"]
-            Assert.IsTrue(driver.FindElements(By.XPath("//div[@data-id='notificationWrapper']")).Count > 0);
-            driver.FindElement(By.XPath("//div[@data-id='notificationWrapper']")).Click();
+            try
+            {
+                // Assert de alerta con los campos obligatorios sin informar
+                //div[@data-id="notificationWrapper"]
+                Assert.IsTrue(driver.FindElements(By.XPath("//div[@data-id='notificationWrapper']")).Count > 0);
+                driver.FindElement(By.XPath("//div[@data-id='notificationWrapper']")).Click();
+
+                TestContext.WriteLine("Se cumplen las condiciones de una oferta no creada");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "OfertaNoCreada.png", "***No se cumplen las condiciones de una oferta creada");
+                throw e;
+            }
         }
 
         public void FechasInformadasCorrectamente()
