@@ -41,7 +41,7 @@ namespace Lyntia.TestSet.Conditions
                 // Assert de Divisa
                 Assert.AreEqual("Euro", driver.FindElement(By.XPath("//div[contains(@data-id,'transactioncurrencyid_selected_tag_text')]")).GetAttribute("title"));
 
-                TestContext.WriteLine("Se cumplen las condiciones de crear oferta");
+                TestContext.WriteLine("***Se cumplen las condiciones de crear oferta");
             }
             catch(Exception e)
             {
@@ -67,7 +67,7 @@ namespace Lyntia.TestSet.Conditions
                 // Assert de Hora de modificación vacía
                 Assert.IsTrue(driver.FindElement(By.XPath("//input[contains(@aria-label,'Hora de Fecha de modificación')]")).Text.Equals(""));
 
-                TestContext.WriteLine("Se cumplen las condiciones con fechas sin informar");
+                TestContext.WriteLine("***Se cumplen las condiciones con fechas sin informar");
             }
             catch(Exception e)
             {
@@ -86,7 +86,7 @@ namespace Lyntia.TestSet.Conditions
                 Assert.IsTrue(driver.FindElements(By.XPath("//div[@data-id='notificationWrapper']")).Count > 0);
                 driver.FindElement(By.XPath("//div[@data-id='notificationWrapper']")).Click();
 
-                TestContext.WriteLine("Se cumplen las condiciones de una oferta no creada");
+                TestContext.WriteLine("***Se cumplen las condiciones de una oferta no creada");
             }
             catch(Exception e)
             {
@@ -97,36 +97,55 @@ namespace Lyntia.TestSet.Conditions
 
         public void FechasInformadasCorrectamente()
         {
+            try
+            {
+                // Assert de Fecha de creación vacía
+                Assert.IsFalse(driver.FindElement(By.XPath("//input[contains(@data-id,'createdon')]")).GetAttribute("value").Equals(""));
 
-            // Assert de Fecha de creación vacía
-            Assert.IsFalse(driver.FindElement(By.XPath("//input[contains(@data-id,'createdon')]")).GetAttribute("value").Equals(""));
+                // Assert de Hora de creación vacía
+                Assert.IsFalse(driver.FindElement(By.XPath("//input[contains(@aria-label,'Hora de Fecha de creación')]")).GetAttribute("value").Equals(""));
 
-            // Assert de Hora de creación vacía
-            Assert.IsFalse(driver.FindElement(By.XPath("//input[contains(@aria-label,'Hora de Fecha de creación')]")).GetAttribute("value").Equals(""));
+                // Assert de Fecha de modificación vacía
+                Assert.IsFalse(driver.FindElement(By.XPath("//input[contains(@data-id,'modifiedon')]")).GetAttribute("value").Equals(""));
 
-            // Assert de Fecha de modificación vacía
-            Assert.IsFalse(driver.FindElement(By.XPath("//input[contains(@data-id,'modifiedon')]")).GetAttribute("value").Equals(""));
+                // Assert de Hora de modificación vacía
+                Assert.IsFalse(driver.FindElement(By.XPath("//input[contains(@aria-label,'Hora de Fecha de modificación')]")).GetAttribute("value").Equals(""));
 
-            // Assert de Hora de modificación vacía
-            Assert.IsFalse(driver.FindElement(By.XPath("//input[contains(@aria-label,'Hora de Fecha de modificación')]")).GetAttribute("value").Equals(""));
+                TestContext.WriteLine("***Las condiciones de fechas informadas correctamente han sido OK");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "FechasInformadascorrectamente.png", "***No se cumplen las condiciones de fechas informadas");
+                throw e;
+            }
         }
 
         public void OfertaGuardadaCorrectamente(String nombreOferta, String tipoOferta)
         {
-            // Nombre de Oferta
-            Thread.Sleep(6000);
-            Assert.AreEqual(nombreOferta, driver.FindElement(By.XPath("//input[@aria-label='Nombre oferta']")).GetAttribute("value"));
+            try
+            {
+                // Nombre de Oferta
+                Thread.Sleep(6000);
+                Assert.AreEqual(nombreOferta, driver.FindElement(By.XPath("//input[@aria-label='Nombre oferta']")).GetAttribute("value"));
 
-            // Cliente 
-            Assert.AreEqual("CLIENTE INTEGRACION", driver.FindElement(By.XPath("//div[contains(@data-id,'customerid_selected_tag_text')]")).Text);
+                // Cliente 
+                Assert.AreEqual("CLIENTE INTEGRACION", driver.FindElement(By.XPath("//div[contains(@data-id,'customerid_selected_tag_text')]")).Text);
 
-            // Razon para el estado
-            Assert.AreEqual("En elaboración", driver.FindElement(By.XPath("//span[@aria-label='Razón para el estado']")).Text);
+                // Razon para el estado
+                Assert.AreEqual("En elaboración", driver.FindElement(By.XPath("//span[@aria-label='Razón para el estado']")).Text);
 
-            driver.FindElement(By.XPath("//div[contains(@data-id,'customerid_selected_tag')]")).SendKeys(Keys.PageDown);
+                driver.FindElement(By.XPath("//div[contains(@data-id,'customerid_selected_tag')]")).SendKeys(Keys.PageDown);
 
-            Assert.AreEqual(tipoOferta, driver.FindElement(By.XPath("//select[@aria-label='Tipo de oferta']")).GetAttribute("title"));
-            Thread.Sleep(1000);
+                Assert.AreEqual(tipoOferta, driver.FindElement(By.XPath("//select[@aria-label='Tipo de oferta']")).GetAttribute("title"));
+                Thread.Sleep(1000);
+
+                TestContext.WriteLine("***Se cumplen las condiciones de guardado de oferta correctamente");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "OfertaGuardacorrectamente.png", "***No se cumplen las condiciones para guardar la oferta");
+                throw e;
+            }
         }
 
         public void OfertaGuardadaCorrectamenteEnGrid()
@@ -148,90 +167,212 @@ namespace Lyntia.TestSet.Conditions
 
         public void AccederSeleccionOfertaAPR0001()
         {
-            Assert.AreEqual(true, driver.FindElement(By.XPath("//button[contains(@aria-label, 'Agregar producto')]")).Enabled);//comprobamos que añadir producto esta habilitado
+            try
+            {
+                Assert.AreEqual(true, driver.FindElement(By.XPath("//button[contains(@aria-label, 'Agregar producto')]")).Enabled);//comprobamos que añadir producto esta habilitado
+                TestContext.WriteLine("***Se cumplen las condiciones de la seleccion de oferta");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "AccederSeleccionofertaapr0001.pne", "***No se cumpe la condicion seleccion oferta");
+                throw e;
+            }
         }
 
         public void AccederSeleccionOferta()
         {
-            Assert.AreEqual(true, driver.FindElement(By.XPath("//li[contains(@aria-label, 'General')]")).Enabled);//la pestaña general esta activa
-            Assert.AreEqual("General", driver.FindElement(By.XPath("//li[contains(@aria-label, 'General')]")).Text);
+            try
+            {
+                Assert.AreEqual(true, driver.FindElement(By.XPath("//li[contains(@aria-label, 'General')]")).Enabled);//la pestaña general esta activa
+                Assert.AreEqual("General", driver.FindElement(By.XPath("//li[contains(@aria-label, 'General')]")).Text);
+                TestContext.WriteLine("***Se cumple la condicion");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "AccederSeleccionOferta.png", "***No se cumple la condicion");
+                throw e;
+            }
         }
 
         public void IntroduccionDatos()//Comprobamos que todos los campos se introducen correctamente
         {
-            String OfertaMOD = driver.FindElement(By.LinkText("Automatica_MODPrueba_auto_NO_borrar_MODIFICADA")).Text;//muestra por consola la nueva oferta modificada
-            TestContext.WriteLine(OfertaMOD);
+            try
+            {
+                String OfertaMOD = driver.FindElement(By.LinkText("Automatica_MODPrueba_auto_NO_borrar_MODIFICADA")).Text;//muestra por consola la nueva oferta modificada
+                TestContext.WriteLine(OfertaMOD);
+
+                TestContext.WriteLine("***La condicion se cumple");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "Introducir datos.png", "***No se cumple la condicion");
+                throw e;
+            }
         }
 
         public void IntroduccionDatos2()//comprobamos todas las modificaciones realizadas
         {
-            Assert.AreEqual("La oferta de tipo “Cambio de capacidad” requiere envío a construcción, pero no cambia el código administrativo", driver.FindElement(By.XPath("//span[contains(@data-id, 'warningNotification')]")).Text);
-            Assert.AreEqual("La oferta de tipo “Cambio de precio” no requiere envío a construcción ni cambiar el código administrativo", driver.FindElement(By.XPath("//span[contains(@data-id, 'warningNotification')]")).Text);
-            Assert.AreEqual("La oferta de tipo “Cambio de tecnología” requiere el envío a construcción y cambia el código administrativo", driver.FindElement(By.XPath("//span[contains(@data-id, 'warningNotification')]")).Text);
-            Assert.AreEqual(" La oferta de tipo “Migración” requiere el envío a construcción y cambia el código administrativo", driver.FindElement(By.XPath("//span[contains(@data-id, 'warningNotification')]")).Text);
+            try
+            {
+                Assert.AreEqual("La oferta de tipo “Cambio de capacidad” requiere envío a construcción, pero no cambia el código administrativo", driver.FindElement(By.XPath("//span[contains(@data-id, 'warningNotification')]")).Text);
+                Assert.AreEqual("La oferta de tipo “Cambio de precio” no requiere envío a construcción ni cambiar el código administrativo", driver.FindElement(By.XPath("//span[contains(@data-id, 'warningNotification')]")).Text);
+                Assert.AreEqual("La oferta de tipo “Cambio de tecnología” requiere el envío a construcción y cambia el código administrativo", driver.FindElement(By.XPath("//span[contains(@data-id, 'warningNotification')]")).Text);
+                Assert.AreEqual(" La oferta de tipo “Migración” requiere el envío a construcción y cambia el código administrativo", driver.FindElement(By.XPath("//span[contains(@data-id, 'warningNotification')]")).Text);
+
+                TestContext.WriteLine("***La condicion introduccion de datos se cumple correctamente");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "Introduccion Datos2.png", "***No se cumple la condicion para introduccir datos");
+                throw e;
+            }
         }
 
         public void Aviso_cambiocapacidad()//mensaje por el tipo de oferta
         {
-            
-            Assert.AreEqual("La oferta de tipo “Cambio de capacidad” requiere envío a construcción, pero no cambia el código administrativo", driver.FindElement(By.XPath("//span[contains(@data-id, 'warningNotification')]")).Text);
+            try
+            {
+                Assert.AreEqual("La oferta de tipo “Cambio de capacidad” requiere envío a construcción, pero no cambia el código administrativo", driver.FindElement(By.XPath("//span[contains(@data-id, 'warningNotification')]")).Text);
+                TestContext.WriteLine("***La condicion de aviso cambio de capacidad se cumple");
+            }   
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "Aviso cambio de capacidad.png", "***No se cumple la condicion de cambio de capacidad");
+                throw e;
+            }
             
         }
 
         public void Aviso_Cambiodeprecio()//mensaje por el tipo de oferta
         {
-            Thread.Sleep(3000);
-            Assert.AreEqual("La oferta de tipo “Cambio de precio” no requiere envío a construcción ni cambiar el código administrativo", driver.FindElement(By.XPath("//span[contains(@data-id, 'warningNotification')]")).Text);
-            Thread.Sleep(3000);
-            driver.FindElement(By.XPath("//li[contains(@aria-label, 'Guardar')]")).Click();//Guardar
+            try
+            {
+                Thread.Sleep(3000);
+                Assert.AreEqual("La oferta de tipo “Cambio de precio” no requiere envío a construcción ni cambiar el código administrativo", driver.FindElement(By.XPath("//span[contains(@data-id, 'warningNotification')]")).Text);
+                Thread.Sleep(3000);
+                driver.FindElement(By.XPath("//li[contains(@aria-label, 'Guardar')]")).Click();//Guardar
+
+                TestContext.WriteLine("***La condicion aviso cambio de precio se cumple correctamente");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "Aviso cambio de precio.png", "***No se cumple la condicion de cambio de precio");
+                throw e;
+            }
         }
 
         public void Aviso_Cambiodesolucion()//mensaje por el tipo de oferta
         {
-            Thread.Sleep(3000);
-            Assert.AreEqual("La oferta de tipo “Cambio de tecnología” requiere el envío a construcción y cambia el código administrativo", driver.FindElement(By.XPath("//span[contains(@data-id, 'warningNotification')]")).Text);
-            driver.FindElement(By.XPath("//li[contains(@aria-label, 'Guardar')]")).Click();//Guardar
+            try
+            {
+                Thread.Sleep(3000);
+                Assert.AreEqual("La oferta de tipo “Cambio de tecnología” requiere el envío a construcción y cambia el código administrativo", driver.FindElement(By.XPath("//span[contains(@data-id, 'warningNotification')]")).Text);
+                driver.FindElement(By.XPath("//li[contains(@aria-label, 'Guardar')]")).Click();//Guardar
+
+                TestContext.WriteLine("***Se cumple la condicion de aviso cambio de solucion");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "Aviso cambio solucion.png", "***No se cumple la condicion de aviso cambio de solucion");
+                throw e;
+            }
         }
 
         public void Aviso_Cambiodedireccion()//mensaje por el tipo de oferta
         {
-            Thread.Sleep(3000);
-            Assert.AreEqual("La oferta de tipo “Migración” requiere el envío a construcción y cambia el código administrativo", driver.FindElement(By.XPath("//span[contains(@data-id, 'warningNotification')]")).Text);
+            try
+            {
+                Thread.Sleep(3000);
+                Assert.AreEqual("La oferta de tipo “Migración” requiere el envío a construcción y cambia el código administrativo", driver.FindElement(By.XPath("//span[contains(@data-id, 'warningNotification')]")).Text);
+                TestContext.WriteLine("***La condicion de aviso cambio de direccion es correcta");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "Aviso cambio de direccion.png", "***No se cumple la condicion de aviso cambio de direccion");
+                throw e;
+            }
 
         }
 
         public void Resultado_AccederOfertaestado_Adjudicada()
         {
-            Assert.AreEqual("Ganada", driver.FindElement(By.XPath("//div[contains(@title, 'Ganada')]")).Text);//la oferta esta en estado ganada
-        }
+            try
+            {
+                Assert.AreEqual("Ganada", driver.FindElement(By.XPath("//div[contains(@title, 'Ganada')]")).Text);//la oferta esta en estado ganada
+                TestContext.WriteLine("***La condicion resultado acceso oferta adjudicada es correcta");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "Resultado acceder oferta estado adjudicada.png", "***No se cumple la condicion para acceder a oferta en estado adjudicada");
+                throw e;
+            }
+            }
+            
 
         public void Resultado_Eliminar_BarraMenu()
         {
-            Assert.AreEqual("Confirmar eliminación", driver.FindElement(By.XPath("//h1[contains(@aria-label, 'Confirmar eliminación')]")).Text);//se comprueba texto de la ventana emergente
+            try
+            {
+                Assert.AreEqual("Confirmar eliminación", driver.FindElement(By.XPath("//h1[contains(@aria-label, 'Confirmar eliminación')]")).Text);//se comprueba texto de la ventana emergente
+                TestContext.WriteLine("***La condicion de confirmar borrado se cumple");
+            }
+            catch (Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "Resultado eliminar barra menu.png", "***No se cumple la condicion de confirmar borrado");
+                throw e;
+            }
         }
 
         public void Resultado_Cancelar()
         {
-            Assert.AreEqual("Ganada", driver.FindElement(By.XPath("//div[contains(@title, 'Ganada')]")).Text);//la oferta esta en estado ganada
+            try
+            {
+                Assert.AreEqual("Ganada", driver.FindElement(By.XPath("//div[contains(@title, 'Ganada')]")).Text);//la oferta esta en estado ganada
+                TestContext.WriteLine("***Se cumple la condicion de cancelar");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "Resultado cancela.png", "***No se cumple la condicion de cancelar");
+                throw e;
+            }
         }
 
         public void Resultado_Eliminar_Popup()
         {
-            Assert.AreEqual("Acceso denegado", driver.FindElement(By.XPath("//h1[contains(@aria-label, 'Acceso denegado')]")).Text);//muestra un mensaje informativo
-            String AvisoPriv = driver.FindElement(By.XPath("//h1[contains(@aria-label, 'Acceso denegado')]")).Text;//imprime en consola el texto
-            TestContext.WriteLine(AvisoPriv);
-            String AvisoPriv2 = driver.FindElement(By.XPath("/html/body/section/div/div/div/div/div/div/div[1]/div[2]/h2")).Text;//imprime en consola el texto
-            TestContext.WriteLine(AvisoPriv2);
-            driver.FindElement(By.XPath("//*[@id='cancelButton']")).Click();
-            Thread.Sleep(2000);
+            try
+            {
+                Assert.AreEqual("Acceso denegado", driver.FindElement(By.XPath("//h1[contains(@aria-label, 'Acceso denegado')]")).Text);//muestra un mensaje informativo
+                String AvisoPriv = driver.FindElement(By.XPath("//h1[contains(@aria-label, 'Acceso denegado')]")).Text;//imprime en consola el texto
+                TestContext.WriteLine(AvisoPriv);
+                String AvisoPriv2 = driver.FindElement(By.XPath("/html/body/section/div/div/div/div/div/div/div[1]/div[2]/h2")).Text;//imprime en consola el texto
+                TestContext.WriteLine(AvisoPriv2);
+                driver.FindElement(By.XPath("//*[@id='cancelButton']")).Click();
+                Thread.Sleep(2000);
+
+                TestContext.WriteLine("***La condicion resultado eliminar pop up se cumple correctamente");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "Resultado Eliminar popup.png", "***La condicion resultado eliminar pop up no se cumple correctamente");
+                throw e;
+            }
         }
 
         public void Resultado_Seleccionofertarazonadjudicada()
         {
+            try
+            {
+                Assert.AreEqual(false, utils.EncontrarElemento(By.XPath("//span[contains(@aria-label, 'Eliminar')]")));//se comprueba que el elemento no esta presente
+                Assert.AreEqual(false, utils.EncontrarElemento(By.XPath("//span[contains(@aria-label, 'Cerrar Oferta')]")));//se comprueba que el elemento no esta presente
 
+                TestContext.WriteLine("***La condicion seleccion oferta adjudicada se cumple correctamente");
+            }
 
-            Assert.AreEqual(false, utils.EncontrarElemento(By.XPath("//span[contains(@aria-label, 'Eliminar')]")));//se comprueba que el elemento no esta presente
-            Assert.AreEqual(false, utils.EncontrarElemento(By.XPath("//span[contains(@aria-label, 'Cerrar Oferta')]")));//se comprueba que el elemento no esta presente
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "Resultado seleccion oferta adjudicada.png", "***No se cumple la condicion seleccion oferta adjudicada");
+                throw e;
+            }
             
 
         }
@@ -239,57 +380,143 @@ namespace Lyntia.TestSet.Conditions
 
         public void CerrarOfertaNoVisible()
         {
-            Assert.AreEqual(false, utils.EncontrarElemento(By.XPath("//button[@title='Cerrar Oferta']")));
+            try
+            {
+                Assert.AreEqual(false, utils.EncontrarElemento(By.XPath("//button[@title='Cerrar Oferta']")));
+                TestContext.WriteLine("***La condicion cerrar oferta no visible es correcta");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "Cerrar oferta no visible.png", "***La condicion cerrar oferta no visible no es correcta");
+                throw e;
+            }
         }
 
 
         public void OfertaNoCerrada()
         {
-            // Se muestra label con mensaje "Por favor, completa los campos obligatorios"
-            Assert.AreEqual("Por favor, completa los campos obligatorios", driver.FindElement(By.XPath("//p[@id='error']")).Text);
+            try
+            {
+                // Se muestra label con mensaje "Por favor, completa los campos obligatorios"
+                Assert.AreEqual("Por favor, completa los campos obligatorios", driver.FindElement(By.XPath("//p[@id='error']")).Text);
+                TestContext.WriteLine("***La condicion oferta no cerrada se cumple correctamente");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "Oferta no cerrada.png", "***No se cumple la condicion oferta no cerrada");
+                throw e;
+            }
         }
+            
 
         public void OfertaCerradaCorrectamenteEnGrid(String razonEstado)
         {
-            // Se encuentra en estado borrador
-            Assert.AreEqual("Cerrada", driver.FindElement(By.XPath("//div[@data-id='cell-0-7']")).GetAttribute("title"));
+            try
+            {
+                // Se encuentra en estado borrador
+                Assert.AreEqual("Cerrada", driver.FindElement(By.XPath("//div[@data-id='cell-0-7']")).GetAttribute("title"));
 
-            // Se encuentra en Razon para el estado En elaboracion
-            Assert.AreEqual(razonEstado, driver.FindElement(By.XPath("//div[@data-id='cell-0-8']")).GetAttribute("title"));
+                // Se encuentra en Razon para el estado En elaboracion
+                Assert.AreEqual(razonEstado, driver.FindElement(By.XPath("//div[@data-id='cell-0-8']")).GetAttribute("title"));
+
+                TestContext.WriteLine("***La condicion oferta cerrada correctamente en grid funciona correctamente");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "Oferta cerrada correctamente en grid.png", "***No se cumple la condicion oferta cerrada en grid");
+                throw e;
+            }
         }
 
         public void OfertaPresentada()
         {
-            Assert.AreEqual("Solo lectura: estado de este registro: Bloqueada", driver.FindElement(By.XPath("//span[@data-id='warningNotification']")).Text);
+            try
+            {
+                Assert.AreEqual("Solo lectura: estado de este registro: Bloqueada", driver.FindElement(By.XPath("//span[@data-id='warningNotification']")).Text);
+                TestContext.WriteLine("***Se cumple la condicion de oferta presentada");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "Oferta presentada.png", "***No se cumple la condicion de oferta presentada");
+                throw e;
+
+            }
         }
 
         public void OfertaRevisadaCorrectamente()
         {
-            Assert.AreEqual("2", Utils.SearchWebElement("Oferta.gridCellsOferta").GetAttribute("data-row-count"));
+            try
+            {
+                Assert.AreEqual("2", Utils.SearchWebElement("Oferta.gridCellsOferta").GetAttribute("data-row-count"));
+                TestContext.WriteLine("***Se cumple la condicion oferta revisada");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "Oferta revisada correctamente.png", "***No se cumple la condicion oferta revisada correctamente");
+                throw e;
+            }
         }
 
         public void Resultado_Seleccion_de_oferta_Borrador()
         {
-            Assert.AreEqual(true, driver.FindElement(By.XPath("//li[contains(@aria-label, 'General')]")).Enabled);//la pestaña general esta activa
-            Assert.AreEqual("General", driver.FindElement(By.XPath("//li[contains(@aria-label, 'General')]")).Text);
+            try
+            {
+                Assert.AreEqual(true, driver.FindElement(By.XPath("//li[contains(@aria-label, 'General')]")).Enabled);//la pestaña general esta activa
+                Assert.AreEqual("General", driver.FindElement(By.XPath("//li[contains(@aria-label, 'General')]")).Text);
+                TestContext.WriteLine("***Se cumple la condicion resultado seleccion oferta en borrador");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "Resultado seleccion oferta en borrador.png", "***No se cumple la condicion de resultado seleccionar oferta en borrador");
+                throw e;
+            }
         }
         public void Resultado_Agregar_Producto()
         {
-            Assert.AreEqual(true, driver.FindElement(By.XPath("//input[contains(@aria-label, 'Producto existente, Búsqueda')]")).Enabled);//el campo producto existente esta habilitado
+            try
+            {
+                Assert.AreEqual(true, driver.FindElement(By.XPath("//input[contains(@aria-label, 'Producto existente, Búsqueda')]")).Enabled);//el campo producto existente esta habilitado
+                TestContext.WriteLine("***Se cumple la condicion de producto agregado");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "Resultado agregar producto.png", "***No se cumple la condicion de producto agregado");
+                throw e;
+            }
         }
         public void Resultado_edicion_de_una_oferta()
         {
-            Assert.AreEqual(true, driver.FindElement(By.XPath("//li[contains(@aria-label, 'General')]")).Enabled);//la pestaña general esta activa
-            Assert.AreEqual("General", driver.FindElement(By.XPath("//li[contains(@aria-label, 'General')]")).Text);
+            try
+            {
+                Assert.AreEqual(true, driver.FindElement(By.XPath("//li[contains(@aria-label, 'General')]")).Enabled);//la pestaña general esta activa
+                Assert.AreEqual("General", driver.FindElement(By.XPath("//li[contains(@aria-label, 'General')]")).Text);
+                TestContext.WriteLine("***Se cumple la condicion resultado edicion de una oferta");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "Resultado edicion de una oferta.png", "***No se cumple la condicion resultado edicion de una ofera");
+                throw e;
+            }
 
 		}
         public void OfertaPresentadaCorrectamente()
         {
-            // Se encuentra en estado borrador
-            Assert.AreEqual("Bloqueada", driver.FindElement(By.XPath("//div[@data-id='cell-0-7']")).GetAttribute("title"));
+            try
+            {
+                // Se encuentra en estado borrador
+                Assert.AreEqual("Bloqueada", driver.FindElement(By.XPath("//div[@data-id='cell-0-7']")).GetAttribute("title"));
 
-            // Se encuentra en Razon para el estado En elaboracion
-            Assert.AreEqual("Presentada", driver.FindElement(By.XPath("//div[@data-id='cell-0-8']")).GetAttribute("title"));
+                // Se encuentra en Razon para el estado En elaboracion
+                Assert.AreEqual("Presentada", driver.FindElement(By.XPath("//div[@data-id='cell-0-8']")).GetAttribute("title"));
+
+                TestContext.WriteLine("***Se cumple la condicion de oferta presentada correctamente");
+
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "Oferta presentada correctamente.png", "***No se cumple la condicion de oferta presentada correctamente");
+                throw e;
+            }
         }
     }
 }
