@@ -661,7 +661,7 @@ namespace Lyntia.TestSet
 
             ofertaActions.EliminarOfertaActual("Eliminar");
 
-            TestContext.WriteLine("LA PRUEBA CRM-COF0008 CERRAR ADJUDICADA SE EJECUTÓ CORRECTAMENTE");
+            TestContext.WriteLine("LA PRUEBA CRM-COF0010 CERRAR ADJUDICADA SE EJECUTÓ CORRECTAMENTE");
         }
 
         [Test(Description = "CRM_EOF0003 Editar campos de una Oferta")]
