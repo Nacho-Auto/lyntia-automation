@@ -5,7 +5,6 @@ using NUnit.Allure.Core;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using Lyntia.TestSet.Actions;
-using System;
 
 namespace Lyntia.TestSet
 {
@@ -55,11 +54,10 @@ namespace Lyntia.TestSet
             // Login y Acceso a Gestión de Cliente
             commonActions.AccesoGestionCliente();
             commonCondition.AccedeGestionCliente();
-
             // Paso 1 - Hacer click en Ofertas
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
 
-            TestContext.WriteLine("LA PRUEBA CRM-COF0001 SE EJECUTÓ CORRECTAMENTE");
+            TestContext.WriteLine(Utils.dataRep.getDataFromRepository("CRM_COF0001", "MESSAGE"));
         }
 
         [Test(Description = "CRM-COF0002 Consultar Oferta")]

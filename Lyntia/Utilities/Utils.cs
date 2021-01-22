@@ -84,6 +84,7 @@ namespace Lyntia.Utilities
                 driver.Navigate().GoToUrl("https://ufinetprep2.crm4.dynamics.com/");
                 driver.Manage().Window.Maximize();
                 driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(45);
+
                 TestContext.WriteLine("Instanciador iniciado correctamente");
                 TestContext.WriteLine("-------------------- - ");
             } catch(Exception e) {
