@@ -10,8 +10,9 @@ namespace Lyntia.TestSet.Conditions
     public class OfertaConditions
     {
         readonly Utils utils = new Utils();
-
         private static IWebDriver driver;
+        private static OpenQA.Selenium.Interactions.Actions accionesSelenium;
+
 
         public OfertaConditions()
         {
@@ -60,6 +61,9 @@ namespace Lyntia.TestSet.Conditions
 
                 // Assert de Hora de creación vacía
                 Assert.IsTrue(driver.FindElement(By.XPath("//input[contains(@aria-label,'Hora de Fecha creación')]")).Text.Equals(""));
+
+                driver.FindElement(By.XPath("//button[@data-id='footer_overflowButton']")).Click();
+                Thread.Sleep(2000);
 
                 // Assert de Fecha de modificación vacía
                 Assert.IsTrue(driver.FindElement(By.XPath("//input[contains(@data-id,'modifiedon')]")).Text.Equals(""));
