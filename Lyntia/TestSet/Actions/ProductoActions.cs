@@ -22,7 +22,7 @@ namespace Lyntia.TestSet.Actions
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(45));
         }
 
-        public void CreacionProducto(String productoExistente, String uso, String unidadVenta)
+        public void CreacionProducto(String productoExistente, String uso, String unidadVenta, String metros)
         {
             try
             {
@@ -78,6 +78,24 @@ namespace Lyntia.TestSet.Actions
                     }
                 }
             }
+            // Introduccir los metros del producto tipo fibra oscura
+            if (!metros.Equals(""))
+            {
+
+                Utils.SearchWebElement("Producto.inputMetros").Click();
+                Thread.Sleep(1000);
+
+                Utils.SearchWebElement("Producto.inputMetros").SendKeys(metros);
+                Thread.Sleep(1000);
+                Utils.SearchWebElement("Producto.inputMetros").SendKeys(Keys.Control + "a");
+                Utils.SearchWebElement("Producto.inputMetros").SendKeys(Keys.Delete);
+                Utils.SearchWebElement("Producto.inputMetros").SendKeys(metros);
+                Thread.Sleep(1000);
+                
+
+            }
+
+
             try
             {
                 // Guardar y Cerrar Producto actual

@@ -418,7 +418,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la Oferta
-            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps");
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps", "");
 
             // Paso 3 y 4 - Pulsar Eliminar en la barra de herramientas y cancelar la eliminacion
             ofertaActions.EliminarOfertaActual("Cancelar");
@@ -457,7 +457,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la Oferta
-            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps");
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps", "");
 
             // Volver al grid
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
@@ -503,7 +503,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la Oferta
-            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps");
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps", "");
 
             // Volver al grid
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
@@ -563,7 +563,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la Oferta
-            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps");
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps", "");
 
             // Volver al grid
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
@@ -614,7 +614,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la Oferta
-            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps");
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps", "");
 
             // Volver al grid
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
