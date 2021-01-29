@@ -34,6 +34,10 @@ namespace Lyntia.TestSet.Actions
                 Utils.SearchWebElement("Producto.inputProductoExistente").Click();
                 Thread.Sleep(1000);
                 Utils.SearchWebElement("Producto.inputProductoExistente").SendKeys(productoExistente);
+                Utils.SearchWebElement("Producto.inputProductoExistente").SendKeys(Keys.Control + "a");
+                Utils.SearchWebElement("Producto.inputProductoExistente").SendKeys(Keys.Delete);
+                Utils.SearchWebElement("Producto.inputProductoExistente").SendKeys(productoExistente);
+
                 Thread.Sleep(2000);
 
                 driver.FindElement(By.XPath("//span[contains(text(), '" + productoExistente + "')]")).Click();
@@ -134,11 +138,11 @@ namespace Lyntia.TestSet.Actions
                 Utils.SearchWebElement("Producto.GuardarYCerrar_producto").Click();
                 Thread.Sleep(15000);
 
-                TestContext.WriteLine("Producto guardado correctamente: " + productoExistente + ", " + uso + ", " + unidadVenta);
+                TestContext.WriteLine("Producto guardado correctamente: " + productoExistente + ", " + uso + ", " + unidadVenta + ", " + metros + ", " + nrc + ", " + modalidadContratacion);
             }
             catch (Exception e)
             {
-                CommonActions.CapturadorExcepcion(e, "GuardarProducto.png", "El producto no fue creado: " + productoExistente + ", " + uso + ", " + unidadVenta);
+                CommonActions.CapturadorExcepcion(e, "GuardarProducto.png", "El producto no fue creado: " + productoExistente + ", " + uso + ", " + unidadVenta + ", " + metros + ", " + nrc + ", " + modalidadContratacion);
                 throw e;
             }
         }
