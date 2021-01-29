@@ -418,7 +418,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la Oferta
-            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps", "", "", "");
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps", "", "", "", "");
 
             // Paso 3 y 4 - Pulsar Eliminar en la barra de herramientas y cancelar la eliminacion
             ofertaActions.EliminarOfertaActual("Cancelar");
@@ -457,7 +457,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la Oferta
-            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps", "", "", "");
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps", "", "", "", "");
 
             // Volver al grid
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
@@ -503,7 +503,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la Oferta
-            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps", "", "", "");
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps", "", "", "", "");
 
             // Volver al grid
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
@@ -563,7 +563,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la Oferta
-            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps", "", "", "");
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps", "", "", "", "");
 
             // Volver al grid
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
@@ -614,7 +614,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la Oferta
-            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps", "", "", "");
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps", "", "", "", "");
 
             // Volver al grid
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
@@ -816,7 +816,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
             
             // Añadir Producto a la Oferta Circuito de Capacidad
-            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps", "", "", "");
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps", "", "", "", "");
 
             // Paso 3 - Presentar la oferta
             ofertaActions.PresentarOferta();
@@ -854,7 +854,7 @@ namespace Lyntia.TestSet
             
             // Añadir Producto a la Oferta Fibra Oscura
             // Maximo NRC -> 922337203685477,00 €
-            productoActions.CreacionProducto("Fibra oscura", "Backbone y OTT", "m. x2 fibras", "22", "IRU", "1000");
+            productoActions.CreacionProducto("Fibra oscura", "Backbone y OTT", "m. x2 fibras", "22", "IRU", "1000", "");
 
             // Paso 3 - Presentar la oferta
             ofertaActions.PresentarOferta();
@@ -869,7 +869,118 @@ namespace Lyntia.TestSet
 
             ofertaActions.EliminarOfertaActual("Eliminar");
 
-            TestContext.WriteLine("LA PRUEBA CRM-POF0001 SE EJECUTÓ CORRECTAMENTE");
+            TestContext.WriteLine("LA PRUEBA CRM-POF0002 SE EJECUTÓ CORRECTAMENTE");
+        }
+        
+        [Test(Description = "CRM-POF0003 Presentar Oferta UbiRed Pro")]
+        [AllureSubSuite("PRO PRESENTAR OFERTA")]
+        public void CRM_POF0003_PresentarOferta()
+        {
+            // Login y Acceso a Gestión de Cliente
+            commonActions.AccesoGestionCliente();
+            commonCondition.AccedeGestionCliente();
+
+            // Paso 1 - Hacer click en Ofertas
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            // Paso 2 - Crear Nueva Oferta
+            ofertaActions.AccesoNuevaOferta();
+
+            // Rellenar campos y click en Guardar
+            ofertaActions.RellenarCamposOferta("CRM-POF0003-PRESENTAR_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Nuevo servicio", "# BizQA");
+            ofertaActions.GuardarOferta();
+            
+            // Añadir Producto a la UbiRed Pro
+            productoActions.CreacionProducto("UbiRed Pro", "FTTO", "1 Gbps", "", "", "", "");
+
+            // Paso 3 - Presentar la oferta
+            ofertaActions.PresentarOferta();
+
+            // Paso 4 - Regresar al grid, verificar oferta
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            ofertaActions.BuscarOfertaEnVista("CRM-POF0003-PRESENTAR_" + Utils.GetRandomString());
+            ofertaCondition.OfertaPresentadaCorrectamente();
+
+            ofertaActions.SeleccionarOfertaGrid();
+
+            ofertaActions.EliminarOfertaActual("Eliminar");
+
+            TestContext.WriteLine("LA PRUEBA CRM-POF0003 SE EJECUTÓ CORRECTAMENTE");
+        }
+        
+        [Test(Description = "CRM-POF0004 Presentar Oferta UbiRed Business")]
+        [AllureSubSuite("PRO PRESENTAR OFERTA")]
+        public void CRM_POF0004_PresentarOferta()
+        {
+            // Login y Acceso a Gestión de Cliente
+            commonActions.AccesoGestionCliente();
+            commonCondition.AccedeGestionCliente();
+
+            // Paso 1 - Hacer click en Ofertas
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            // Paso 2 - Crear Nueva Oferta
+            ofertaActions.AccesoNuevaOferta();
+
+            // Rellenar campos y click en Guardar
+            ofertaActions.RellenarCamposOferta("CRM-POF0004-PRESENTAR_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Nuevo servicio", "# BizQA");
+            ofertaActions.GuardarOferta();
+            
+            // Añadir Producto a la UbiRed Pro
+            productoActions.CreacionProducto("UbiRed Business", "", "", "", "", "", "");
+
+            // Paso 3 - Presentar la oferta
+            ofertaActions.PresentarOferta();
+
+            // Paso 4 - Regresar al grid, verificar oferta
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            ofertaActions.BuscarOfertaEnVista("CRM-POF0004-PRESENTAR_" + Utils.GetRandomString());
+            ofertaCondition.OfertaPresentadaCorrectamente();
+
+            ofertaActions.SeleccionarOfertaGrid();
+
+            ofertaActions.EliminarOfertaActual("Eliminar");
+
+            TestContext.WriteLine("LA PRUEBA CRM-POF0004 SE EJECUTÓ CORRECTAMENTE");
+        }
+        
+        [Test(Description = "CRM-POF0005 Presentar Oferta Rack")]
+        [AllureSubSuite("PRO PRESENTAR OFERTA")]
+        public void CRM_POF0005_PresentarOferta()
+        {
+            // Login y Acceso a Gestión de Cliente
+            commonActions.AccesoGestionCliente();
+            commonCondition.AccedeGestionCliente();
+
+            // Paso 1 - Hacer click en Ofertas
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            // Paso 2 - Crear Nueva Oferta
+            ofertaActions.AccesoNuevaOferta();
+
+            // Rellenar campos y click en Guardar
+            ofertaActions.RellenarCamposOferta("CRM-POF0005-PRESENTAR_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Nuevo servicio", "# BizQA");
+            ofertaActions.GuardarOferta();
+            
+            // Añadir Producto a la UbiRed Pro
+            productoActions.CreacionProducto("Rack", "FTTE", "600mm 24U", "", "", "", "12");
+
+            // Paso 3 - Presentar la oferta
+            ofertaActions.PresentarOferta();
+
+            // Paso 4 - Regresar al grid, verificar oferta
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            ofertaActions.BuscarOfertaEnVista("CRM-POF0005-PRESENTAR_" + Utils.GetRandomString());
+            ofertaCondition.OfertaPresentadaCorrectamente();
+
+            ofertaActions.SeleccionarOfertaGrid();
+
+            ofertaActions.EliminarOfertaActual("Eliminar");
+
+            TestContext.WriteLine("LA PRUEBA CRM-POF0005 SE EJECUTÓ CORRECTAMENTE");
         }
     }
 }
