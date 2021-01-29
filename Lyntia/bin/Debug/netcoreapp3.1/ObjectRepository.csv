@@ -65,6 +65,10 @@ Oferta.selectRazonEstado;XPATH;//select[@id='razonestado']
 Oferta.selectMotivoCierre;XPATH;//select[@id='motivocierre']
 Oferta.buttonConfirmarCierre;XPATH;//button[@id='btnOK']
 Oferta.buttonCancelarCierre;XPATH;//button[@id='cmdDialogCancel']
+Oferta.buttonAdjudicarOferta;XPATH;//span[contains(@aria-label, 'Adjudicar oferta')]
+Oferta.labelCrearpedido;XPATH;//h1[contains(@aria-label, 'Crear pedido')]
+Oferta.inputFechaVentanaCrearpedido;XPATH;//input//[contains(@aria-label, 'Fecha de Fecha en que se logró')]
+Oferta.labelMensajeCreapedidofechainferior;XPATH;//*[@id='subtitle']
 ############################# PRODUCTO ############################
 Producto.firstInput;ID;submit
 Producto.GuardarYCerrar_producto;XPATH;//button[@id='quickCreateSaveAndCloseBtn']

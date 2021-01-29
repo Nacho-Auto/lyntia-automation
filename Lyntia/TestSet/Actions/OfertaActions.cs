@@ -784,13 +784,53 @@ namespace Lyntia.TestSet.Actions
                 drop.SelectByText("Nuevo servicio");
 
                 GuardarYCerrarOferta();
-                TestContext.WriteLine("Se reestablecen los datos de la prueba EOF0004.");           
+                TestContext.WriteLine("Se reestablecen los datos de la prueba EOF0004.");
             }
             catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "ReestablecimientoEOF0004.png", "No se reestablecen los datos de la prueba EOF0004.");
                 throw e;
             }
+        }   
+        
+        /// <summary>
+        /// Método para presentar Oferta
+        /// </summary>
+        public void Adjudicar_Oferta()
+        {
+            try
+            {
+                Utils.SearchWebElement("Oferta.buttonAdjudicarOferta").Click();
+                TestContext.WriteLine("Se accede a la ventana de Adjudicar Oferta.");
+            }
+            catch (Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "AdjudicarOferta.png", "No se accede a la ventana de Adjudicar Oferta.");
+                throw e;
+            }
+        }
+        /// <summary>
+        /// Método para controlar fecha de la venta crear pedido de una oferta adjudicada
+        /// </summary>
+        public void VentanaCrearPedido(String Fecha)
+        {
+            try
+            {
+                Utils.SearchWebElement("Oferta.inputFechaVentanaCrearpedido").Click();
+                Utils.SearchWebElement("Oferta.inputFechaVentanaCrearpedido").SendKeys(Keys.Control + "a");
+                Utils.SearchWebElement("Oferta.inputFechaVentanaCrearpedido").SendKeys(Keys.Delete);
+                Utils.SearchWebElement("Oferta.inputFechaVentanaCrearpedido").SendKeys(Fecha);
+
+                Utils.SearchWebElement("Oferta.inputFechaVentanaCrearpedido").SendKeys("Oferta.gridFilterBuscarPorAceptarButton");
+                Utils.SearchWebElement("Oferta.gridFilterBuscarPorAceptarButton").Click();
+                TestContext.WriteLine("se continua con el pedido correctamente.");
+            }
+            catch (Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "VentanaCrearPedido.png", "No se continua con el pedido correctamente.");
+                throw e;
+            }
+            
         }
     }
 }

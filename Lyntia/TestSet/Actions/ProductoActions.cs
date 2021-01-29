@@ -22,7 +22,7 @@ namespace Lyntia.TestSet.Actions
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(45));
         }
 
-        public void CreacionProducto(String productoExistente, String uso, String unidadVenta, String metros, String modalidadContratacion, String nrc, String duracionContrato)
+        public void CreacionProducto(String productoExistente, String uso, String unidadVenta, String metros, String modalidadContratacion, String nrc, String duracionContrato, String PrecioMensual)
         {
             try
             {
@@ -129,6 +129,20 @@ namespace Lyntia.TestSet.Actions
                 Utils.SearchWebElement("Producto.inputDuracionContrato").SendKeys(Keys.Control + "a");
                 Utils.SearchWebElement("Producto.inputDuracionContrato").SendKeys(Keys.Delete);
                 Utils.SearchWebElement("Producto.inputDuracionContrato").SendKeys(duracionContrato);
+                Thread.Sleep(1000);
+            }
+
+            // Introduccir precio mensual
+            if (!PrecioMensual.Equals(""))
+            {
+                Utils.SearchWebElement("Producto.inputPrecioMensual").Click();
+                Thread.Sleep(1000);
+
+                Utils.SearchWebElement("Producto.inputPrecioMensual").SendKeys(PrecioMensual);
+                Thread.Sleep(1000);
+                Utils.SearchWebElement("Producto.inputPrecioMensual").SendKeys(Keys.Control + "a");
+                Utils.SearchWebElement("Producto.inputPrecioMensual").SendKeys(Keys.Delete);
+                Utils.SearchWebElement("Producto.inputPrecioMensual").SendKeys(PrecioMensual);
                 Thread.Sleep(1000);
             }
 
