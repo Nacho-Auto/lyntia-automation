@@ -119,16 +119,16 @@ namespace Lyntia.TestSet.Actions
             }
             
             // Introduccir Duración de Contrato
-            if (!nrc.Equals(""))
+            if (!duracionContrato.Equals(""))
             {
-                Utils.SearchWebElement("Producto.inputNRC").Click();
+                Utils.SearchWebElement("Producto.inputDuracionContrato").Click();
                 Thread.Sleep(1000);
 
-                Utils.SearchWebElement("Producto.inputNRC").SendKeys(duracionContrato);
+                Utils.SearchWebElement("Producto.inputDuracionContrato").SendKeys(duracionContrato);
                 Thread.Sleep(1000);
-                Utils.SearchWebElement("Producto.inputNRC").SendKeys(Keys.Control + "a");
-                Utils.SearchWebElement("Producto.inputNRC").SendKeys(Keys.Delete);
-                Utils.SearchWebElement("Producto.inputNRC").SendKeys(duracionContrato);
+                Utils.SearchWebElement("Producto.inputDuracionContrato").SendKeys(Keys.Control + "a");
+                Utils.SearchWebElement("Producto.inputDuracionContrato").SendKeys(Keys.Delete);
+                Utils.SearchWebElement("Producto.inputDuracionContrato").SendKeys(duracionContrato);
                 Thread.Sleep(1000);
             }
 
