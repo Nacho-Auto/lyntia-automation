@@ -22,7 +22,7 @@ namespace Lyntia.TestSet.Actions
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(45));
         }
 
-        public void CreacionProducto(String productoExistente, String uso, String unidadVenta, String metros)
+        public void CreacionProducto(String productoExistente, String uso, String unidadVenta, String metros, String modalidadContratacion, String nrc)
         {
             try
             {
@@ -78,10 +78,10 @@ namespace Lyntia.TestSet.Actions
                     }
                 }
             }
-            // Introduccir los metros del producto tipo fibra oscura
+            
+            // Introduccir metros
             if (!metros.Equals(""))
             {
-
                 Utils.SearchWebElement("Producto.inputMetros").Click();
                 Thread.Sleep(1000);
 
@@ -91,10 +91,28 @@ namespace Lyntia.TestSet.Actions
                 Utils.SearchWebElement("Producto.inputMetros").SendKeys(Keys.Delete);
                 Utils.SearchWebElement("Producto.inputMetros").SendKeys(metros);
                 Thread.Sleep(1000);
-                
-
             }
+            
+            // Introduccir Modalidad de Contratacion
+            if (!modalidadContratacion.Equals(""))
+            {
+                SelectElement drop = new SelectElement(Utils.SearchWebElement("Producto.SelectModalidadContratacion"));
+                drop.SelectByText(modalidadContratacion);
+            }
+            
+            // Introduccir NRC
+            if (!nrc.Equals(""))
+            {
+                Utils.SearchWebElement("Producto.inputNRC").Click();
+                Thread.Sleep(1000);
 
+                Utils.SearchWebElement("Producto.inputNRC").SendKeys(nrc);
+                Thread.Sleep(1000);
+                Utils.SearchWebElement("Producto.inputNRC").SendKeys(Keys.Control + "a");
+                Utils.SearchWebElement("Producto.inputNRC").SendKeys(Keys.Delete);
+                Utils.SearchWebElement("Producto.inputNRC").SendKeys(nrc);
+                Thread.Sleep(1000);
+            }
 
             try
             {
