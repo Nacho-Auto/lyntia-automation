@@ -22,7 +22,7 @@ namespace Lyntia.TestSet.Actions
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(45));
         }
 
-        public void CreacionProducto(String productoExistente, String uso, String unidadVenta, String metros, String modalidadContratacion, String nrc)
+        public void CreacionProducto(String productoExistente, String uso, String unidadVenta, String metros, String modalidadContratacion, String nrc, String duracionContrato)
         {
             try
             {
@@ -34,7 +34,7 @@ namespace Lyntia.TestSet.Actions
                 Utils.SearchWebElement("Producto.inputProductoExistente").Click();
                 Thread.Sleep(1000);
                 Utils.SearchWebElement("Producto.inputProductoExistente").SendKeys(productoExistente);
-                Thread.Sleep(1000);
+                Thread.Sleep(2000);
 
                 driver.FindElement(By.XPath("//span[contains(text(), '" + productoExistente + "')]")).Click();
                 Thread.Sleep(6000);
@@ -111,6 +111,20 @@ namespace Lyntia.TestSet.Actions
                 Utils.SearchWebElement("Producto.inputNRC").SendKeys(Keys.Control + "a");
                 Utils.SearchWebElement("Producto.inputNRC").SendKeys(Keys.Delete);
                 Utils.SearchWebElement("Producto.inputNRC").SendKeys(nrc);
+                Thread.Sleep(1000);
+            }
+            
+            // Introduccir Duración de Contrato
+            if (!nrc.Equals(""))
+            {
+                Utils.SearchWebElement("Producto.inputNRC").Click();
+                Thread.Sleep(1000);
+
+                Utils.SearchWebElement("Producto.inputNRC").SendKeys(duracionContrato);
+                Thread.Sleep(1000);
+                Utils.SearchWebElement("Producto.inputNRC").SendKeys(Keys.Control + "a");
+                Utils.SearchWebElement("Producto.inputNRC").SendKeys(Keys.Delete);
+                Utils.SearchWebElement("Producto.inputNRC").SendKeys(duracionContrato);
                 Thread.Sleep(1000);
             }
 
