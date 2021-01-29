@@ -49,6 +49,7 @@ Oferta.calendarDateToday;XPATH;//button[contains(@class,'dayIsToday')]
 Oferta.calendarDateRandomDay;XPATH;//tr[contains(@class,'weekRow')]//button
 Oferta.inputGVAL;XPATH;//input[@aria-label='Código GVAL']
 Oferta.LabelFechaspestaña;XPATH;//li[contains(@title, 'Fechas')]
+Producto.inputMetros;XPATH;//input[contains(@aria-label, 'Metros')]
 Oferta.ButtonGuardarYcerrar;XPATH;//span[contains(@aria-label, 'Guardar y cerrar')]
 Oferta.calendarFechadepresentacion;XPATH;//input[contains(@aria-label, 'Fecha de presentación')]
 Oferta.inputCampoDescripcion;XPATH;//textarea[contains(@aria-label, 'Descripción')]
@@ -81,6 +82,7 @@ Producto.SelectUsoLineaNegocio;XPATH;//select[contains(@id,'uso')]
 Producto.inputProductoExistente;XPATH;//input[contains(@data-id,'productid')]
 Producto.SelectUnidadDeVenta;XPATH;//select[contains(@aria-label, 'Uso (Unidad de venta, Búsqueda)')]
 Producto.SelectLineaDeNegocio;XPATH;//select[contains(@aria-label, 'Uso (Línea de negocio)')]
+Producto.SelectModalidadContratacion;XPATH;//select[@aria-label='Modalidad de contratación']
 Producto.buttonCrearRegistroNuevo;ID;quickCreateLauncher_buttoncrm_header_global
 Producto.SelectCrearRegistroNuevoProductoDeOferta;XPATH;//div[contains(@data-id, '__flyoutRootNode')]//button
 Producto.LabelUniVentaCamposObligatorios;XPATH;//span[contains(@data-id, 'uomid-error-message')]
