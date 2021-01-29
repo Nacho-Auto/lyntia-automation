@@ -43,7 +43,7 @@ namespace Lyntia.TestSet.Conditions
 
                 TestContext.WriteLine("***Se cumplen las condiciones de crear oferta");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "CreaOferta.png", "***No se cumplen las condiciones para crear oferta correctamente");
                 throw e;
@@ -69,7 +69,7 @@ namespace Lyntia.TestSet.Conditions
 
                 TestContext.WriteLine("***Se cumplen las condiciones con fechas sin informar");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "FechasSinInformar.png", "***No se cumplen las condiciones con fechas sin informar correctamente");
                 throw e;
@@ -88,7 +88,7 @@ namespace Lyntia.TestSet.Conditions
 
                 TestContext.WriteLine("***Se cumplen las condiciones de una oferta no creada");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "OfertaNoCreada.png", "***No se cumplen las condiciones de una oferta creada");
                 throw e;
@@ -113,7 +113,7 @@ namespace Lyntia.TestSet.Conditions
 
                 TestContext.WriteLine("***Las condiciones de fechas informadas correctamente han sido OK");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "FechasInformadascorrectamente.png", "***No se cumplen las condiciones de fechas informadas");
                 throw e;
@@ -141,7 +141,7 @@ namespace Lyntia.TestSet.Conditions
 
                 TestContext.WriteLine("***Se cumplen las condiciones de guardado de oferta correctamente");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "OfertaGuardacorrectamente.png", "***No se cumplen las condiciones para guardar la oferta");
                 throw e;
@@ -158,7 +158,7 @@ namespace Lyntia.TestSet.Conditions
                 // Se encuentra en Razon para el estado En elaboracion
                 Assert.AreEqual("En elaboración", driver.FindElement(By.XPath("//div[@data-id='cell-0-8']")).GetAttribute("title"));
                 TestContext.WriteLine("***Se cumple la condición de Oferta guardada Correctamente.");
-            }catch(Exception e)
+            } catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "CondicionOfertaGuardada.png", "***No se cumple la condición de Oferta guardada Correctamente.");
                 throw e;
@@ -172,7 +172,7 @@ namespace Lyntia.TestSet.Conditions
                 Assert.AreEqual(true, driver.FindElement(By.XPath("//button[contains(@aria-label, 'Agregar producto')]")).Enabled);//comprobamos que añadir producto esta habilitado
                 TestContext.WriteLine("***Se cumplen las condiciones de la seleccion de oferta");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "AccederSeleccionofertaapr0001.pne", "***No se cumpe la condicion seleccion oferta");
                 throw e;
@@ -187,7 +187,7 @@ namespace Lyntia.TestSet.Conditions
                 Assert.AreEqual("General", driver.FindElement(By.XPath("//li[contains(@aria-label, 'General')]")).Text);
                 TestContext.WriteLine("***Se cumple la condicion");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "AccederSeleccionOferta.png", "***No se cumple la condicion");
                 throw e;
@@ -203,7 +203,7 @@ namespace Lyntia.TestSet.Conditions
 
                 TestContext.WriteLine("***La condicion se cumple");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "Introducir datos.png", "***No se cumple la condicion");
                 throw e;
@@ -221,7 +221,7 @@ namespace Lyntia.TestSet.Conditions
 
                 TestContext.WriteLine("***La condicion introduccion de datos se cumple correctamente");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "Introduccion Datos2.png", "***No se cumple la condicion para introduccir datos");
                 throw e;
@@ -234,13 +234,13 @@ namespace Lyntia.TestSet.Conditions
             {
                 Assert.AreEqual("La oferta de tipo “Cambio de capacidad” requiere envío a construcción, pero no cambia el código administrativo", driver.FindElement(By.XPath("//span[contains(@data-id, 'warningNotification')]")).Text);
                 TestContext.WriteLine("***La condicion de aviso cambio de capacidad se cumple");
-            }   
-            catch(Exception e)
+            }
+            catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "Aviso cambio de capacidad.png", "***No se cumple la condicion de cambio de capacidad");
                 throw e;
             }
-            
+
         }
 
         public void Aviso_Cambiodeprecio()//mensaje por el tipo de oferta
@@ -254,7 +254,7 @@ namespace Lyntia.TestSet.Conditions
 
                 TestContext.WriteLine("***La condicion aviso cambio de precio se cumple correctamente");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "Aviso cambio de precio.png", "***No se cumple la condicion de cambio de precio");
                 throw e;
@@ -271,7 +271,7 @@ namespace Lyntia.TestSet.Conditions
 
                 TestContext.WriteLine("***Se cumple la condicion de aviso cambio de solucion");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "Aviso cambio solucion.png", "***No se cumple la condicion de aviso cambio de solucion");
                 throw e;
@@ -286,7 +286,7 @@ namespace Lyntia.TestSet.Conditions
                 Assert.AreEqual("La oferta de tipo “Migración” requiere el envío a construcción y cambia el código administrativo", driver.FindElement(By.XPath("//span[contains(@data-id, 'warningNotification')]")).Text);
                 TestContext.WriteLine("***La condicion de aviso cambio de direccion es correcta");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "Aviso cambio de direccion.png", "***No se cumple la condicion de aviso cambio de direccion");
                 throw e;
@@ -301,13 +301,13 @@ namespace Lyntia.TestSet.Conditions
                 Assert.AreEqual("Ganada", driver.FindElement(By.XPath("//div[contains(@title, 'Ganada')]")).Text);//la oferta esta en estado ganada
                 TestContext.WriteLine("***La condicion resultado acceso oferta adjudicada es correcta");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "Resultado acceder oferta estado adjudicada.png", "***No se cumple la condicion para acceder a oferta en estado adjudicada");
                 throw e;
             }
-            }
-            
+        }
+
 
         public void Resultado_Eliminar_BarraMenu()
         {
@@ -330,7 +330,7 @@ namespace Lyntia.TestSet.Conditions
                 Assert.AreEqual("Ganada", driver.FindElement(By.XPath("//div[contains(@title, 'Ganada')]")).Text);//la oferta esta en estado ganada
                 TestContext.WriteLine("***Se cumple la condicion de cancelar");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "Resultado cancela.png", "***No se cumple la condicion de cancelar");
                 throw e;
@@ -351,7 +351,7 @@ namespace Lyntia.TestSet.Conditions
 
                 TestContext.WriteLine("***La condicion resultado eliminar pop up se cumple correctamente");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "Resultado Eliminar popup.png", "***La condicion resultado eliminar pop up no se cumple correctamente");
                 throw e;
@@ -368,7 +368,7 @@ namespace Lyntia.TestSet.Conditions
                 TestContext.WriteLine("***La condicion seleccion oferta adjudicada se cumple correctamente");
             }
 
-            catch(Exception e)
+            catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "Resultado seleccion oferta adjudicada.png", "***No se cumple la condicion seleccion oferta adjudicada");
                 throw e;
@@ -383,7 +383,7 @@ namespace Lyntia.TestSet.Conditions
                 Assert.AreEqual(false, utils.EncontrarElemento(By.XPath("//button[@title='Cerrar Oferta']")));
                 TestContext.WriteLine("***La condicion cerrar oferta no visible es correcta");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "Cerrar oferta no visible.png", "***La condicion cerrar oferta no visible no es correcta");
                 throw e;
@@ -399,13 +399,13 @@ namespace Lyntia.TestSet.Conditions
                 Assert.AreEqual("Por favor, completa los campos obligatorios", driver.FindElement(By.XPath("//p[@id='error']")).Text);
                 TestContext.WriteLine("***La condicion oferta no cerrada se cumple correctamente");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "Oferta no cerrada.png", "***No se cumple la condicion oferta no cerrada");
                 throw e;
             }
         }
-            
+
 
         public void OfertaCerradaCorrectamenteEnGrid(String razonEstado)
         {
@@ -419,7 +419,7 @@ namespace Lyntia.TestSet.Conditions
 
                 TestContext.WriteLine("***La condicion oferta cerrada correctamente en grid funciona correctamente");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "Oferta cerrada correctamente en grid.png", "***No se cumple la condicion oferta cerrada en grid");
                 throw e;
@@ -433,7 +433,7 @@ namespace Lyntia.TestSet.Conditions
                 Assert.AreEqual("Solo lectura: estado de este registro: Bloqueada", driver.FindElement(By.XPath("//span[@data-id='warningNotification']")).Text);
                 TestContext.WriteLine("***Se cumple la condicion de oferta presentada");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "Oferta presentada.png", "***No se cumple la condicion de oferta presentada");
                 throw e;
@@ -448,7 +448,7 @@ namespace Lyntia.TestSet.Conditions
                 Assert.AreEqual("2", Utils.SearchWebElement("Oferta.gridCellsOferta").GetAttribute("data-row-count"));
                 TestContext.WriteLine("***Se cumple la condicion oferta revisada");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "Oferta revisada correctamente.png", "***No se cumple la condicion oferta revisada correctamente");
                 throw e;
@@ -463,7 +463,7 @@ namespace Lyntia.TestSet.Conditions
                 Assert.AreEqual("General", driver.FindElement(By.XPath("//li[contains(@aria-label, 'General')]")).Text);
                 TestContext.WriteLine("***Se cumple la condicion resultado seleccion oferta en borrador");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "Resultado seleccion oferta en borrador.png", "***No se cumple la condicion de resultado seleccionar oferta en borrador");
                 throw e;
@@ -476,7 +476,7 @@ namespace Lyntia.TestSet.Conditions
                 Assert.AreEqual(true, driver.FindElement(By.XPath("//input[contains(@aria-label, 'Producto existente, Búsqueda')]")).Enabled);//el campo producto existente esta habilitado
                 TestContext.WriteLine("***Se cumple la condicion de producto agregado");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "Resultado agregar producto.png", "***No se cumple la condicion de producto agregado");
                 throw e;
@@ -490,13 +490,13 @@ namespace Lyntia.TestSet.Conditions
                 Assert.AreEqual("General", driver.FindElement(By.XPath("//li[contains(@aria-label, 'General')]")).Text);
                 TestContext.WriteLine("***Se cumple la condicion resultado edicion de una oferta");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "Resultado edicion de una oferta.png", "***No se cumple la condicion resultado edicion de una ofera");
                 throw e;
             }
 
-		}
+        }
         public void OfertaPresentadaCorrectamente()
         {
             try
@@ -510,11 +510,44 @@ namespace Lyntia.TestSet.Conditions
                 TestContext.WriteLine("***Se cumple la condicion de oferta presentada correctamente");
 
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "Oferta presentada correctamente.png", "***No se cumple la condicion de oferta presentada correctamente");
                 throw e;
             }
+
+        }
+
+        public void ResAdjudicarOferta()
+        {
+            try
+            {
+                Assert.AreEqual("Crear pedido", Utils.SearchWebElement("Oferta.labelCrearpedido").Text);
+                TestContext.WriteLine("***Se cumple la condicion de oferta adjudicada correctamente");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "ResAdjudicarOferta.png", ("*** No Se cumple la condicion de oferta adjudicada correctamente"));
+                throw e;
+            }
+        }
+
+        public void ResVentanaCrearPedido()
+        {
+            try
+            {
+                Assert.AreEqual("Error al introducir fecha de adjudicación: no puede ser anterior a fecha de presentación.", Utils.SearchWebElement("Oferta.labelMensajeCreapedidofechainferior").Text);
+                TestContext.WriteLine("***Se cumple la condicion de advertencia, fecha inferior");
+            }
+            catch (Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "ResAdjudicarOferta.png", ("*** No cumple la condicion de advertencia, fecha inferior"));
+                throw e;
+            }
         }
     }
+
 }
+
+    
+
