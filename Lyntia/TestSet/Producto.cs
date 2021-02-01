@@ -153,6 +153,72 @@ namespace Lyntia.TestSet
             TestContext.WriteLine("LA PRUEBA CRM-APR0004-ADD-PROD SE EJECUTÓ CORRECTAMENTE");
         }
         
+        //CRM-APR0005
+        [Test(Description = "CRM-APR0005 Añadir producto de UbiRed Pro")]
+        [AllureSubSuite("PRO AÑADIR PRODUCTO")]
+        public void CRM_APR0005_Producto_Añadir_UbiredPremium()
+        {
+            // Login y Acceso a Gestión de Cliente
+            commonActions.AccesoGestionCliente();
+            commonCondition.AccedeGestionCliente();
+
+            // Paso 1 - Hacer click en Ofertas
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            // Paso 2 - Crear Nueva Oferta
+            ofertaActions.AccesoNuevaOferta();
+
+            // Rellenar campos y click en Guardar
+            ofertaActions.RellenarCamposOferta("CRM-APR0005-ADD-PROD_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Nuevo servicio", "# BizQA");
+            ofertaActions.GuardarOferta();
+
+            // Añadir Producto a la UbiRed Pro
+            productoActions.CreacionProducto("UbiRed Pro", "FTTT", "1 Gbps", "", "", "", "", "");
+            
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            ofertaActions.BuscarOfertaEnVista("CRM-APR0005-ADD-PROD_" + Utils.GetRandomString());
+
+            ofertaActions.SeleccionarOfertaGrid();
+
+            ofertaActions.EliminarOfertaActual("Eliminar");
+
+            TestContext.WriteLine("LA PRUEBA CRM-APR0005-ADD-PROD SE EJECUTÓ CORRECTAMENTE");
+        }
+        
+        //CRM-APR0006
+        [Test(Description = "CRM-APR0006 Añadir producto de UbiRed Business")]
+        [AllureSubSuite("PRO AÑADIR PRODUCTO")]
+        public void CRM_APR0006_Producto_Añadir_UbiredPremium()
+        {
+            // Login y Acceso a Gestión de Cliente
+            commonActions.AccesoGestionCliente();
+            commonCondition.AccedeGestionCliente();
+
+            // Paso 1 - Hacer click en Ofertas
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            // Paso 2 - Crear Nueva Oferta
+            ofertaActions.AccesoNuevaOferta();
+
+            // Rellenar campos y click en Guardar
+            ofertaActions.RellenarCamposOferta("CRM-APR0006-ADD-PROD_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Nuevo servicio", "# BizQA");
+            ofertaActions.GuardarOferta();
+
+            // Añadir Producto a la UbiRed Pro
+            productoActions.CreacionProducto("UbiRed Business", "FTTT", "1 Gbps", "", "", "", "", "");
+            
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            ofertaActions.BuscarOfertaEnVista("CRM-APR0006-ADD-PROD_" + Utils.GetRandomString());
+
+            ofertaActions.SeleccionarOfertaGrid();
+
+            ofertaActions.EliminarOfertaActual("Eliminar");
+
+            TestContext.WriteLine("LA PRUEBA CRM-APR0006-ADD-PROD SE EJECUTÓ CORRECTAMENTE");
+        }
+
         //CRM-APR0009
         [Test(Description = "CRM-APR0009 Heredar producto Circuito de Capacidad en Oferta Cambio de Precio")]
         [AllureSubSuite("PRO AÑADIR PRODUCTO")]
