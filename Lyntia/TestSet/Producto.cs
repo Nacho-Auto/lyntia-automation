@@ -140,7 +140,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la UbiRed Pro
-            productoActions.CreacionProducto("Fibra oscura", "FTTE", "", "3", "", "Lease", "", "50");
+            productoActions.CreacionProducto("Fibra oscura", "Backbone y OTT", "m. x2 fibras", "22", "IRU", "1000", "", "");
             
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
 
