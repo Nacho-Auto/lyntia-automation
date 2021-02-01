@@ -237,7 +237,8 @@ namespace Lyntia.TestSet.Actions
                 Utils.SearchWebElement("Producto.inputServicioHeredado").SendKeys(productoHeredado);
                 driver.FindElement(By.XPath("//span[contains(text(), '" + productoHeredado + "')]")).Click();
                 Thread.Sleep(3000);
-                Utils.SearchWebElement("//input[@aria-label='Cód. admin. servicio heredado']").SendKeys(Keys.PageDown);
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//input[@aria-label='Cód. admin. servicio heredado']")));
+                driver.FindElement(By.XPath("//input[@aria-label='Cód. admin. servicio heredado']")).SendKeys(Keys.PageDown);
                 Thread.Sleep(6000);
             }
 
