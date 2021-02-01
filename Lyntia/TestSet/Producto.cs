@@ -156,7 +156,7 @@ namespace Lyntia.TestSet
         //CRM-APR0009
         [Test(Description = "CRM-APR0009 Heredar producto Circuito de Capacidad en Oferta Cambio de Precio")]
         [AllureSubSuite("PRO AÑADIR PRODUCTO")]
-        public void CRM_APR0009_Producto_heredar_FibraOscura()
+        public void CRM_APR0009_Producto_heredar_CC_CambioPrecio()
         {
             // Login y Acceso a Gestión de Cliente
             commonActions.AccesoGestionCliente();
@@ -189,7 +189,7 @@ namespace Lyntia.TestSet
         //CRM-APR0010
         [Test(Description = "CRM-APR0010 Heredar producto Circuito de Capacidad en Oferta Cambio de Precio")]
         [AllureSubSuite("PRO AÑADIR PRODUCTO")]
-        public void CRM_APR0010_Producto_heredar_FibraOscura()
+        public void CRM_APR0010_Producto_heredar_CC_CambioPrecio()
         {
             // Login y Acceso a Gestión de Cliente
             commonActions.AccesoGestionCliente();
@@ -220,9 +220,9 @@ namespace Lyntia.TestSet
         }
         
         //CRM-APR0011
-        [Test(Description = "CRM-APR0010 Heredar producto Circuito de Capacidad en Oferta Cambio de Precio")]
+        [Test(Description = "CRM-APR0011 Heredar producto Circuito de Capacidad en Oferta Cambio de Dirección")]
         [AllureSubSuite("PRO AÑADIR PRODUCTO")]
-        public void CRM_APR0011_Producto_heredar_FibraOscura()
+        public void CRM_APR0011_Producto_heredar_CC_CambioDireccion()
         {
             // Login y Acceso a Gestión de Cliente
             commonActions.AccesoGestionCliente();
