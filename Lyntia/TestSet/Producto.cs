@@ -185,7 +185,72 @@ namespace Lyntia.TestSet
 
             TestContext.WriteLine("LA PRUEBA CRM-APR0009-HEREDAR-PROD SE EJECUTÓ CORRECTAMENTE");
         }
+        
+        //CRM-APR0010
+        [Test(Description = "CRM-APR0010 Heredar producto Circuito de Capacidad en Oferta Cambio de Precio")]
+        [AllureSubSuite("PRO AÑADIR PRODUCTO")]
+        public void CRM_APR0010_Producto_heredar_FibraOscura()
+        {
+            // Login y Acceso a Gestión de Cliente
+            commonActions.AccesoGestionCliente();
+            commonCondition.AccedeGestionCliente();
 
+            // Paso 1 - Hacer click en Ofertas
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            // Paso 2 - Crear Nueva Oferta
+            ofertaActions.AccesoNuevaOferta();
+
+            // Rellenar campos y click en Guardar
+            ofertaActions.RellenarCamposOferta("CRM-APR0009-HEREDAR-PROD_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Cambio de solución técnica (Tecnología)", "# BizQA");
+            ofertaActions.GuardarOferta();
+
+            // Añadir Producto a la Oferta Circuito de Capacidad
+            productoActions.HeredarProducto("  CC 100 Mbps 22 - 22", "2000", "2", "1000", "", "");
+            
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            ofertaActions.BuscarOfertaEnVista("CRM-APR0009-HEREDAR-PROD_" + Utils.GetRandomString());
+
+            ofertaActions.SeleccionarOfertaGrid();
+
+            ofertaActions.EliminarOfertaActual("Eliminar");
+
+            TestContext.WriteLine("LA PRUEBA CRM-APR0010-HEREDAR-PROD SE EJECUTÓ CORRECTAMENTE");
+        }
+        
+        //CRM-APR0011
+        [Test(Description = "CRM-APR0010 Heredar producto Circuito de Capacidad en Oferta Cambio de Precio")]
+        [AllureSubSuite("PRO AÑADIR PRODUCTO")]
+        public void CRM_APR0011_Producto_heredar_FibraOscura()
+        {
+            // Login y Acceso a Gestión de Cliente
+            commonActions.AccesoGestionCliente();
+            commonCondition.AccedeGestionCliente();
+
+            // Paso 1 - Hacer click en Ofertas
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            // Paso 2 - Crear Nueva Oferta
+            ofertaActions.AccesoNuevaOferta();
+
+            // Rellenar campos y click en Guardar
+            ofertaActions.RellenarCamposOferta("CRM-APR0011-HEREDAR-PROD_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Cambio de dirección (Migración)", "# BizQA");
+            ofertaActions.GuardarOferta();
+
+            // Añadir Producto a la Oferta Circuito de Capacidad
+            productoActions.HeredarProducto("  CC 100 Mbps 22 - 22", "2000", "2", "1000", "", "");
+            
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            ofertaActions.BuscarOfertaEnVista("CRM-APR0011-HEREDAR-PROD_" + Utils.GetRandomString());
+
+            ofertaActions.SeleccionarOfertaGrid();
+
+            ofertaActions.EliminarOfertaActual("Eliminar");
+
+            TestContext.WriteLine("LA PRUEBA CRM-APR0011-HEREDAR-PROD SE EJECUTÓ CORRECTAMENTE");
+        }
         
         //CRM-APR0008
         [Test(Description = "CRM-APR0008 Añadir producto correctamente, Cambio de Capacidad")]
