@@ -189,7 +189,7 @@ namespace Lyntia.TestSet
         //CRM-APR0006
         [Test(Description = "CRM-APR0006 Añadir producto de UbiRed Business")]
         [AllureSubSuite("PRO AÑADIR PRODUCTO")]
-        public void CRM_APR0006_Producto_Añadir_UbiredPremium()
+        public void CRM_APR0006_Producto_Añadir_UbiredBusiness()
         {
             // Login y Acceso a Gestión de Cliente
             commonActions.AccesoGestionCliente();
@@ -206,7 +206,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la UbiRed Pro
-            productoActions.CreacionProducto("UbiRed Business", "FTTT", "1 Gbps", "", "", "", "", "");
+            productoActions.CreacionProducto("UbiRed Business", "", "", "", "", "", "2", "");
             
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
 
