@@ -121,7 +121,7 @@ namespace Lyntia.TestSet
         }
         
         //CRM-APR0004
-        [Test(Description = "CRM-APR0004 Añadir producto Circuito de Fibra Oscura")]
+        [Test(Description = "CRM-APR0004 Añadir producto de Fibra Oscura")]
         [AllureSubSuite("PRO AÑADIR PRODUCTO")]
         public void CRM_APR0004_Producto_Añadir_FibraOscura()
         {
@@ -154,7 +154,7 @@ namespace Lyntia.TestSet
         }
         
         //CRM-APR0009
-        [Test(Description = "CRM-APR0009 Heredad producto Circuito de Fibra Oscura en Oferta Cambio de Precio")]
+        [Test(Description = "CRM-APR0009 Heredar producto Circuito de Capacidad en Oferta Cambio de Precio")]
         [AllureSubSuite("PRO AÑADIR PRODUCTO")]
         public void CRM_APR0009_Producto_heredar_FibraOscura()
         {
@@ -183,7 +183,7 @@ namespace Lyntia.TestSet
 
             ofertaActions.EliminarOfertaActual("Eliminar");
 
-            TestContext.WriteLine("LA PRUEBA CRM-APR0004-ADD-PROD SE EJECUTÓ CORRECTAMENTE");
+            TestContext.WriteLine("LA PRUEBA CRM-APR0009-HEREDAR-PROD SE EJECUTÓ CORRECTAMENTE");
         }
 
         
