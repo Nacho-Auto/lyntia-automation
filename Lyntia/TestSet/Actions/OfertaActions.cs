@@ -526,7 +526,36 @@ namespace Lyntia.TestSet.Actions
                 Thread.Sleep(3000);
 
                 Thread.Sleep(3000);
-                Utils.SearchWebElement("Oferta.ButtonGuardarYcerrar").Click(); //Guarda y cierra
+                Utils.SearchWebElement("Oferta.saveOferta").Click();
+                //Utils.SearchWebElement("Oferta.ButtonGuardarYcerrar").Click(); //Guarda y cierra
+                TestContext.WriteLine("Se reestablecen los datos originales de la prueba CRM-EOF0004.");
+            }
+            catch (Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "ReestablecimientoEOF0003.png", "No se reestablecen los datos originales de la prueba CRM-EOF0004.");
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// Método para reestablecer datos de la Oferta de la prueba CRM_COF0003 de Editar Oferta
+        /// </summary>
+        public void Restablecimiento_campos_obligatorios()
+        {
+            try
+            {
+               
+                Utils.SearchWebElement("Oferta.inputNameOferta").Click();
+                Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Control + "a");
+                Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Delete);
+                Thread.Sleep(3000);
+
+                Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys("Prueba");
+                Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.PageDown);
+
+                Thread.Sleep(3000);
+                Utils.SearchWebElement("Oferta.saveOferta").Click();
+                //Utils.SearchWebElement("Oferta.ButtonGuardarYcerrar").Click(); //Guarda y cierra
                 TestContext.WriteLine("Se reestablecen los datos originales de la prueba CRM-EOF0004.");
             }
             catch (Exception e)
@@ -830,7 +859,28 @@ namespace Lyntia.TestSet.Actions
                 CommonActions.CapturadorExcepcion(e, "VentanaCrearPedido.png", "No se continua con el pedido correctamente.");
                 throw e;
             }
+        }
+        /// <summary>
+        /// Método para actualizar desde la barra de menu superior
+        /// </summary>
+        public void Actualizar(String accion)
+        {
+            Utils.SearchWebElement("Oferta.buttonActualizar").Click();
+
+            if (accion.Equals("Guardar"))
+            {
+                Thread.Sleep(2000);
+                Utils.SearchWebElement("Producto.buttonGuardaryContinuar").Click();
+            }
+            else
+            {
+                //cambios no guardados
+                Thread.Sleep(2000);
+                Utils.SearchWebElement("Oferta.ButtonDescartarcambios").Click();
+            }
             
         }
+
+        
     }
 }
