@@ -70,6 +70,8 @@ Oferta.buttonAdjudicarOferta;XPATH;//span[contains(@aria-label, 'Adjudicar ofert
 Oferta.labelCrearpedido;XPATH;//h1[contains(@aria-label, 'Crear pedido')]
 Oferta.inputFechaVentanaCrearpedido;XPATH;//input//[contains(@aria-label, 'Fecha de Fecha en que se logró')]
 Oferta.labelMensajeCreapedidofechainferior;XPATH;//*[@id='subtitle']
+Oferta.buttonActualizar;XPATH;//button[contains(@aria-label, 'Actualizar')]
+Oferta.ButtonDescartarcambios;XPATH;//button[contains(@aria-label, 'Descartar cambios')]
 ############################# PRODUCTO ############################
 Producto.firstInput;ID;submit
 Producto.GuardarYCerrar_producto;XPATH;//button[@id='quickCreateSaveAndCloseBtn']

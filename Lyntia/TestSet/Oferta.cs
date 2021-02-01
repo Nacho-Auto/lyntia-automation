@@ -1100,5 +1100,69 @@ namespace Lyntia.TestSet
             ofertaActions.VentanaCrearPedido("27/01/2021");
             ofertaCondition.ResVentanaCrearPedido();
         }
+        [Test(Description = "CRM-EOF0001 - PRO EDI OFERTA")]
+        [AllureSubSuite("PRO EDI OFERTA")]
+        public void CRM_EOF0001_Edición_borrador_Sin_datos_obligatorios()
+        {
+            // Login y Acceso a Gestión de Cliente
+            commonActions.AccesoGestionCliente();//Acceso al modulo de Gestion de Cliente(Apliaciones)
+            commonCondition.AccedeGestionCliente();//Acceso correcto
+
+            // Paso 1 - Hacer click en Ofertas
+            commonActions.AccesoOferta();//Oferta menu
+            commonCondition.AccedeOferta();//comprobamos el acceso
+
+            // Paso 3 - Nueva Oferta
+            ofertaActions.AccesoNuevaOferta();
+            ofertaCondition.CreaOferta();
+
+            // Paso 4 - Rellenar campos de la oferta
+            ofertaActions.RellenarCamposOferta("Prueba", "CLIENTE INTEGRACION", "Nuevo servicio", "BizQA");
+            
+            // Paso 5 - Guardar oferta
+            ofertaActions.GuardarOferta();
+            ofertaActions.Restablecimiento_campos_obligatorios();
+            ofertaCondition.OfertaNoCreada();
+
+            // Paso 6 - Actualizar y descartar cambios
+            ofertaActions.Actualizar("Descartar");
+            ofertaActions.Restablecimiento_CRM_COF0003();
+            ofertaCondition.OfertaNoCreada();
+
+            // Paso 7 - Guardar y cerrar oferta
+            ofertaActions.GuardarYCerrarOferta();
+            ofertaCondition.OfertaNoCreada();
+        }
+
+        [Test(Description = "CRM-EOF0002 - PRO EDI OFERTA")]
+        [AllureSubSuite("PRO EDI OFERTA")]
+        public void CRM_EOF0002_Edición_borrador_Con_datos_obligatorios()
+        {
+            // Login y Acceso a Gestión de Cliente
+            commonActions.AccesoGestionCliente();//Acceso al modulo de Gestion de Cliente(Apliaciones)
+            commonCondition.AccedeGestionCliente();//Acceso correcto
+
+            // Paso 1 - Hacer click en Ofertas
+            commonActions.AccesoOferta();//Oferta menu
+            commonCondition.AccedeOferta();//comprobamos el acceso
+
+            // Paso 3 - Nueva Oferta
+            ofertaActions.AccesoNuevaOferta();
+            ofertaCondition.CreaOferta();
+
+            // Paso 4 - Rellenar campos de la oferta
+            ofertaActions.RellenarCamposOferta("Prueba", "CLIENTE INTEGRACION", "Nuevo servicio", "BizQA");
+            ofertaActions.GuardarOferta();
+
+            // Paso 5 - Guardar oferta
+            ofertaActions.Restablecimiento_campos_obligatorios();
+            ofertaActions.RellenarCamposOferta("Prueba2", "2K", "Nuevo servicio", "Admin365");
+            ofertaActions.GuardarOferta();ofertaActions.Restablecimiento_campos_obligatorios();
+
+            // Paso 6 - Actualizar, Guardar y cerrar oferta
+            ofertaActions.Actualizar("Guardar");
+            ofertaActions.GuardarYCerrarOferta();
+            
+        }
     }
 }
