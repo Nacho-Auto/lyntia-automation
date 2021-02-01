@@ -222,7 +222,7 @@ namespace Lyntia.TestSet.Actions
             }
         }
 
-        public void HeredarProducto(String productoHeredado, String precioMensual, String duracionContrato, String nrc)
+        public void HeredarProducto(String productoHeredado, String precioMensual, String duracionContrato, String nrc, String metros, String precioMetroAnual)
         {
             // Click en "+ Agregar producto"
             Utils.SearchWebElement("Producto.buttonAgregarProducto").Click();
@@ -241,13 +241,30 @@ namespace Lyntia.TestSet.Actions
                 Thread.Sleep(6000);
             }
 
+            if (!metros.Equals(""))
+            {
+                Utils.SearchWebElement("Producto.inputMetros").Click();
+                Utils.SearchWebElement("Producto.inputMetros").SendKeys(Keys.Control + "a");
+                Utils.SearchWebElement("Producto.inputMetros").SendKeys(Keys.Delete);
+                Utils.SearchWebElement("Producto.inputMetros").SendKeys(metros);
+            }
+
+            if (!precioMetroAnual.Equals(""))
+            {
+                Utils.SearchWebElement("Producto.inputPrecioMetroAnual").Click();
+                Utils.SearchWebElement("Producto.inputPrecioMetroAnual").SendKeys(Keys.Control + "a");
+                Utils.SearchWebElement("Producto.inputPrecioMetroAnual").SendKeys(Keys.Delete);
+
+                Utils.SearchWebElement("Producto.inputPrecioMetroAnual").SendKeys(precioMetroAnual);
+            }
+            
             if (!precioMensual.Equals(""))
             {
                 Utils.SearchWebElement("Producto.selectPrecioMensual").Click();
                 Utils.SearchWebElement("Producto.selectPrecioMensual").SendKeys(Keys.Control + "a");
                 Utils.SearchWebElement("Producto.selectPrecioMensual").SendKeys(Keys.Delete);
 
-                Utils.SearchWebElement("//input[@aria-label='Precio mensual']").SendKeys(precioMensual);
+                Utils.SearchWebElement("Producto.selectPrecioMensual").SendKeys(precioMensual);
             }
 
             if (!duracionContrato.Equals(""))

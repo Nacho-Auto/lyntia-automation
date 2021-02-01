@@ -982,9 +982,8 @@ namespace Lyntia.TestSet
 
             TestContext.WriteLine("LA PRUEBA CRM-POF0005 SE EJECUTÓ CORRECTAMENTE");
         }
-
-
-        [Test(Description = "CRM-POAF0001 - PRO ADJUDICAR OFERTA")]
+        
+        //[Test(Description = "CRM-POAF0001 - PRO ADJUDICAR OFERTA")]
         [AllureSubSuite("PRO ADJUDICAR OFERTA")]
         public void CRM_POAF0001_Oferta_Adjudicar_CC()
         {
@@ -1017,7 +1016,7 @@ namespace Lyntia.TestSet
             ofertaCondition.ResVentanaCrearPedido();
         }
 
-        [Test(Description = "CRM-POAF0002 - PRO ADJUDICAR OFERTA")]
+        //[Test(Description = "CRM-POAF0002 - PRO ADJUDICAR OFERTA")]
         [AllureSubSuite("PRO ADJUDICAR OFERTA")]
         public void CRM_POAF0002_Ofeta_Adjudicar_FOC()
         {
