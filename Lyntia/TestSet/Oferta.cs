@@ -577,7 +577,7 @@ namespace Lyntia.TestSet
             ofertaActions.AbrirOfertaEnVista("CRM-COF0008-CIERRE_" + Utils.GetRandomString());
 
             // Paso 6 - Repetir el paso anterior pero cerrando de manera correcta
-            ofertaActions.CerrarOfertaActual("Aceptar", "No viable", "Sin información", "");
+            ofertaActions.CerrarOfertaActual("Aceptar", "No viable", "Sin información", "01/02/2021");
 
             driver.Navigate().Refresh();
 
@@ -625,7 +625,7 @@ namespace Lyntia.TestSet
 
             // Seleccionar la Oferta del grid
             ofertaActions.SeleccionarOfertaGrid();
-            ofertaActions.AbrirOfertaEnVista("CRM-COF0008-CIERRE_" + Utils.GetRandomString());
+            ofertaActions.AbrirOfertaEnVista("CRM-COF0009-CIERRE_" + Utils.GetRandomString());
             
             ofertaActions.PresentarOferta();
 
@@ -638,8 +638,8 @@ namespace Lyntia.TestSet
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
 
             // Paso 7 - Repetir el paso anterior pero cerrando de manera correcta
-            ofertaActions.BuscarOfertaEnVista("CRM-COF0008-CIERRE_" + Utils.GetRandomString());
-            ofertaCondition.OfertaCerradaCorrectamenteEnGrid("No viable");
+            ofertaActions.BuscarOfertaEnVista("CRM-COF0009-CIERRE_" + Utils.GetRandomString());
+            ofertaCondition.OfertaCerradaCorrectamenteEnGrid("Perdida");
 
             // Eliminar Oferta
             ofertaActions.SeleccionarOfertaGrid();
