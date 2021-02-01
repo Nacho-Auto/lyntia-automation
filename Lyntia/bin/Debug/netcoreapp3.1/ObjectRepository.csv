@@ -47,6 +47,7 @@ Oferta.LabelGeneralPestaña;XPATH;//li[contains(@aria-label, 'General')]
 Oferta.inputCalendar;XPATH;//input[contains(@aria-label, 'Fecha de Fecha de presentación')]
 Oferta.calendarDateToday;XPATH;//button[contains(@class,'dayIsToday')]
 Oferta.calendarDateRandomDay;XPATH;//tr[contains(@class,'weekRow')]//button
+Oferta.inputFechaCierre;XPATH;//input[@id="fechacierre"]
 Oferta.inputGVAL;XPATH;//input[@aria-label='Código GVAL']
 Oferta.LabelFechaspestaña;XPATH;//li[contains(@title, 'Fechas')]
 Producto.inputMetros;XPATH;//input[contains(@aria-label, 'Metros')]

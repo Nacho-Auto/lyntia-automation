@@ -517,7 +517,7 @@ namespace Lyntia.TestSet
             ofertaActions.AbrirOfertaEnVista("CRM-COF0007-CIERRE_" + Utils.GetRandomString());
 
             // Paso 3 y 4 - Pulsar Cerrar en la barra de herramientas y cancelar el cierre
-            ofertaActions.CerrarOfertaActual("Cancelar", "Cancelada", "Sin información", "");
+            ofertaActions.CerrarOfertaActual("Cancelar", "Cancelada", "Sin información", "01/02/2021");
 
             // Paso 5 - Repetir el paso anterior pero cerrando sin completar campos obligatorios
             ofertaActions.CerrarOfertaActual("Aceptar", "Cancelada", "", "");
@@ -526,7 +526,7 @@ namespace Lyntia.TestSet
             driver.Navigate().Refresh();
 
             // Paso 6 - Repetir el paso anterior pero cerrando de manera correcta
-            ofertaActions.CerrarOfertaActual("Aceptar", "Cancelada", "Sin información", "");
+            ofertaActions.CerrarOfertaActual("Aceptar", "Cancelada", "Sin información", "01/02/2021");
 
             driver.Navigate().Refresh();
 

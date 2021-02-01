@@ -566,6 +566,11 @@ namespace Lyntia.TestSet.Actions
                     drop.SelectByText(motivoCierre);
                 }
 
+                if (!fechaCierre.Equals(""))
+                {
+                    Utils.SearchWebElement("Oferta.inputFechaCierre").SendKeys(fechaCierre);
+                }
+
                 if (opcion.Equals("Aceptar"))
                 {
                     // Cierre realizado
