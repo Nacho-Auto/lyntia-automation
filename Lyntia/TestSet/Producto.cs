@@ -268,7 +268,7 @@ namespace Lyntia.TestSet
             ofertaActions.AccesoNuevaOferta();
 
             // Rellenar campos y click en Guardar
-            ofertaActions.RellenarCamposOferta("CRM-APR0009-HEREDAR-PROD_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Cambio de solución técnica (Tecnología)", "# BizQA");
+            ofertaActions.RellenarCamposOferta("CRM-APR0010-HEREDAR-PROD_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Cambio de solución técnica (Tecnología)", "# BizQA");
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la Oferta Circuito de Capacidad
@@ -276,7 +276,7 @@ namespace Lyntia.TestSet
             
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
 
-            ofertaActions.BuscarOfertaEnVista("CRM-APR0009-HEREDAR-PROD_" + Utils.GetRandomString());
+            ofertaActions.BuscarOfertaEnVista("CRM-APR0010-HEREDAR-PROD_" + Utils.GetRandomString());
 
             ofertaActions.SeleccionarOfertaGrid();
 

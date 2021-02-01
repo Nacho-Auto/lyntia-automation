@@ -230,6 +230,7 @@ namespace Lyntia.TestSet.Actions
 
             if (!productoHeredado.Equals(""))
             {
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath(Utils.GetIdentifier("Producto.inputServicioHeredado"))));
                 Utils.SearchWebElement("Producto.inputServicioHeredado").Click();
                 Utils.SearchWebElement("Producto.inputServicioHeredado").SendKeys(Keys.Control + "a");
                 Utils.SearchWebElement("Producto.inputServicioHeredado").SendKeys(Keys.Delete);
