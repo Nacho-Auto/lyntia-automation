@@ -1100,7 +1100,8 @@ namespace Lyntia.TestSet
             ofertaActions.VentanaCrearPedido("27/01/2021");
             ofertaCondition.ResVentanaCrearPedido();
         }
-        [Test(Description = "CRM-EOF0001 - PRO EDI OFERTA")]
+        
+        //[Test(Description = "CRM-EOF0001 - PRO EDI OFERTA")]
         [AllureSubSuite("PRO EDI OFERTA")]
         public void CRM_EOF0001_Edición_borrador_Sin_datos_obligatorios()
         {
@@ -1134,7 +1135,7 @@ namespace Lyntia.TestSet
             ofertaCondition.OfertaNoCreada();
         }
 
-        [Test(Description = "CRM-EOF0002 - PRO EDI OFERTA")]
+        //[Test(Description = "CRM-EOF0002 - PRO EDI OFERTA")]
         [AllureSubSuite("PRO EDI OFERTA")]
         public void CRM_EOF0002_Edición_borrador_Con_datos_obligatorios()
         {
