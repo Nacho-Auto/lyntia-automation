@@ -87,6 +87,7 @@ Producto.buttonEliminarProductodeOfertaConfirm;XPATH;//*[@id='confirmButtonText'
 Producto.inputUnidaddeVenta;XPATH;//input[contains(@data-id,'uomid')]
 Producto.SelectUsoLineaNegocio;XPATH;//select[contains(@id,'uso')]
 Producto.inputProductoExistente;XPATH;//input[contains(@data-id,'productid')]
+Producto.inputPrecioMetroAnual;XPATH;//input[@aria-label='Precio metro/anual']
 Producto.SelectUnidadDeVenta;XPATH;//select[contains(@aria-label, 'Uso (Unidad de venta, Búsqueda)')]
 Producto.SelectLineaDeNegocio;XPATH;//select[contains(@aria-label, 'Uso (Línea de negocio)')]
 Producto.SelectModalidadContratacion;XPATH;//select[@aria-label='Modalidad de contratación']
