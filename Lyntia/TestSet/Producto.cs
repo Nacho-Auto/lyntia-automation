@@ -401,7 +401,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la Oferta FO
-            productoActions.HeredarProducto("  FO m - m", "", "2", "1000", "1000", "2000");
+            productoActions.HeredarProducto("  FO m - m", "", "2", "", "1000", "2000");
             
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
 
@@ -412,6 +412,138 @@ namespace Lyntia.TestSet
             ofertaActions.EliminarOfertaActual("Eliminar");
 
             TestContext.WriteLine("LA PRUEBA CRM-APR0012-HEREDAR-PROD SE EJECUTÓ CORRECTAMENTE");
+        }
+        
+        //CRM-APR0013
+        [Test(Description = "CRM-APR0013 Heredar producto Fibra Oscura en Oferta Cambio de Precio")]
+        [AllureSubSuite("PRO AÑADIR PRODUCTO")]
+        public void CRM_APR0013_Producto_heredar_FO_CambioPrecio()
+        {
+            // Login y Acceso a Gestión de Cliente
+            commonActions.AccesoGestionCliente();
+            commonCondition.AccedeGestionCliente();
+
+            // Paso 1 - Hacer click en Ofertas
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            // Paso 2 - Crear Nueva Oferta
+            ofertaActions.AccesoNuevaOferta();
+
+            // Rellenar campos y click en Guardar
+            ofertaActions.RellenarCamposOferta("CRM-APR0013-HEREDAR-PROD_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Cambio de precio/Renovación", "# BizQA");
+            ofertaActions.GuardarOferta();
+
+            // Añadir Producto a la Oferta FO
+            productoActions.HeredarProducto("  FO m - m", "", "2", "", "1000", "2000");
+            
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            ofertaActions.BuscarOfertaEnVista("CRM-APR0013-HEREDAR-PROD_" + Utils.GetRandomString());
+
+            ofertaActions.SeleccionarOfertaGrid();
+
+            ofertaActions.EliminarOfertaActual("Eliminar");
+
+            TestContext.WriteLine("LA PRUEBA CRM-APR0013-HEREDAR-PROD SE EJECUTÓ CORRECTAMENTE");
+        }
+        
+        //CRM-APR0014
+        [Test(Description = "CRM-APR0014 Heredar producto Fibra Oscura en Oferta Cambio de Solución técnica")]
+        [AllureSubSuite("PRO AÑADIR PRODUCTO")]
+        public void CRM_APR0014_Producto_heredar_FO_CambioSolucion()
+        {
+            // Login y Acceso a Gestión de Cliente
+            commonActions.AccesoGestionCliente();
+            commonCondition.AccedeGestionCliente();
+
+            // Paso 1 - Hacer click en Ofertas
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            // Paso 2 - Crear Nueva Oferta
+            ofertaActions.AccesoNuevaOferta();
+
+            // Rellenar campos y click en Guardar
+            ofertaActions.RellenarCamposOferta("CRM-APR0014-HEREDAR-PROD_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Cambio de solución técnica (Tecnología)", "# BizQA");
+            ofertaActions.GuardarOferta();
+
+            // Añadir Producto a la Oferta FO
+            productoActions.HeredarProducto("  FO m - m", "", "2", "", "1000", "2000");
+            
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            ofertaActions.BuscarOfertaEnVista("CRM-APR0014-HEREDAR-PROD_" + Utils.GetRandomString());
+
+            ofertaActions.SeleccionarOfertaGrid();
+
+            ofertaActions.EliminarOfertaActual("Eliminar");
+
+            TestContext.WriteLine("LA PRUEBA CRM-APR0014-HEREDAR-PROD SE EJECUTÓ CORRECTAMENTE");
+        }
+        
+        //CRM-APR0015
+        [Test(Description = "CRM-APR0015 Heredar producto Fibra Oscura en Oferta Cambio de Dirección")]
+        [AllureSubSuite("PRO AÑADIR PRODUCTO")]
+        public void CRM_APR0015_Producto_heredar_FO_CambioDireccion()
+        {
+            // Login y Acceso a Gestión de Cliente
+            commonActions.AccesoGestionCliente();
+            commonCondition.AccedeGestionCliente();
+
+            // Paso 1 - Hacer click en Ofertas
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            // Paso 2 - Crear Nueva Oferta
+            ofertaActions.AccesoNuevaOferta();
+
+            // Rellenar campos y click en Guardar
+            ofertaActions.RellenarCamposOferta("CRM-APR0015-HEREDAR-PROD_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Cambio de dirección (Migración)", "# BizQA");
+            ofertaActions.GuardarOferta();
+
+            // Añadir Producto a la Oferta FO
+            productoActions.HeredarProducto("  FO m - m", "", "2", "", "1000", "2000");
+            
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            ofertaActions.BuscarOfertaEnVista("CRM-APR0015-HEREDAR-PROD_" + Utils.GetRandomString());
+
+            ofertaActions.SeleccionarOfertaGrid();
+
+            ofertaActions.EliminarOfertaActual("Eliminar");
+
+            TestContext.WriteLine("LA PRUEBA CRM-APR0015-HEREDAR-PROD SE EJECUTÓ CORRECTAMENTE");
+        }
+        
+        //CRM-APR0016
+        [Test(Description = "CRM-APR0016 Heredar producto UbiRed Pro en Oferta Cambio de Dirección")]
+        [AllureSubSuite("PRO AÑADIR PRODUCTO")]
+        public void CRM_APR0016_Producto_heredar_UbiRedPRo_CambioDireccion()
+        {
+            // Login y Acceso a Gestión de Cliente
+            commonActions.AccesoGestionCliente();
+            commonCondition.AccedeGestionCliente();
+
+            // Paso 1 - Hacer click en Ofertas
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            // Paso 2 - Crear Nueva Oferta
+            ofertaActions.AccesoNuevaOferta();
+
+            // Rellenar campos y click en Guardar
+            ofertaActions.RellenarCamposOferta("CRM-APR0016-HEREDAR-PROD_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Cambio de dirección (Migración)", "# BizQA");
+            ofertaActions.GuardarOferta();
+
+            // TODO: Añadir Producto a la Oferta UbuRed Pro
+            productoActions.HeredarProducto("  UP 500 Mbps ddd", "3000", "12", "", "", "2000");
+            
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            ofertaActions.BuscarOfertaEnVista("CRM-APR0016-HEREDAR-PROD_" + Utils.GetRandomString());
+
+            ofertaActions.SeleccionarOfertaGrid();
+
+            ofertaActions.EliminarOfertaActual("Eliminar");
+
+            TestContext.WriteLine("LA PRUEBA CRM-APR0016-HEREDAR-PROD SE EJECUTÓ CORRECTAMENTE");
         }
     }
 }
