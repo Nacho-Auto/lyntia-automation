@@ -551,12 +551,8 @@ namespace Lyntia.TestSet.Actions
                 Thread.Sleep(3000);
 
                 //hay que añadir divisa y lista de precios kam y cliente
-                
-                Utils.SearchWebElement("Oferta.kamResponsable").Click();
-                Thread.Sleep(1000);
-
-                Utils.SearchWebElement("Oferta.kamResponsable").SendKeys(Keys.Control + "a");
-                Utils.SearchWebElement("Oferta.kamResponsable").SendKeys(Keys.Delete);
+                driver.FindElement(By.XPath("//ul[contains(@id,'customerid.fieldControl-LookupResultsDropdown')]"));
+                driver.FindElement(By.XPath("//button[contains(@data-id,'customerid_selected_tag_delete')]"));
 
                 TestContext.WriteLine("Se eliminan los campos obligatorios de la prueba.");
             }
