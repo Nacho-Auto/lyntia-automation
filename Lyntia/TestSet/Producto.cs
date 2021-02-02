@@ -533,7 +533,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // TODO: Añadir Producto a la Oferta UbuRed Pro
-            productoActions.HeredarProducto("  UP 500 Mbps ddd", "3000", "12", "", "", "2000");
+            productoActions.HeredarProducto("  UP 500 Mbps ddd", "3000", "12", "200", "", "");
             
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
 
