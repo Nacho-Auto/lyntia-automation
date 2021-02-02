@@ -538,9 +538,9 @@ namespace Lyntia.TestSet.Actions
         }
 
         /// <summary>
-        /// Método para reestablecer datos de la Oferta de la prueba CRM_COF0003 de Editar Oferta
+        /// Método para Eliminar datos de la Oferta.
         /// </summary>
-        public void Restablecimiento_campos_obligatorios()
+        public void Eliminar_campos_obligatorios()
         {
             try
             {
@@ -550,19 +550,49 @@ namespace Lyntia.TestSet.Actions
                 Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Delete);
                 Thread.Sleep(3000);
 
-                Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys("Prueba");
-                Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.PageDown);
+                //hay que añadir divisa y lista de precios kam y cliente
+                
+                Utils.SearchWebElement("Oferta.kamResponsable").Click();
+                Thread.Sleep(1000);
 
-                Thread.Sleep(3000);
-                Utils.SearchWebElement("Oferta.saveOferta").Click();
-                //Utils.SearchWebElement("Oferta.ButtonGuardarYcerrar").Click(); //Guarda y cierra
-                TestContext.WriteLine("Se reestablecen los datos originales de la prueba CRM-EOF0004.");
+                Utils.SearchWebElement("Oferta.kamResponsable").SendKeys(Keys.Control + "a");
+                Utils.SearchWebElement("Oferta.kamResponsable").SendKeys(Keys.Delete);
+
+                TestContext.WriteLine("Se eliminan los campos obligatorios de la prueba.");
             }
             catch (Exception e)
             {
-                CommonActions.CapturadorExcepcion(e, "ReestablecimientoEOF0003.png", "No se reestablecen los datos originales de la prueba CRM-EOF0004.");
+                CommonActions.CapturadorExcepcion(e, "EliminarCampos.png", "No se eliminan los campos obligatorios de la prueba.");
                 throw e;
             }
+
+        }
+
+        /// <summary>
+        /// Método para modificar datos de la Oferta.
+        /// </summary>
+        public void Modificar_campos_obligatorios(String Modcampo)
+        {
+            try
+            {
+
+                Utils.SearchWebElement("Oferta.inputNameOferta").Click();
+                Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Control + "a");
+                Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Delete);
+                Thread.Sleep(3000);
+
+                Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Modcampo);
+
+                //hay que añadir divisa y lista de precios kam y cliente
+
+                TestContext.WriteLine("Se modifican los campos obligatorios de la prueba.");
+            }
+            catch (Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "EliminarCampos.png", "No se modifican los campos obligatorios de la prueba.");
+                throw e;
+            }
+
         }
 
         /// <summary>
@@ -866,26 +896,57 @@ namespace Lyntia.TestSet.Actions
             }
         }
         /// <summary>
-        /// Método para actualizar desde la barra de menu superior
+        /// Método para actualizar desde la barra de menu superior con acciones guardar y descartar
         /// </summary>
         public void Actualizar(String accion)
         {
-            Utils.SearchWebElement("Oferta.buttonActualizar").Click();
+            try
+            {
+                Thread.Sleep(3000);
+                Utils.SearchWebElement("Oferta.buttonActualizar").Click();
 
-            if (accion.Equals("Guardar"))
-            {
-                Thread.Sleep(2000);
-                Utils.SearchWebElement("Producto.buttonGuardaryContinuar").Click();
+                if (accion.Equals("Guardar"))
+                {
+                    Thread.Sleep(2000);
+                    Utils.SearchWebElement("Producto.buttonGuardaryContinuar").Click();
+                    Thread.Sleep(4000);
+                }
+                else
+                {
+                    //cambios no guardados
+                    Thread.Sleep(2000);
+                    Utils.SearchWebElement("Oferta.ButtonDescartarcambios").Click();
+                }
+                    TestContext.WriteLine("La oferta se actualiza correctamente");
             }
-            else
+            catch(Exception e)
             {
-                //cambios no guardados
-                Thread.Sleep(2000);
-                Utils.SearchWebElement("Oferta.ButtonDescartarcambios").Click();
+                CommonActions.CapturadorExcepcion(e, "Actualizar.png", "La oferta no se ha actualizado correctamente");
+                throw e;
             }
             
         }
 
-        
+        /// <summary>
+        /// Método para actualizar desde la barra de menu superior
+        /// </summary>
+        public void ActualizarBarramenu()
+        {
+            try
+            {
+                
+                Utils.SearchWebElement("Oferta.buttonActualizar").Click();
+                Thread.Sleep(3000);
+                TestContext.WriteLine("La oferta se actualiza correctamente");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "ActualizarBarraMenu.png", "La oferta no se ha actualizado correctamente");
+                throw e;
+            }
+
+            
+
+        }
     }
 }

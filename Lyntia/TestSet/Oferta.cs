@@ -1100,8 +1100,8 @@ namespace Lyntia.TestSet
             ofertaActions.VentanaCrearPedido("27/01/2021");
             ofertaCondition.ResVentanaCrearPedido();
         }
-        
-        //[Test(Description = "CRM-EOF0001 - PRO EDI OFERTA")]
+
+        [Test(Description = "CRM-EOF0001 - PRO EDI OFERTA")]
         [AllureSubSuite("PRO EDI OFERTA")]
         public void CRM_EOF0001_Edición_borrador_Sin_datos_obligatorios()
         {
@@ -1122,20 +1122,23 @@ namespace Lyntia.TestSet
             
             // Paso 5 - Guardar oferta
             ofertaActions.GuardarOferta();
-            ofertaActions.Restablecimiento_campos_obligatorios();
-            ofertaCondition.OfertaNoCreada();
 
-            // Paso 6 - Actualizar y descartar cambios
+            // Paso 6 - Eliminar campos obligatorios
+            ofertaActions.Eliminar_campos_obligatorios();
+            
+
+            // Paso 7 - Actualizar y descartar cambios
             ofertaActions.Actualizar("Descartar");
-            ofertaActions.Restablecimiento_CRM_COF0003();
+
+            // Paso 8 - Eliminar campos, actualizar y guardar cambios
+            ofertaActions.Eliminar_campos_obligatorios();
+            ofertaActions.Actualizar("Guardar");
             ofertaCondition.OfertaNoCreada();
 
-            // Paso 7 - Guardar y cerrar oferta
-            ofertaActions.GuardarYCerrarOferta();
-            ofertaCondition.OfertaNoCreada();
+            
         }
 
-        //[Test(Description = "CRM-EOF0002 - PRO EDI OFERTA")]
+        [Test(Description = "CRM-EOF0002 - PRO EDI OFERTA")]
         [AllureSubSuite("PRO EDI OFERTA")]
         public void CRM_EOF0002_Edición_borrador_Con_datos_obligatorios()
         {
@@ -1156,14 +1159,19 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Paso 5 - Guardar oferta
-            ofertaActions.Restablecimiento_campos_obligatorios();
-            ofertaActions.RellenarCamposOferta("Prueba2", "2K", "Nuevo servicio", "Admin365");
-            ofertaActions.GuardarOferta();ofertaActions.Restablecimiento_campos_obligatorios();
 
-            // Paso 6 - Actualizar, Guardar y cerrar oferta
-            ofertaActions.Actualizar("Guardar");
-            ofertaActions.GuardarYCerrarOferta();
+            ofertaActions.Modificar_campos_obligatorios("Prueba modificar");
+            ofertaActions.GuardarOferta();
             
+
+            // Paso 6 - Actualizar oferta
+            ofertaActions.ActualizarBarramenu();
+
+
+            // Paso 7 - Guardar y cerrar
+            ofertaActions.GuardarYCerrarOferta();
+
+
         }
     }
 }

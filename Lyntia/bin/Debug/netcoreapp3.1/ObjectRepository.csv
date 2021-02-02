@@ -72,6 +72,7 @@ Oferta.inputFechaVentanaCrearpedido;XPATH;//input//[contains(@aria-label, 'Fecha
 Oferta.labelMensajeCreapedidofechainferior;XPATH;//*[@id='subtitle']
 Oferta.buttonActualizar;XPATH;//button[contains(@aria-label, 'Actualizar')]
 Oferta.ButtonDescartarcambios;XPATH;//button[contains(@aria-label, 'Descartar cambios')]
+Oferta.labelDivisa;XPATH;//
 ############################# PRODUCTO ############################
 Producto.firstInput;ID;submit
 Producto.GuardarYCerrar_producto;XPATH;//button[@id='quickCreateSaveAndCloseBtn']
