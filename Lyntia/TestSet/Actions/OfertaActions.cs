@@ -601,7 +601,7 @@ namespace Lyntia.TestSet.Actions
         /// <param name="opcion"></param>
         /// <param name="razonOferta"></param>
         /// <param name="motivoCierre"></param>
-        public void CerrarOfertaActual(string opcion, string razonOferta, string motivoCierre)
+        public void CerrarOfertaActual(string opcion, string razonOferta, string motivoCierre, String fechaCierre)
         {
             try
             {
@@ -623,6 +623,11 @@ namespace Lyntia.TestSet.Actions
                 {
                     SelectElement drop = new SelectElement(Utils.SearchWebElement("Oferta.selectMotivoCierre"));
                     drop.SelectByText(motivoCierre);
+                }
+
+                if (!fechaCierre.Equals(""))
+                {
+                    Utils.SearchWebElement("Oferta.inputFechaCierre").SendKeys(fechaCierre);
                 }
 
                 if (opcion.Equals("Aceptar"))

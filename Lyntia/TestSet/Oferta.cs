@@ -517,16 +517,16 @@ namespace Lyntia.TestSet
             ofertaActions.AbrirOfertaEnVista("CRM-COF0007-CIERRE_" + Utils.GetRandomString());
 
             // Paso 3 y 4 - Pulsar Cerrar en la barra de herramientas y cancelar el cierre
-            ofertaActions.CerrarOfertaActual("Cancelar", "Cancelada", "Sin información");
+            ofertaActions.CerrarOfertaActual("Cancelar", "Cancelada", "Sin información", "01/02/2021");
 
             // Paso 5 - Repetir el paso anterior pero cerrando sin completar campos obligatorios
-            ofertaActions.CerrarOfertaActual("Aceptar", "Cancelada", "");
+            ofertaActions.CerrarOfertaActual("Aceptar", "Cancelada", "", "");
             ofertaCondition.OfertaNoCerrada();
 
             driver.Navigate().Refresh();
 
             // Paso 6 - Repetir el paso anterior pero cerrando de manera correcta
-            ofertaActions.CerrarOfertaActual("Aceptar", "Cancelada", "Sin información");
+            ofertaActions.CerrarOfertaActual("Aceptar", "Cancelada", "Sin información", "01/02/2021");
 
             driver.Navigate().Refresh();
 
@@ -577,7 +577,7 @@ namespace Lyntia.TestSet
             ofertaActions.AbrirOfertaEnVista("CRM-COF0008-CIERRE_" + Utils.GetRandomString());
 
             // Paso 6 - Repetir el paso anterior pero cerrando de manera correcta
-            ofertaActions.CerrarOfertaActual("Aceptar", "No viable", "Sin información");
+            ofertaActions.CerrarOfertaActual("Aceptar", "No viable", "Sin información", "01/02/2021");
 
             driver.Navigate().Refresh();
 
@@ -587,6 +587,59 @@ namespace Lyntia.TestSet
             // Paso 7 - Repetir el paso anterior pero cerrando de manera correcta
             ofertaActions.BuscarOfertaEnVista("CRM-COF0008-CIERRE_" + Utils.GetRandomString());
             ofertaCondition.OfertaCerradaCorrectamenteEnGrid("No viable");
+
+            // Eliminar Oferta
+            ofertaActions.SeleccionarOfertaGrid();
+
+            ofertaActions.EliminarOfertaActual("Eliminar");
+
+            TestContext.WriteLine("LA PRUEBA CRM-COF0008 CERRAR SE EJECUTÓ CORRECTAMENTE");
+        }
+        
+        [Test(Description = "CRM-COF0009 Cerrar Oferta en borrador con producto añadido, Perdida")]
+        [AllureSubSuite("PRO ELIMINAR-CERRAR OFERTA")]
+        public void CRM_COF0009_cerrarOfertaProductoAnadidoPerdida()
+        {
+            // Login y Acceso a Gestión de Cliente
+            commonActions.AccesoGestionCliente();
+            commonCondition.AccedeGestionCliente();
+
+            // Paso 1 - Hacer click en Ofertas
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            // Paso 2 - Acceder a una Oferta que esté en estado Borrador con producto añadido.
+            ofertaActions.AccesoNuevaOferta();
+
+            ofertaActions.RellenarCamposOferta("CRM-COF0009-CIERRE_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Nuevo servicio", "# BizQA");
+            ofertaActions.GuardarOferta();
+
+            // Añadir Producto a la Oferta
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps", "", "", "", "", "");
+
+            // Volver al grid
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            // Paso 2 Seleccionar la Oferta del grid
+            ofertaActions.BuscarOfertaEnVista("CRM-COF0009-CIERRE_" + Utils.GetRandomString());
+            ofertaCondition.OfertaGuardadaCorrectamenteEnGrid();
+
+            // Seleccionar la Oferta del grid
+            ofertaActions.SeleccionarOfertaGrid();
+            ofertaActions.AbrirOfertaEnVista("CRM-COF0009-CIERRE_" + Utils.GetRandomString());
+            
+            ofertaActions.PresentarOferta();
+
+            // Paso 6 - Repetir el paso anterior pero cerrando de manera correcta
+            ofertaActions.CerrarOfertaActual("Aceptar", "Perdida", "Sin información", "01/02/2021");
+
+            driver.Navigate().Refresh();
+
+            // Acceso a Ofertas y buscar la Oferta Cerrada
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            // Paso 7 - Repetir el paso anterior pero cerrando de manera correcta
+            ofertaActions.BuscarOfertaEnVista("CRM-COF0009-CIERRE_" + Utils.GetRandomString());
+            ofertaCondition.OfertaCerradaCorrectamenteEnGrid("Perdida");
 
             // Eliminar Oferta
             ofertaActions.SeleccionarOfertaGrid();
@@ -632,7 +685,7 @@ namespace Lyntia.TestSet
             ofertaCondition.OfertaPresentada();
 
             // Paso 6 - Cerrar la Oferta actual como Revisada
-            ofertaActions.CerrarOfertaActual("Aceptar", "Revisada", "");
+            ofertaActions.CerrarOfertaActual("Aceptar", "Revisada", "", "");
 
             driver.Navigate().Refresh();
 
@@ -691,8 +744,7 @@ namespace Lyntia.TestSet
 
             TestContext.WriteLine("LA PRUEBA CRM-EOF0003 SE EJECUTÓ CORRECTAMENTE");
         }
-
-
+        
         //CRM-EOF0004
         [Test(Description = "CRM_EOF0004 Editar campo 'Tipo de oferta' de una Oferta")]
         [AllureSubSuite("PRO EDITAR OFERTA")]
@@ -982,9 +1034,8 @@ namespace Lyntia.TestSet
 
             TestContext.WriteLine("LA PRUEBA CRM-POF0005 SE EJECUTÓ CORRECTAMENTE");
         }
-
-
-        [Test(Description = "CRM-POAF0001 - PRO ADJUDICAR OFERTA")]
+        
+        //[Test(Description = "CRM-POAF0001 - PRO ADJUDICAR OFERTA")]
         [AllureSubSuite("PRO ADJUDICAR OFERTA")]
         public void CRM_POAF0001_Oferta_Adjudicar_CC()
         {
@@ -1017,7 +1068,7 @@ namespace Lyntia.TestSet
             ofertaCondition.ResVentanaCrearPedido();
         }
 
-        [Test(Description = "CRM-POAF0002 - PRO ADJUDICAR OFERTA")]
+        //[Test(Description = "CRM-POAF0002 - PRO ADJUDICAR OFERTA")]
         [AllureSubSuite("PRO ADJUDICAR OFERTA")]
         public void CRM_POAF0002_Ofeta_Adjudicar_FOC()
         {
