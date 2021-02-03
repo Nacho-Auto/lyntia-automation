@@ -544,19 +544,32 @@ namespace Lyntia.TestSet.Actions
         {
             try
             {
+                // Nombre de la oferta
                 Utils.SearchWebElement("Oferta.inputNameOferta").Click();
                 Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Control + "a");
                 Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Delete);
                 Thread.Sleep(3000);
 
-                //hay que añadir divisa y lista de precios kam y cliente
+                // Cliente
                 accionesSelenium.SendKeys(Keys.Tab).Perform();
                 accionesSelenium.SendKeys(Keys.Tab).Perform();
+                Thread.Sleep(2000);
                 driver.FindElement(By.XPath("//button[contains(@data-id,'customerid_selected_tag_delete')]")).Click();
+                Thread.Sleep(2000);
 
-                //ul[contains(@data-id,'new_kamresponsableid_SelectedRecordList')]
+                // KAM
                 driver.FindElement(By.XPath("//ul[contains(@data-id,'new_kamresponsableid_SelectedRecordList')]")).Click();
                 driver.FindElement(By.XPath("//button[contains(@data-id,'kamresponsableid_selected_tag_delete')]")).Click();
+                Thread.Sleep(3000);
+
+                // Divisa
+                driver.FindElement(By.XPath("//ul[contains(@data-id,'transactioncurrencyid_SelectedRecordList')]")).Click();
+                Thread.Sleep(1000);
+                driver.FindElement(By.XPath("//span[contains(@data-id, 'transactioncurrencyid_microsoftIcon_cancelButton')]")).Click();
+
+                //TODO: capturar boton aceptar
+                Thread.Sleep(2000);
+                Utils.SearchWebElement("Oferta.buttonAceptarVentanaEmergente").Click();
 
                 TestContext.WriteLine("Se eliminan los campos obligatorios de la prueba.");
             }
@@ -582,6 +595,11 @@ namespace Lyntia.TestSet.Actions
                 Thread.Sleep(3000);
 
                 Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Modcampo);
+                accionesSelenium.SendKeys(Keys.PageDown);
+                accionesSelenium.Build().Perform();
+                Thread.Sleep(3000);
+
+                Utils.SearchWebElement("Oferta.inputCustomerId").Click();
 
                 //hay que añadir divisa y lista de precios kam y cliente
 
@@ -902,20 +920,22 @@ namespace Lyntia.TestSet.Actions
         {
             try
             {
-                Thread.Sleep(3000);
+                
                 Utils.SearchWebElement("Oferta.buttonActualizar").Click();
+                
 
                 if (accion.Equals("Guardar"))
                 {
-                    Thread.Sleep(2000);
+                    
                     Utils.SearchWebElement("Producto.buttonGuardaryContinuar").Click();
-                    Thread.Sleep(4000);
+                    Thread.Sleep(3000);
                 }
                 else
                 {
                     //cambios no guardados
-                    Thread.Sleep(2000);
+                    
                     Utils.SearchWebElement("Oferta.ButtonDescartarcambios").Click();
+                    Thread.Sleep(3000);
                 }
                     TestContext.WriteLine("La oferta se actualiza correctamente");
             }
@@ -934,7 +954,6 @@ namespace Lyntia.TestSet.Actions
         {
             try
             {
-                
                 Utils.SearchWebElement("Oferta.buttonActualizar").Click();
                 Thread.Sleep(3000);
                 TestContext.WriteLine("La oferta se actualiza correctamente");
