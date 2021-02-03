@@ -38,7 +38,7 @@ namespace Lyntia.TestSet.Actions
             {
                 try
                 {
-                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(Utils.GetIdentifier("Oferta.ofertaSection"))));
+                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.Id(Utils.GetIdentifier("Oferta.ofertaSection"))));
                     Thread.Sleep(6000);
                     Utils.SearchWebElement("Oferta.ofertaSection").Click();
                     Thread.Sleep(2000);
@@ -544,7 +544,7 @@ namespace Lyntia.TestSet.Actions
         {
             try
             {
-                /// Nombre dela oferta
+                // Nombre de la oferta
                 Utils.SearchWebElement("Oferta.inputNameOferta").Click();
                 Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Control + "a");
                 Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Delete);
@@ -677,7 +677,7 @@ namespace Lyntia.TestSet.Actions
         {
             try
             {
-                BuscarOfertaEnVista("test");
+                BuscarOfertaEnVista("fibra oscura");
                 driver.FindElement(By.XPath("//div[contains(@title, 'Ganada')]")).Click();//seleccionamos una oferta ganada y pulsamos sobre el ckeck
                 Thread.Sleep(3000);
                 TestContext.WriteLine("Se accede a una Oferta Adjudicada.");

@@ -516,7 +516,7 @@ namespace Lyntia.TestSet
         //CRM-APR0016
         [Test(Description = "CRM-APR0016 Heredar producto UbiRed Pro en Oferta Cambio de Dirección")]
         [AllureSubSuite("PRO AÑADIR PRODUCTO")]
-        public void CRM_APR0016_Producto_heredar_UbiRedPRo_CambioDireccion()
+        public void CRM_APR0016_Producto_heredar_UbiRedPro_CambioDireccion()
         {
             // Login y Acceso a Gestión de Cliente
             commonActions.AccesoGestionCliente();
@@ -544,6 +544,105 @@ namespace Lyntia.TestSet
             ofertaActions.EliminarOfertaActual("Eliminar");
 
             TestContext.WriteLine("LA PRUEBA CRM-APR0016-HEREDAR-PROD SE EJECUTÓ CORRECTAMENTE");
+        }
+
+        //CRM-APR0017
+        [Test(Description = "CRM-APR0017 Heredar producto UbiRed Pro en Oferta Cambio de Precio")]
+        [AllureSubSuite("PRO AÑADIR PRODUCTO")]
+        public void CRM_APR0017_Producto_heredar_UbiRedPro_CambioPrecio()
+        {
+            // Login y Acceso a Gestión de Cliente
+            commonActions.AccesoGestionCliente();
+            commonCondition.AccedeGestionCliente();
+
+            // Paso 1 - Hacer click en Ofertas
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            // Paso 2 - Crear Nueva Oferta
+            ofertaActions.AccesoNuevaOferta();
+
+            // Rellenar campos y click en Guardar
+            ofertaActions.RellenarCamposOferta("CRM-APR0017-HEREDAR-PROD_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Cambio de precio/Renovación", "# BizQA");
+            ofertaActions.GuardarOferta();
+
+            // TODO: Añadir Producto a la Oferta UbuRed Pro
+            productoActions.HeredarProducto("  UP 500 Mbps ddd", "3000", "12", "200", "", "");
+
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            ofertaActions.BuscarOfertaEnVista("CRM-APR0017-HEREDAR-PROD_" + Utils.GetRandomString());
+
+            ofertaActions.SeleccionarOfertaGrid();
+
+            ofertaActions.EliminarOfertaActual("Eliminar");
+
+            TestContext.WriteLine("LA PRUEBA CRM-APR0017-HEREDAR-PROD SE EJECUTÓ CORRECTAMENTE");
+        }
+
+        //CRM-APR0018
+        [Test(Description = "CRM-APR0018 Heredar producto UbiRed Pro en Oferta Cambio de Solución Técnica")]
+        [AllureSubSuite("PRO AÑADIR PRODUCTO")]
+        public void CRM_APR0018_Producto_heredar_UbiRedPro_CambioSolucion()
+        {
+            // Login y Acceso a Gestión de Cliente
+            commonActions.AccesoGestionCliente();
+            commonCondition.AccedeGestionCliente();
+
+            // Paso 1 - Hacer click en Ofertas
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            // Paso 2 - Crear Nueva Oferta
+            ofertaActions.AccesoNuevaOferta();
+
+            // Rellenar campos y click en Guardar
+            ofertaActions.RellenarCamposOferta("CRM-APR0018-HEREDAR-PROD_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Cambio de solución técnica (Tecnología)", "# BizQA");
+            ofertaActions.GuardarOferta();
+
+            // TODO: Añadir Producto a la Oferta UbuRed Pro
+            productoActions.HeredarProducto("  UP 500 Mbps ddd", "3000", "12", "200", "", "");
+
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            ofertaActions.BuscarOfertaEnVista("CRM-APR0018-HEREDAR-PROD_" + Utils.GetRandomString());
+
+            ofertaActions.SeleccionarOfertaGrid();
+
+            ofertaActions.EliminarOfertaActual("Eliminar");
+
+            TestContext.WriteLine("LA PRUEBA CRM-APR0018-HEREDAR-PROD SE EJECUTÓ CORRECTAMENTE");
+        }
+
+        //CRM-APR0018
+        [Test(Description = "CRM-APR0019 Heredar producto UbiRed Pro en Oferta Cambio de Dirección")]
+        [AllureSubSuite("PRO AÑADIR PRODUCTO")]
+        public void CRM_APR0019_Producto_heredar_UbiRedPro_CambioDireccion()
+        {
+            // Login y Acceso a Gestión de Cliente
+            commonActions.AccesoGestionCliente();
+            commonCondition.AccedeGestionCliente();
+
+            // Paso 1 - Hacer click en Ofertas
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            // Paso 2 - Crear Nueva Oferta
+            ofertaActions.AccesoNuevaOferta();
+
+            // Rellenar campos y click en Guardar
+            ofertaActions.RellenarCamposOferta("CRM-APR0019-HEREDAR-PROD_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Cambio de dirección (Migración)", "# BizQA");
+            ofertaActions.GuardarOferta();
+
+            // TODO: Añadir Producto a la Oferta UbuRed Pro
+            productoActions.HeredarProducto("  UP 500 Mbps ddd", "3000", "12", "200", "", "");
+
+            ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
+
+            ofertaActions.BuscarOfertaEnVista("CRM-APR0019-HEREDAR-PROD_" + Utils.GetRandomString());
+
+            ofertaActions.SeleccionarOfertaGrid();
+
+            ofertaActions.EliminarOfertaActual("Eliminar");
+
+            TestContext.WriteLine("LA PRUEBA CRM-APR0019-HEREDAR-PROD SE EJECUTÓ CORRECTAMENTE");
         }
     }
 }
