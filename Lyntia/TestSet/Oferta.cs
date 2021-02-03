@@ -1124,14 +1124,12 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Paso 6 - Eliminar campos obligatorios
-            ofertaActions.Eliminar_campos_obligatorios();
-            
+            ofertaActions.Eliminar_campos_obligatorios();      
 
             // Paso 7 - Actualizar y descartar cambios
             ofertaActions.Actualizar("Descartar");
 
             // Paso 8 - Eliminar campos, actualizar y guardar cambios
-            ofertaActions.Eliminar_campos_obligatorios();
             ofertaActions.Actualizar("Guardar");
             ofertaCondition.OfertaNoCreada();
 
