@@ -540,19 +540,29 @@ namespace Lyntia.TestSet.Actions
         /// <summary>
         /// Método para Eliminar datos de la Oferta.
         /// </summary>
-        public void Eliminar_campos_obligatorios()
+        public void Eliminar_campos_obligatorios(int vez)
         {
             try
             {
                 // Nombre de la oferta
+                Thread.Sleep(3000);
                 Utils.SearchWebElement("Oferta.inputNameOferta").Click();
                 Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Control + "a");
                 Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Delete);
+                Utils.SearchWebElement("Oferta.inputNameOferta").Click();
                 Thread.Sleep(3000);
 
                 // Cliente
-                accionesSelenium.SendKeys(Keys.Tab).Perform();
-                accionesSelenium.SendKeys(Keys.Tab).Perform();
+                if(vez == 1)
+                {
+                    accionesSelenium.SendKeys(Keys.Tab).Perform();
+                    accionesSelenium.SendKeys(Keys.Tab).Perform();
+                }
+                else
+                {
+                    accionesSelenium.SendKeys(Keys.Tab).Perform();
+                }
+
                 Thread.Sleep(2000);
                 driver.FindElement(By.XPath("//button[contains(@data-id,'customerid_selected_tag_delete')]")).Click();
                 Thread.Sleep(2000);
@@ -595,11 +605,6 @@ namespace Lyntia.TestSet.Actions
                 Thread.Sleep(3000);
 
                 Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Modcampo);
-                accionesSelenium.SendKeys(Keys.PageDown);
-                accionesSelenium.Build().Perform();
-                Thread.Sleep(3000);
-
-                Utils.SearchWebElement("Oferta.inputCustomerId").Click();
 
                 //hay que añadir divisa y lista de precios kam y cliente
 
@@ -677,8 +682,8 @@ namespace Lyntia.TestSet.Actions
         {
             try
             {
-                BuscarOfertaEnVista("fibra oscura");
-                driver.FindElement(By.XPath("//div[contains(@title, 'Ganada')]")).Click();//seleccionamos una oferta ganada y pulsamos sobre el ckeck
+                BuscarOfertaEnVista("test");
+                driver.FindElement(By.XPath("//div[contains(@title, 'Ganada')]")).Click();//seleccionamos una oferta ganada y pulsamos sobre el check
                 Thread.Sleep(3000);
                 TestContext.WriteLine("Se accede a una Oferta Adjudicada.");
             }
@@ -920,22 +925,20 @@ namespace Lyntia.TestSet.Actions
         {
             try
             {
-                
+                Thread.Sleep(3000);
                 Utils.SearchWebElement("Oferta.buttonActualizar").Click();
-                
 
                 if (accion.Equals("Guardar"))
                 {
-                    
+                    Thread.Sleep(2000);
                     Utils.SearchWebElement("Producto.buttonGuardaryContinuar").Click();
-                    Thread.Sleep(3000);
+                    Thread.Sleep(4000);
                 }
                 else
                 {
                     //cambios no guardados
-                    
+                    Thread.Sleep(2000);
                     Utils.SearchWebElement("Oferta.ButtonDescartarcambios").Click();
-                    Thread.Sleep(3000);
                 }
                     TestContext.WriteLine("La oferta se actualiza correctamente");
             }
@@ -954,6 +957,7 @@ namespace Lyntia.TestSet.Actions
         {
             try
             {
+                
                 Utils.SearchWebElement("Oferta.buttonActualizar").Click();
                 Thread.Sleep(3000);
                 TestContext.WriteLine("La oferta se actualiza correctamente");
