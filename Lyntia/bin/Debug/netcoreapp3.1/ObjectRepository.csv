@@ -37,6 +37,7 @@ Oferta.gridFilterIdRevision;XPATH;//div[@data-id='revisionnumber']
 Oferta.gridFilterBuscarPor;XPATH;//button[@name='Filtrar por']
 Oferta.gridFilterBuscarPorInput;XPATH;//input[@aria-label='Filter by value']
 Oferta.gridFilterBuscarPorAceptarButton;XPATH;//button[@type='submit']
+Oferta.buttonAceptarVentanaEmergente;XPATH;//button[contains(@aria-label, 'Aceptar')]
 Oferta.gridSelectAll;XPATH;//button[@title='Seleccionar todos']
 Oferta.buttonPresentOferta;XPATH;//button[@title='Presentar Oferta']
 Oferta.labelPermutaDefault;XPATH;//a[@aria-label="Es permuta: No"]
@@ -73,6 +74,9 @@ Oferta.labelMensajeCreapedidofechainferior;XPATH;//*[@id='subtitle']
 Oferta.buttonActualizar;XPATH;//button[contains(@aria-label, 'Actualizar')]
 Oferta.ButtonDescartarcambios;XPATH;//button[contains(@aria-label, 'Descartar cambios')]
 Oferta.labelDivisa;XPATH;//
+Oferta.buttonCancelCliente;XPATH;//button[contains(@data-id,'customerid_selected_tag_delete')]
+Oferta.inputIDRevision;XPATH;//input[contains(@aria-label, 'ID de revisión')] 
+Oferta.inputRazonEstado;XPATH;//span[contains(@aria-label, 'Razón para el estado')]
 ############################# PRODUCTO ############################
 Producto.firstInput;ID;submit
 Producto.GuardarYCerrar_producto;XPATH;//button[@id='quickCreateSaveAndCloseBtn']
