@@ -594,19 +594,60 @@ namespace Lyntia.TestSet.Actions
         /// <summary>
         /// Método para modificar datos de la Oferta.
         /// </summary>
-        public void Modificar_campos_obligatorios(String Modcampo)
+        public void Modificar_campos_obligatorios(String Modcampo ,String name, String tipoOferta, String KAM, String divisa, String listadeprecios)
         {
             try
             {
-
+                // Modificar el nombre de la oferta
                 Utils.SearchWebElement("Oferta.inputNameOferta").Click();
                 Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Control + "a");
                 Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Delete);
                 Thread.Sleep(3000);
-
                 Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Modcampo);
+                Thread.Sleep(3000);
 
-                //hay que añadir divisa y lista de precios kam y cliente
+                // Modificar el cliente
+                Utils.SearchWebElement("Oferta.inputCustomerId").Click();
+                Thread.Sleep(1000);
+                Utils.SearchWebElement("Oferta.inputCustomerId").SendKeys(name);
+                Thread.Sleep(1000);
+                driver.FindElement(By.XPath("//span[contains(text(), '" + name + "')]")).Click();
+                Thread.Sleep(2000);
+
+                // Modificar tipo de oferta
+                Utils.SearchWebElement("Oferta.selectOfertaType").Click();
+                accionesSelenium.SendKeys(Keys.PageDown);
+                accionesSelenium.Build().Perform();
+                Thread.Sleep(2000);
+
+                // Modificar Kan
+                Utils.SearchWebElement("Oferta.kamResponsable").Click();
+                Thread.Sleep(1000);
+                Utils.SearchWebElement("Oferta.kamResponsable").SendKeys(KAM);
+                Thread.Sleep(1000);
+                driver.FindElement(By.XPath("//span[contains(text(), '" + KAM + "')]")).Click();
+                Thread.Sleep(2000);
+
+                // Modificar divisa
+                Utils.SearchWebElement("Oferta.inputDivisa").Click();
+                Thread.Sleep(1000);
+                Utils.SearchWebElement("Oferta.inputDivisa").SendKeys(divisa);
+                Thread.Sleep(1000);
+                driver.FindElement(By.XPath("//span[contains(text(), '" + divisa + "')]")).Click();
+                Thread.Sleep(2000);
+                Utils.SearchWebElement("Oferta.buttonAceptarVentanaEmergente").Click();
+                Thread.Sleep(2000);
+
+                // Modificar la lista de precios
+                Utils.SearchWebElement("Oferta.inputListadeprecios").Click();
+                Thread.Sleep(1000);
+                Utils.SearchWebElement("Oferta.inputListadeprecios").SendKeys(listadeprecios);
+                Thread.Sleep(1000);
+                driver.FindElement(By.XPath("//span[contains(text(), '" + listadeprecios + "')]")).Click();
+                Thread.Sleep(2000);
+
+
+
 
                 TestContext.WriteLine("Se modifican los campos obligatorios de la prueba.");
             }

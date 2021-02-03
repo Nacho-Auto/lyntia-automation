@@ -73,10 +73,11 @@ Oferta.inputFechaVentanaCrearpedido;XPATH;//input//[contains(@aria-label, 'Fecha
 Oferta.labelMensajeCreapedidofechainferior;XPATH;//*[@id='subtitle']
 Oferta.buttonActualizar;XPATH;//button[contains(@aria-label, 'Actualizar')]
 Oferta.ButtonDescartarcambios;XPATH;//button[contains(@aria-label, 'Descartar cambios')]
-Oferta.labelDivisa;XPATH;//
+Oferta.inputListadeprecios;XPATH;//input[contains(@aria-label, 'Lista de precios, Búsqueda')]
 Oferta.buttonCancelCliente;XPATH;//button[contains(@data-id,'customerid_selected_tag_delete')]
 Oferta.inputIDRevision;XPATH;//input[contains(@aria-label, 'ID de revisión')] 
 Oferta.inputRazonEstado;XPATH;//span[contains(@aria-label, 'Razón para el estado')]
+Oferta.inputDivisa;XPATH;//input[contains(@aria-label, 'Divisa, Búsqueda')]
 ############################# PRODUCTO ############################
 Producto.firstInput;ID;submit
 Producto.GuardarYCerrar_producto;XPATH;//button[@id='quickCreateSaveAndCloseBtn']
