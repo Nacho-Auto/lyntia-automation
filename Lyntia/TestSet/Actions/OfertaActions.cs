@@ -38,7 +38,7 @@ namespace Lyntia.TestSet.Actions
             {
                 try
                 {
-                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(Utils.GetIdentifier("Oferta.ofertaSection"))));
+                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.Id(Utils.GetIdentifier("Oferta.ofertaSection"))));
                     Thread.Sleep(6000);
                     Utils.SearchWebElement("Oferta.ofertaSection").Click();
                     Thread.Sleep(2000);
@@ -544,15 +544,19 @@ namespace Lyntia.TestSet.Actions
         {
             try
             {
-               
                 Utils.SearchWebElement("Oferta.inputNameOferta").Click();
                 Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Control + "a");
                 Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Delete);
                 Thread.Sleep(3000);
 
                 //hay que añadir divisa y lista de precios kam y cliente
-                driver.FindElement(By.XPath("//ul[contains(@id,'customerid.fieldControl-LookupResultsDropdown')]"));
-                driver.FindElement(By.XPath("//button[contains(@data-id,'customerid_selected_tag_delete')]"));
+                accionesSelenium.SendKeys(Keys.Tab).Perform();
+                accionesSelenium.SendKeys(Keys.Tab).Perform();
+                driver.FindElement(By.XPath("//button[contains(@data-id,'customerid_selected_tag_delete')]")).Click();
+
+                //ul[contains(@data-id,'new_kamresponsableid_SelectedRecordList')]
+                driver.FindElement(By.XPath("//ul[contains(@data-id,'new_kamresponsableid_SelectedRecordList')]")).Click();
+                driver.FindElement(By.XPath("//button[contains(@data-id,'kamresponsableid_selected_tag_delete')]")).Click();
 
                 TestContext.WriteLine("Se eliminan los campos obligatorios de la prueba.");
             }
@@ -655,7 +659,7 @@ namespace Lyntia.TestSet.Actions
         {
             try
             {
-                BuscarOfertaEnVista("test");
+                BuscarOfertaEnVista("fibra oscura");
                 driver.FindElement(By.XPath("//div[contains(@title, 'Ganada')]")).Click();//seleccionamos una oferta ganada y pulsamos sobre el ckeck
                 Thread.Sleep(3000);
                 TestContext.WriteLine("Se accede a una Oferta Adjudicada.");
