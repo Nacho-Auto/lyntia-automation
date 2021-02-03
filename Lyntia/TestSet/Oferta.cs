@@ -1159,8 +1159,8 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Paso 5 - Guardar oferta
-
-            ofertaActions.Modificar_campos_obligatorios("Prueba modificar");
+            ofertaActions.Eliminar_campos_obligatorios(1);
+            ofertaActions.Modificar_campos_obligatorios("Prueba modificar","2k","Cambio de dirección(Migración)", "BAP", "Euro", "2019 Porfolio lyntia");
             ofertaActions.GuardarOferta();
             
 
