@@ -69,9 +69,9 @@ namespace Lyntia.Utilities
                 driver = new ChromeDriver(chromeOptions);
 
                 objRep = ObjectRepositoryUtils.Instance;
-                objRep.TestDataReader(@"ObjectRepository.csv");
+                objRep.TestDataReader("ObjectRepository.csv");
                 dataRep = TestDataUtils.Instance;
-                dataRep.testDataReader(@"DataRepository.csv");
+                dataRep.testDataReader("DataRepository.csv");
                 ofertaActions = new OfertaActions();
                 ofertaCondition = new OfertaConditions();
                 productoActions = new ProductoActions();
