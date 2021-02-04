@@ -595,7 +595,7 @@ namespace Lyntia.TestSet
 
             TestContext.WriteLine("LA PRUEBA CRM-COF0008 CERRAR SE EJECUTÓ CORRECTAMENTE");
         }
-        
+
         [Test(Description = "CRM-COF0009 Cerrar Oferta en borrador con producto añadido, Perdida")]
         [AllureSubSuite("PRO ELIMINAR-CERRAR OFERTA")]
         public void CRM_COF0009_cerrarOfertaProductoAnadidoPerdida()
@@ -626,7 +626,7 @@ namespace Lyntia.TestSet
             // Seleccionar la Oferta del grid
             ofertaActions.SeleccionarOfertaGrid();
             ofertaActions.AbrirOfertaEnVista("CRM-COF0009-CIERRE_" + Utils.GetRandomString());
-            
+
             ofertaActions.PresentarOferta();
 
             // Paso 6 - Repetir el paso anterior pero cerrando de manera correcta
@@ -744,7 +744,7 @@ namespace Lyntia.TestSet
 
             TestContext.WriteLine("LA PRUEBA CRM-EOF0003 SE EJECUTÓ CORRECTAMENTE");
         }
-        
+
         //CRM-EOF0004
         [Test(Description = "CRM_EOF0004 Editar campo 'Tipo de oferta' de una Oferta")]
         [AllureSubSuite("PRO EDITAR OFERTA")]
@@ -1034,7 +1034,7 @@ namespace Lyntia.TestSet
 
             TestContext.WriteLine("LA PRUEBA CRM-POF0005 SE EJECUTÓ CORRECTAMENTE");
         }
-        
+
         //[Test(Description = "CRM-POAF0001 - PRO ADJUDICAR OFERTA")]
         [AllureSubSuite("PRO ADJUDICAR OFERTA")]
         public void CRM_POAF0001_Oferta_Adjudicar_CC()
@@ -1118,13 +1118,13 @@ namespace Lyntia.TestSet
             ofertaCondition.CreaOferta();
 
             // Paso 4 - Rellenar campos de la oferta
-            ofertaActions.RellenarCamposOferta("Prueba", "CLIENTE INTEGRACION", "Nuevo servicio", "BizQA");
-            
+            ofertaActions.RellenarCamposOferta("CRM-EOF0001_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Nuevo servicio", "BizQA");
+
             // Paso 5 - Guardar oferta
             ofertaActions.GuardarOferta();
 
             // Paso 6 - Eliminar campos obligatorios
-            ofertaActions.Eliminar_campos_obligatorios(1);      
+            ofertaActions.Eliminar_campos_obligatorios(1);
 
             // Paso 7 - Actualizar y descartar cambios
             ofertaActions.Actualizar("Descartar");
@@ -1135,7 +1135,9 @@ namespace Lyntia.TestSet
             ofertaActions.Actualizar("Guardar");
             ofertaCondition.OfertaNoCreada();
 
-            
+            ofertaActions.EliminarOfertaActual("Eliminar");
+
+            TestContext.WriteLine("LA PRUEBA CRM-EOF0001 SE EJECUTÓ CORRECTAMENTE");
         }
 
         [Test(Description = "CRM-EOF0002 - PRO EDI OFERTA")]
@@ -1160,18 +1162,22 @@ namespace Lyntia.TestSet
 
             // Paso 5 - Guardar oferta
             ofertaActions.Eliminar_campos_obligatorios(1);
-            ofertaActions.Modificar_campos_obligatorios("Prueba modificar","2k","Cambio de dirección(Migración)", "BAP", "Euro", "2019 Porfolio lyntia");
+            ofertaActions.Modificar_campos_obligatorios("CRM-EOF0002_" + Utils.GetRandomString(), "2k", "Cambio de dirección(Migración)", "BAP", "Euro", "2019 Porfolio lyntia");
             ofertaActions.GuardarOferta();
-            
 
             // Paso 6 - Actualizar oferta
             ofertaActions.ActualizarBarramenu();
 
-
             // Paso 7 - Guardar y cerrar
             ofertaActions.GuardarYCerrarOferta();
 
+            ofertaActions.BuscarOfertaEnVista("CRM-EOF0002_" + Utils.GetRandomString());
 
+            ofertaActions.SeleccionarOfertaGrid();
+
+            ofertaActions.EliminarOfertaActual("Eliminar");
+
+            TestContext.WriteLine("LA PRUEBA CRM-EOF0002 SE EJECUTÓ CORRECTAMENTE");
         }
     }
 }
