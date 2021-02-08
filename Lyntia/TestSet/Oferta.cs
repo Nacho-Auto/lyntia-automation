@@ -1199,13 +1199,13 @@ namespace Lyntia.TestSet
             ofertaCondition.CreaOferta();
 
             // Preparacion de datos de la prueba
-            ofertaActions.RellenarCamposOferta("NO BORRAR PRUEBA CRM-COF0001_COF0002", "CLIENTE INTEGRACION", "Nuevo servicio", "BizQA");
+            ofertaActions.RellenarCamposOferta("CRM-COF0001-ELIMINAR_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Nuevo servicio", "BizQA");
             ofertaActions.GuardarOferta();
             productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "10 Mbps", "", "", "", "","");
             ofertaActions.GuardarYCerrarOferta();
 
             // Paso 4 - Buscar en vista la oferta
-            ofertaActions.AbrirOfertaEnVista("NO BORRAR PRUEBA CRM-COF0001_COF0002");
+            ofertaActions.AbrirOfertaEnVista("CRM-COF0001-ELIMINAR_" + Utils.GetRandomString());
             ofertaCondition.Resultado_edicion_de_una_oferta();
 
             // Paso 5 - Cancelar la eliminacion de la oferta
@@ -1213,10 +1213,8 @@ namespace Lyntia.TestSet
 
             // Paso 6 - Eliminar oferta
             ofertaActions.EliminarOfertaActual("Eliminar");
-            ofertaActions.BuscarOfertaEnVista("NO BORRAR PRUEBA CRM-COF0001_COF0002");
+            ofertaActions.BuscarOfertaEnVista("CRM-COF0001-ELIMINAR_" + Utils.GetRandomString());
             ofertaCondition.Datos_disponibles();
-
-
         }
 
         [Test(Description = "CRM-COF0002 - Vista Ofertas_En_borrador_Enelaboración_Sin_Producto")]
@@ -1252,9 +1250,6 @@ namespace Lyntia.TestSet
             ofertaActions.Seleccionar_registro_de_la_lista_Ckeck();
             ofertaActions.EliminarOfertaActual("Eliminar");
             ofertaCondition.Datos_disponibles();
-
-
-
         }
     }
 }
