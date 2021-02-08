@@ -21,6 +21,7 @@ namespace Lyntia.TestSet
         private static OfertaActions ofertaActions;
         private static OfertaConditions ofertaCondition;
         private static ProductoActions productoActions;
+        private static ProductoConditions productoConditions;
         private static CommonActions commonActions;
         private static CommonConditions commonCondition;
 
@@ -34,6 +35,7 @@ namespace Lyntia.TestSet
             ofertaActions = Utils.GetOfertaActions();
             ofertaCondition = Utils.GetOfertaConditions();
             productoActions = Utils.GetProductoActions();
+            productoConditions = Utils.GetProductoConditions();
             commonActions = Utils.GetCommonActions();
             commonCondition = Utils.GetCommonConditions();
 
@@ -1101,7 +1103,7 @@ namespace Lyntia.TestSet
             ofertaCondition.ResVentanaCrearPedido();
         }
 
-        [Test(Description = "CRM-EOF0001 - PRO EDI OFERTA")]
+        [Test(Description = "CRM-EOF0001 - Edición_borrador_Sin_datos_obligatorios")]
         [AllureSubSuite("PRO EDI OFERTA")]
         public void CRM_EOF0001_Edición_borrador_Sin_datos_obligatorios()
         {
@@ -1140,7 +1142,7 @@ namespace Lyntia.TestSet
             TestContext.WriteLine("LA PRUEBA CRM-EOF0001 SE EJECUTÓ CORRECTAMENTE");
         }
 
-        [Test(Description = "CRM-EOF0002 - PRO EDI OFERTA")]
+        [Test(Description = "CRM-EOF0002 - Edición_borrador_Con_datos_obligatorio")]
         [AllureSubSuite("PRO EDI OFERTA")]
         public void CRM_EOF0002_Edición_borrador_Con_datos_obligatorios()
         {
@@ -1178,6 +1180,43 @@ namespace Lyntia.TestSet
             ofertaActions.EliminarOfertaActual("Eliminar");
 
             TestContext.WriteLine("LA PRUEBA CRM-EOF0002 SE EJECUTÓ CORRECTAMENTE");
+        }
+
+        [Test(Description = "CRM-COF0001 - Oferta_Eliminar_En_borrador_Sin_Producto")]
+        [AllureSubSuite("PRO ELIMINAR-CERRAR OFERTA")]
+        public void CRM_COF0001_Oferta_Eliminar_En_borrador_Sin_Producto()
+        {
+            // Login y Acceso a Gestión de Cliente
+            commonActions.AccesoGestionCliente();//Acceso al modulo de Gestion de Cliente(Apliaciones)
+            commonCondition.AccedeGestionCliente();//Acceso correcto
+
+            // Paso 1 - Hacer click en Ofertas
+            commonActions.AccesoOferta();//Oferta menu
+            commonCondition.AccedeOferta();//comprobamos el acceso
+
+            // Paso 3 - Nueva Oferta
+            ofertaActions.AccesoNuevaOferta();
+            ofertaCondition.CreaOferta();
+
+            // Preparacion de datos de la prueba
+            ofertaActions.RellenarCamposOferta("NO BORRAR PRUEBA CRM-COF0001", "CLIENTE INTEGRACION", "Nuevo servicio", "BizQA");
+            ofertaActions.GuardarOferta();
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "10 Mbps", "", "", "", "","");
+            ofertaActions.GuardarYCerrarOferta();
+
+            // Paso 4 - Buscar en vista la oferta
+            ofertaActions.AbrirOfertaEnVista("NO BORRAR PRUEBA CRM-COF0001");
+            ofertaCondition.Resultado_edicion_de_una_oferta();
+
+            // Paso 5 - Cancelar la eliminacion de la oferta
+            ofertaActions.EliminarOfertaActual("Cancelar");
+
+            // Paso 6 - Eliminar oferta
+            ofertaActions.EliminarOfertaActual("Eliminar");
+            ofertaActions.BuscarOfertaEnVista("NO BORRAR PRUEBA CRM-COF0001");
+            ofertaCondition.Datos_disponibles();
+
+
         }
     }
 }

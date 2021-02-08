@@ -545,6 +545,22 @@ namespace Lyntia.TestSet.Conditions
                 throw e;
             }
         }
+        /// <summary>
+        /// Método para comprobar que no hay datos disponibles de una oferta
+        /// </summary>
+        public void Datos_disponibles()
+        {
+            try
+            {
+                Assert.AreEqual("No hay datos disponibles.", Utils.SearchWebElement("Oferta.labelNOhayDatosDisponibles").Text);
+                TestContext.WriteLine("*** Se cumple la condicion de que no existe el dato");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "Datos no disponibles.png", " ***NO se cumple la condicion de que no existe el dato");
+                throw e;
+            }
+        }
     }
 
 }

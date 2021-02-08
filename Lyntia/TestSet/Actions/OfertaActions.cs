@@ -264,14 +264,16 @@ namespace Lyntia.TestSet.Actions
             {
                 try
                 {
+                    Thread.Sleep(3000);
                     Utils.SearchWebElement("Oferta.deleteButtonOferta").Click();
-
+                    Thread.Sleep(3000);
                     // Confirmar Borrado
                     if (opcion.Equals("Eliminar"))
                     {
                         Utils.SearchWebElement("Oferta.confirmDeleteOferta").Click();
                         Thread.Sleep(4000);
                         TestContext.WriteLine("Se elimina la Oferta correctamente.");
+                        Thread.Sleep(2000);
                     }
                     else
                     {
@@ -786,10 +788,13 @@ namespace Lyntia.TestSet.Actions
         /// </summary>
         public void Eliminar_BarraMenu()
         {
+            
             try
             {
+                
                 Utils.SearchWebElement("Oferta.buttonEliminar").Click(); //pulsamos sobre eliminar de la barra superior del menu
                 TestContext.WriteLine("Se pulsa correctamente Eliminar.");
+               
             }
             catch (Exception e)
             {
