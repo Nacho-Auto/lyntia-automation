@@ -1,18 +1,22 @@
 ﻿using System;
+using System.Threading;
 using Allure.Commons;
 using Lyntia.Utilities;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 
 namespace Lyntia.TestSet.Actions
 {
     public class CommonActions
     {
         private static IWebDriver driver;
+        private static WebDriverWait wait;
 
         public CommonActions()
         {
             driver = Utils.driver;
+            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(45));
         }
 
         /// <summary>
@@ -41,9 +45,9 @@ namespace Lyntia.TestSet.Actions
         {
             try
             {
-                driver.FindElement(By.XPath("//li[@title='Ofertas']")).Click();
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.Id(Utils.GetIdentifier("Oferta.ofertaSection"))));
+                Utils.SearchWebElement("Oferta.ofertaSection").Click();
                 TestContext.WriteLine("Se accede correctamente a sección de Ofertas");
-
             }
             catch (Exception e)
             {
