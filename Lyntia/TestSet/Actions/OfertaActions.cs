@@ -1017,5 +1017,24 @@ namespace Lyntia.TestSet.Actions
             
 
         }
+
+        /// <summary>
+        /// Método para seleccionar la primera linea del listado de ofertas
+        /// </summary>
+        public void Seleccionar_registro_de_la_lista_Ckeck()
+        {
+            try
+            {
+                Thread.Sleep(3000);
+                Utils.SearchWebElement("Oferta.selectListCkeck").Click();
+                
+                TestContext.WriteLine("El primer registro de la lista queda seleccionado correctamente");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "Seleccionar registro de la lista Check.png", "El primer registro de la lista no queda seleccionado correctamente");
+                throw e;
+            }
+        }
     }
 }
