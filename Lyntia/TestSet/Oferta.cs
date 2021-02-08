@@ -1199,13 +1199,13 @@ namespace Lyntia.TestSet
             ofertaCondition.CreaOferta();
 
             // Preparacion de datos de la prueba
-            ofertaActions.RellenarCamposOferta("NO BORRAR PRUEBA CRM-COF0001", "CLIENTE INTEGRACION", "Nuevo servicio", "BizQA");
+            ofertaActions.RellenarCamposOferta("NO BORRAR PRUEBA CRM-COF0001_COF0002", "CLIENTE INTEGRACION", "Nuevo servicio", "BizQA");
             ofertaActions.GuardarOferta();
             productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "10 Mbps", "", "", "", "","");
             ofertaActions.GuardarYCerrarOferta();
 
             // Paso 4 - Buscar en vista la oferta
-            ofertaActions.AbrirOfertaEnVista("NO BORRAR PRUEBA CRM-COF0001");
+            ofertaActions.AbrirOfertaEnVista("NO BORRAR PRUEBA CRM-COF0001_COF0002");
             ofertaCondition.Resultado_edicion_de_una_oferta();
 
             // Paso 5 - Cancelar la eliminacion de la oferta
@@ -1213,8 +1213,46 @@ namespace Lyntia.TestSet
 
             // Paso 6 - Eliminar oferta
             ofertaActions.EliminarOfertaActual("Eliminar");
-            ofertaActions.BuscarOfertaEnVista("NO BORRAR PRUEBA CRM-COF0001");
+            ofertaActions.BuscarOfertaEnVista("NO BORRAR PRUEBA CRM-COF0001_COF0002");
             ofertaCondition.Datos_disponibles();
+
+
+        }
+
+        [Test(Description = "CRM-COF0002 - Vista Ofertas_En_borrador_Enelaboración_Sin_Producto")]
+        [AllureSubSuite("PRO ELIMINAR-CERRAR OFERTA")]
+        public void CRM_COF0002_Vista_Ofertas_En_borrador_En_elaboración_Sin_Producto()
+        {
+            // Login y Acceso a Gestión de Cliente
+            commonActions.AccesoGestionCliente();//Acceso al modulo de Gestion de Cliente(Apliaciones)
+            commonCondition.AccedeGestionCliente();//Acceso correcto
+
+            // Paso 1 - Hacer click en Ofertas
+            commonActions.AccesoOferta();//Oferta menu
+            commonCondition.AccedeOferta();//comprobamos el acceso
+
+            // Paso 3 - Nueva Oferta
+            ofertaActions.AccesoNuevaOferta();
+            ofertaCondition.CreaOferta();
+
+            // Preparacion de datos de la prueba
+            ofertaActions.RellenarCamposOferta("NO BORRAR PRUEBA CRM-COF0001_COF0002", "CLIENTE INTEGRACION", "Nuevo servicio", "BizQA");
+            ofertaActions.GuardarYCerrarOferta();
+
+            // Paso 4 - Buscar en vista la oferta
+            ofertaActions.AbrirOfertaEnVista("NO BORRAR PRUEBA CRM-COF0001_COF0002");
+            ofertaCondition.Resultado_edicion_de_una_oferta();
+
+            // Paso 5 - Cancelar la eliminacion de la oferta
+            ofertaActions.EliminarOfertaActual("Cancelar");
+
+            // Paso 6 - Salir al grid y eliminar oferta
+            ofertaActions.GuardarYCerrarOferta();
+            ofertaActions.BuscarOfertaEnVista("NO BORRAR PRUEBA CRM-COF0001_COF0002");
+            ofertaActions.Seleccionar_registro_de_la_lista_Ckeck();
+            ofertaActions.EliminarOfertaActual("Eliminar");
+            ofertaCondition.Datos_disponibles();
+
 
 
         }
