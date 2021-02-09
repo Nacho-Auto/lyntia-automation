@@ -1215,6 +1215,7 @@ namespace Lyntia.TestSet
             ofertaActions.EliminarOfertaActual("Eliminar");
             ofertaActions.BuscarOfertaEnVista("NO BORRAR PRUEBA CRM-COF0001_COF0002");
             ofertaCondition.Datos_disponibles();
+            TestContext.WriteLine("LA PRUEBA CRM-COF0001 SE EJECUTÓ CORRECTAMENTE");
 
 
         }
@@ -1249,12 +1250,99 @@ namespace Lyntia.TestSet
             // Paso 6 - Salir al grid y eliminar oferta
             ofertaActions.GuardarYCerrarOferta();
             ofertaActions.BuscarOfertaEnVista("NO BORRAR PRUEBA CRM-COF0001_COF0002");
-            ofertaActions.Seleccionar_registro_de_la_lista_Ckeck();
+            ofertaActions.SeleccionarOfertaGrid();
             ofertaActions.EliminarOfertaActual("Eliminar");
             ofertaCondition.Datos_disponibles();
-
+            TestContext.WriteLine("LA PRUEBA CRM-COF0002 SE EJECUTÓ CORRECTAMENTE");
 
 
         }
+
+        [Test(Description = "CRM-COF0003 - Oferta_Cerrar_En_borrador_Sin_Producto_Cancelada")]
+        [AllureSubSuite("PRO ELIMINAR-CERRAR OFERTA")]
+        public void CRM_COF0003_Oferta_Cerrar_En_borrador_Sin_Producto_Cancelada()
+        {
+            // Login y Acceso a Gestión de Cliente
+            commonActions.AccesoGestionCliente();//Acceso al modulo de Gestion de Cliente(Apliaciones)
+            commonCondition.AccedeGestionCliente();//Acceso correcto
+
+            // Paso 1 - Hacer click en Ofertas
+            commonActions.AccesoOferta();//Oferta menu
+            commonCondition.AccedeOferta();//comprobamos el acceso
+
+            // Paso 3 - Nueva Oferta
+            ofertaActions.AccesoNuevaOferta();
+            ofertaCondition.CreaOferta();
+
+            // Preparacion de datos de la prueba
+            ofertaActions.RellenarCamposOferta("NO BORRAR CRM-COF0003 CRM-COF0004", "CLIENTE INTEGRACION", "Nuevo servicio", "BizQA");
+            ofertaActions.GuardarOferta();
+
+            // Paso 4 - Cerrar oferta("Cancelar")
+            ofertaActions.CerrarOfertaActual("Cancelar", "","","");
+
+            // Paso 5 - Cerrar oferta sin cumplimentar campos obligatorios
+            ofertaActions.CerrarOfertaActual("Aceptar", "Cancelada", "", "");
+            ofertaCondition.OfertaNoCerrada();
+
+            driver.Navigate().Refresh();
+
+            // Paso 6 - Repetir el paso anterior pero cerrando de manera correcta
+            ofertaActions.CerrarOfertaActual("Aceptar", "Cancelada", "Sin información", "01/02/2021");
+            
+            // Paso 7 - Accedemos al grid, buscamos la oferta y se comprueba estados
+            commonActions.AccesoOferta();
+            ofertaActions.BuscarOfertaEnVista("NO BORRAR CRM-COF0003 CRM-COF0004");
+            ofertaCondition.OfertaCerradaCorrectamenteEnGrid("Cancelada");
+
+            // Reestablecer dato
+            ofertaActions.SeleccionarOfertaGrid();
+            ofertaActions.EliminarOfertaActual("Eliminar");
+            TestContext.WriteLine("LA PRUEBA CRM-COF0003 SE EJECUTÓ CORRECTAMENTE");
+        }
+
+        [Test(Description = "CRM-COF0004 - Oferta_Cerrar_En_borrador_Sin_Producto_No_viable")]
+        [AllureSubSuite("PRO ELIMINAR-CERRAR OFERTA")]
+        public void CRM_COF0004_Oferta_Cerrar_En_borrador_Sin_Producto_No_viable()
+        {
+            // Login y Acceso a Gestión de Cliente
+            commonActions.AccesoGestionCliente();//Acceso al modulo de Gestion de Cliente(Apliaciones)
+            commonCondition.AccedeGestionCliente();//Acceso correcto
+
+            // Paso 1 - Hacer click en Ofertas
+            commonActions.AccesoOferta();//Oferta menu
+            commonCondition.AccedeOferta();//comprobamos el acceso
+
+            // Paso 3 - Nueva Oferta
+            ofertaActions.AccesoNuevaOferta();
+            ofertaCondition.CreaOferta();
+
+            // Preparacion de datos de la prueba
+            ofertaActions.RellenarCamposOferta("NO BORRAR CRM-COF0003 CRM-COF0004", "CLIENTE INTEGRACION", "Nuevo servicio", "BizQA");
+            ofertaActions.GuardarOferta();
+
+            // Paso 4 - Cerrar oferta("Cancelar")
+            ofertaActions.CerrarOfertaActual("Cancelar", "", "", "");
+
+            // Paso 5 - Cerrar oferta sin cumplimentar campos obligatorios
+            ofertaActions.CerrarOfertaActual("Aceptar", "Cancelada", "", "");
+            ofertaCondition.OfertaNoCerrada();
+
+            driver.Navigate().Refresh();
+
+            // Paso 6 - Repetir el paso anterior pero cerrando de manera correcta
+            ofertaActions.CerrarOfertaActual("Aceptar", "No viable", "Sin información", "01/02/2021");
+
+            // Paso 7 - Accedemos al grid, buscamos la oferta y se comprueba estados
+            commonActions.AccesoOferta();
+            ofertaActions.BuscarOfertaEnVista("NO BORRAR CRM-COF0003 CRM-COF0004");
+            ofertaCondition.OfertaCerradaCorrectamenteEnGrid("No viable");
+
+            // Reestablecer dato
+            ofertaActions.SeleccionarOfertaGrid();
+            ofertaActions.EliminarOfertaActual("Eliminar");
+            TestContext.WriteLine("LA PRUEBA CRM-COF0004 SE EJECUTÓ CORRECTAMENTE");
+        }
     }
 }
+

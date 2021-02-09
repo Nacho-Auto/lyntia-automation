@@ -555,14 +555,14 @@ namespace Lyntia.TestSet.Conditions
                 Assert.AreEqual("No hay datos disponibles.", Utils.SearchWebElement("Oferta.labelNOhayDatosDisponibles").Text);
                 TestContext.WriteLine("*** Se cumple la condicion de que no existe el dato");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "Datos no disponibles.png", " ***NO se cumple la condicion de que no existe el dato");
                 throw e;
             }
         }
+        
     }
-
 }
 
     

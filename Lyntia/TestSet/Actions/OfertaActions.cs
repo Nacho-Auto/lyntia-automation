@@ -330,7 +330,7 @@ namespace Lyntia.TestSet.Actions
         }
 
         /// <summary>
-        /// Método empleado para una vez buscada una Oferta en el grid, abrirla
+        /// Método empleado para una vez buscada una Oferta en el grid, abrirla(seleccion con un ckeck)
         /// </summary>
         public void SeleccionarOfertaGrid()
         {
@@ -674,7 +674,7 @@ namespace Lyntia.TestSet.Actions
                 // Click en Cerrar Oferta
                 Thread.Sleep(2000);
                 Utils.SearchWebElement("Oferta.buttonCerrar").Click();
-                Thread.Sleep(2000);
+                Thread.Sleep(20000);
 
                 // Cambiar al frame de Cierre de Ofertas
                 driver.SwitchTo().Frame(Utils.SearchWebElement("Oferta.frameCerrarOferta"));
@@ -693,14 +693,24 @@ namespace Lyntia.TestSet.Actions
 
                 if (!fechaCierre.Equals(""))
                 {
-                    Utils.SearchWebElement("Oferta.inputFechaCierre").SendKeys(fechaCierre);
+                    if (fechaCierre.Equals("dd/mm/aaaa"))
+                    {
+                        Utils.SearchWebElement("Oferta.inputFechaCierre").SendKeys("22/01/2021");
+                        Utils.SearchWebElement("Oferta.inputFechaCierre").SendKeys(Keys.Control + "a");
+                        Utils.SearchWebElement("Oferta.inputFechaCierre").SendKeys(Keys.Delete);
+                        Utils.SearchWebElement("Oferta.inputFechaCierre").SendKeys(fechaCierre);
+                    }
+                    else
+                    {
+                        Utils.SearchWebElement("Oferta.inputFechaCierre").SendKeys(fechaCierre);
+                    } 
                 }
 
                 if (opcion.Equals("Aceptar"))
                 {
                     // Cierre realizado
                     Utils.SearchWebElement("Oferta.buttonConfirmarCierre").Click();
-                    Thread.Sleep(3000);
+                    Thread.Sleep(10000);
                     TestContext.WriteLine("Se completa correctamente el proceso de cierre de Oferta.");
                 }
                 else
@@ -1012,29 +1022,9 @@ namespace Lyntia.TestSet.Actions
             {
                 CommonActions.CapturadorExcepcion(e, "ActualizarBarraMenu.png", "La oferta no se ha actualizado correctamente");
                 throw e;
-            }
-
-            
+            }        
 
         }
-
-        /// <summary>
-        /// Método para seleccionar la primera linea del listado de ofertas
-        /// </summary>
-        public void Seleccionar_registro_de_la_lista_Ckeck()
-        {
-            try
-            {
-                Thread.Sleep(3000);
-                Utils.SearchWebElement("Oferta.selectListCkeck").Click();
-                
-                TestContext.WriteLine("El primer registro de la lista queda seleccionado correctamente");
-            }
-            catch(Exception e)
-            {
-                CommonActions.CapturadorExcepcion(e, "Seleccionar registro de la lista Check.png", "El primer registro de la lista no queda seleccionado correctamente");
-                throw e;
-            }
-        }
+       
     }
 }

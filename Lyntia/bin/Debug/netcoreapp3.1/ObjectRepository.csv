@@ -79,7 +79,9 @@ Oferta.inputIDRevision;XPATH;//input[contains(@aria-label, 'ID de revisión')]
 Oferta.inputRazonEstado;XPATH;//span[contains(@aria-label, 'Razón para el estado')]
 Oferta.inputDivisa;XPATH;//input[contains(@aria-label, 'Divisa, Búsqueda')]
 Oferta.labelNOhayDatosDisponibles;XPATH;//div[contains(@title, 'No hay datos disponibles.')]
-Oferta.selectListCkeck;XPATH;//div[contains(@title, 'Borrador')]
+Oferta.selectListCkeckBorrador;XPATH;//div[contains(@title, 'Borrador')]
+Oferta.labelOfertaRazonCerrada;XPATH;//div[contains(@title, 'Cerrada')]
+Oferta.labelOfertaRazonCancelada;XPATH;//div[contains(@title, 'Cancelada')]
 ############################# PRODUCTO ############################
 Producto.firstInput;ID;submit
 Producto.GuardarYCerrar_producto;XPATH;//button[@id='quickCreateSaveAndCloseBtn']
