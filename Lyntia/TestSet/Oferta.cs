@@ -718,7 +718,7 @@ namespace Lyntia.TestSet
         }
 
         [Test(Description = "CRM_EOF0003 Editar campos de una Oferta")]
-        [AllureSubSuite("PRO EDITAR OFERTA")]
+        [AllureSubSuite("PRO EDI OFERTA")]
         public void CRM_EOF0003_Editar_campos_de_una_oferta()
         {
             // Paso 1
@@ -749,7 +749,7 @@ namespace Lyntia.TestSet
 
         //CRM-EOF0004
         [Test(Description = "CRM_EOF0004 Editar campo 'Tipo de oferta' de una Oferta")]
-        [AllureSubSuite("PRO EDITAR OFERTA")]
+        [AllureSubSuite("PRO EDI OFERTA")]
         public void CRM_EOF0004_Editar_campo_tipo_de_Oferta()
         {
             // Paso 1
@@ -1234,11 +1234,11 @@ namespace Lyntia.TestSet
             ofertaCondition.CreaOferta();
 
             // Preparacion de datos de la prueba
-            ofertaActions.RellenarCamposOferta("NO BORRAR PRUEBA CRM-COF0001_COF0002", "CLIENTE INTEGRACION", "Nuevo servicio", "BizQA");
+            ofertaActions.RellenarCamposOferta("CRM-COF0002-ELIMINAR_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Nuevo servicio", "BizQA");
             ofertaActions.GuardarYCerrarOferta();
 
             // Paso 4 - Buscar en vista la oferta
-            ofertaActions.AbrirOfertaEnVista("NO BORRAR PRUEBA CRM-COF0001_COF0002");
+            ofertaActions.AbrirOfertaEnVista("CRM-COF0002-ELIMINAR_" + Utils.GetRandomString());
             ofertaCondition.Resultado_edicion_de_una_oferta();
 
             // Paso 5 - Cancelar la eliminacion de la oferta
@@ -1246,7 +1246,7 @@ namespace Lyntia.TestSet
 
             // Paso 6 - Salir al grid y eliminar oferta
             ofertaActions.GuardarYCerrarOferta();
-            ofertaActions.BuscarOfertaEnVista("NO BORRAR PRUEBA CRM-COF0001_COF0002");
+            ofertaActions.BuscarOfertaEnVista("CRM-COF0002-ELIMINAR_" + Utils.GetRandomString());
             ofertaActions.Seleccionar_registro_de_la_lista_Ckeck();
             ofertaActions.EliminarOfertaActual("Eliminar");
             ofertaCondition.Datos_disponibles();
