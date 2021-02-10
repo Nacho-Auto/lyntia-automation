@@ -1272,7 +1272,7 @@ namespace Lyntia.TestSet
             ofertaCondition.CreaOferta();
 
             // Preparacion de datos de la prueba
-            ofertaActions.RellenarCamposOferta("NO BORRAR CRM-COF0003 CRM-COF0004", "CLIENTE INTEGRACION", "Nuevo servicio", "BizQA");
+            ofertaActions.RellenarCamposOferta("CRM-COF0003-CERRAR" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Nuevo servicio", "BizQA");
             ofertaActions.GuardarOferta();
 
             // Paso 4 - Cerrar oferta("Cancelar")
@@ -1289,7 +1289,7 @@ namespace Lyntia.TestSet
             
             // Paso 7 - Accedemos al grid, buscamos la oferta y se comprueba estados
             commonActions.AccesoOferta();
-            ofertaActions.BuscarOfertaEnVista("NO BORRAR CRM-COF0003 CRM-COF0004");
+            ofertaActions.BuscarOfertaEnVista("CRM-COF0003-CERRAR" + Utils.GetRandomString());
             ofertaCondition.OfertaCerradaCorrectamenteEnGrid("Cancelada");
 
             // Reestablecer dato
@@ -1315,7 +1315,7 @@ namespace Lyntia.TestSet
             ofertaCondition.CreaOferta();
 
             // Preparacion de datos de la prueba
-            ofertaActions.RellenarCamposOferta("NO BORRAR CRM-COF0003 CRM-COF0004", "CLIENTE INTEGRACION", "Nuevo servicio", "BizQA");
+            ofertaActions.RellenarCamposOferta("CRM-COF0004-CERRAR_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Nuevo servicio", "BizQA");
             ofertaActions.GuardarOferta();
 
             // Paso 4 - Cerrar oferta("Cancelar")
@@ -1332,7 +1332,7 @@ namespace Lyntia.TestSet
 
             // Paso 7 - Accedemos al grid, buscamos la oferta y se comprueba estados
             commonActions.AccesoOferta();
-            ofertaActions.BuscarOfertaEnVista("NO BORRAR CRM-COF0003 CRM-COF0004");
+            ofertaActions.BuscarOfertaEnVista("CRM-COF0004-CERRAR_" + Utils.GetRandomString());
             ofertaCondition.OfertaCerradaCorrectamenteEnGrid("No viable");
 
             // Reestablecer dato
