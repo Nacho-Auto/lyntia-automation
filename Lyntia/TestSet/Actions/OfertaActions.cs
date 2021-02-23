@@ -121,7 +121,7 @@ namespace Lyntia.TestSet.Actions
             try
             {
                 Utils.SearchWebElement("Oferta.saveOferta").Click();
-                Thread.Sleep(3000);
+                Thread.Sleep(7000);
 
                 TestContext.WriteLine("La Oferta se guarda correctamente.");
             }
@@ -672,9 +672,9 @@ namespace Lyntia.TestSet.Actions
             try
             {
                 // Click en Cerrar Oferta
-                Thread.Sleep(2000);
+                Thread.Sleep(4000);
                 Utils.SearchWebElement("Oferta.buttonCerrar").Click();
-                Thread.Sleep(20000);
+                Thread.Sleep(2000);
 
                 // Cambiar al frame de Cierre de Ofertas
                 driver.SwitchTo().Frame(Utils.SearchWebElement("Oferta.frameCerrarOferta"));
