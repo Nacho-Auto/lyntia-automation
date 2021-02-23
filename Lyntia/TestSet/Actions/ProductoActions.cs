@@ -26,7 +26,7 @@ namespace Lyntia.TestSet.Actions
         {
             try
             {
-                Utils.SearchWebElement("Producto.buttonAgregarProducto").Click();
+                Utils.SearchWebElement("Oferta.buttonAgregarProducto").Click();
 
                 // Seleccionar Producto existente del desplegable
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath(Utils.GetIdentifier("Producto.inputProductoExistente"))));
