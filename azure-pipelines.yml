@@ -36,5 +36,5 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'test'
+    arguments: '$(filterTest)'
     projects: '**/Lyntia/*.csproj'
-
