@@ -208,6 +208,9 @@ namespace Lyntia.TestSet.Actions
                 Thread.Sleep(3000);
                 Utils.SearchWebElement("Producto.buttonAgregarProducto").Click();//pulsamos sobre agregar producto
                 Thread.Sleep(4000);
+                Utils.SearchWebElement("Producto.inputServicioHeredado").SendKeys(Keys.Control + "a");
+                Utils.SearchWebElement("Producto.inputServicioHeredado").SendKeys(Keys.Delete);
+                Thread.Sleep(2000);
                 Utils.SearchWebElement("Producto.inputServicioHeredado").SendKeys("c");
                 driver.FindElement(By.XPath("//span[contains(text(), '  CC 100 Mbps 22 - 22')]")).Click();
                 Thread.Sleep(2000);
@@ -400,8 +403,8 @@ namespace Lyntia.TestSet.Actions
                 Thread.Sleep(2000);
                 Utils.SearchWebElement("Oferta.gridSelectAll").Click();
                 Thread.Sleep(3000);
-                Utils.SearchWebElement("Producto.buttonMasComandos").Click();
-                Thread.Sleep(3000);
+                //Utils.SearchWebElement("Producto.buttonMasComandos").Click();
+                //Thread.Sleep(3000);
                 Utils.SearchWebElement("Producto.buttonEliminarProductodeOferta").Click();
                 Thread.Sleep(2000);
                 Utils.SearchWebElement("Oferta.confirmDeleteOferta").Click();
