@@ -1128,16 +1128,23 @@ namespace Lyntia.TestSet
             // Paso 6 - Eliminar campos obligatorios
             ofertaActions.Eliminar_campos_obligatorios(1);
 
-            // Paso 7 - Actualizar y descartar cambios
-            ofertaActions.Actualizar("Descartar");
-
-            ofertaActions.Eliminar_campos_obligatorios(2);
-
-            // Paso 8 - Eliminar campos, actualizar y guardar cambios
-            ofertaActions.Actualizar("Guardar");
+            // Paso 7 - Actualizar
+            ofertaActions.ActualizarBarramenu();
             ofertaCondition.OfertaNoCreada();
 
             ofertaActions.EliminarOfertaActual("Eliminar");
+
+            //TODO se realizan cambios en la aplicacion y se modifica en vs, se comenta por si esta solucion no es definitiva
+            
+            // Paso 7 - Actualizar y descartar cambios
+            //ofertaActions.Actualizar("Descartar");
+            //ofertaActions.Eliminar_campos_obligatorios(2);
+
+            // Paso 8 - Eliminar campos, actualizar y guardar cambios
+            //ofertaActions.Actualizar("Guardar");
+            //ofertaCondition.OfertaNoCreada();
+
+            //ofertaActions.EliminarOfertaActual("Eliminar");
 
             TestContext.WriteLine("LA PRUEBA CRM-EOF0001 SE EJECUTÓ CORRECTAMENTE");
         }
@@ -1322,6 +1329,7 @@ namespace Lyntia.TestSet
             ofertaActions.CerrarOfertaActual("Cancelar", "", "", "");
 
             // Paso 5 - Cerrar oferta sin cumplimentar campos obligatorios
+            // TODO: No se puede dejar sin informar campo obligatorios con la opcion de no viable, por lo que se pone cancelada para mostrar campos obligatorios
             ofertaActions.CerrarOfertaActual("Aceptar", "Cancelada", "", "");
             ofertaCondition.OfertaNoCerrada();
 

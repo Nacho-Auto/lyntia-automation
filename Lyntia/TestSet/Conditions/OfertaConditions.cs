@@ -250,7 +250,7 @@ namespace Lyntia.TestSet.Conditions
                 Thread.Sleep(3000);
                 Assert.AreEqual("La oferta de tipo “Cambio de precio” no requiere envío a construcción ni cambiar el código administrativo", driver.FindElement(By.XPath("//span[contains(@data-id, 'warningNotification')]")).Text);
                 Thread.Sleep(3000);
-                driver.FindElement(By.XPath("//li[contains(@aria-label, 'Guardar')]")).Click();//Guardar
+                driver.FindElement(By.XPath("//button[contains(@aria-label, 'Guardar')]")).Click();//Guardar
 
                 TestContext.WriteLine("***La condicion aviso cambio de precio se cumple correctamente");
             }
@@ -267,7 +267,7 @@ namespace Lyntia.TestSet.Conditions
             {
                 Thread.Sleep(3000);
                 Assert.AreEqual("La oferta de tipo “Cambio de tecnología” requiere el envío a construcción y cambia el código administrativo", driver.FindElement(By.XPath("//span[contains(@data-id, 'warningNotification')]")).Text);
-                driver.FindElement(By.XPath("//li[contains(@aria-label, 'Guardar')]")).Click();//Guardar
+                driver.FindElement(By.XPath("//button[contains(@aria-label, 'Guardar')]")).Click();//Guardar
 
                 TestContext.WriteLine("***Se cumple la condicion de aviso cambio de solucion");
             }
