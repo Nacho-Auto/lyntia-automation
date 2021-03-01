@@ -47,7 +47,7 @@ namespace Lyntia.TestSet
             driver.Quit();
         }
 
-        //[Test(Description = "CRM-APR0001 Añadir producto")]
+        [Test(Description = "CRM-APR0001 Añadir producto")]
         [AllureSubSuite("PRO AÑADIR PRODUCTO")]
         public void CRM_APR0001_añadir_producto()
         {
@@ -70,7 +70,7 @@ namespace Lyntia.TestSet
             TestContext.WriteLine("LA PRUEBA CRM-APR0001 SE EJECUTÓ CORRECTAMENTE");
         }
 
-        //[Test(Description = "CRM-APR0002 Añadir producto correctamente")]
+        [Test(Description = "CRM-APR0002 Añadir producto correctamente")]
         [AllureSubSuite("PRO AÑADIR PRODUCTO")]
         public void CRM_APR0002_añadir_producto_creacion_rapida()
         {
@@ -90,7 +90,7 @@ namespace Lyntia.TestSet
         }
 
         //CRM-APR0003
-        //[Test(Description = "CRM-APR0003 Añadir producto Circuito de Capacidad correctamente")]
+        [Test(Description = "CRM-APR0003 Añadir producto Circuito de Capacidad correctamente")]
         [AllureSubSuite("PRO AÑADIR PRODUCTO")]
         public void CRM_APR0003_Producto_Añadir_CC()
         {
@@ -253,7 +253,7 @@ namespace Lyntia.TestSet
         }
         
         //CRM-APR0008
-        //[Test(Description = "CRM-APR0008 Añadir producto correctamente, Cambio de Capacidad")]
+        [Test(Description = "CRM-APR0008 Añadir producto correctamente, Cambio de Capacidad")]
         [AllureSubSuite("PRO AÑADIR PRODUCTO")]
         public void CRM_APR0008_Producto_Cambio_de_Capacidad_CC()
         {

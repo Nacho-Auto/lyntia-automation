@@ -49,7 +49,7 @@ namespace Lyntia.TestSet
             driver.Quit();
         }
 
-        //[Test(Description = "CRM-COF0001 Acceso a Ofertas")]
+        [Test(Description = "CRM-COF0001 Acceso a Ofertas")]
         [AllureSubSuite("PRO CREAR OFERTA")]
         public void CRM_COF0001_accesoOfertas()
         {
@@ -62,7 +62,7 @@ namespace Lyntia.TestSet
             TestContext.WriteLine(Utils.dataRep.getDataFromRepository("CRM_COF0001", "MESSAGE"));
         }
 
-        //[Test(Description = "CRM-COF0002 Consultar Oferta")]
+        [Test(Description = "CRM-COF0002 Consultar Oferta")]
         [AllureSubSuite("PRO CREAR OFERTA")]
         public void CRM_COF0002_consultaOferta()
         {
@@ -147,7 +147,7 @@ namespace Lyntia.TestSet
             TestContext.WriteLine("LA PRUEBA CRM-COF0004 SE EJECUTÓ CORRECTAMENTE");
         }
 
-        //[Test(Description = "CRM-COF0005 Creación de Oferta de tipo Nuevo servicio")]
+        [Test(Description = "CRM-COF0005 Creación de Oferta de tipo Nuevo servicio")]
         [AllureSubSuite("PRO CREAR OFERTA")]
         public void CRM_COF0005_creacionOfertaNuevoServicio()
         {
@@ -198,7 +198,7 @@ namespace Lyntia.TestSet
             TestContext.WriteLine("LA PRUEBA CRM-COF0005 SE EJECUTÓ CORRECTAMENTE");
         }
 
-        //[Test(Description = "CRM-COF0006 Creación de Oferta de tipo Cambio de capacidad")]
+        [Test(Description = "CRM-COF0006 Creación de Oferta de tipo Cambio de capacidad")]
         [AllureSubSuite("PRO CREAR OFERTA")]
         public void CRM_COF0006_creacionOfertaCambioCapacidad()
         {
@@ -249,7 +249,7 @@ namespace Lyntia.TestSet
             TestContext.WriteLine("LA PRUEBA CRM-COF0006 SE EJECUTÓ CORRECTAMENTE");
         }
 
-        //[Test(Description = "CRM-COF0007 Creación de Oferta de tipo Cambio de Precio/Renovación")]
+        [Test(Description = "CRM-COF0007 Creación de Oferta de tipo Cambio de Precio/Renovación")]
         [AllureSubSuite("PRO CREAR OFERTA")]
         public void CRM_COF0007_creacionOfertaCambioPrecioRenovacion()
         {
@@ -300,7 +300,7 @@ namespace Lyntia.TestSet
             TestContext.WriteLine("LA PRUEBA CRM-COF0007 SE EJECUTÓ CORRECTAMENTE");
         }
 
-        //[Test(Description = "CRM-COF0008 Creación de Oferta de tipo Cambio de Solución Técnica (Tecnología)")]
+        [Test(Description = "CRM-COF0008 Creación de Oferta de tipo Cambio de Solución Técnica (Tecnología)")]
         [AllureSubSuite("PRO CREAR OFERTA")]
         public void CRM_COF0008_creacionOfertaCambioSolucionTecnica()
         {
@@ -402,7 +402,7 @@ namespace Lyntia.TestSet
             TestContext.WriteLine("LA PRUEBA CRM-COF0009 SE EJECUTÓ CORRECTAMENTE");
         }
 
-        //[Test(Description = "CRM-COF0005 Eliminar Oferta en borrador con producto añadido")]
+        [Test(Description = "CRM-COF0005 Eliminar Oferta en borrador con producto añadido")]
         [AllureSubSuite("PRO ELIMINAR-CERRAR OFERTA")]
         public void CRM_COF0005_eliminarOfertaProductoAnadido()
         {
@@ -441,7 +441,7 @@ namespace Lyntia.TestSet
             TestContext.WriteLine("LA PRUEBA CRM-COF0005 ELIMINAR SE EJECUTÓ CORRECTAMENTE");
         }
 
-        //[Test(Description = "CRM-COF0006 Eliminar Oferta en borrador con producto añadido desde el grid")]
+        [Test(Description = "CRM-COF0006 Eliminar Oferta en borrador con producto añadido desde el grid")]
         [AllureSubSuite("PRO ELIMINAR-CERRAR OFERTA")]
         public void CRM_COF0006_eliminarOfertaProductoAnadidoDesdeGrid()
         {
@@ -651,7 +651,7 @@ namespace Lyntia.TestSet
             TestContext.WriteLine("LA PRUEBA CRM-COF0008 CERRAR SE EJECUTÓ CORRECTAMENTE");
         }
 
-        //[Test(Description = "CRM-COF00010 Cerrar Oferta Presentada con producto añadido, Revisada")]
+        [Test(Description = "CRM-COF00010 Cerrar Oferta Presentada con producto añadido, Revisada")]
         [AllureSubSuite("PRO ELIMINAR-CERRAR OFERTA")]
         public void CRM_COF00010_cerrarOfertaPresentadaProductoAnadidoRevisada()
         {
@@ -717,7 +717,7 @@ namespace Lyntia.TestSet
             TestContext.WriteLine("LA PRUEBA CRM-COF0010 CERRAR ADJUDICADA SE EJECUTÓ CORRECTAMENTE");
         }
 
-        //[Test(Description = "CRM_EOF0003 Editar campos de una Oferta")]
+        [Test(Description = "CRM_EOF0003 Editar campos de una Oferta")]
         [AllureSubSuite("PRO EDI OFERTA")]
         public void CRM_EOF0003_Editar_campos_de_una_oferta()
         {
@@ -748,7 +748,7 @@ namespace Lyntia.TestSet
         }
 
         //CRM-EOF0004
-        //[Test(Description = "CRM_EOF0004 Editar campo 'Tipo de oferta' de una Oferta")]
+        [Test(Description = "CRM_EOF0004 Editar campo 'Tipo de oferta' de una Oferta")]
         [AllureSubSuite("PRO EDI OFERTA")]
         public void CRM_EOF0004_Editar_campo_tipo_de_Oferta()
         {
@@ -782,7 +782,7 @@ namespace Lyntia.TestSet
             TestContext.WriteLine("LA PRUEBA CRM-EOF0004 SE EJECUTÓ CORRECTAMENTE");
         }
 
-        //[Test(Description = "CRM-COF0011 Eliminar una Oferta Adjudicada")]
+        [Test(Description = "CRM-COF0011 Eliminar una Oferta Adjudicada")]
         [AllureSubSuite("PRO ELIMINAR-CERRAR OFERTA")]
         public void CRM_COF0011_eliminarOferta_Adjudicada()
         {
@@ -830,7 +830,7 @@ namespace Lyntia.TestSet
             TestContext.WriteLine("LA PRUEBA CRM-COF0011 ELIMINAR SE EJECUTÓ CORRECTAMENTE");
         }
 
-        //[Test(Description = "CRM-COF0012 Cerrar Oferta Adjudicada")]
+        [Test(Description = "CRM-COF0012 Cerrar Oferta Adjudicada")]
         [AllureSubSuite("PRO ELIMINAR-CERRAR OFERTA")]
         public void CRM_COF0012_Oferta_Cerrar_Adjudicada()
         {
@@ -851,7 +851,7 @@ namespace Lyntia.TestSet
         }
 
 
-        //[Test(Description = "CRM-POF0001 Presentar Oferta Circuito de Capacidad")]
+        [Test(Description = "CRM-POF0001 Presentar Oferta Circuito de Capacidad")]
         [AllureSubSuite("PRO PRESENTAR OFERTA")]
         public void CRM_POF0001_PresentarOferta()
         {
@@ -1262,7 +1262,7 @@ namespace Lyntia.TestSet
             TestContext.WriteLine("LA PRUEBA CRM-COF0002 SE EJECUTÓ CORRECTAMENTE");
         }
 
-        //[Test(Description = "CRM-COF0003 - Oferta_Cerrar_En_borrador_Sin_Producto_Cancelada")]
+        [Test(Description = "CRM-COF0003 - Oferta_Cerrar_En_borrador_Sin_Producto_Cancelada")]
         [AllureSubSuite("PRO ELIMINAR-CERRAR OFERTA")]
         public void CRM_COF0003_Oferta_Cerrar_En_borrador_Sin_Producto_Cancelada()
         {
@@ -1305,7 +1305,7 @@ namespace Lyntia.TestSet
             TestContext.WriteLine("LA PRUEBA CRM-COF0003 SE EJECUTÓ CORRECTAMENTE");
         }
 
-        //[Test(Description = "CRM-COF0004 - Oferta_Cerrar_En_borrador_Sin_Producto_No_viable")]
+        [Test(Description = "CRM-COF0004 - Oferta_Cerrar_En_borrador_Sin_Producto_No_viable")]
         [AllureSubSuite("PRO ELIMINAR-CERRAR OFERTA")]
         public void CRM_COF0004_Oferta_Cerrar_En_borrador_Sin_Producto_No_viable()
         {
