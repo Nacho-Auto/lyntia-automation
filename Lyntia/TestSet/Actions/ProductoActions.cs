@@ -224,75 +224,87 @@ namespace Lyntia.TestSet.Actions
                 throw e;
             }
         }
-
+        //Metodo para agregar producto heredado
         public void HeredarProducto(String productoHeredado, String precioMensual, String duracionContrato, String nrc, String metros, String precioMetroAnual)
         {
             // Click en "+ Agregar producto"
             Utils.SearchWebElement("Producto.buttonAgregarProducto").Click();
             Thread.Sleep(4000);
 
-            if (!productoHeredado.Equals(""))
+            try
             {
-                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath(Utils.GetIdentifier("Producto.inputServicioHeredado"))));
-                Utils.SearchWebElement("Producto.inputServicioHeredado").Click();
-                Utils.SearchWebElement("Producto.inputServicioHeredado").SendKeys(Keys.Control + "a");
-                Utils.SearchWebElement("Producto.inputServicioHeredado").SendKeys(Keys.Delete);
 
-                Utils.SearchWebElement("Producto.inputServicioHeredado").SendKeys(productoHeredado);
-                driver.FindElement(By.XPath("//span[contains(text(), '" + productoHeredado + "')]")).Click();
-                Thread.Sleep(3000);
-                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//input[@aria-label='Cód. admin. servicio heredado']")));
-                driver.FindElement(By.XPath("//input[@aria-label='Cód. admin. servicio heredado']")).SendKeys(Keys.PageDown);
-                Thread.Sleep(6000);
+                if (!productoHeredado.Equals(""))
+                {
+                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath(Utils.GetIdentifier("Producto.inputServicioHeredado"))));
+                    Utils.SearchWebElement("Producto.inputServicioHeredado").Click();
+                    Utils.SearchWebElement("Producto.inputServicioHeredado").SendKeys(Keys.Control + "a");
+                    Utils.SearchWebElement("Producto.inputServicioHeredado").SendKeys(Keys.Delete);
+
+                    Utils.SearchWebElement("Producto.inputServicioHeredado").SendKeys(productoHeredado);
+                    driver.FindElement(By.XPath("//span[contains(text(), '" + productoHeredado + "')]")).Click();
+                    Thread.Sleep(3000);
+                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//input[@aria-label='Cód. admin. servicio heredado']")));
+                    driver.FindElement(By.XPath("//input[@aria-label='Cód. admin. servicio heredado']")).SendKeys(Keys.PageDown);
+                    Thread.Sleep(6000);
+                }
+
+                if (!metros.Equals(""))
+                {
+                    Utils.SearchWebElement("Producto.inputMetros").Click();
+                    Utils.SearchWebElement("Producto.inputMetros").SendKeys(Keys.Control + "a");
+                    Utils.SearchWebElement("Producto.inputMetros").SendKeys(Keys.Delete);
+                    Utils.SearchWebElement("Producto.inputMetros").SendKeys(metros);
+                }
+
+                if (!precioMetroAnual.Equals(""))
+                {
+                    Utils.SearchWebElement("Producto.inputPrecioMetroAnual").Click();
+                    Utils.SearchWebElement("Producto.inputPrecioMetroAnual").SendKeys(Keys.Control + "a");
+                    Utils.SearchWebElement("Producto.inputPrecioMetroAnual").SendKeys(Keys.Delete);
+
+                    Utils.SearchWebElement("Producto.inputPrecioMetroAnual").SendKeys(precioMetroAnual);
+                }
+
+                if (!precioMensual.Equals(""))
+                {
+                    Utils.SearchWebElement("Producto.selectPrecioMensual").Click();
+                    Utils.SearchWebElement("Producto.selectPrecioMensual").SendKeys(Keys.Control + "a");
+                    Utils.SearchWebElement("Producto.selectPrecioMensual").SendKeys(Keys.Delete);
+
+                    Utils.SearchWebElement("Producto.selectPrecioMensual").SendKeys(precioMensual);
+                }
+
+                if (!duracionContrato.Equals(""))
+                {
+                    Utils.SearchWebElement("Producto.selectDuracionContrato").Click();
+                    Utils.SearchWebElement("Producto.selectDuracionContrato").SendKeys(Keys.Control + "a");
+                    Utils.SearchWebElement("Producto.selectDuracionContrato").SendKeys(Keys.Delete);
+
+                    Utils.SearchWebElement("Producto.selectDuracionContrato").SendKeys(duracionContrato);
+                }
+
+                if (!nrc.Equals(""))
+                {
+                    Utils.SearchWebElement("Producto.selectNRC").Click();
+                    Utils.SearchWebElement("Producto.selectNRC").SendKeys(Keys.Control + "a");
+                    Utils.SearchWebElement("Producto.selectNRC").SendKeys(Keys.Delete);
+
+                    Utils.SearchWebElement("Producto.selectNRC").SendKeys(nrc);
+                }
+
+                Utils.SearchWebElement("Producto.GuardarYCerrar_producto").Click();
+                Thread.Sleep(10000);
+                TestContext.WriteLine("El tipo de producto heredado con sus parametros se guarda correctamente");
             }
 
-            if (!metros.Equals(""))
+            catch(Exception e)
             {
-                Utils.SearchWebElement("Producto.inputMetros").Click();
-                Utils.SearchWebElement("Producto.inputMetros").SendKeys(Keys.Control + "a");
-                Utils.SearchWebElement("Producto.inputMetros").SendKeys(Keys.Delete);
-                Utils.SearchWebElement("Producto.inputMetros").SendKeys(metros);
+                CommonActions.CapturadorExcepcion(e, "Producto heredado.png", "***productoHeredado, precioMensual, duracionContrato, nrc, metros, precioMetroAnual no se guarda correctamente");
+                throw e;
             }
-
-            if (!precioMetroAnual.Equals(""))
-            {
-                Utils.SearchWebElement("Producto.inputPrecioMetroAnual").Click();
-                Utils.SearchWebElement("Producto.inputPrecioMetroAnual").SendKeys(Keys.Control + "a");
-                Utils.SearchWebElement("Producto.inputPrecioMetroAnual").SendKeys(Keys.Delete);
-
-                Utils.SearchWebElement("Producto.inputPrecioMetroAnual").SendKeys(precioMetroAnual);
-            }
-            
-            if (!precioMensual.Equals(""))
-            {
-                Utils.SearchWebElement("Producto.selectPrecioMensual").Click();
-                Utils.SearchWebElement("Producto.selectPrecioMensual").SendKeys(Keys.Control + "a");
-                Utils.SearchWebElement("Producto.selectPrecioMensual").SendKeys(Keys.Delete);
-
-                Utils.SearchWebElement("Producto.selectPrecioMensual").SendKeys(precioMensual);
-            }
-
-            if (!duracionContrato.Equals(""))
-            {
-                Utils.SearchWebElement("Producto.selectDuracionContrato").Click();
-                Utils.SearchWebElement("Producto.selectDuracionContrato").SendKeys(Keys.Control + "a");
-                Utils.SearchWebElement("Producto.selectDuracionContrato").SendKeys(Keys.Delete);
-
-                Utils.SearchWebElement("Producto.selectDuracionContrato").SendKeys(duracionContrato);
-            }
-
-            if (!nrc.Equals(""))
-            {
-                Utils.SearchWebElement("Producto.selectNRC").Click();
-                Utils.SearchWebElement("Producto.selectNRC").SendKeys(Keys.Control + "a");
-                Utils.SearchWebElement("Producto.selectNRC").SendKeys(Keys.Delete);
-
-                Utils.SearchWebElement("Producto.selectNRC").SendKeys(nrc);
-            }
-
-            Utils.SearchWebElement("Producto.GuardarYCerrar_producto").Click();
-            Thread.Sleep(10000);
         }
+
 
         //Metodo en el que una vez agregado un producto heredado se cumplimentan los campos obligatorios, se guarda y se cierra
         public void Cumplimentar_campos_y_guardar()
