@@ -48,16 +48,6 @@ namespace Lyntia.TestSet.Actions
 
                     TestContext.WriteLine("Se accede correctamente a la sección " + seccion);
 
-                    //driver.FindElement(By.Id("sitemap-entity-SSCC")).Click();
-                    //Thread.Sleep(2000);
-                    //driver.FindElement(By.LinkText("sfgsfg")).Click();
-                    //Thread.Sleep(2000);
-                    //String ejemplo = driver.FindElement(By.XPath("//input[@aria-label='Código Administrativo']")).GetAttribute("value");
-                    //driver.FindElement(By.XPath("//textarea[contains(@aria-label, 'Detalle comercial del servicio')]")).SendKeys(ejemplo);
-                    //Thread.Sleep(2000);
-
-
-
                 }
                 catch (Exception e)
                 {

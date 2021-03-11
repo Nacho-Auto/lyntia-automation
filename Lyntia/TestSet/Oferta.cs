@@ -46,7 +46,7 @@ namespace Lyntia.TestSet
         [TearDown]
         public void Cierre()
         {
-            //driver.Quit();
+            driver.Quit();
         }
 
         [Test(Description = "CRM-COF0001 Acceso a Ofertas")]
@@ -82,7 +82,7 @@ namespace Lyntia.TestSet
 
         [Test(Description = "CRM-COF0003 Creación de Oferta")]
         [AllureSubSuite("PRO CREAR OFERTA")]
-        public void CRM_COF0003_creacionOferta_Oferta_Cerrar_borrador_Sin_Producto_Cancelada()
+        public void CRM_COF0003_creacionOferta()
         {
             // Login y Acceso a Gestión de Cliente
             commonActions.AccesoGestionCliente();
