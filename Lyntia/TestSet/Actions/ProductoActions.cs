@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using Lyntia.Utilities;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using Lyntia.TestSet.Conditions;
 
 namespace Lyntia.TestSet.Actions
 {
@@ -15,12 +17,16 @@ namespace Lyntia.TestSet.Actions
         private static WebDriverWait wait;
         private static OpenQA.Selenium.Interactions.Actions accionesSelenium;
 
+        private static ProductoConditions productoConditions;
+
         public ProductoActions()
         {
             driver = Utils.driver;
             accionesSelenium = new OpenQA.Selenium.Interactions.Actions(driver);
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(45));
+            productoConditions = Utils.GetProductoConditions();
         }
+
 
         public void CreacionProducto(String productoExistente, String uso, String unidadVenta, String metros, String modalidadContratacion, String nrc, String duracionContrato, String PrecioMensual)
         {
@@ -247,6 +253,7 @@ namespace Lyntia.TestSet.Actions
                     wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//input[@aria-label='Cód. admin. servicio heredado']")));
                     driver.FindElement(By.XPath("//input[@aria-label='Cód. admin. servicio heredado']")).SendKeys(Keys.PageDown);
                     Thread.Sleep(6000);
+                    
                 }
 
                 if (!metros.Equals(""))
@@ -311,6 +318,7 @@ namespace Lyntia.TestSet.Actions
         {
             try
             {
+
                 Thread.Sleep(3000);
                 Utils.SearchWebElement("Producto.inputPrecioMensual").Click();
                 Utils.SearchWebElement("Producto.inputPrecioMensual").SendKeys("10");
@@ -326,6 +334,7 @@ namespace Lyntia.TestSet.Actions
                 Thread.Sleep(10000);
 
                 TestContext.WriteLine("Precio mensual, duracion del contrato y NRC se guardan correctamente");
+                
             }
             catch (Exception e)
             {
@@ -415,8 +424,6 @@ namespace Lyntia.TestSet.Actions
                 Thread.Sleep(2000);
                 Utils.SearchWebElement("Oferta.gridSelectAll").Click();
                 Thread.Sleep(3000);
-                //Utils.SearchWebElement("Producto.buttonMasComandos").Click();
-                //Thread.Sleep(3000);
                 Utils.SearchWebElement("Producto.buttonEliminarProductodeOferta").Click();
                 Thread.Sleep(2000);
                 Utils.SearchWebElement("Oferta.confirmDeleteOferta").Click();
@@ -487,6 +494,59 @@ namespace Lyntia.TestSet.Actions
             catch(Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "Editar_añadir_producto.png", "No se pulsa correctamente sobre agregar producto");
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// Método para copiar y buscar el codigo administrativo de la primera linea de los productos contratados
+        /// </summary>
+        public void BuscarCodigo_administrativo1()
+        {
+            List<string> listaCodigos = new List<string>();
+
+            for(int i = 0; i <= 1; i++)
+            {
+                //div[contains(@id,'cell-1-3')]//label
+                String codigo =  driver.FindElement(By.XPath("//div[contains(@id,'cell-" + i + "-3')]//label")).Text;
+                listaCodigos.Add(codigo);
+            }
+            
+            Utils.SearchWebElement("Oferta.GridServiciosContratados").Click();
+            Thread.Sleep(3000);
+            for (int i = 0; i <= 1; i++)
+            {
+                Utils.SearchWebElement("Oferta.inputFilter").SendKeys(listaCodigos[i]);
+                Utils.SearchWebElement("Oferta.buttonQuickFindOferta").Click();
+                Thread.Sleep(3000);
+                Assert.AreEqual("En construcción", Utils.SearchWebElement("Producto.labelEnconstruccion").Text);
+                //productoConditions.ResBuscarCodigo_administrativo();
+                Thread.Sleep(3000);
+                Utils.SearchWebElement("Oferta.inputFilter").SendKeys(Keys.Control + "a");
+                Utils.SearchWebElement("Oferta.inputFilter").SendKeys(Keys.Delete);
+            }
+        }        
+
+        /// <summary>
+        /// Método para copiar codigo de la oferta y buscarlo en la vista rapida
+        /// </summary>
+        public void BuscarOferta_desde_servicio_contratado()
+
+        {
+            try
+            {
+                var ejemplo = driver.FindElement(By.XPath("//div[contains(@data-id, 'cell-0-7')]")).Text;
+                Utils.SearchWebElement("Oferta.ofertaSection").Click();
+                Thread.Sleep(3000);
+                Utils.SearchWebElement("Oferta.inputFilter").SendKeys(ejemplo);
+                Utils.SearchWebElement("Oferta.buttonQuickFindOferta").Click();
+                Thread.Sleep(2000);
+
+                TestContext.WriteLine("Se busca la oferta correctamente");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "BuscarOferta_desde_servicio_contratado.png", "No se busca la oferta correctamente");
                 throw e;
             }
         }

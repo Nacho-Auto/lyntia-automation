@@ -48,6 +48,16 @@ namespace Lyntia.TestSet.Actions
 
                     TestContext.WriteLine("Se accede correctamente a la sección " + seccion);
 
+                    //driver.FindElement(By.Id("sitemap-entity-SSCC")).Click();
+                    //Thread.Sleep(2000);
+                    //driver.FindElement(By.LinkText("sfgsfg")).Click();
+                    //Thread.Sleep(2000);
+                    //String ejemplo = driver.FindElement(By.XPath("//input[@aria-label='Código Administrativo']")).GetAttribute("value");
+                    //driver.FindElement(By.XPath("//textarea[contains(@aria-label, 'Detalle comercial del servicio')]")).SendKeys(ejemplo);
+                    //Thread.Sleep(2000);
+
+
+
                 }
                 catch (Exception e)
                 {
@@ -974,6 +984,60 @@ namespace Lyntia.TestSet.Actions
                 throw e;
             }
         }
+
+        /// <summary>
+        /// Método para indicar en la fecha el dia siguiente al actual
+        /// </summary>
+        public void VentanaCrearPedidofechaposterior()
+        {
+            try
+            {
+                Thread.Sleep(3000);
+                Utils.SearchWebElement("Oferta.inputFechaVentanaCrearpedido").Click();
+                Thread.Sleep(2000);
+                Utils.SearchWebElement("Oferta.ButtonNextday").Click();
+                Thread.Sleep(2000);
+                Utils.SearchWebElement("Oferta.buttonAceptarVentanaEmergente").Click();
+                Thread.Sleep(28000);
+
+                
+                Utils.SearchWebElement("Oferta.saveOferta").Click();
+
+                TestContext.WriteLine("se continua con el pedido correctamente.");
+            }
+            catch (Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "VentanaCrearPedido.png", "No se continua con el pedido correctamente.");
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// Método para acceder a proyectos del Grid
+        /// </summary>
+        public void AccesoServiciosGrid()
+        {
+            try
+            {
+                Utils.SearchWebElement("Oferta.labelServicioscontratadosGrid").Click();
+                Thread.Sleep(2000);
+
+                TestContext.WriteLine("Se accede correctamente a la opcion de Servicios contratados");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "AccesoProyectosGrid.png", "No se accede correctamente a la opcion de Servicios contratados");
+                throw e;
+            }
+        }
+
+
+
+
+
+
+
+
         /// <summary>
         /// Método para actualizar desde la barra de menu superior con acciones guardar y descartar
         /// </summary>
@@ -1025,6 +1089,26 @@ namespace Lyntia.TestSet.Actions
             }        
 
         }
-       
+
+        /// <summary>
+        /// Método para acceder a servicios contratados
+        /// </summary>
+        public void Acceso_Servicios_contratados()
+        {
+            try
+            {
+                Utils.SearchWebElement("Oferta.GridServiciosContratados").Click();
+                Thread.Sleep(3000);
+
+                TestContext.WriteLine("Se accede correctamente a Servicios contratados");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "Acceso servicios contratados.png", "No se accede a servicios contratados");
+                throw e;
+            }
+        }
+
+
     }
 }

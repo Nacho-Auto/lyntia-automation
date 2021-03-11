@@ -154,7 +154,7 @@ namespace Lyntia.TestSet
         }
         
         //CRM-APR0005
-        //[Test(Description = "CRM-APR0005 Añadir producto de UbiRed Pro")]
+        [Test(Description = "CRM-APR0005 Añadir producto de UbiRed Pro")]
         [AllureSubSuite("PRO AÑADIR PRODUCTO")]
         public void CRM_APR0005_Producto_Añadir_UbiredPremium()
         {
@@ -187,7 +187,7 @@ namespace Lyntia.TestSet
         }
         
         //CRM-APR0006
-        //[Test(Description = "CRM-APR0006 Añadir producto de UbiRed Business")]
+        [Test(Description = "CRM-APR0006 Añadir producto de UbiRed Business")]
         [AllureSubSuite("PRO AÑADIR PRODUCTO")]
         public void CRM_APR0006_Producto_Añadir_UbiredBusiness()
         {
@@ -220,7 +220,7 @@ namespace Lyntia.TestSet
         }
         
         //CRM-APR0007
-        //[Test(Description = "CRM-APR0007 Añadir producto de Rack")]
+        [Test(Description = "CRM-APR0007 Añadir producto de Rack")]
         [AllureSubSuite("PRO AÑADIR PRODUCTO")]
         public void CRM_APR0007_Producto_Añadir_Rack()
         {
@@ -580,7 +580,7 @@ namespace Lyntia.TestSet
         }
 
         //CRM-APR0018
-        //[Test(Description = "CRM-APR0018 Heredar producto UbiRed Pro en Oferta Cambio de Solución Técnica")]
+        [Test(Description = "CRM-APR0018 Heredar producto UbiRed Pro en Oferta Cambio de Solución Técnica")]
         [AllureSubSuite("PRO AÑADIR PRODUCTO")]
         public void CRM_APR0018_Producto_heredar_UbiRedPro_CambioSolucion()
         {
@@ -613,7 +613,7 @@ namespace Lyntia.TestSet
         }
 
         //CRM-APR0018
-        //[Test(Description = "CRM-APR0019 Heredar producto UbiRed Pro en Oferta Cambio de Dirección")]
+        [Test(Description = "CRM-APR0019 Heredar producto UbiRed Pro en Oferta Cambio de Dirección")]
         [AllureSubSuite("PRO AÑADIR PRODUCTO")]
         public void CRM_APR0019_Producto_heredar_UbiRedPro_CambioDireccion()
         {
