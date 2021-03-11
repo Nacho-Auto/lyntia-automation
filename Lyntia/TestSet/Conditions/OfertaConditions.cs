@@ -561,6 +561,41 @@ namespace Lyntia.TestSet.Conditions
                 throw e;
             }
         }
+
+        /// <summary>
+        /// Método para comprobar que se ha guardado un producto y queda registrado
+        /// </summary>
+        public void ResultadResVentanaCrearPedidofechaposterior()
+        {
+            try
+            {
+                Assert.AreEqual("En construcción", Utils.SearchWebElement("Producto.labelEnconstruccion").Text);
+                TestContext.WriteLine("Existe en la oferta el producto contratado");
+            }
+            catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "ResultadResVentanaCrearPedidofechaposterior.png", "No existe en la oferta el producto contratado");
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// Método para comprobar que se ha generado una oferta y queda adjudicada
+        /// </summary>
+        public void ResBuscarOferta_desde_servicio_contratado()
+        {
+            try
+            {
+                Assert.AreEqual("Adjudicada", Utils.SearchWebElement("Oferta.labelAdjudicada").Text);
+                TestContext.WriteLine("Existe la oferta en estado adjudicada");
+            }
+            catch (Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "ResBuscarOferta_desde_servicio_contratad.png", "No Existe la oferta en estado adjudicada");
+                throw e;
+            }
+        }
+
     }
 
 }

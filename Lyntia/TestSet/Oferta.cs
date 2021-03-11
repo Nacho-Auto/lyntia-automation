@@ -46,7 +46,7 @@ namespace Lyntia.TestSet
         [TearDown]
         public void Cierre()
         {
-            driver.Quit();
+            //driver.Quit();
         }
 
         [Test(Description = "CRM-COF0001 Acceso a Ofertas")]
@@ -56,6 +56,7 @@ namespace Lyntia.TestSet
             // Login y Acceso a Gestión de Cliente
             commonActions.AccesoGestionCliente();
             commonCondition.AccedeGestionCliente();
+
             // Paso 1 - Hacer click en Ofertas
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
 
@@ -79,9 +80,9 @@ namespace Lyntia.TestSet
             TestContext.WriteLine("LA PRUEBA CRM-COF0002 SE EJECUTÓ CORRECTAMENTE");
         }
 
-        //[Test(Description = "CRM-COF0003 Creación de Oferta")]
+        [Test(Description = "CRM-COF0003 Creación de Oferta")]
         [AllureSubSuite("PRO CREAR OFERTA")]
-        public void CRM_COF0003_creacionOferta()
+        public void CRM_COF0003_creacionOferta_Oferta_Cerrar_borrador_Sin_Producto_Cancelada()
         {
             // Login y Acceso a Gestión de Cliente
             commonActions.AccesoGestionCliente();
@@ -101,7 +102,7 @@ namespace Lyntia.TestSet
             TestContext.WriteLine("LA PRUEBA CRM-COF0003 SE EJECUTÓ CORRECTAMENTE");
         }
 
-        //[Test(Description = "CRM-COF0004 Creación de Oferta sin informar campos obligatorios")]
+        [Test(Description = "CRM-COF0004 Creación de Oferta sin informar campos obligatorios")]
         [AllureSubSuite("PRO CREAR OFERTA")]
         public void CRM_COF0004_creacionOfertaSinCamposObligatorios()
         {
@@ -351,7 +352,7 @@ namespace Lyntia.TestSet
             TestContext.WriteLine("LA PRUEBA CRM-COF0008 SE EJECUTÓ CORRECTAMENTE");
         }
 
-        //[Test(Description = "CRM-COF0009 Creación de Oferta de tipo Cambio de dirección (Migración)")]
+        [Test(Description = "CRM-COF0009 Creación de Oferta de tipo Cambio de dirección (Migración)")]
         [AllureSubSuite("PRO CREAR OFERTA")]
         public void CRM_COF0009_creacionOfertaCambioDireccion()
         {
@@ -402,7 +403,7 @@ namespace Lyntia.TestSet
             TestContext.WriteLine("LA PRUEBA CRM-COF0009 SE EJECUTÓ CORRECTAMENTE");
         }
 
-        [Test(Description = "CRM-COF0005 Eliminar Oferta en borrador con producto añadido")]
+        //[Test(Description = "CRM-COF0005 Eliminar Oferta en borrador con producto añadido")]
         [AllureSubSuite("PRO ELIMINAR-CERRAR OFERTA")]
         public void CRM_COF0005_eliminarOfertaProductoAnadido()
         {
@@ -487,7 +488,7 @@ namespace Lyntia.TestSet
             TestContext.WriteLine("LA PRUEBA CRM-COF0006 ELIMINAR SE EJECUTÓ CORRECTAMENTE");
         }
 
-        //[Test(Description = "CRM-COF0007 Cerrar Oferta en borrador con producto añadido")]
+        [Test(Description = "CRM-COF0007 Cerrar Oferta en borrador con producto añadido")]
         [AllureSubSuite("PRO ELIMINAR-CERRAR OFERTA")]
         public void CRM_COF0007_cerrarOfertaProductoAnadido()
         {
@@ -547,7 +548,7 @@ namespace Lyntia.TestSet
             TestContext.WriteLine("LA PRUEBA CRM-COF0007 CERRAR SE EJECUTÓ CORRECTAMENTE");
         }
 
-        //[Test(Description = "CRM-COF0008 Cerrar Oferta en borrador con producto añadido, No viable")]
+        [Test(Description = "CRM-COF0008 Cerrar Oferta en borrador con producto añadido, No viable")]
         [AllureSubSuite("PRO ELIMINAR-CERRAR OFERTA")]
         public void CRM_COF0008_cerrarOfertaProductoAnadidoNoViable()
         {
@@ -926,9 +927,9 @@ namespace Lyntia.TestSet
             TestContext.WriteLine("LA PRUEBA CRM-POF0002 SE EJECUTÓ CORRECTAMENTE");
         }
 
-        //[Test(Description = "CRM-POF0003 Presentar Oferta UbiRed Pro")]
+        [Test(Description = "CRM-POF0003 Presentar Oferta UbiRed Pro")]
         [AllureSubSuite("PRO PRESENTAR OFERTA")]
-        public void CRM_POF0003_PresentarOferta()
+        public void CRM_POF0003_PresentarOferta_UbiRed_Pro()
         {
             // Login y Acceso a Gestión de Cliente
             commonActions.AccesoGestionCliente();
@@ -963,9 +964,9 @@ namespace Lyntia.TestSet
             TestContext.WriteLine("LA PRUEBA CRM-POF0003 SE EJECUTÓ CORRECTAMENTE");
         }
 
-        //[Test(Description = "CRM-POF0004 Presentar Oferta UbiRed Business")]
+        [Test(Description = "CRM-POF0004 Presentar Oferta UbiRed Business")]
         [AllureSubSuite("PRO PRESENTAR OFERTA")]
-        public void CRM_POF0004_PresentarOferta()
+        public void CRM_POF0004_PresentarOferta_UbiRed_Business()
         {
             // Login y Acceso a Gestión de Cliente
             commonActions.AccesoGestionCliente();
@@ -1000,9 +1001,9 @@ namespace Lyntia.TestSet
             TestContext.WriteLine("LA PRUEBA CRM-POF0004 SE EJECUTÓ CORRECTAMENTE");
         }
 
-        //[Test(Description = "CRM-POF0005 Presentar Oferta Rack")]
+        [Test(Description = "CRM-POF0005 Presentar Oferta Rack")]
         [AllureSubSuite("PRO PRESENTAR OFERTA")]
-        public void CRM_POF0005_PresentarOferta()
+        public void CRM_POF0005_PresentarOferta_Rack()
         {
             // Login y Acceso a Gestión de Cliente
             commonActions.AccesoGestionCliente();
@@ -1037,7 +1038,7 @@ namespace Lyntia.TestSet
             TestContext.WriteLine("LA PRUEBA CRM-POF0005 SE EJECUTÓ CORRECTAMENTE");
         }
 
-        //[Test(Description = "CRM-POAF0001 - PRO ADJUDICAR OFERTA")]
+        [Test(Description = "CRM-POAF0001 - PRO ADJUDICAR OFERTA")] //Caso pendiente de desarrollo
         [AllureSubSuite("PRO ADJUDICAR OFERTA")]
         public void CRM_POAF0001_Oferta_Adjudicar_CC()
         {
@@ -1070,7 +1071,7 @@ namespace Lyntia.TestSet
             ofertaCondition.ResVentanaCrearPedido();
         }
 
-        //[Test(Description = "CRM-POAF0002 - PRO ADJUDICAR OFERTA")]
+        [Test(Description = "CRM-POAF0002 - PRO ADJUDICAR OFERTA")]//Caso pendiente de desarrollo
         [AllureSubSuite("PRO ADJUDICAR OFERTA")]
         public void CRM_POAF0002_Ofeta_Adjudicar_FOC()
         {
@@ -1135,7 +1136,7 @@ namespace Lyntia.TestSet
             ofertaActions.EliminarOfertaActual("Eliminar");
 
             //TODO se realizan cambios en la aplicacion y se modifica en vs, se comenta por si esta solucion no es definitiva
-            
+
             // Paso 7 - Actualizar y descartar cambios
             //ofertaActions.Actualizar("Descartar");
             //ofertaActions.Eliminar_campos_obligatorios(2);
@@ -1189,7 +1190,7 @@ namespace Lyntia.TestSet
             TestContext.WriteLine("LA PRUEBA CRM-EOF0002 SE EJECUTÓ CORRECTAMENTE");
         }
 
-        //[Test(Description = "CRM-COF0001 - Oferta_Eliminar_En_borrador_Sin_Producto")]
+        [Test(Description = "CRM-COF0001 - Oferta_Eliminar_En_borrador_Sin_Producto")]
         [AllureSubSuite("PRO ELIMINAR-CERRAR OFERTA")]
         public void CRM_COF0001_Oferta_Eliminar_En_borrador_Sin_Producto()
         {
@@ -1208,7 +1209,7 @@ namespace Lyntia.TestSet
             // Preparacion de datos de la prueba
             ofertaActions.RellenarCamposOferta("CRM-COF0001-ELIMINAR_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Nuevo servicio", "BizQA");
             ofertaActions.GuardarOferta();
-            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "10 Mbps", "", "", "", "","");
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "10 Mbps", "", "", "", "", "");
             ofertaActions.GuardarYCerrarOferta();
 
             // Paso 4 - Buscar en vista la oferta
@@ -1226,7 +1227,7 @@ namespace Lyntia.TestSet
             TestContext.WriteLine("LA PRUEBA CRM-COF0001 SE EJECUTÓ CORRECTAMENTE");
         }
 
-        //[Test(Description = "CRM-COF0002 - Vista Ofertas_En_borrador_Enelaboración_Sin_Producto")]
+        [Test(Description = "CRM-COF0002 - Vista Ofertas_En_borrador_Enelaboración_Sin_Producto")]
         [AllureSubSuite("PRO ELIMINAR-CERRAR OFERTA")]
         public void CRM_COF0002_Vista_Ofertas_En_borrador_En_elaboración_Sin_Producto()
         {
@@ -1283,7 +1284,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Paso 4 - Cerrar oferta("Cancelar")
-            ofertaActions.CerrarOfertaActual("Cancelar", "","","");
+            ofertaActions.CerrarOfertaActual("Cancelar", "", "", "");
 
             // Paso 5 - Cerrar oferta sin cumplimentar campos obligatorios
             ofertaActions.CerrarOfertaActual("Aceptar", "Cancelada", "", "");
@@ -1293,7 +1294,7 @@ namespace Lyntia.TestSet
 
             // Paso 6 - Repetir el paso anterior pero cerrando de manera correcta
             ofertaActions.CerrarOfertaActual("Aceptar", "Cancelada", "Sin información", "01/02/2021");
-            
+
             // Paso 7 - Accedemos al grid, buscamos la oferta y se comprueba estados
             commonActions.AccesoOferta();
             ofertaActions.BuscarOfertaEnVista("CRM-COF0003-CERRAR" + Utils.GetRandomString());
@@ -1348,6 +1349,242 @@ namespace Lyntia.TestSet
             ofertaActions.EliminarOfertaActual("Eliminar");
             TestContext.WriteLine("LA PRUEBA CRM-COF0004 SE EJECUTÓ CORRECTAMENTE");
         }
+
+        [Test(Description = "CRM-POAF0001 - Oferta/Adjudicar/varios CC")]
+        [AllureSubSuite("PRO ADJUDICAR OFERTA")]
+        public void CRM_POAF0001_Oferta_Adjudicar_varios_CC_circuito_de_capacidad()
+        {
+            // Login y Acceso a Gestión de Cliente
+            commonActions.AccesoGestionCliente();//Acceso al modulo de Gestion de Cliente(Apliaciones)
+            commonCondition.AccedeGestionCliente();//Acceso correcto
+
+            // Paso 1 - Hacer click en Ofertas
+            commonActions.AccesoOferta();//Oferta menu
+            commonCondition.AccedeOferta();//comprobamos el acceso
+
+            // Paso 3 - Nueva Oferta
+            ofertaActions.AccesoNuevaOferta();
+            ofertaCondition.CreaOferta();
+
+            // Preparacion de datos de la prueba
+            ofertaActions.RellenarCamposOferta("CRM-COF0004-CERRAR_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Nuevo servicio", "");
+            ofertaActions.GuardarOferta();
+
+            // Paso 4 - Creamos 2 tipos de productos CC
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTE", "1 Mbps", "", "", "", "", "10");
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "10 Mbps", "", "", "", "", "");
+
+            // Paso 5 - Presentamos oferta
+            ofertaActions.PresentarOferta();
+
+            // Paso 6 - Adjudicamos oferta
+            ofertaActions.Adjudicar_Oferta();
+            ofertaCondition.ResAdjudicarOferta();
+
+            // Paso 7 - Creamos el pedido
+            ofertaActions.VentanaCrearPedidofechaposterior();
+            ofertaCondition.ResultadResVentanaCrearPedidofechaposterior();
+
+            // Paso 8 - Copiar codigo administrativo del primer producto y busqueda en servicios contratados
+            productoActions.BuscarCodigo_administrativo1();
+            productoConditions.ResBuscarCodigo_administrativo();
+
+            // Paso 9 - Buscar una oferta desde el servicio contratado
+            productoActions.BuscarOferta_desde_servicio_contratado();
+            ofertaCondition.ResBuscarOferta_desde_servicio_contratado();
+
+            TestContext.WriteLine("LA PRUEBA CRM-POAF0001 - Oferta/Adjudicar/varios CC SE EJECUTÓ CORRECTAMENTE");
+        }
+
+        [Test(Description = "CRM-POAF0002 - Oferta/Adjudicar/varios CC")]
+        [AllureSubSuite("PRO ADJUDICAR OFERTA")]
+        public void CRM_POAF0002_Oferta_Adjudicar_varios_CC_Fibra_oscura()
+        {
+            // Login y Acceso a Gestión de Cliente
+            commonActions.AccesoGestionCliente();//Acceso al modulo de Gestion de Cliente(Apliaciones)
+            commonCondition.AccedeGestionCliente();//Acceso correcto
+
+            // Paso 1 - Hacer click en Ofertas
+            commonActions.AccesoOferta();//Oferta menu
+            commonCondition.AccedeOferta();//comprobamos el acceso
+
+            // Paso 3 - Nueva Oferta
+            ofertaActions.AccesoNuevaOferta();
+            ofertaCondition.CreaOferta();
+
+            // Preparacion de datos de la prueba
+            ofertaActions.RellenarCamposOferta("CRM-COF0004-CERRAR_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Nuevo servicio", "");
+            ofertaActions.GuardarOferta();
+
+            // Paso 4 - Creamos 2 tipos de productos CC
+            productoActions.CreacionProducto("Fibra oscura", "FTTE", "10", "4", "IRU", "4", "", "");
+            productoActions.CreacionProducto("Fibra oscura", "FTTT", "20", "2", "Lease", "2", "", "");
+
+            // Paso 5 - Presentamos oferta
+            ofertaActions.PresentarOferta();
+
+            // Paso 6 - Adjudicamos oferta
+            ofertaActions.Adjudicar_Oferta();
+            ofertaCondition.ResAdjudicarOferta();
+
+            // Paso 7 - Creamos el pedido
+            ofertaActions.VentanaCrearPedidofechaposterior();
+            ofertaCondition.ResultadResVentanaCrearPedidofechaposterior();
+
+            // Paso 8 - Copiar codigo administrativo del primer producto y busqueda en servicios contratados
+            productoActions.BuscarCodigo_administrativo1();  
+
+            // Paso 9 - Buscar una oferta desde el servicio contratado
+            productoActions.BuscarOferta_desde_servicio_contratado();
+            ofertaCondition.ResBuscarOferta_desde_servicio_contratado();
+
+            TestContext.WriteLine("LA PRUEBA CRM-POAF0002 - Oferta/Adjudicar/varios CC SE EJECUTÓ CORRECTAMENTE");
+        }
+
+
+        [Test(Description = "CRM-POAF0003 - Oferta/Adjudicar/varios CC")]
+        [AllureSubSuite("PRO ADJUDICAR OFERTA")]
+        public void CRM_POAF0003_Oferta_Adjudicar_varios_CC_UbiredPRO()
+        {
+            // Login y Acceso a Gestión de Cliente
+            commonActions.AccesoGestionCliente();//Acceso al modulo de Gestion de Cliente(Apliaciones)
+            commonCondition.AccedeGestionCliente();//Acceso correcto
+
+            // Paso 1 - Hacer click en Ofertas
+            commonActions.AccesoOferta();//Oferta menu
+            commonCondition.AccedeOferta();//comprobamos el acceso
+
+            // Paso 3 - Nueva Oferta
+            ofertaActions.AccesoNuevaOferta();
+            ofertaCondition.CreaOferta();
+
+            // Preparacion de datos de la prueba
+            ofertaActions.RellenarCamposOferta("CRM-COF0004-CERRAR_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Nuevo servicio", "");
+            ofertaActions.GuardarOferta();
+
+            // Paso 4 - Creamos 2 tipos de productos CC
+            productoActions.CreacionProducto("UbiRed Pro", "FTTT", "", "", "", "", "", "");
+            productoActions.CreacionProducto("UbiRed Pro", "FTTE", "", "", "", "", "", "");
+
+            // Paso 5 - Presentamos oferta
+            ofertaActions.PresentarOferta();
+
+            // Paso 6 - Adjudicamos oferta
+            ofertaActions.Adjudicar_Oferta();
+            ofertaCondition.ResAdjudicarOferta();
+
+            // Paso 7 - Creamos el pedido
+            ofertaActions.VentanaCrearPedidofechaposterior();
+            ofertaCondition.ResultadResVentanaCrearPedidofechaposterior();
+
+            // Paso 8 - Copiar codigo administrativo del primer producto y busqueda en servicios contratados
+            productoActions.BuscarCodigo_administrativo1();
+            productoConditions.ResBuscarCodigo_administrativo();
+
+            // Paso 9 - Buscar una oferta desde el servicio contratado
+            productoActions.BuscarOferta_desde_servicio_contratado();
+            ofertaCondition.ResBuscarOferta_desde_servicio_contratado();
+
+            TestContext.WriteLine("LA PRUEBA CRM-POAF0003 - Oferta/Adjudicar/varios CC SE EJECUTÓ CORRECTAMENTE");
+        }
+
+        [Test(Description = "CRM-POAF0004 - Oferta/Adjudicar/varios CC")]
+        [AllureSubSuite("PRO ADJUDICAR OFERTA")]
+        public void CRM_POAF0004_Oferta_Adjudicar_varios_CC_UbiRedBusiness()
+        {
+            // Login y Acceso a Gestión de Cliente
+            commonActions.AccesoGestionCliente();//Acceso al modulo de Gestion de Cliente(Apliaciones)
+            commonCondition.AccedeGestionCliente();//Acceso correcto
+
+            // Paso 1 - Hacer click en Ofertas
+            commonActions.AccesoOferta();//Oferta menu
+            commonCondition.AccedeOferta();//comprobamos el acceso
+
+            // Paso 3 - Nueva Oferta
+            ofertaActions.AccesoNuevaOferta();
+            ofertaCondition.CreaOferta();
+
+            // Preparacion de datos de la prueba
+            ofertaActions.RellenarCamposOferta("CRM-COF0004-CERRAR_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Nuevo servicio", "");
+            ofertaActions.GuardarOferta();
+
+            // Paso 4 - Creamos 2 tipos de productos CC
+            productoActions.CreacionProducto("UbiRed Business", "", "", "", "", "", "2", "");
+            productoActions.CreacionProducto("UbiRed Business", "", "", "", "", "", "4", "");
+
+            // Paso 5 - Presentamos oferta
+            ofertaActions.PresentarOferta();
+
+            // Paso 6 - Adjudicamos oferta
+            ofertaActions.Adjudicar_Oferta();
+            ofertaCondition.ResAdjudicarOferta();
+
+            // Paso 7 - Creamos el pedido
+            ofertaActions.VentanaCrearPedidofechaposterior();
+            //ofertaCondition.ResultadResVentanaCrearPedidofechaposterior();
+
+            // Paso 8 - Copiar codigo administrativo del primer producto y busqueda en servicios contratados
+            productoActions.BuscarCodigo_administrativo1();
+            productoConditions.ResBuscarCodigo_administrativo();
+
+            // Paso 9 - Buscar una oferta desde el servicio contratado
+            productoActions.BuscarOferta_desde_servicio_contratado();
+            ofertaCondition.ResBuscarOferta_desde_servicio_contratado();
+
+            TestContext.WriteLine("LA PRUEBA CRM-POAF0004 - Oferta/Adjudicar/varios CC SE EJECUTÓ CORRECTAMENTE");
+
+
+        }
+
+
+        [Test(Description = "CRM-POAF0005 - Oferta/Adjudicar/varios CC")]
+        [AllureSubSuite("PRO ADJUDICAR OFERTA")]
+        public void CRM_POAF0005_Oferta_Adjudicar_varios_CC_Rack()
+        {
+            // Login y Acceso a Gestión de Cliente
+            commonActions.AccesoGestionCliente();//Acceso al modulo de Gestion de Cliente(Apliaciones)
+            commonCondition.AccedeGestionCliente();//Acceso correcto
+
+            // Paso 1 - Hacer click en Ofertas
+            commonActions.AccesoOferta();//Oferta menu
+            commonCondition.AccedeOferta();//comprobamos el acceso
+
+            // Paso 3 - Nueva Oferta
+            ofertaActions.AccesoNuevaOferta();
+            ofertaCondition.CreaOferta();
+
+            // Preparacion de datos de la prueba
+            ofertaActions.RellenarCamposOferta("CRM-COF0004-CERRAR_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Nuevo servicio", "");
+            ofertaActions.GuardarOferta();
+
+            // Paso 4 - Creamos 2 tipos de productos CC
+            productoActions.CreacionProducto("Rack", "FTTT", "", "", "", "", "3", "");
+            productoActions.CreacionProducto("Rack", "FTTE", "", "", "", "", "2", "");
+
+            // Paso 5 - Presentamos oferta
+            ofertaActions.PresentarOferta();
+
+            // Paso 6 - Adjudicamos oferta
+            ofertaActions.Adjudicar_Oferta();
+            ofertaCondition.ResAdjudicarOferta();
+
+            // Paso 7 - Creamos el pedido
+            ofertaActions.VentanaCrearPedidofechaposterior();
+            ofertaCondition.ResultadResVentanaCrearPedidofechaposterior();
+
+            // Paso 8 - Copiar codigo administrativo del primer producto y busqueda en servicios contratados
+            productoActions.BuscarCodigo_administrativo1();
+            productoConditions.ResBuscarCodigo_administrativo();
+
+            // Paso 9 - Buscar una oferta desde el servicio contratado
+            productoActions.BuscarOferta_desde_servicio_contratado();
+            ofertaCondition.ResBuscarOferta_desde_servicio_contratado();
+
+            TestContext.WriteLine("LA PRUEBA CRM-POAF0003 - Oferta/Adjudicar/varios CC SE EJECUTÓ CORRECTAMENTE");
+
+
+        }
+
     }
 }
 

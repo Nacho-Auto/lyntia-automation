@@ -131,5 +131,19 @@ namespace Lyntia.TestSet.Conditions
                 throw e;
             } 
         }
+
+        public void ResBuscarCodigo_administrativo()
+        {
+            try
+            {
+                Assert.AreEqual("En construcción", Utils.SearchWebElement("Producto.labelEnconstruccion").Text);
+                TestContext.WriteLine("El producto se encuentra en construccion");
+            }                    
+            catch (Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "ResCodigoadministrativo.png", "El producto no se encuentra en construccion");
+                throw e;
+            }
+        }
     }
 }
