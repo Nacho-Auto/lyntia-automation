@@ -964,8 +964,8 @@ namespace Lyntia.TestSet.Actions
                 Utils.SearchWebElement("Oferta.inputFechaVentanaCrearpedido").SendKeys(Keys.Delete);
                 Utils.SearchWebElement("Oferta.inputFechaVentanaCrearpedido").SendKeys(Fecha);
 
-                Utils.SearchWebElement("Oferta.inputFechaVentanaCrearpedido").SendKeys("Oferta.gridFilterBuscarPorAceptarButton");
-                Utils.SearchWebElement("Oferta.gridFilterBuscarPorAceptarButton").Click();
+                
+                Utils.SearchWebElement("Oferta.buttonAceptarVentanaEmergente").Click();
                 TestContext.WriteLine("se continua con el pedido correctamente.");
             }
             catch (Exception e)

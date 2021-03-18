@@ -137,4 +137,6 @@ Producto.LabelMensajeDeseaguardarcambios;XPATH;/html/body/section[2]/div/div/div
 Producto.LabelMensajeDescartarCambios;XPATH;//button[contains(@aria-label, 'Descartar cambios')]
 Producto.h1QuickHeaderTitle;XPATH;//h1[contains(@data-id, 'quickHeaderTitle')]
 Producto.labelEnconstruccion;XPATH;//div[contains(@title, 'En construcción')]//label
+Producto.labelEnservicio;XPATH;//div[contains(@title, 'En servicio')]//label
+
 Producto.inputNombreDelservicio;XPATH;//input[contains(@aria-label, 'Nombre del servicio')]

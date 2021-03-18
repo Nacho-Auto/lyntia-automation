@@ -525,7 +525,35 @@ namespace Lyntia.TestSet.Actions
                 Utils.SearchWebElement("Oferta.inputFilter").SendKeys(Keys.Control + "a");
                 Utils.SearchWebElement("Oferta.inputFilter").SendKeys(Keys.Delete);
             }
-        }        
+        }
+
+        /// <summary>
+        /// Método para copiar y buscar el codigo administrativo de la primera linea de los productos contratados
+        /// </summary>
+        public void BuscarCodigo_administrativo2()
+        {
+            List<string> listaCodigos = new List<string>();
+
+            for (int i = 0; i <= 1; i++)
+            {
+                //div[contains(@id,'cell-1-3')]//label
+                String codigo = driver.FindElement(By.XPath("//div[contains(@id,'cell-" + i + "-3')]//label")).Text;
+                listaCodigos.Add(codigo);
+            }
+
+            Utils.SearchWebElement("Oferta.GridServiciosContratados").Click();
+            Thread.Sleep(3000);
+            for (int i = 0; i <= 1; i++)
+            {
+                Utils.SearchWebElement("Oferta.inputFilter").SendKeys(listaCodigos[i]);
+                Utils.SearchWebElement("Oferta.buttonQuickFindOferta").Click();
+                Thread.Sleep(3000);
+                Assert.AreEqual("En construcción", Utils.SearchWebElement("Producto.labelEnservicio").Text);
+                Thread.Sleep(3000);
+                Utils.SearchWebElement("Oferta.inputFilter").SendKeys(Keys.Control + "a");
+                Utils.SearchWebElement("Oferta.inputFilter").SendKeys(Keys.Delete);
+            }
+        }
 
         /// <summary>
         /// Método para copiar codigo de la oferta y buscarlo en la vista rapida
