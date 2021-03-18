@@ -57,7 +57,7 @@ namespace Lyntia.TestSet
             commonActions.AccesoGestionCliente();
             commonCondition.AccedeGestionCliente();
 
-            // Paso 1 - Hacer click en Ofertas 
+            // Paso 1 - Hacer click en Ofertas prueba
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
 
             TestContext.WriteLine(Utils.dataRep.getDataFromRepository("CRM_COF0001", "MESSAGE"));
