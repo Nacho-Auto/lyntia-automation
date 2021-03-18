@@ -57,7 +57,7 @@ namespace Lyntia.TestSet
             commonActions.AccesoGestionCliente();
             commonCondition.AccedeGestionCliente();
 
-            // Paso 1 - Hacer click en Ofertas
+            // Paso 1 - Hacer click en Ofertas (para comprobar maquina virtual)
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
 
             TestContext.WriteLine(Utils.dataRep.getDataFromRepository("CRM_COF0001", "MESSAGE"));
@@ -1016,7 +1016,7 @@ namespace Lyntia.TestSet
             ofertaActions.AccesoNuevaOferta();
 
             // Rellenar campos y click en Guardar
-            ofertaActions.RellenarCamposOferta("CRM-POF0005-PRESENTAR_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Nuevo servicio", "# BizQA");
+            ofertaActions.RellenarCamposOferta("CRM-POF0005-PRESENTAR_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Nuevo servicio", "");
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la UbiRed Pro
@@ -1053,7 +1053,7 @@ namespace Lyntia.TestSet
             ofertaActions.AccesoNuevaOferta();
 
             // Rellenar campos y click en Guardar
-            ofertaActions.RellenarCamposOferta("CRM-POF0005-PRESENTAR_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Nuevo servicio", "# BizQA");
+            ofertaActions.RellenarCamposOferta("CRM-POF0005-PRESENTAR_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Nuevo servicio", "");
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la UbiRed Pro
@@ -1067,8 +1067,8 @@ namespace Lyntia.TestSet
             ofertaCondition.ResAdjudicarOferta();
 
             // Paso 4 - Crear pedido
-            ofertaActions.VentanaCrearPedido("27/01/2021");
-            ofertaCondition.ResVentanaCrearPedido();
+            ofertaActions.VentanaCrearPedido("27/04/2021");
+            //ofertaCondition.ResVentanaCrearPedido();
         }
 
         [Test(Description = "CRM-POAF0002 - PRO ADJUDICAR OFERTA")]//Caso pendiente de desarrollo
@@ -1086,11 +1086,11 @@ namespace Lyntia.TestSet
             ofertaActions.AccesoNuevaOferta();
 
             // Rellenar campos y click en Guardar
-            ofertaActions.RellenarCamposOferta("CRM-POF0005-PRESENTAR_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Nuevo servicio", "# BizQA");
+            ofertaActions.RellenarCamposOferta("CRM-POF0005-PRESENTAR_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Nuevo servicio", "");
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la UbiRed Pro
-            productoActions.CreacionProducto("Fibra oscura", "FTTE", "", "3", "", "Lease", "", "50");
+            productoActions.CreacionProducto("Fibra oscura", "FTTE", "", "3", "Lease", "4", "", "");
 
             // Paso 3 - Presentar la oferta
             ofertaActions.PresentarOferta();
@@ -1100,8 +1100,8 @@ namespace Lyntia.TestSet
             ofertaCondition.ResAdjudicarOferta();
 
             // Paso 4 - Crear pedido
-            ofertaActions.VentanaCrearPedido("27/01/2021");
-            ofertaCondition.ResVentanaCrearPedido();
+            ofertaActions.VentanaCrearPedido("27/03/2021");
+            //ofertaCondition.ResVentanaCrearPedido();
         }
 
         [Test(Description = "CRM-EOF0001 - Edición_borrador_Sin_datos_obligatorios")]
@@ -1521,11 +1521,11 @@ namespace Lyntia.TestSet
 
             // Paso 7 - Creamos el pedido
             ofertaActions.VentanaCrearPedidofechaposterior();
-            //ofertaCondition.ResultadResVentanaCrearPedidofechaposterior();
+            
 
             // Paso 8 - Copiar codigo administrativo del primer producto y busqueda en servicios contratados
-            productoActions.BuscarCodigo_administrativo1();
-            productoConditions.ResBuscarCodigo_administrativo();
+            productoActions.BuscarCodigo_administrativo2();
+            
 
             // Paso 9 - Buscar una oferta desde el servicio contratado
             productoActions.BuscarOferta_desde_servicio_contratado();
