@@ -13,7 +13,7 @@ Modulo.gestionCliente;XPATH;//a[contains(@aria-label, 'Cliente')]
 Oferta.ofertaSection;ID;sitemap-entity-oferta
 Oferta.inputFilter;XPATH;//input[contains(@aria-label, 'Buscar en esta vista')]
 Oferta.buttonLupaFiltro;XPATH;//button[contains(@title, 'Iniciar búsqueda')]
-Oferta.ofertaTitleSelector;XPATH;//h1[@title='Seleccionar vista']
+Oferta.ofertaTitleSelector;XPATH;//div[@title='Seleccionar vista']
 Oferta.newOferta;XPATH;//button[@aria-label='Nuevo']
 Oferta.saveOferta;XPATH;//button[@aria-label='Guardar']
 Oferta.saveAndCloseOferta;XPATH;//button[@aria-label='Guardar y cerrar']
