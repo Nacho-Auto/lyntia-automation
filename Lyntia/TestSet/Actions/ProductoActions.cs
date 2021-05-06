@@ -301,7 +301,7 @@ namespace Lyntia.TestSet.Actions
                 }
 
                 Utils.SearchWebElement("Producto.GuardarYCerrar_producto").Click();
-                Thread.Sleep(10000);
+                Thread.Sleep(30000);
                 TestContext.WriteLine("El tipo de producto heredado con sus parametros se guarda correctamente");
             }
 
