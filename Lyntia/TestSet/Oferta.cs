@@ -47,6 +47,7 @@ namespace Lyntia.TestSet
         public void Cierre()
         {
             driver.Quit();
+            //PRUEBA
         }
 
         [Test(Description = "CRM-COF0001 Acceso a Ofertas")]
