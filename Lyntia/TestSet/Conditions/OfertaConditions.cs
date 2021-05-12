@@ -59,7 +59,7 @@ namespace Lyntia.TestSet.Conditions
                 Assert.IsTrue(driver.FindElement(By.XPath("//input[contains(@data-id,'createdon')]")).Text.Equals(""));
 
                 // Assert de Hora de creación vacía
-                Assert.IsTrue(driver.FindElement(By.XPath("//input[contains(@aria-label,'Hora de Fecha creación')]")).Text.Equals(""));
+                //Assert.IsTrue(driver.FindElement(By.XPath("//input[contains(@aria-label,'Hora de Fecha creación')]")).Text.Equals(""));
 
                 // Assert de Fecha de modificación vacía
                 Assert.IsTrue(driver.FindElement(By.XPath("//input[contains(@data-id,'modifiedon')]")).Text.Equals(""));
