@@ -46,8 +46,8 @@ namespace Lyntia.TestSet
         [TearDown]
         public void Cierre()
         {
-            driver.Quit();
-            
+            //driver.Quit();
+
         }
 
         [Test(Description = "CRM-COF0001 Acceso a Ofertas")]
@@ -521,7 +521,7 @@ namespace Lyntia.TestSet
             ofertaActions.AbrirOfertaEnVista("CRM-COF0007-CIERRE_" + Utils.GetRandomString());
 
             // Paso 3 y 4 - Pulsar Cerrar en la barra de herramientas y cancelar el cierre
-            ofertaActions.CerrarOfertaActual("Cancelar", "Cancelada", "Sin Información/otro motivo", "01/02/2021"); 
+            ofertaActions.CerrarOfertaActual("Cancelar", "Cancelada", "Sin Información/otro motivo", "01/02/2021");
 
             // Paso 5 - Repetir el paso anterior pero cerrando sin completar campos obligatorios
             ofertaActions.CerrarOfertaActual("Aceptar", "Cancelada", "", "");
@@ -551,7 +551,7 @@ namespace Lyntia.TestSet
 
         [Test(Description = "CRM-COF0008 Cerrar Oferta en borrador con producto añadido, No viable")]
         [AllureSubSuite("PRO ELIMINAR-CERRAR OFERTA")]
-        public void CRM_COF0008_cerrarOfertaProductoAnadidoNoViable()
+        public void CRM_COF0008_cerrarOfertaProductoAnadidoNoViable_casoMOD()
         {
             // Login y Acceso a Gestión de Cliente
             commonActions.AccesoGestionCliente();
@@ -567,7 +567,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la Oferta
-            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps", "", "", "", "", "");
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "10 Mbps", "", "", "", "", "");
 
             // Volver al grid
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
@@ -581,7 +581,8 @@ namespace Lyntia.TestSet
             ofertaActions.AbrirOfertaEnVista("CRM-COF0008-CIERRE_" + Utils.GetRandomString());
 
             // Paso 6 - Repetir el paso anterior pero cerrando de manera correcta
-            ofertaActions.CerrarOfertaActual("Aceptar", "No viable", "Sin Información/otro motivo", "01/02/2021");
+            // QA nos indica que validemos hasta el paso 6, opcion NO viable ya no se encuentra. Se comenta las opciones afectadas para que salten el paso
+            // ofertaActions.CerrarOfertaActual("Aceptar", "No viable", "Sin Información/otro motivo", "01/02/2021");
 
             driver.Navigate().Refresh();
 
@@ -590,7 +591,8 @@ namespace Lyntia.TestSet
 
             // Paso 7 - Repetir el paso anterior pero cerrando de manera correcta
             ofertaActions.BuscarOfertaEnVista("CRM-COF0008-CIERRE_" + Utils.GetRandomString());
-            ofertaCondition.OfertaCerradaCorrectamenteEnGrid("No viable");
+            // QA nos indica que validemos hasta el paso 6, opcion NO viable ya no se encuentra. Se comenta las opciones afectadas para que salten el paso
+            // ofertaCondition.OfertaCerradaCorrectamenteEnGrid("No viable");
 
             // Eliminar Oferta
             ofertaActions.SeleccionarOfertaGrid();
@@ -1309,7 +1311,7 @@ namespace Lyntia.TestSet
 
         [Test(Description = "CRM-COF0004 - Oferta_Cerrar_En_borrador_Sin_Producto_No_viable")]
         [AllureSubSuite("PRO ELIMINAR-CERRAR OFERTA")]
-        public void CRM_COF0004_Oferta_Cerrar_En_borrador_Sin_Producto_No_viable()
+        public void CRM_COF0004_Oferta_Cerrar_En_borrador_Sin_Producto_No_viable_caso_MOD()
         {
             // Login y Acceso a Gestión de Cliente
             commonActions.AccesoGestionCliente();//Acceso al modulo de Gestion de Cliente(Apliaciones)
@@ -1338,12 +1340,14 @@ namespace Lyntia.TestSet
             driver.Navigate().Refresh();
 
             // Paso 6 - Repetir el paso anterior pero cerrando de manera correcta
-            ofertaActions.CerrarOfertaActual("Aceptar", "No viable", "Sin información", "01/02/2021");
+            // QA nos indica que validemos hasta el paso 6, opcion NO viable ya no se encuentra. Se comenta las opciones afectadas para que salten el paso
+            // ofertaActions.CerrarOfertaActual("Cancelar", "No viable", "Sin información", "01/02/2021"); 
 
             // Paso 7 - Accedemos al grid, buscamos la oferta y se comprueba estados
             commonActions.AccesoOferta();
             ofertaActions.BuscarOfertaEnVista("CRM-COF0004-CERRAR_" + Utils.GetRandomString());
-            ofertaCondition.OfertaCerradaCorrectamenteEnGrid("No viable");
+            // QA nos indica que validemos hasta el paso 6, opcion NO viable ya no se encuentra. Se comenta las opciones afectadas para que salten el paso
+            // ofertaCondition.OfertaCerradaCorrectamenteEnGrid("");
 
             // Reestablecer dato
             ofertaActions.SeleccionarOfertaGrid();
@@ -1433,7 +1437,7 @@ namespace Lyntia.TestSet
             ofertaCondition.ResultadResVentanaCrearPedidofechaposterior();
 
             // Paso 8 - Copiar codigo administrativo del primer producto y busqueda en servicios contratados
-            productoActions.BuscarCodigo_administrativo1();  
+            productoActions.BuscarCodigo_administrativo1();
 
             // Paso 9 - Buscar una oferta desde el servicio contratado
             productoActions.BuscarOferta_desde_servicio_contratado();
@@ -1522,11 +1526,11 @@ namespace Lyntia.TestSet
 
             // Paso 7 - Creamos el pedido
             ofertaActions.VentanaCrearPedidofechaposterior();
-            
+
 
             // Paso 8 - Copiar codigo administrativo del primer producto y busqueda en servicios contratados
             productoActions.BuscarCodigo_administrativo2();
-            
+
 
             // Paso 9 - Buscar una oferta desde el servicio contratado
             productoActions.BuscarOferta_desde_servicio_contratado();
@@ -1586,6 +1590,215 @@ namespace Lyntia.TestSet
 
         }
 
+        [Test(Description = "CRM-SECAN0001 - Oferta/Servicio/CANCELACIÓN CC")]
+        [AllureSubSuite("SERVICIO CANCELAR")]
+        public void CRM_SECAN0001_Oferta_Servicio_CANCELACIÓN_CC()
+        {
+            // Login y Acceso a Gestión de Cliente
+            commonActions.AccesoGestionCliente();//Acceso al modulo de Gestion de Cliente(Apliaciones)
+            commonCondition.AccedeGestionCliente();//Acceso correcto
+
+            // Paso 1 - Hacer click en Ofertas
+            commonActions.AccesoOferta();//Oferta menu
+            commonCondition.AccedeOferta();//comprobamos el acceso
+
+            // Paso 3 - Nueva Oferta
+            ofertaActions.AccesoNuevaOferta();
+            ofertaCondition.CreaOferta();
+
+            // Preparacion de datos de la prueba
+            ofertaActions.RellenarCamposOferta("CRM-COF0004-CERRAR_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Nuevo servicio", "");
+            ofertaActions.GuardarOferta();
+
+            // Paso 4 - Creamos 2 tipos de productos CC
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTE", "1 Mbps", "", "", "", "", "10");
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "10 Mbps", "", "", "", "", "");
+
+            // Paso 5 - Presentamos oferta
+            ofertaActions.PresentarOferta();
+
+            // Paso 6 - Adjudicamos oferta
+            ofertaActions.Adjudicar_Oferta();
+            ofertaCondition.ResAdjudicarOferta();
+
+            // Paso 7 - Creamos el pedido
+            ofertaActions.VentanaCrearPedidofechaposterior();
+            ofertaCondition.ResultadResVentanaCrearPedidofechaposterior();
+
+            // Paso 8 - Seleccion del primer registro de los 2 productos y cumplimentar datos obligatorios
+            ofertaActions.Acceder_line1();
+            ofertaActions.CamposObligatoriosProductoCC("BRODYNT");
+
+            // Paso 9 - Seleccion del segundo registro de los 2 productos y cumplimentar datos obligatorios
+            ofertaActions.Acceder_line2();
+            ofertaActions.CamposObligatoriosProductoCC("BRODYNT");
+
+            // Paso 10 - Enviar a Jira
+            ofertaActions.Enviar_A_Jira();
+            ofertaCondition.ResBuscarOferta_enviarJira();
+
+            // Paso 11 - Cancelar motivo Jira
+            ofertaActions.Enviar_A_Jira_cancelar();
+
+        }
+
+        [Test(Description = "CRM-SECAN0002 - Oferta/Servicio/CANCELACIÓN FO")]
+        [AllureSubSuite("SERVICIO CANCELAR")]
+        public void CRM_SECAN0002_Oferta_Servicio_CANCELACIÓN_FO()
+        {
+            // Login y Acceso a Gestión de Cliente
+            commonActions.AccesoGestionCliente();//Acceso al modulo de Gestion de Cliente(Apliaciones)
+            commonCondition.AccedeGestionCliente();//Acceso correcto
+
+            // Paso 1 - Hacer click en Ofertas
+            commonActions.AccesoOferta();//Oferta menu
+            commonCondition.AccedeOferta();//comprobamos el acceso
+
+            // Paso 3 - Nueva Oferta
+            ofertaActions.AccesoNuevaOferta();
+            ofertaCondition.CreaOferta();
+
+            // Preparacion de datos de la prueba
+            ofertaActions.RellenarCamposOferta("CRM-COF0004-CERRAR_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Nuevo servicio", "");
+            ofertaActions.GuardarOferta();
+
+            // Paso 4 - Creamos 2 tipos de productos CC
+            productoActions.CreacionProducto("Fibra oscura", "FTTE", "10", "4", "IRU", "4", "", "");
+            productoActions.CreacionProducto("Fibra oscura", "FTTT", "20", "2", "Lease", "2", "", "");
+
+            // Paso 5 - Presentamos oferta
+            ofertaActions.PresentarOferta();
+
+            // Paso 6 - Adjudicamos oferta
+            ofertaActions.Adjudicar_Oferta();
+            ofertaCondition.ResAdjudicarOferta();
+
+            // Paso 7 - Creamos el pedido
+            ofertaActions.VentanaCrearPedidofechaposterior();
+            ofertaCondition.ResultadResVentanaCrearPedidofechaposterior();
+
+            // Paso 8 - Seleccion del primer registro de los 2 productos y cumplimentar datos obligatorios
+            ofertaActions.Acceder_line1();
+            ofertaActions.CamposObligatoriosProductoFIBRA("IRU");
+
+            // Paso 9 - Seleccion del segundo registro de los 2 productos y cumplimentar datos obligatorios
+            ofertaActions.Acceder_line2();
+            ofertaActions.CamposObligatoriosProductoFIBRA("");
+
+            // Paso 10 - Enviar a Jira
+            ofertaActions.Enviar_A_Jira();
+            ofertaCondition.ResBuscarOferta_enviarJira();
+
+            // Paso 11 - Cancelar motivo Jira
+            ofertaActions.Enviar_A_Jira_cancelar();
+
+        }
+
+        [Test(Description = "CRM-SECAN0003 - Oferta/Servicio/CANCELACIÓN Ubired Pro")]
+        [AllureSubSuite("SERVICIO CANCELAR")]
+        public void CRM_SECAN0003_Oferta_Servicio_CANCELACIÓN_Ubired_Pro()
+        {
+            // Login y Acceso a Gestión de Cliente
+            commonActions.AccesoGestionCliente();//Acceso al modulo de Gestion de Cliente(Apliaciones)
+            commonCondition.AccedeGestionCliente();//Acceso correcto
+
+            // Paso 1 - Hacer click en Ofertas
+            commonActions.AccesoOferta();//Oferta menu
+            commonCondition.AccedeOferta();//comprobamos el acceso
+
+            // Paso 3 - Nueva Oferta
+            ofertaActions.AccesoNuevaOferta();
+            ofertaCondition.CreaOferta();
+
+            // Preparacion de datos de la prueba
+            ofertaActions.RellenarCamposOferta("CRM-COF0004-CERRAR_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Nuevo servicio", "");
+            ofertaActions.GuardarOferta();
+
+            // Paso 4 - Creamos 2 tipos de productos CC
+            productoActions.CreacionProducto("UbiRed Pro", "FTTT", "", "", "", "", "", "");
+            productoActions.CreacionProducto("UbiRed Pro", "FTTT", "", "", "", "", "", "");
+
+            // Paso 5 - Presentamos oferta
+            ofertaActions.PresentarOferta();
+
+            // Paso 6 - Adjudicamos oferta
+            ofertaActions.Adjudicar_Oferta();
+            ofertaCondition.ResAdjudicarOferta();
+
+            // Paso 7 - Creamos el pedido
+            ofertaActions.VentanaCrearPedidofechaposterior();
+            ofertaCondition.ResultadResVentanaCrearPedidofechaposterior();
+
+            // Paso 8 - Seleccion del primer registro de los 2 productos y cumplimentar datos obligatorios
+            ofertaActions.Acceder_line1();
+            ofertaActions.CamposObligatoriosProductoUbiredPRO();
+
+            // Paso 9 - Seleccion del segundo registro de los 2 productos y cumplimentar datos obligatorios
+            ofertaActions.Acceder_line2();
+            ofertaActions.CamposObligatoriosProductoUbiredPRO();
+
+            // Paso 10 - Enviar a Jira
+            ofertaActions.Enviar_A_Jira();
+            ofertaCondition.ResBuscarOferta_enviarJira();
+
+            // Paso 11 - Cancelar motivo Jira
+            ofertaActions.Enviar_A_Jira_cancelar();
+        }
+
+        [Test(Description = "CRM-SECAN0004 - Oferta/Servicio/CANCELACIÓN RACK")]
+        [AllureSubSuite("SERVICIO CANCELAR")]
+        public void CRM_SECAN0004_Oferta_Servicio_CANCELACIÓN_RACK()
+        {
+            // Login y Acceso a Gestión de Cliente
+            commonActions.AccesoGestionCliente();//Acceso al modulo de Gestion de Cliente(Apliaciones)
+            commonCondition.AccedeGestionCliente();//Acceso correcto
+
+            // Paso 1 - Hacer click en Ofertas
+            commonActions.AccesoOferta();//Oferta menu
+            commonCondition.AccedeOferta();//comprobamos el acceso
+
+            // Paso 3 - Nueva Oferta
+            ofertaActions.AccesoNuevaOferta();
+            ofertaCondition.CreaOferta();
+
+            // Preparacion de datos de la prueba
+            ofertaActions.RellenarCamposOferta("CRM-COF0004-CERRAR_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Nuevo servicio", "");
+            ofertaActions.GuardarOferta();
+
+            // Paso 4 - Creamos 2 tipos de productos CC
+            productoActions.CreacionProducto("Rack", "FTTT", "", "", "", "", "3", "");
+            productoActions.CreacionProducto("Rack", "FTTE", "", "", "", "", "2", "");
+
+            // Paso 5 - Presentamos oferta
+            ofertaActions.PresentarOferta();
+
+            // Paso 6 - Adjudicamos oferta
+            ofertaActions.Adjudicar_Oferta();
+            ofertaCondition.ResAdjudicarOferta();
+
+            // Paso 7 - Creamos el pedido
+            ofertaActions.VentanaCrearPedidofechaposterior();
+            ofertaCondition.ResultadResVentanaCrearPedidofechaposterior();
+
+            // Paso 8 - Seleccion del primer registro de los 2 productos y cumplimentar datos obligatorios
+            ofertaActions.Acceder_line1();
+            ofertaActions.CamposObligatoriosProductoRACK();
+
+            // Paso 9 - Seleccion del segundo registro de los 2 productos y cumplimentar datos obligatorios
+            ofertaActions.Acceder_line2();
+            ofertaActions.CamposObligatoriosProductoRACK();
+
+            // Paso 10 - Enviar a Jira
+            ofertaActions.Enviar_A_Jira();
+            ofertaCondition.ResBuscarOferta_enviarJira();
+
+            // Paso 11 - Cancelar motivo Jira
+            ofertaActions.Enviar_A_Jira_cancelar();
+            ofertaCondition.Resultado_Enviar_A_Jira_cancelar();
+           
+        }
+
     }
 }
+
 
