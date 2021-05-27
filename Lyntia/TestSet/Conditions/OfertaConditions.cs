@@ -62,10 +62,10 @@ namespace Lyntia.TestSet.Conditions
                 //Assert.IsTrue(driver.FindElement(By.XPath("//input[contains(@aria-label,'Hora de Fecha creación')]")).Text.Equals(""));
 
                 // Assert de Fecha de modificación vacía
-                Assert.IsTrue(driver.FindElement(By.XPath("//input[contains(@data-id,'modifiedon')]")).Text.Equals(""));
+                //Assert.IsTrue(driver.FindElement(By.XPath("//input[contains(@data-id,'modifiedon')]")).Text.Equals(""));
 
                 // Assert de Hora de modificación vacía
-                Assert.IsTrue(driver.FindElement(By.XPath("//input[contains(@aria-label,'Hora de Fecha de modificación')]")).Text.Equals(""));
+                //Assert.IsTrue(driver.FindElement(By.XPath("//input[contains(@aria-label,'Hora de Fecha de modificación')]")).Text.Equals(""));
 
                 TestContext.WriteLine("***Se cumplen las condiciones con fechas sin informar");
             }
@@ -596,6 +596,24 @@ namespace Lyntia.TestSet.Conditions
             }
         }
 
+
+
+        /// <summary>
+        /// Método para comprobar que se envia correctamente a Jira
+        /// </summary>
+        public void ResBuscarOferta_enviarJira()
+        {
+            Assert.AreEqual("Envío correcto.", Utils.SearchWebElement("Producto.EnviaraJiraenviocorrecto").Text);
+        }
+
+        /// <summary>
+        /// Método para comprobar que se envia correctamente a Jira y el servicio queda cancelado
+        /// </summary>
+        public void Resultado_Enviar_A_Jira_cancelar()
+        {
+            Assert.AreEqual("Cancelado", Utils.SearchWebElement("Oferta.firstFromGrid").Text);
+            Assert.AreEqual("Cancelado", Utils.SearchWebElement("Oferta.secondFromGrid").Text);
+        }
     }
 
 }

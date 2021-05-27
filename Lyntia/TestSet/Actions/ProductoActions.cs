@@ -217,8 +217,8 @@ namespace Lyntia.TestSet.Actions
                 Utils.SearchWebElement("Producto.inputServicioHeredado").SendKeys(Keys.Control + "a");
                 Utils.SearchWebElement("Producto.inputServicioHeredado").SendKeys(Keys.Delete);
                 Thread.Sleep(2000);
-                Utils.SearchWebElement("Producto.inputServicioHeredado").SendKeys("c");
-                driver.FindElement(By.XPath("//span[contains(text(), '  CC 100 Mbps 22 - 22')]")).Click();
+                Utils.SearchWebElement("Producto.inputServicioHeredado").SendKeys("100Mb Ethernet Sacoma Mallorca - Equinix MAD2");
+                driver.FindElement(By.XPath("//span[contains(text(), '100Mb Ethernet Sacoma Mallorca - Equinix MAD2')]")).Click();
                 Thread.Sleep(2000);
                 Utils.SearchWebElement("Producto.GuardarYCerrar_producto").Click();//Guarda y cierra
 
