@@ -222,23 +222,23 @@ namespace Lyntia.TestSet.Actions
                 if (!kam.Equals(""))
                 {
                     // Rellenar Tipo de Oferta
-                    accionesSelenium.SendKeys(Keys.PageDown);
-                    accionesSelenium.Build().Perform();
+                    //accionesSelenium.SendKeys(Keys.PageDown);
+                    //accionesSelenium.Build().Perform();
 
-                    Thread.Sleep(1000);
-                    Utils.SearchWebElement("Oferta.kamResponsable").Click();
-                    Thread.Sleep(1000);
+                    //Thread.Sleep(1000);
+                    //Utils.SearchWebElement("Oferta.kamResponsable").Click();
+                    //Thread.Sleep(1000);
 
-                    Utils.SearchWebElement("Oferta.kamResponsable").SendKeys(Keys.Control + "a");
-                    Utils.SearchWebElement("Oferta.kamResponsable").SendKeys(Keys.Delete);
+                    //Utils.SearchWebElement("Oferta.kamResponsable").SendKeys(Keys.Control + "a");
+                    //Utils.SearchWebElement("Oferta.kamResponsable").SendKeys(Keys.Delete);
 
-                    Utils.SearchWebElement("Oferta.kamResponsable").SendKeys(kam);
-                    Thread.Sleep(1000);
+                    //Utils.SearchWebElement("Oferta.kamResponsable").SendKeys(kam);
+                    //Thread.Sleep(1000);
 
-                    accionesSelenium.SendKeys(Keys.PageDown);
-                    accionesSelenium.Build().Perform();
+                    //accionesSelenium.SendKeys(Keys.PageDown);
+                    //accionesSelenium.Build().Perform();
 
-                    driver.FindElement(By.XPath("//span[contains(text(), '" + kam + "')]")).Click();
+                    //driver.FindElement(By.XPath("//span[contains(text(), '" + kam + "')]")).Click();
                     Thread.Sleep(2000);
                 }
 
@@ -298,6 +298,7 @@ namespace Lyntia.TestSet.Actions
         {
             try
             {
+                Thread.Sleep(4000);
                 Utils.SearchWebElement("Oferta.inputQuickFindOferta").SendKeys(parametroBusqueda);
                 Utils.SearchWebElement("Oferta.buttonQuickFindOferta").Click();
                 Thread.Sleep(2000);
@@ -570,8 +571,11 @@ namespace Lyntia.TestSet.Actions
                 Thread.Sleep(2000);
 
                 // KAM
-                driver.FindElement(By.XPath("//ul[contains(@data-id,'new_kamresponsableid_SelectedRecordList')]")).Click();
-                driver.FindElement(By.XPath("//button[contains(@data-id,'kamresponsableid_selected_tag_delete')]")).Click();
+                //driver.FindElement(By.XPath("//input[contains(@aria-label, 'KAM que oferta, Búsqueda')]")).Click();
+                //driver.FindElement(By.XPath("//div[contains(@data-id,'new_kamresponsableid.fieldControl-LookupResultsDropdown_new_kamresponsableid_selected_tag')]")).Click();
+
+                //driver.FindElement(By.XPath("//ul[contains(@data-id,'new_kamresponsableid_SelectedRecordList')]")).Click();
+                //driver.FindElement(By.XPath("//button[contains(@data-id,'kamresponsableid_selected_tag_delete')]")).Click();
                 Thread.Sleep(3000);
 
                 // Divisa
@@ -623,12 +627,12 @@ namespace Lyntia.TestSet.Actions
                 Thread.Sleep(2000);
 
                 // Modificar Kan
-                Utils.SearchWebElement("Oferta.kamResponsable").Click();
-                Thread.Sleep(1000);
-                Utils.SearchWebElement("Oferta.kamResponsable").SendKeys(KAM);
-                Thread.Sleep(1000);
-                driver.FindElement(By.XPath("//span[contains(text(), '" + KAM + "')]")).Click();
-                Thread.Sleep(2000);
+                //Utils.SearchWebElement("Oferta.kamResponsable").Click();
+                //Thread.Sleep(1000);
+                //Utils.SearchWebElement("Oferta.kamResponsable").SendKeys(KAM);
+                //Thread.Sleep(1000);
+                //driver.FindElement(By.XPath("//span[contains(text(), '" + KAM + "')]")).Click();
+                //Thread.Sleep(2000);
 
                 // Modificar divisa
                 Utils.SearchWebElement("Oferta.inputDivisa").Click();
@@ -717,7 +721,7 @@ namespace Lyntia.TestSet.Actions
                 {
                     // Cierre anulado
                     Utils.SearchWebElement("Oferta.buttonCancelarCierre").Click();
-                    Thread.Sleep(3000);
+                    Thread.Sleep(8000);
                     TestContext.WriteLine("Se cancela correctamente el proceso de cierre de Oferta.");
                 }
             }
@@ -1203,15 +1207,15 @@ namespace Lyntia.TestSet.Actions
             Thread.Sleep(2000);
 
             // Contacto
-            Utils.SearchWebElement("Producto.PestañaJiraCONTACTO").Click();
-            Thread.Sleep(1000);
-            Utils.SearchWebElement("Producto.PestañaJiraCONTACTO").SendKeys("Jose Antonio Garcia Mendez");
-            Utils.SearchWebElement("Producto.PestañaJiraCONTACTO").SendKeys(Keys.Control + "a");
-            Utils.SearchWebElement("Producto.PestañaJiraCONTACTO").SendKeys(Keys.Delete);
-            Utils.SearchWebElement("Producto.PestañaJiraCONTACTO").SendKeys("Jose Antonio Garcia Mendez");
-            Thread.Sleep(2000);
-            driver.FindElement(By.XPath("//span[contains(text(), 'Jose Antonio Garcia Mendez')]")).Click();
-            Thread.Sleep(3000);
+            //Utils.SearchWebElement("Producto.PestañaJiraCONTACTO").Click();
+            //Thread.Sleep(1000);
+            //Utils.SearchWebElement("Producto.PestañaJiraCONTACTO").SendKeys("Jose Antonio Garcia Mendez");
+            //Utils.SearchWebElement("Producto.PestañaJiraCONTACTO").SendKeys(Keys.Control + "a");
+            //Utils.SearchWebElement("Producto.PestañaJiraCONTACTO").SendKeys(Keys.Delete);
+            //Utils.SearchWebElement("Producto.PestañaJiraCONTACTO").SendKeys("Jose Antonio Garcia Mendez");
+            //Thread.Sleep(2000);
+            //driver.FindElement(By.XPath("//span[contains(text(), 'Jose Antonio Garcia Mendez')]")).Click();
+            //Thread.Sleep(3000);
 
             //Pestaña Billing (datos obligatorios)
             /// </summary>

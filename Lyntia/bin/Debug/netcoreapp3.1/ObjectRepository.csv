@@ -94,10 +94,11 @@ Oferta.labelServicioscontratadosGrid;XPATH;//li[contains(@aria-label, 'Servicios
 ############################# PRODUCTO ############################
 Producto.firstInput;ID;submit
 Producto.GuardarYCerrar_producto;XPATH;//button[@id='quickCreateSaveAndCloseBtn']
-Producto.inputNRC;XPATH;//input[@aria-label='NRC']
+Producto.inputNRC;XPATH;//input[@aria-label='NRC (IRU)']
 Producto.inputDuracionContrato;XPATH;//input[contains(@aria-label, 'Duración del contrato (meses)')]
-Producto.inputPrecioMensual;XPATH;//input[contains(@aria-label, 'Precio mensual')]
+Producto.inputPrecioMensual;XPATH;//input[contains(@aria-label, 'Precio Mensual')]
 Producto.inputServicioHeredado;XPATH;//input[contains(@aria-label, 'Servicio heredado, Búsqueda')]
+Producto.inputServicioexistente;XPATH;//input[contains(@aria-label, 'Producto existente, Búsqueda')]
 Producto.buttonAgregarProducto;XPATH;//button[contains(@aria-label,'Agregar producto')]
 Producto.ListProductoOfertaPrimerregistro;XPATH;//div[contains(@aria-label, 'Seleccionar fila 2')]
 Producto.ListProductoOfertaSegundoregistro;XPATH;//div[contains(@aria-label, 'Seleccionar fila 3')]
