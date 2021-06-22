@@ -38,13 +38,16 @@ namespace Lyntia.TestSet.Actions
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath(Utils.GetIdentifier("Producto.inputProductoExistente"))));
                 Thread.Sleep(3000);
                 Utils.SearchWebElement("Producto.inputProductoExistente").Click();
-                Thread.Sleep(1000);
+                Thread.Sleep(3000);
                 Utils.SearchWebElement("Producto.inputProductoExistente").SendKeys(productoExistente);
+                Thread.Sleep(3000);
                 Utils.SearchWebElement("Producto.inputProductoExistente").SendKeys(Keys.Control + "a");
+                Thread.Sleep(3000);
                 Utils.SearchWebElement("Producto.inputProductoExistente").SendKeys(Keys.Delete);
+                Thread.Sleep(3000);
                 Utils.SearchWebElement("Producto.inputProductoExistente").SendKeys(productoExistente);
 
-                Thread.Sleep(2000);
+                Thread.Sleep(7000);
 
                 driver.FindElement(By.XPath("//span[contains(text(), '" + productoExistente + "')]")).Click();
                 Thread.Sleep(6000);
@@ -113,14 +116,14 @@ namespace Lyntia.TestSet.Actions
             // Introduccir NRC
             if (!nrc.Equals(""))
             {
-                Utils.SearchWebElement("Producto.inputNRC").Click();
+                Utils.SearchWebElement("Producto.selectNRC").Click();
                 Thread.Sleep(1000);
 
-                Utils.SearchWebElement("Producto.inputNRC").SendKeys(nrc);
+                Utils.SearchWebElement("Producto.selectNRC").SendKeys(nrc);
                 Thread.Sleep(1000);
-                Utils.SearchWebElement("Producto.inputNRC").SendKeys(Keys.Control + "a");
-                Utils.SearchWebElement("Producto.inputNRC").SendKeys(Keys.Delete);
-                Utils.SearchWebElement("Producto.inputNRC").SendKeys(nrc);
+                Utils.SearchWebElement("Producto.selectNRC").SendKeys(Keys.Control + "a");
+                Utils.SearchWebElement("Producto.selectNRC").SendKeys(Keys.Delete);
+                Utils.SearchWebElement("Producto.selectNRC").SendKeys(nrc);
                 Thread.Sleep(1000);
             }
             
@@ -156,7 +159,7 @@ namespace Lyntia.TestSet.Actions
             {
                 // Guardar y Cerrar Producto actual
                 Utils.SearchWebElement("Producto.GuardarYCerrar_producto").Click();
-                Thread.Sleep(15000);
+                Thread.Sleep(24000);
 
                 TestContext.WriteLine("Producto guardado correctamente: " + productoExistente + ", " + uso + ", " + unidadVenta + ", " + metros + ", " + nrc + ", " + modalidadContratacion);
             }
@@ -214,11 +217,11 @@ namespace Lyntia.TestSet.Actions
                 Thread.Sleep(3000);
                 Utils.SearchWebElement("Producto.buttonAgregarProducto").Click();//pulsamos sobre agregar producto
                 Thread.Sleep(4000);
-                Utils.SearchWebElement("Producto.inputServicioHeredado").SendKeys(Keys.Control + "a");
-                Utils.SearchWebElement("Producto.inputServicioHeredado").SendKeys(Keys.Delete);
+                Utils.SearchWebElement("Producto.inputServicioexistente").SendKeys(Keys.Control + "a");
+                Utils.SearchWebElement("Producto.inputServicioexistente").SendKeys(Keys.Delete);
                 Thread.Sleep(2000);
-                Utils.SearchWebElement("Producto.inputServicioHeredado").SendKeys("100Mb Ethernet Sacoma Mallorca - Equinix MAD2");
-                driver.FindElement(By.XPath("//span[contains(text(), '100Mb Ethernet Sacoma Mallorca - Equinix MAD2')]")).Click();
+                Utils.SearchWebElement("Producto.inputServicioexistente").SendKeys("Circuitos de capacidad");
+                driver.FindElement(By.XPath("//span[contains(text(), 'Circuitos de capacidad')]")).Click();
                 Thread.Sleep(2000);
                 Utils.SearchWebElement("Producto.GuardarYCerrar_producto").Click();//Guarda y cierra
 
@@ -314,22 +317,34 @@ namespace Lyntia.TestSet.Actions
 
 
         //Metodo en el que una vez agregado un producto heredado se cumplimentan los campos obligatorios, se guarda y se cierra
-        public void Cumplimentar_campos_y_guardar()
+        public void Cumplimentar_campos_y_guardar(String linea)
         {
             try
             {
+                
+                
 
-                Thread.Sleep(3000);
-                Utils.SearchWebElement("Producto.inputPrecioMensual").Click();
-                Utils.SearchWebElement("Producto.inputPrecioMensual").SendKeys("10");
-                Thread.Sleep(3000);
-                Utils.SearchWebElement("Producto.inputDuracionContrato").Click();
-                Utils.SearchWebElement("Producto.inputDuracionContrato").SendKeys("3");
-                Utils.SearchWebElement("Producto.inputDuracionContrato").SendKeys(Keys.PageDown);
+                // Seleccionar Uso(Línea de negocio)
+                SelectElement drop = new SelectElement(driver.FindElement(By.XPath("//select[contains(@id,'uso')]")));
+                drop.SelectByText(linea);
                 Thread.Sleep(2000);
-                Utils.SearchWebElement("Producto.inputNRC").Click();
-                Utils.SearchWebElement("Producto.inputNRC").SendKeys("4");
+
+                Utils.SearchWebElement("Producto.selectNRC").Click();
+                Utils.SearchWebElement("Producto.selectNRC").SendKeys("4");
                 Thread.Sleep(2000);
+
+                
+
+                //Thread.Sleep(3000);
+                //Utils.SearchWebElement("Producto.inputPrecioMensual").Click();
+                //Utils.SearchWebElement("Producto.inputPrecioMensual").SendKeys("10");
+                //Thread.Sleep(3000);
+                //Utils.SearchWebElement("Producto.inputDuracionContrato").Click();
+                //Utils.SearchWebElement("Producto.inputDuracionContrato").SendKeys("3");
+                //Utils.SearchWebElement("Producto.inputDuracionContrato").SendKeys(Keys.PageDown);
+                //Thread.Sleep(2000);
+                //Thread.Sleep(2000);
+
                 Utils.SearchWebElement("Producto.GuardarYCerrar_producto").Click();//Guarda y cierra
                 Thread.Sleep(10000);
 
@@ -371,30 +386,41 @@ namespace Lyntia.TestSet.Actions
             }
         }
 
-        public void Agregar_Linea_de_negocio_y_Unidad_de_venta(String uso, String unidadVenta)
+        public void Agregar_Linea_de_negocio_y_Unidad_de_venta(String uso, String NRC)
         {
             // Seleccionar Uso(Línea de negocio)
             SelectElement drop = new SelectElement(driver.FindElement(By.XPath("//select[contains(@id,'uso')]")));
             drop.SelectByText(uso);
 
             // Seleccionar unidad de venta
-            if (utils.EncontrarElemento(By.XPath(Utils.GetIdentifier("Producto.inputUnidaddeVenta"))))
+            if (utils.EncontrarElemento(By.XPath(Utils.GetIdentifier("Producto.selectNRC"))))
             {
                 try
-                {
+                {   
                     Thread.Sleep(2000);
-                    Utils.SearchWebElement("Producto.inputUnidaddeVenta").Click();
-                    Thread.Sleep(1000);
-
-                    Utils.SearchWebElement("Producto.inputUnidaddeVenta").SendKeys(unidadVenta);
-                    Thread.Sleep(1000);
-                    Utils.SearchWebElement("Producto.inputUnidaddeVenta").SendKeys(Keys.Control + "a");
-                    Utils.SearchWebElement("Producto.inputUnidaddeVenta").SendKeys(Keys.Delete);
-                    Utils.SearchWebElement("Producto.inputUnidaddeVenta").SendKeys(unidadVenta);
-                    Thread.Sleep(1000);
-
-                    driver.FindElement(By.XPath("//span[contains(text(), '" + unidadVenta + "')]")).Click();
+                    Utils.SearchWebElement("Producto.selectNRC").SendKeys(Keys.Control + "a");
+                    Utils.SearchWebElement("Producto.selectNRC").SendKeys(Keys.Delete);
+                    Utils.SearchWebElement("Producto.selectNRC").SendKeys(NRC);
                     Thread.Sleep(2000);
+
+                    Utils.SearchWebElement("Producto.GuardarYCerrar_producto").Click(); //guardamos y cerramos
+                    Thread.Sleep(18000);
+
+                    TestContext.WriteLine("***El producto se guarda de manera correcta.");
+
+
+                    //Utils.SearchWebElement("Producto.inputUnidaddeVenta").Click();
+                    //Thread.Sleep(1000);
+
+                    //Utils.SearchWebElement("Producto.inputUnidaddeVenta").SendKeys(unidadVenta);
+                    //Thread.Sleep(1000);
+                    //Utils.SearchWebElement("Producto.inputUnidaddeVenta").SendKeys(Keys.Control + "a");
+                    //Utils.SearchWebElement("Producto.inputUnidaddeVenta").SendKeys(Keys.Delete);
+                    //Utils.SearchWebElement("Producto.inputUnidaddeVenta").SendKeys(unidadVenta);
+                    //Thread.Sleep(1000);
+
+                    //driver.FindElement(By.XPath("//span[contains(text(), '" + unidadVenta + "')]")).Click();
+                    //Thread.Sleep(2000);
                 }
                 catch (Exception e)
                 {
@@ -403,17 +429,7 @@ namespace Lyntia.TestSet.Actions
                 }
             }
 
-            try
-            {
-                Utils.SearchWebElement("Producto.GuardarYCerrar_producto").Click(); //guardamos y cerramos
-                Thread.Sleep(14000);
-
-                TestContext.WriteLine("***El producto se guarda de manera correcta.");
-            }catch(Exception e)
-            {
-                CommonActions.CapturadorExcepcion(e, "Agregar_Linea_de_negocio_y_Unidad_de_venta.png", "La linea de negocio y la unidad de venta no se han agregado correctamente");
-                throw e;
-            }
+                
         }
 
         public void Borrado_de_producto()//metodo por el cual borramos una linea de producto que anteriormente hemos dado de alta en añadir producto.
@@ -528,7 +544,7 @@ namespace Lyntia.TestSet.Actions
         }
 
         /// <summary>
-        /// Método para copiar y buscar el codigo administrativo de la primera linea de los productos contratados
+        /// Método para copiar y buscar el codigo administrativo de la segunda linea de los productos contratados
         /// </summary>
         public void BuscarCodigo_administrativo2()
         {
@@ -548,7 +564,7 @@ namespace Lyntia.TestSet.Actions
                 Utils.SearchWebElement("Oferta.inputFilter").SendKeys(listaCodigos[i]);
                 Utils.SearchWebElement("Oferta.buttonQuickFindOferta").Click();
                 Thread.Sleep(3000);
-                Assert.AreEqual("En construcción", Utils.SearchWebElement("Producto.labelEnservicio").Text);
+                //Assert.AreEqual("En construcción", Utils.SearchWebElement("Producto.labelEnservicio").Text);
                 Thread.Sleep(3000);
                 Utils.SearchWebElement("Oferta.inputFilter").SendKeys(Keys.Control + "a");
                 Utils.SearchWebElement("Oferta.inputFilter").SendKeys(Keys.Delete);

@@ -65,7 +65,7 @@ namespace Lyntia.TestSet
 
             //Paso 4
             productoActions.Editar_añadir_producto();//se pulsa añadir producto en la pestaña general y realizamos unas comprobaciones
-            productoCondition.Resultado_Editar_añadir_producto();//se verifican cambios
+            //productoCondition.Resultado_Editar_añadir_producto();//se verifican cambios
 
             TestContext.WriteLine("LA PRUEBA CRM-APR0001 SE EJECUTÓ CORRECTAMENTE");
         }
@@ -173,7 +173,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la UbiRed Pro
-            productoActions.CreacionProducto("UbiRed Pro", "FTTT", "1 Gbps", "", "", "", "", "");
+            productoActions.CreacionProducto("UbiRed Pro", "FTTT", "1 Gbps", "", "", "4", "", "");
             
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
 
@@ -273,7 +273,7 @@ namespace Lyntia.TestSet
             productoCondition.Resultado_Agregar_servicio_heredado_y_guardar();
 
             //Paso 5
-            productoActions.Cumplimentar_campos_y_guardar();
+            productoActions.Cumplimentar_campos_y_guardar("FTTT");
             productoCondition.Resultado_Cumplimentar_campos_y_guardar();
 
             // Reestablece datos

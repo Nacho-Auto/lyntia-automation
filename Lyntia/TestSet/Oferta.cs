@@ -46,7 +46,7 @@ namespace Lyntia.TestSet
         [TearDown]
         public void Cierre()
         {
-            //driver.Quit();
+            driver.Quit();
 
         }
 
@@ -461,7 +461,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la Oferta
-            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps", "", "", "", "", "");
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps", "", "", "4", "", "");
 
             // Volver al grid
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
@@ -507,7 +507,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la Oferta
-            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps", "", "", "", "", "");
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps", "", "", "4", "", "");
 
             // Volver al grid
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
@@ -567,7 +567,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la Oferta
-            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "10 Mbps", "", "", "", "", "");
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "10 Mbps", "", "", "10", "", "");
 
             // Volver al grid
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
@@ -620,7 +620,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la Oferta
-            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps", "", "", "", "", "");
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "", "", "", "4", "", "");
 
             // Volver al grid
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
@@ -673,7 +673,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la Oferta
-            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps", "", "", "", "", "");
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps", "", "", "4", "", "");
 
             // Volver al grid
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
@@ -874,7 +874,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la Oferta Circuito de Capacidad
-            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps", "", "", "", "", "");
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps", "", "", "10", "", "");
 
             // Paso 3 - Presentar la oferta
             ofertaActions.PresentarOferta();
@@ -949,7 +949,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la UbiRed Pro
-            productoActions.CreacionProducto("UbiRed Pro", "FTTO", "1 Gbps", "", "", "", "", "");
+            productoActions.CreacionProducto("UbiRed Pro", "FTTO", "", "", "", "4", "", "");
 
             // Paso 3 - Presentar la oferta
             ofertaActions.PresentarOferta();
@@ -1060,7 +1060,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la UbiRed Pro
-            productoActions.CreacionProducto("Circuitos de capacidad", "FTTE", "1 Mbps", "", "", "", "", "50");
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTE", "", "", "", "4", "", "");
 
             // Paso 3 - Presentar la oferta
             ofertaActions.PresentarOferta();
@@ -1212,7 +1212,7 @@ namespace Lyntia.TestSet
             // Preparacion de datos de la prueba
             ofertaActions.RellenarCamposOferta("CRM-COF0001-ELIMINAR_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Nuevo servicio", "BizQA");
             ofertaActions.GuardarOferta();
-            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "10 Mbps", "", "", "", "", "");
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "10 Mbps", "", "", "4", "", "");
             ofertaActions.GuardarYCerrarOferta();
 
             // Paso 4 - Buscar en vista la oferta
@@ -1376,8 +1376,8 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Paso 4 - Creamos 2 tipos de productos CC
-            productoActions.CreacionProducto("Circuitos de capacidad", "FTTE", "1 Mbps", "", "", "", "", "10");
-            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "10 Mbps", "", "", "", "", "");
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTE", "", "", "", "4", "", "");
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "", "", "", "4", "", "");
 
             // Paso 5 - Presentamos oferta
             ofertaActions.PresentarOferta();
@@ -1468,8 +1468,8 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Paso 4 - Creamos 2 tipos de productos CC
-            productoActions.CreacionProducto("UbiRed Pro", "FTTT", "", "", "", "", "", "");
-            productoActions.CreacionProducto("UbiRed Pro", "FTTE", "", "", "", "", "", "");
+            productoActions.CreacionProducto("UbiRed Pro", "FTTT", "", "", "", "4", "", "");
+            productoActions.CreacionProducto("UbiRed Pro", "FTTE", "", "", "", "7", "", "");
 
             // Paso 5 - Presentamos oferta
             ofertaActions.PresentarOferta();
@@ -1611,8 +1611,8 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Paso 4 - Creamos 2 tipos de productos CC
-            productoActions.CreacionProducto("Circuitos de capacidad", "FTTE", "1 Mbps", "", "", "", "", "10");
-            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "10 Mbps", "", "", "", "", "");
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTE", "1 Mbps", "", "", "4", "", "3");
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "10 Mbps", "", "", "4", "", "");
 
             // Paso 5 - Presentamos oferta
             ofertaActions.PresentarOferta();
@@ -1715,8 +1715,8 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Paso 4 - Creamos 2 tipos de productos CC
-            productoActions.CreacionProducto("UbiRed Pro", "FTTT", "", "", "", "", "", "");
-            productoActions.CreacionProducto("UbiRed Pro", "FTTT", "", "", "", "", "", "");
+            productoActions.CreacionProducto("UbiRed Pro", "FTTT", "", "", "", "4", "", "");
+            productoActions.CreacionProducto("UbiRed Pro", "FTTT", "", "", "", "4", "", "");
 
             // Paso 5 - Presentamos oferta
             ofertaActions.PresentarOferta();
@@ -1766,8 +1766,8 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Paso 4 - Creamos 2 tipos de productos CC
-            productoActions.CreacionProducto("Rack", "FTTT", "", "", "", "", "3", "");
-            productoActions.CreacionProducto("Rack", "FTTE", "", "", "", "", "2", "");
+            productoActions.CreacionProducto("Rack", "FTTT", "", "", "", "4", "3", "");
+            productoActions.CreacionProducto("Rack", "FTTE", "", "", "", "4", "2", "");
 
             // Paso 5 - Presentamos oferta
             ofertaActions.PresentarOferta();
