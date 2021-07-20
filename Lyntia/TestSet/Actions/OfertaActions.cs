@@ -298,7 +298,7 @@ namespace Lyntia.TestSet.Actions
         {
             try
             {
-                Thread.Sleep(4000);
+                Thread.Sleep(7000);
                 Utils.SearchWebElement("Oferta.inputQuickFindOferta").SendKeys(parametroBusqueda);
                 Utils.SearchWebElement("Oferta.buttonQuickFindOferta").Click();
                 Thread.Sleep(2000);
@@ -338,7 +338,7 @@ namespace Lyntia.TestSet.Actions
             try
             {
                 Utils.SearchWebElement("Oferta.selectOfertaGrid").Click();
-                Thread.Sleep(2000);
+                Thread.Sleep(8000);
                 TestContext.WriteLine("Se selecciona la Oferta del grid.");
             }
             catch (Exception e)
@@ -384,7 +384,10 @@ namespace Lyntia.TestSet.Actions
                 Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.PageDown);
                 Thread.Sleep(2000);
                 Utils.SearchWebElement("Oferta.inputCalendar").Click();//Calendario
+                Thread.Sleep(7000);
+                //driver.FindElement(By.XPath("//button[contains(@aria-label,'julio 31, 2021')]")).Click();
                 Utils.SearchWebElement("Oferta.calendarDateRandomDay").Click();//seleccionamos fecha del calendario
+                Thread.Sleep(2000);
                 Utils.SearchWebElement("Oferta.LabelFechaspestaña").Click();//Pestaña fechas
                 Utils.SearchWebElement("Oferta.ButtonGuardarYcerrar").Click();//Guarda y cierra
                 Thread.Sleep(2000);
@@ -678,7 +681,7 @@ namespace Lyntia.TestSet.Actions
                 // Click en Cerrar Oferta
                 Thread.Sleep(4000);
                 Utils.SearchWebElement("Oferta.buttonCerrar").Click();
-                Thread.Sleep(2000);
+                Thread.Sleep(4000);
 
                 // Cambiar al frame de Cierre de Ofertas
                 driver.SwitchTo().Frame(Utils.SearchWebElement("Oferta.frameCerrarOferta"));
@@ -699,7 +702,7 @@ namespace Lyntia.TestSet.Actions
                 {
                     if (fechaCierre.Equals("dd/mm/aaaa"))
                     {
-                        Utils.SearchWebElement("Oferta.inputFechaCierre").SendKeys("22/01/2021");
+                        Utils.SearchWebElement("Oferta.inputFechaCierre").SendKeys("22/09/2021");
                         Utils.SearchWebElement("Oferta.inputFechaCierre").SendKeys(Keys.Control + "a");
                         Utils.SearchWebElement("Oferta.inputFechaCierre").SendKeys(Keys.Delete);
                         Utils.SearchWebElement("Oferta.inputFechaCierre").SendKeys(fechaCierre);
@@ -1366,15 +1369,15 @@ namespace Lyntia.TestSet.Actions
             Thread.Sleep(2000);
 
             // Contacto
-            Utils.SearchWebElement("Producto.PestañaJiraCONTACTO").Click();
-            Thread.Sleep(1000);
-            Utils.SearchWebElement("Producto.PestañaJiraCONTACTO").SendKeys("Jose Antonio Garcia Mendez");
-            Utils.SearchWebElement("Producto.PestañaJiraCONTACTO").SendKeys(Keys.Control + "a");
-            Utils.SearchWebElement("Producto.PestañaJiraCONTACTO").SendKeys(Keys.Delete);
-            Utils.SearchWebElement("Producto.PestañaJiraCONTACTO").SendKeys("Jose Antonio Garcia Mendez");
-            Thread.Sleep(2000);
-            driver.FindElement(By.XPath("//span[contains(text(), 'Jose Antonio Garcia Mendez')]")).Click();
-            Thread.Sleep(3000);
+            //Utils.SearchWebElement("Producto.PestañaJiraCONTACTO").Click();
+            //Thread.Sleep(1000);
+            //Utils.SearchWebElement("Producto.PestañaJiraCONTACTO").SendKeys("Jose Antonio Garcia Mendez");
+            //Utils.SearchWebElement("Producto.PestañaJiraCONTACTO").SendKeys(Keys.Control + "a");
+            //Utils.SearchWebElement("Producto.PestañaJiraCONTACTO").SendKeys(Keys.Delete);
+            //Utils.SearchWebElement("Producto.PestañaJiraCONTACTO").SendKeys("Jose Antonio Garcia Mendez");
+            //Thread.Sleep(2000);
+            //driver.FindElement(By.XPath("//span[contains(text(), 'Jose Antonio Garcia Mendez')]")).Click();
+            //Thread.Sleep(3000);
 
             //Pestaña Billing (datos obligatorios)
             /// </summary>
@@ -1391,15 +1394,15 @@ namespace Lyntia.TestSet.Actions
             Thread.Sleep(2000);
 
             // Pais
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingPAIS").Click();
-            Thread.Sleep(1000);
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingPAIS").SendKeys("España");
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingPAIS").SendKeys(Keys.Control + "a");
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingPAIS").SendKeys(Keys.Delete);
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingPAIS").SendKeys("España");
-            Thread.Sleep(2000);
-            driver.FindElement(By.XPath("//span[contains(text(), 'España')]")).Click();
-            Thread.Sleep(3000);
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingPAIS").Click();
+            //Thread.Sleep(1000);
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingPAIS").SendKeys("España");
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingPAIS").SendKeys(Keys.Control + "a");
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingPAIS").SendKeys(Keys.Delete);
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingPAIS").SendKeys("España");
+            //Thread.Sleep(2000);
+            //driver.FindElement(By.XPath("//span[contains(text(), 'España')]")).Click();
+            //Thread.Sleep(3000);
 
 
 
@@ -1410,7 +1413,7 @@ namespace Lyntia.TestSet.Actions
         /// <summary>
         /// Método para acceder a servicios contratados
         /// </summary>
-        public void CamposObligatoriosProductoUbiredPRO()
+        public void CamposObligatoriosProductoUbiredPRO(String Contacto)
 
         {
 
@@ -1470,15 +1473,22 @@ namespace Lyntia.TestSet.Actions
             Thread.Sleep(2000);
 
             // Contacto
-            Utils.SearchWebElement("Producto.PestañaJiraCONTACTO").Click();
-            Thread.Sleep(1000);
-            Utils.SearchWebElement("Producto.PestañaJiraCONTACTO").SendKeys("Jose Antonio Garcia Mendez");
-            Utils.SearchWebElement("Producto.PestañaJiraCONTACTO").SendKeys(Keys.Control + "a");
-            Utils.SearchWebElement("Producto.PestañaJiraCONTACTO").SendKeys(Keys.Delete);
-            Utils.SearchWebElement("Producto.PestañaJiraCONTACTO").SendKeys("Jose Antonio Garcia Mendez");
-            Thread.Sleep(2000);
-            driver.FindElement(By.XPath("//span[contains(text(), 'Jose Antonio Garcia Mendez')]")).Click();
-            Thread.Sleep(3000);
+            if (Contacto.Equals("contacto"))
+            {
+                Utils.SearchWebElement("Producto.PestañaJiraCONTACTO").Click();
+                Thread.Sleep(1000);
+                Utils.SearchWebElement("Producto.PestañaJiraCONTACTO").SendKeys("Jose Antonio Garcia Mendez");
+                Utils.SearchWebElement("Producto.PestañaJiraCONTACTO").SendKeys(Keys.Control + "a");
+                Utils.SearchWebElement("Producto.PestañaJiraCONTACTO").SendKeys(Keys.Delete);
+                Utils.SearchWebElement("Producto.PestañaJiraCONTACTO").SendKeys("Jose Antonio Garcia Mendez");
+                Thread.Sleep(2000);
+                driver.FindElement(By.XPath("//span[contains(text(), 'Jose Antonio Garcia Mendez')]")).Click();
+                Thread.Sleep(3000);
+            }
+            else
+            {
+                Thread.Sleep(3000);
+            }
 
             //Pestaña Billing (datos obligatorios)
             /// </summary>
@@ -1528,15 +1538,15 @@ namespace Lyntia.TestSet.Actions
             Thread.Sleep(3000);
 
             //Sociedad facturacion
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingPAIS").Click();
-            Thread.Sleep(1000);
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingPAIS").SendKeys("España");
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingPAIS").SendKeys(Keys.Control + "a");
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingPAIS").SendKeys(Keys.Delete);
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingPAIS").SendKeys("España");
-            Thread.Sleep(2000);
-            driver.FindElement(By.XPath("//span[contains(text(), 'España')]")).Click();
-            Thread.Sleep(3000);
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingPAIS").Click();
+            //Thread.Sleep(1000);
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingPAIS").SendKeys("España");
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingPAIS").SendKeys(Keys.Control + "a");
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingPAIS").SendKeys(Keys.Delete);
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingPAIS").SendKeys("España");
+            //Thread.Sleep(2000);
+            //driver.FindElement(By.XPath("//span[contains(text(), 'España')]")).Click();
+            //Thread.Sleep(3000);
 
             Utils.SearchWebElement("Oferta.saveAndCloseOferta").Click();
             Thread.Sleep(17000);
@@ -1546,7 +1556,7 @@ namespace Lyntia.TestSet.Actions
         /// <summary>
         /// Método para acceder a servicios contratados
         /// </summary>
-        public void CamposObligatoriosProductoRACK()
+        public void CamposObligatoriosProductoRACK(String contacto)
 
         {
 
@@ -1590,16 +1600,23 @@ namespace Lyntia.TestSet.Actions
             Utils.SearchWebElement("Producto.PestañaJiraFECHACOMPROMISO").SendKeys("28/02/2022");
             Thread.Sleep(2000);
 
-            // Contacto
-            Utils.SearchWebElement("Producto.PestañaJiraCONTACTO").Click();
-            Thread.Sleep(1000);
-            Utils.SearchWebElement("Producto.PestañaJiraCONTACTO").SendKeys("Jose Antonio Garcia Mendez");
-            Utils.SearchWebElement("Producto.PestañaJiraCONTACTO").SendKeys(Keys.Control + "a");
-            Utils.SearchWebElement("Producto.PestañaJiraCONTACTO").SendKeys(Keys.Delete);
-            Utils.SearchWebElement("Producto.PestañaJiraCONTACTO").SendKeys("Jose Antonio Garcia Mendez");
-            Thread.Sleep(2000);
-            driver.FindElement(By.XPath("//span[contains(text(), 'Jose Antonio Garcia Mendez')]")).Click();
-            Thread.Sleep(3000);
+            // Contacto 
+            if (contacto.Equals("contacto"))
+            {
+                Utils.SearchWebElement("Producto.PestañaJiraCONTACTO").Click();
+                Thread.Sleep(1000);
+                Utils.SearchWebElement("Producto.PestañaJiraCONTACTO").SendKeys("Jose Antonio Garcia Mendez");
+                Utils.SearchWebElement("Producto.PestañaJiraCONTACTO").SendKeys(Keys.Control + "a");
+                Utils.SearchWebElement("Producto.PestañaJiraCONTACTO").SendKeys(Keys.Delete);
+                Utils.SearchWebElement("Producto.PestañaJiraCONTACTO").SendKeys("Jose Antonio Garcia Mendez");
+                Thread.Sleep(2000);
+                driver.FindElement(By.XPath("//span[contains(text(), 'Jose Antonio Garcia Mendez')]")).Click();
+                Thread.Sleep(3000);
+            }
+            else
+            {
+                Thread.Sleep(3000);
+            }
 
             //Pestaña Billing (datos obligatorios)
             /// </summary>

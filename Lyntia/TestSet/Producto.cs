@@ -140,8 +140,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la UbiRed Pro
-            productoActions.CreacionProducto("Fibra oscura", "Backbone y OTT", "m. x2 fibras", "22", "IRU", "1000", "", "");
-            
+            productoActions.creacionproductofibraoscuraIRU("Fibra oscura", "FTTT", "IRU", "20","3");     
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
 
             ofertaActions.BuscarOfertaEnVista("CRM-APR0004-ADD-PROD_" + Utils.GetRandomString());
@@ -302,7 +301,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la Oferta Circuito de Capacidad
-            productoActions.HeredarProducto("  CC 100 Mbps 22 - 22", "2000", "2", "1000", "", "");
+            productoActions.HeredarProducto("  CC 100 Mbps 22 - 22", "20", "2", "4", "", "", "");
             
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
 
@@ -335,7 +334,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la Oferta Circuito de Capacidad
-            productoActions.HeredarProducto("  CC 100 Mbps 22 - 22", "2000", "2", "1000", "", "");
+            productoActions.HeredarProducto("  CC 100 Mbps 22 - 22", "20", "2", "50", "", "","");
             
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
 
@@ -368,7 +367,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la Oferta Circuito de Capacidad
-            productoActions.HeredarProducto("  CC 100 Mbps 22 - 22", "2000", "2", "1000", "", "");
+            productoActions.HeredarProducto("  CC 100 Mbps 22 - 22", "2000", "2", "1000", "", "","");
             
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
 
@@ -401,7 +400,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la Oferta FO
-            productoActions.HeredarProducto("  FO m - m", "", "2", "", "1000", "2000");
+            productoActions.HeredarProducto("  FO m - m", "", "2", "", "1000", "2000","m. x2 fibras");
             
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
 
@@ -434,7 +433,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la Oferta FO
-            productoActions.HeredarProducto("  FO m - m", "", "2", "", "1000", "2000");
+            productoActions.HeredarProducto("  FO m - m", "", "2", "", "1000", "", "");
             
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
 
@@ -467,7 +466,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la Oferta FO
-            productoActions.HeredarProducto("  FO m - m", "", "2", "", "1000", "2000");
+            productoActions.HeredarProducto("  FO m - m", "", "2", "", "1000", "2000","");
             
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
 
@@ -500,7 +499,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la Oferta FO
-            productoActions.HeredarProducto("  FO m - m", "", "2", "", "1000", "2000");
+            productoActions.HeredarProducto("  FO m - m", "", "2", "", "1000", "2000", "");
             
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
 
@@ -533,7 +532,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // TODO: Añadir Producto a la Oferta UbuRed Pro
-            productoActions.HeredarProducto("  UP 500 Mbps ddd", "3000", "12", "200", "", "");
+            productoActions.HeredarProducto("  UP 500 Mbps ddd", "4", "12", "200", "", "","");
             
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
 
@@ -566,7 +565,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // TODO: Añadir Producto a la Oferta UbuRed Pro
-            productoActions.HeredarProducto("  UP 500 Mbps ddd", "3000", "12", "200", "", "");
+            productoActions.HeredarProducto("  UP 500 Mbps ddd", "4", "12", "200", "", "","");
 
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
 
@@ -599,7 +598,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // TODO: Añadir Producto a la Oferta UbuRed Pro
-            productoActions.HeredarProducto("  UP 500 Mbps ddd", "3000", "12", "200", "", "");
+            productoActions.HeredarProducto("  UP 500 Mbps ddd", "3", "12", "200", "", "","");
 
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
 
@@ -632,7 +631,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // TODO: Añadir Producto a la Oferta UbuRed Pro
-            productoActions.HeredarProducto("  UP 500 Mbps ddd", "3000", "12", "200", "", "");
+            productoActions.HeredarProducto("  UP 500 Mbps ddd", "3", "12", "200", "", "","");
 
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
 
