@@ -620,7 +620,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la Oferta
-            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "", "", "", "4", "", "");
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "10 Mbps", "", "", "4", "", "");
 
             // Volver al grid
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
@@ -912,7 +912,7 @@ namespace Lyntia.TestSet
 
             // Añadir Producto a la Oferta Fibra Oscura
             // Maximo NRC -> 922337203685477,00 €
-            productoActions.CreacionProducto("Fibra oscura", "Backbone y OTT", "m. x2 fibras", "22", "IRU", "1000", "", "");
+            productoActions.creacionproductofibraoscuraIRU("Fibra oscura", "Backbone y OTT","IRU", "4", "3");
 
             // Paso 3 - Presentar la oferta
             ofertaActions.PresentarOferta();
@@ -1060,7 +1060,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la UbiRed Pro
-            productoActions.CreacionProducto("Circuitos de capacidad", "FTTE", "", "", "", "4", "", "");
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTE", "1 Gbps", "", "", "4", "", "");
 
             // Paso 3 - Presentar la oferta
             ofertaActions.PresentarOferta();
@@ -1376,8 +1376,8 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Paso 4 - Creamos 2 tipos de productos CC
-            productoActions.CreacionProducto("Circuitos de capacidad", "FTTE", "", "", "", "4", "", "");
-            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "", "", "", "4", "", "");
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTE", "10 Mbps", "", "", "4", "", "");
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "10 Mbps", "", "", "4", "", "");
 
             // Paso 5 - Presentamos oferta
             ofertaActions.PresentarOferta();
@@ -1422,7 +1422,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Paso 4 - Creamos 2 tipos de productos CC
-            productoActions.CreacionProducto("Fibra oscura", "FTTE", "10", "4", "IRU", "4", "", "");
+            productoActions.creacionproductofibraoscuraIRU("Fibra oscura", "FTTE","IRU","20", "4");
             productoActions.CreacionProducto("Fibra oscura", "FTTT", "20", "2", "Lease", "2", "", "");
 
             // Paso 5 - Presentamos oferta
@@ -1663,7 +1663,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Paso 4 - Creamos 2 tipos de productos CC
-            productoActions.CreacionProducto("Fibra oscura", "FTTE", "10", "4", "IRU", "4", "", "");
+            productoActions.CreacionProducto("Fibra oscura", "FTTE", "10", "4", "Lease", "4", "", "");
             productoActions.CreacionProducto("Fibra oscura", "FTTT", "20", "2", "Lease", "2", "", "");
 
             // Paso 5 - Presentamos oferta
@@ -1679,7 +1679,7 @@ namespace Lyntia.TestSet
 
             // Paso 8 - Seleccion del primer registro de los 2 productos y cumplimentar datos obligatorios
             ofertaActions.Acceder_line1();
-            ofertaActions.CamposObligatoriosProductoFIBRA("IRU");
+            ofertaActions.CamposObligatoriosProductoFIBRA("");
 
             // Paso 9 - Seleccion del segundo registro de los 2 productos y cumplimentar datos obligatorios
             ofertaActions.Acceder_line2();
@@ -1715,8 +1715,8 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Paso 4 - Creamos 2 tipos de productos CC
-            productoActions.CreacionProducto("UbiRed Pro", "FTTT", "", "", "", "4", "", "");
-            productoActions.CreacionProducto("UbiRed Pro", "FTTT", "", "", "", "4", "", "");
+            productoActions.CreacionProducto("UbiRed Pro", "FTTT", "", "", "", "4", "", "10");
+            productoActions.CreacionProducto("UbiRed Pro", "FTTT", "", "", "", "4", "", "7");
 
             // Paso 5 - Presentamos oferta
             ofertaActions.PresentarOferta();
@@ -1731,11 +1731,11 @@ namespace Lyntia.TestSet
 
             // Paso 8 - Seleccion del primer registro de los 2 productos y cumplimentar datos obligatorios
             ofertaActions.Acceder_line1();
-            ofertaActions.CamposObligatoriosProductoUbiredPRO();
+            ofertaActions.CamposObligatoriosProductoUbiredPRO("");
 
             // Paso 9 - Seleccion del segundo registro de los 2 productos y cumplimentar datos obligatorios
             ofertaActions.Acceder_line2();
-            ofertaActions.CamposObligatoriosProductoUbiredPRO();
+            ofertaActions.CamposObligatoriosProductoUbiredPRO("");
 
             // Paso 10 - Enviar a Jira
             ofertaActions.Enviar_A_Jira();
@@ -1766,8 +1766,8 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Paso 4 - Creamos 2 tipos de productos CC
-            productoActions.CreacionProducto("Rack", "FTTT", "", "", "", "4", "3", "");
-            productoActions.CreacionProducto("Rack", "FTTE", "", "", "", "4", "2", "");
+            productoActions.CreacionProducto("Rack", "FTTT", "", "", "", "", "3", "");
+            productoActions.CreacionProducto("Rack", "FTTE", "", "", "", "", "2", "");
 
             // Paso 5 - Presentamos oferta
             ofertaActions.PresentarOferta();
@@ -1782,11 +1782,11 @@ namespace Lyntia.TestSet
 
             // Paso 8 - Seleccion del primer registro de los 2 productos y cumplimentar datos obligatorios
             ofertaActions.Acceder_line1();
-            ofertaActions.CamposObligatoriosProductoRACK();
+            ofertaActions.CamposObligatoriosProductoRACK("");
 
             // Paso 9 - Seleccion del segundo registro de los 2 productos y cumplimentar datos obligatorios
             ofertaActions.Acceder_line2();
-            ofertaActions.CamposObligatoriosProductoRACK();
+            ofertaActions.CamposObligatoriosProductoRACK("");
 
             // Paso 10 - Enviar a Jira
             ofertaActions.Enviar_A_Jira();
