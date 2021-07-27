@@ -5,6 +5,9 @@ using NUnit.Allure.Core;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using Lyntia.TestSet.Actions;
+using System;
+using System.Threading;
+using OpenQA.Selenium.Support.UI;
 
 namespace Lyntia.TestSet
 {
@@ -24,6 +27,7 @@ namespace Lyntia.TestSet
         private static ProductoConditions productoConditions;
         private static CommonActions commonActions;
         private static CommonConditions commonCondition;
+        private static WebDriverWait wait;
 
         [SetUp]
         public void Instanciador()
@@ -1798,6 +1802,134 @@ namespace Lyntia.TestSet
            
         }
 
+        [Test(Description = "CRM-BILLING001 - Generar/Facturas")]
+        public void CRM_BILLING001_Generar_Facturas()
+        {
+            // Login y Acceso a Gestión de Cliente
+            commonActions.AccesoGestionCliente();//Acceso al modulo de Gestion de Cliente(Apliaciones)
+            commonCondition.AccedeGestionCliente();//Acceso correcto
+
+            // Paso 1 - Hacer click en Ofertas
+            commonActions.AccesoOferta();//Oferta menu
+            commonCondition.AccedeOferta();//comprobamos el acceso
+
+            // Nueva Oferta
+            ofertaActions.AccesoNuevaOferta();
+            ofertaCondition.CreaOferta();
+
+            //Preparacion de datos de la prueba
+            string nombreServicio = "CRM-BILLING001_TestPrueba" + DateTime.Now;
+            ofertaActions.RellenarCamposOferta(nombreServicio, "CLIENTE INTEGRACION", "Nuevo servicio", "");
+            ofertaActions.GuardarOferta();
+
+            // Creamos 2 tipos de productos CC            
+            productoActions.CreacionProducto("Fibra oscura", "FTTT", "20", "2", "Lease", "2", "", "");
+
+            // Presentamos oferta
+            ofertaActions.PresentarOferta("01/01/2021");
+
+            // Adjudicamos oferta
+            ofertaActions.Adjudicar_Oferta();
+            ofertaCondition.ResAdjudicarOferta();
+
+            // Creamos el pedido
+            ofertaActions.VentanaCrearPedidofechaposterior();
+            ofertaCondition.ResultadResVentanaCrearPedidofechaposterior();
+
+            // Seleccion del primer registro de los 2 productos y cumplimentar datos obligatorios
+            Utils.SearchWebElement("Oferta.inputUTPRx").Clear();
+            Utils.SearchWebElement("Oferta.inputUTPRx").SendKeys("20");
+            Utils.SearchWebElement("Oferta.inputCodigoTarea").Clear();
+            Utils.SearchWebElement("Oferta.inputCodigoTarea").SendKeys("19");
+            ofertaActions.Acceder_line1();
+            ofertaActions.CamposObligatoriosProductoFIBRABilling("", "01/01/2021", "Mensual");
+
+            //flujo nuevo
+            Thread.Sleep(2000);
+            Utils.SearchWebElement("Producto.PestañaRelacionados").Click();
+            Utils.driver.FindElement(By.XPath("//div[@aria-label = 'Configuraciones de facturación Relacionados - Billing']")).Click();
+            Thread.Sleep(2000);
+
+            //Paso 4
+            Utils.SearchWebElement("Producto.SelectColumn2").Click();  
+            string texto = Utils.SearchWebElement("Producto.ConfiguracionFacturacion.Cabecera.inputRazonEstado").Text;
+            Thread.Sleep(2000);
+            Assert.AreEqual("Borrador", Utils.SearchWebElement("Producto.ConfiguracionFacturacion.Cabecera.inputRazonEstado").Text);
+            Utils.SearchWebElement("Producto.ConfiguracionFacturacion.PestañaDetallesDeLineas").Click();
+
+            //Paso 5
+            Thread.Sleep(2000);                            
+            driver.FindElement(By.XPath("//div[contains(@data-id, 'cell-0-2')]")).Click();
+            string tantoXCien1 = Utils.SearchWebElement("Producto.ConfiguracionFacturacion.inputTantoXCien").GetAttribute("value");
+            Thread.Sleep(3000);
+            
+            Utils.SearchWebElement("Producto.ConfiguracionFacturacion.inputTantoXCien").Click();            
+            Utils.SearchWebElement("Producto.ConfiguracionFacturacion.inputTantoXCien").SendKeys(Keys.Delete);
+            Utils.SearchWebElement("Producto.ConfiguracionFacturacion.inputTantoXCien").SendKeys("30");
+            Utils.SearchWebElement("BarraHerramientas.buttonGuardaryCerrar").Click();
+            
+            //Paso 6 - Validar Oferta
+            Utils.SearchWebElement("Oferta.validar").Click();
+            Assert.AreEqual("El porcentaje del importe total correspondiente a las líneas normales es distinto de 100.00", Utils.SearchWebElement("Producto.alerta").Text);
+            Utils.SearchWebElement("Producto.botonOk").Click();
+
+            //Paso 7 - Modificar lineas para que la suma vuelva a dar 100
+            driver.FindElement(By.XPath("//div[contains(@data-id, 'cell-1-2')]")).Click();
+            Thread.Sleep(2000);
+            string tantoXCien2 = Utils.SearchWebElement("Producto.ConfiguracionFacturacion.inputTantoXCien").GetAttribute("value");
+            Utils.SearchWebElement("BarraHerramientas.buttonGuardaryCerrar").Click();
+
+            Thread.Sleep(3000);
+            driver.FindElement(By.XPath("//div[contains(@data-id, 'cell-0-2')]")).Click();
+            Thread.Sleep(3000);
+            Utils.SearchWebElement("Producto.ConfiguracionFacturacion.inputTantoXCien").Click();            
+            Utils.SearchWebElement("Producto.ConfiguracionFacturacion.inputTantoXCien").SendKeys(Keys.Control + "a");
+            Utils.SearchWebElement("Producto.ConfiguracionFacturacion.inputTantoXCien").SendKeys(Keys.Delete);
+            Utils.SearchWebElement("Producto.ConfiguracionFacturacion.inputTantoXCien").SendKeys(tantoXCien1);
+            Utils.SearchWebElement("BarraHerramientas.buttonGuardaryCerrar").Click();
+            Assert.AreEqual("100", (Double.Parse(tantoXCien1) + Double.Parse(tantoXCien2)).ToString());
+            
+
+            //Paso 8 - Validar Oferta
+            Utils.SearchWebElement("Oferta.validar").Click();
+            Assert.IsTrue(Utils.driver.FindElement(By.XPath("//button[@aria-label='Comprobar acceso']")).Displayed);            
+
+            //Paso 9 - Comprobar estado Configuración facturacion Validado
+            Utils.SearchWebElement("Producto.ConfiguracionFacturacion.PestañaCabecera").Click();
+            Thread.Sleep(3000);
+            Assert.AreEqual("Validado", Utils.SearchWebElement("Producto.ConfiguracionFacturacion.Cabecera.inputRazonEstado").Text);
+
+            //Paso 10 - Acceder a Modulo Billing
+            Utils.SearchWebElement("Modulo.gestionCliente").Click();
+            driver.SwitchTo().Frame("AppLandingPage");
+            Utils.SearchWebElement("Modulo.billing").Click();
+            driver.SwitchTo().DefaultContent();
+
+            //Paso 11 - Crear nuevo Generador de Facturacion
+            Utils.SearchWebElement("Producto.GeneradorFacturacion").Click();
+            Utils.SearchWebElement("BarraHerramientas.buttonNuevo").Click();
+            ofertaActions.rellenarCamposNuevoGeneradorFacturacion("CLIENTE INTEGRACION", nombreServicio);
+
+            //Paso 12 - Generar Facturas
+            Thread.Sleep(3000);            
+            Utils.SearchWebElement("BarraHerramientas.GenerarFacturas").Click();
+            commonActions.checkAlert();
+            Utils.SearchWebElement("BarraHerramientas.GenerarFacturas").Click();
+            commonActions.checkAlert();
+            commonActions.checkAlert();
+            Utils.SearchWebElement("BarraHerramientas.buttonGuardaryCerrar").Click();
+
+            //Comprobar estado generador de facturacion completado 
+            Thread.Sleep(10000);            
+            Assert.AreEqual("Completado",driver.FindElement(By.XPath("//div[contains(@data-id, 'cell-0-8')]")));
+
+            Utils.SearchWebElement("Facturas").Click();
+
+            driver.FindElement(By.XPath("//div[contains(@data-id, 'cell-0-2')]")).Click();
+            Utils.SearchWebElement("BarraHerramientas.buttonMarcarRevisada").Click();
+            Assert.IsTrue(Utils.SearchWebElement("BarraHerramientas.buttonEnviarNav").Displayed);
+            Utils.SearchWebElement("BarraHerramientas.buttonEnviarNav").Click();
+        }
     }
 }
 

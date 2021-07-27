@@ -47,8 +47,8 @@ namespace Lyntia.TestSet.Actions
                 Thread.Sleep(3000);
                 Utils.SearchWebElement("Producto.inputProductoExistente").SendKeys(productoExistente);
 
-                Thread.Sleep(7000);
-
+                
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//span[contains(text(), '" + productoExistente + "')]")));
                 driver.FindElement(By.XPath("//span[contains(text(), '" + productoExistente + "')]")).Click();
                 Thread.Sleep(6000);
 

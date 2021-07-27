@@ -523,9 +523,31 @@ namespace Lyntia.TestSet.Conditions
             try
             {
                 Assert.AreEqual("Crear pedido", Utils.SearchWebElement("Oferta.labelCrearpedido").Text);
+
                 TestContext.WriteLine("***Se cumple la condicion de oferta adjudicada correctamente");
             }
             catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "ResAdjudicarOferta.png", ("*** No Se cumple la condicion de oferta adjudicada correctamente"));
+                throw e;
+            }
+        }
+
+        public void ResAdjudicarOferta(string fechaAdjudicacion)
+        {
+            try
+            {
+                Assert.AreEqual("Crear pedido", Utils.SearchWebElement("Oferta.labelCrearpedido").Text);
+
+                Utils.SearchWebElement("Oferta.fechaLogro").Click();
+                Utils.SearchWebElement("Oferta.fechaLogro").Click();
+                Utils.SearchWebElement("Oferta.fechaLogro").SendKeys(Keys.Control + "a");
+                Utils.SearchWebElement("Oferta.fechaLogro").SendKeys(Keys.Delete);
+                Utils.SearchWebElement("Oferta.fechaLogro").SendKeys(fechaAdjudicacion);
+
+                TestContext.WriteLine("***Se cumple la condicion de oferta adjudicada correctamente");
+            }
+            catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "ResAdjudicarOferta.png", ("*** No Se cumple la condicion de oferta adjudicada correctamente"));
                 throw e;

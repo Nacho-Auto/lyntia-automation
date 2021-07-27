@@ -66,7 +66,7 @@ namespace Lyntia.Utilities
                 chromeOptions.AddArguments("headless");
                 chromeOptions.AddArguments("window-size=1920x1080");
 
-                driver = new ChromeDriver(chromeOptions);//chromeOptions
+                driver = new ChromeDriver();//chromeOptions
 
                 objRep = ObjectRepositoryUtils.Instance;
                 objRep.TestDataReader("ObjectRepository.csv");
@@ -149,10 +149,43 @@ namespace Lyntia.Utilities
             }  
         }
 
+        public static By getByElement(String identificador)
+        {
+            try
+            {
+                return (objRep.TypeObjectID(identificador)) switch
+                {
+                    "XPATH" => By.XPath(objRep.ObjectID(identificador)),
+                    "ID" => By.Id(objRep.ObjectID(identificador)),
+                    _ => null,
+                };
+            }
+            catch (NoSuchElementException e)
+            {
+                Console.WriteLine("No se pudo interactuar con el elemento " + identificador + " de tipo " + objRep.TypeObjectID(identificador));
+                Console.WriteLine("Excepción : " + e);
+
+                return null;
+            }
+        }
+
         public static String GetIdentifier(String identificador)
         {
             String ident = objRep.ObjectID(identificador);
             return ident;
+        }
+
+        public static string generarFecha(string fechaEfecto, int sumaDias)
+        {
+            var parseDate = DateTime.Parse(fechaEfecto);
+            DateTime fechaEfectoModificada = parseDate.AddDays(sumaDias);
+            return fechaEfectoModificada.ToString("d");
+        }
+
+        public static string getFechaActual()
+        {
+            DateTime hoy = DateTime.Now;
+            return hoy.ToString("dd/MM/yyyy");
         }
     }
 }
