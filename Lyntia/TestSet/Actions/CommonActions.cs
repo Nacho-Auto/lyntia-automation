@@ -100,5 +100,14 @@ namespace Lyntia.TestSet.Actions
             TestContext.WriteLine("-------------------- - ");
             TestContext.WriteLine("Excepción: " + e);
         }
+        public void checkAlert()
+        {
+            IAlert alert = ExpectedConditions.AlertIsPresent().Invoke(driver);
+            if (alert != null)
+            {
+                driver.SwitchTo().Alert().Accept();                                
+
+            }
+        }
     }
 }
