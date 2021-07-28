@@ -1879,9 +1879,9 @@ namespace Lyntia.TestSet
             string tantoXCien2 = Utils.SearchWebElement("Producto.ConfiguracionFacturacion.inputTantoXCien").GetAttribute("value");
             Utils.SearchWebElement("BarraHerramientas.buttonGuardaryCerrar").Click();
 
-            Thread.Sleep(3000);
+            Thread.Sleep(4000);
             driver.FindElement(By.XPath("//div[contains(@data-id, 'cell-0-2')]")).Click();
-            Thread.Sleep(3000);
+            Thread.Sleep(4000);
             Utils.SearchWebElement("Producto.ConfiguracionFacturacion.inputTantoXCien").Click();            
             Utils.SearchWebElement("Producto.ConfiguracionFacturacion.inputTantoXCien").SendKeys(Keys.Control + "a");
             Utils.SearchWebElement("Producto.ConfiguracionFacturacion.inputTantoXCien").SendKeys(Keys.Delete);
@@ -1889,7 +1889,6 @@ namespace Lyntia.TestSet
             Utils.SearchWebElement("BarraHerramientas.buttonGuardaryCerrar").Click();
             Assert.AreEqual("100", (Double.Parse(tantoXCien1) + Double.Parse(tantoXCien2)).ToString());
             
-
             //Paso 8 - Validar Oferta
             Utils.SearchWebElement("Oferta.validar").Click();
             Assert.IsTrue(Utils.driver.FindElement(By.XPath("//button[@aria-label='Comprobar acceso']")).Displayed);            
@@ -1917,6 +1916,8 @@ namespace Lyntia.TestSet
             Utils.SearchWebElement("BarraHerramientas.GenerarFacturas").Click();
             commonActions.checkAlert();
             commonActions.checkAlert();
+            Thread.Sleep(6000);
+            Utils.SearchWebElement("Producto.botonOk").Click();
             Utils.SearchWebElement("BarraHerramientas.buttonGuardaryCerrar").Click();
 
             //Comprobar estado generador de facturacion completado 

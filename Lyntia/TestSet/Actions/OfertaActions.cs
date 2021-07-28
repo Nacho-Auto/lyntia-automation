@@ -184,6 +184,7 @@ namespace Lyntia.TestSet.Actions
                     Thread.Sleep(3000);
 
                     Utils.SearchWebElement("Oferta.inputCustomerId").Click();                                       
+                    Utils.SearchWebElement("Oferta.inputCustomerId").SendKeys(cliente);                                                           
                     driver.FindElement(By.XPath("//div[@aria-label = 'General']")).SendKeys(Keys.PageUp);
                     wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//span[contains(text(), '" + cliente + "')]")));                    
                     
@@ -1608,7 +1609,11 @@ namespace Lyntia.TestSet.Actions
             Thread.Sleep(3000);
 
             // Capex fibra y equipo
+            Utils.SearchWebElement("Producto.PestañaJiraKAPEXFIBRA").Click();
+            Utils.SearchWebElement("Producto.PestañaJiraKAPEXFIBRA").SendKeys(Keys.Control + "a");
+            Utils.SearchWebElement("Producto.PestañaJiraKAPEXFIBRA").SendKeys(Keys.Delete);
             Utils.SearchWebElement("Producto.PestañaJiraKAPEXFIBRA").SendKeys("456");
+            Utils.SearchWebElement("Producto.PestañaJiraKAPEXFIBRA").SendKeys(Keys.Enter);
             Thread.Sleep(3000);
 
 

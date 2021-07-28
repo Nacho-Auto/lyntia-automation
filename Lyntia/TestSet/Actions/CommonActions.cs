@@ -105,8 +105,7 @@ namespace Lyntia.TestSet.Actions
             IAlert alert = ExpectedConditions.AlertIsPresent().Invoke(driver);
             if (alert != null)
             {
-                driver.SwitchTo().Alert().Accept();                
-                driver.SwitchTo().DefaultContent();
+                driver.SwitchTo().Alert().Accept();                                
 
             }
         }
