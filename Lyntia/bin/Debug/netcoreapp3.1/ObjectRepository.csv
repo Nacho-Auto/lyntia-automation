@@ -105,7 +105,7 @@ Oferta.fechaLogro;XPATH;//input[contains(@aria-label,"logró")]
 
 ############################# PRODUCTO ############################
 Producto.firstInput;ID;submit
-Producto.GuardarYCerrar_producto;XPATH;//button[@data-id='quickCreateSaveAndCloseBtn_3']
+Producto.GuardarYCerrar_producto;XPATH;//button[@data-id='quickCreateSaveAndCloseBtn']
 Producto.inputNRC;XPATH;//input[@aria-label='NRC (IRU)']
 Producto.inputDuracionContrato;XPATH;//input[contains(@aria-label, 'Duración del contrato (meses)')]
 Producto.inputPrecioMensual2;XPATH;//input[contains(@aria-label, 'Precio Mensual')]
