@@ -1630,11 +1630,19 @@ namespace Lyntia.TestSet.Actions
             Utils.SearchWebElement("Producto.PestañaContratosYbilling").Click();
             Thread.Sleep(2000);
 
+            //Actualizacion precio
+            Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").Click();
+            Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").SendKeys("No Aplica");
+            wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//span[contains(., 'No Aplica')]")));
+            driver.FindElement(By.XPath("//span[contains(., 'No Aplica')]")).Click();
+
             // UTPRX
+            Utils.SearchWebElement("Producto.PestañaContratosYbillingUTPRX").Click();
             Utils.SearchWebElement("Producto.PestañaContratosYbillingUTPRX").SendKeys("45");
-            driver.FindElement(By.XPath("//button[contains(@aria-label, 'Tipo de periodicidad')]")).Click() ;
+
+            // Seleccionar tipo periodicidad
+            driver.FindElement(By.XPath("//button[contains(@aria-label, 'Tipo de periodicidad')]")).Click();
             wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//span[contains(., '" + tipoPeriodicidad + "')]")));
-            // Seleccionar cliente del desplegable
             driver.FindElement(By.XPath("//span[contains(., '" + tipoPeriodicidad + "')]")).Click();
             Thread.Sleep(2000);
 
