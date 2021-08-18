@@ -183,10 +183,12 @@ namespace Lyntia.TestSet.Actions
                     accionesSelenium.Build().Perform();
                     Thread.Sleep(3000);
 
-                    Utils.SearchWebElement("Oferta.inputCustomerId").Click();
-                    Thread.Sleep(1000);
-                    Utils.SearchWebElement("Oferta.inputCustomerId").SendKeys(cliente);
-                    Thread.Sleep(1000);
+                    Utils.SearchWebElement("Oferta.inputCustomerId").Click();                                       
+                    Utils.SearchWebElement("Oferta.inputCustomerId").SendKeys(cliente);                                                           
+                    driver.FindElement(By.XPath("//div[@aria-label = 'General']")).SendKeys(Keys.PageUp);
+                    wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//span[contains(text(), '" + cliente + "')]")));                    
+                    
+                    
                     // Seleccionar cliente del desplegable
                     driver.FindElement(By.XPath("//span[contains(text(), '" + cliente + "')]")).Click();
                     Thread.Sleep(2000);
@@ -894,6 +896,25 @@ namespace Lyntia.TestSet.Actions
             }
         }
 
+        public void PresentarOferta(string fechaPresentacion)
+        {
+            try
+            {
+                Utils.SearchWebElement("Oferta.fechaPresentacion").Click();
+                Utils.SearchWebElement("Oferta.fechaPresentacion").Click();                
+                Utils.SearchWebElement("Oferta.fechaPresentacion").SendKeys(fechaPresentacion);
+                
+
+                Utils.SearchWebElement("Oferta.buttonPresentOferta").Click();
+                TestContext.WriteLine("Se accede a la ventana de Presentar Oferta.");
+            }
+            catch (Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "PresentarOferta.png", "No se accede a la ventana de Presentar Oferta.");
+                throw e;
+            }
+        }
+
         /// <summary>
         /// Método para buscar por un filtro de búsqueda
         /// </summary>
@@ -1410,6 +1431,237 @@ namespace Lyntia.TestSet.Actions
             Thread.Sleep(17000);
         }
 
+        public void CamposObligatoriosProductoFIBRABilling(String opcionModalidad)
+        {
+
+            // General
+
+            Thread.Sleep(2000);
+            Utils.SearchWebElement("Producto.PestañaContratosYbillingNOMBREANEXO").SendKeys("prueba anexo tipo fibra");
+            Thread.Sleep(2000);
+
+            // Seleccion IRU/LEASE
+            if (opcionModalidad.Equals("IRU"))
+            {
+                // Seleccion de IRU
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath(Utils.GetIdentifier("Producto.PestañanaGeneralIRU"))));
+                Thread.Sleep(3000);
+                Utils.SearchWebElement("Producto.PestañanaGeneralIRU").Click();
+                Thread.Sleep(1000);
+                Utils.SearchWebElement("Producto.PestañanaGeneralIRU").SendKeys("BRODYNT");
+                Utils.SearchWebElement("Producto.PestañanaGeneralIRU").SendKeys(Keys.Control + "a");
+                Utils.SearchWebElement("Producto.PestañanaGeneralIRU").SendKeys(Keys.Delete);
+                Utils.SearchWebElement("Producto.PestañanaGeneralIRU").SendKeys("Normal");
+                Thread.Sleep(2000);
+
+                driver.FindElement(By.XPath("//span[contains(text(), 'Normal')]")).Click();
+                Thread.Sleep(3000);
+            }
+            else
+            {
+                Utils.SearchWebElement("Producto.PestañaCaracteristicas");
+            }
+
+            /// <summary>
+            /// Método para cumplimentar datos obligatorios
+            /// </summary>
+
+            ////Pestaña Caracteristicas (datos obligatorios)
+
+            Utils.SearchWebElement("Producto.PestañaCaracteristicas").Click();
+            Thread.Sleep(2000);
+
+            // Seleccion de Red
+            Utils.SearchWebElement("Producto.PestañaCaracteristicasRED").Click();//swich para ON/OFF red
+            Thread.Sleep(2000);
+
+
+            // Seleccion de Ambito
+            SelectElement drop = new SelectElement(Utils.SearchWebElement("Producto.PestañaCaracteristicasAMBITO"));
+            drop.SelectByText("Urbano");
+            Thread.Sleep(2000);
+
+            //Pestaña Direcciones y Coordenadas (datos obligatorios)
+            /// </summary>
+            /// Sitio origen, destino, Direccion origen, destino
+            Utils.SearchWebElement("Producto.PestañaDireccionesYcoordenadas").Click();
+            Thread.Sleep(2000);
+
+            Utils.SearchWebElement("Producto.PestañaDireccionesYcoordenadasSITIORIGEN").SendKeys("Madrid");
+            Utils.SearchWebElement("Producto.PestañaDireccionesYcoordenadasSITIODESTINO").SendKeys("Madrid");
+            Utils.SearchWebElement("Producto.PestañaDireccionesYcoordenadasDIRECCIONORIGEN").SendKeys("Galicia");
+            Utils.SearchWebElement("Producto.PestañaDireccionesYcoordenadasDIRECCIONDESTINO").SendKeys("Galicia");
+            Thread.Sleep(2000);
+
+
+            //Pestaña Jira (datos obligatorios)
+            /// </summary>
+            /// Capex fibra, equipo, contacto, fecha compromiso y detalle
+            Utils.SearchWebElement("Producto.PestañaJira").Click();
+            Thread.Sleep(3000);
+
+            // Capex fibra y equipo
+            Utils.SearchWebElement("Producto.PestañaJiraKAPEXFIBRA").SendKeys("456");
+            Thread.Sleep(3000);
+
+
+            // Detalle de servicio y fecha de compromiso
+            Utils.SearchWebElement("Producto.PestañaJiraDETALLESERVICIO").SendKeys("Pruebas");
+            Thread.Sleep(2000);
+            Utils.SearchWebElement("Producto.PestañaJiraFECHACOMPROMISO").SendKeys("28/02/2022");
+            Thread.Sleep(2000);
+
+
+            //Pestaña Billing (datos obligatorios)
+            /// </summary>
+            /// Contrato marco, Actualizacion precio, periodicidad, UTPRX, codigo tarea, sociedad de facturacion, limite ipc
+            Utils.SearchWebElement("Producto.PestañaContratosYbilling").Click();
+            Thread.Sleep(2000);
+
+            // UTPRX
+            Utils.SearchWebElement("Producto.PestañaContratosYbillingUTPRX").SendKeys("45");
+            Thread.Sleep(2000);
+
+            // Tarea
+            Utils.SearchWebElement("Producto.PestañaContratosYbillingTAREA").SendKeys("3");
+            Thread.Sleep(2000);
+
+            //Pestaña Fechas
+            Utils.SearchWebElement("Producto.PestañaFechas").Click();
+            Thread.Sleep(2000);
+            Utils.SearchWebElement("Producto.PestañaFechas.inputFechaInicioFacturacion").SendKeys(Utils.getFechaActual());
+            Utils.SearchWebElement("Producto.PestañaFechas.inputFechaInicioFacturacion").SendKeys(Keys.Enter);
+            //Alert
+            Utils.SearchWebElement("Producto.botonConfirmar").Click();
+            Utils.SearchWebElement("Producto.botonOk").Click();
+            
+            Utils.SearchWebElement("Oferta.saveOferta").Click();
+            Thread.Sleep(17000);
+        }
+
+        public void CamposObligatoriosProductoFIBRABilling(String opcionModalidad, string fechaPresentacionOferta, string tipoPeriodicidad)
+        {
+
+            // General
+
+            Thread.Sleep(2000);
+            Utils.SearchWebElement("Producto.PestañaContratosYbillingNOMBREANEXO").SendKeys("prueba anexo tipo fibra");
+            Thread.Sleep(2000);
+
+            // Seleccion IRU/LEASE
+            if (opcionModalidad.Equals("IRU"))
+            {
+                // Seleccion de IRU
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath(Utils.GetIdentifier("Producto.PestañanaGeneralIRU"))));
+                Thread.Sleep(3000);
+                Utils.SearchWebElement("Producto.PestañanaGeneralIRU").Click();
+                Thread.Sleep(1000);
+                Utils.SearchWebElement("Producto.PestañanaGeneralIRU").SendKeys("BRODYNT");
+                Utils.SearchWebElement("Producto.PestañanaGeneralIRU").SendKeys(Keys.Control + "a");
+                Utils.SearchWebElement("Producto.PestañanaGeneralIRU").SendKeys(Keys.Delete);
+                Utils.SearchWebElement("Producto.PestañanaGeneralIRU").SendKeys("Normal");
+                Thread.Sleep(2000);
+
+                driver.FindElement(By.XPath("//span[contains(text(), 'Normal')]")).Click();
+                Thread.Sleep(3000);
+            }
+            else
+            {
+                Utils.SearchWebElement("Producto.PestañaCaracteristicas");
+            }
+
+            /// <summary>
+            /// Método para cumplimentar datos obligatorios
+            /// </summary>
+
+            ////Pestaña Caracteristicas (datos obligatorios)
+
+            Utils.SearchWebElement("Producto.PestañaCaracteristicas").Click();
+            Thread.Sleep(2000);
+
+            // Seleccion de Red
+            Utils.SearchWebElement("Producto.PestañaCaracteristicasRED").Click();//swich para ON/OFF red
+            Thread.Sleep(2000);
+
+
+            // Seleccion de Ambito
+            SelectElement drop = new SelectElement(Utils.SearchWebElement("Producto.PestañaCaracteristicasAMBITO"));
+            drop.SelectByText("Urbano");
+            Thread.Sleep(2000);
+
+            //Pestaña Direcciones y Coordenadas (datos obligatorios)
+            /// </summary>
+            /// Sitio origen, destino, Direccion origen, destino
+            Utils.SearchWebElement("Producto.PestañaDireccionesYcoordenadas").Click();
+            Thread.Sleep(2000);
+
+            Utils.SearchWebElement("Producto.PestañaDireccionesYcoordenadasSITIORIGEN").SendKeys("Madrid");
+            Utils.SearchWebElement("Producto.PestañaDireccionesYcoordenadasSITIODESTINO").SendKeys("Madrid");
+            Utils.SearchWebElement("Producto.PestañaDireccionesYcoordenadasDIRECCIONORIGEN").SendKeys("Galicia");
+            Utils.SearchWebElement("Producto.PestañaDireccionesYcoordenadasDIRECCIONDESTINO").SendKeys("Galicia");
+            Thread.Sleep(2000);
+
+
+            //Pestaña Jira (datos obligatorios)
+            /// </summary>
+            /// Capex fibra, equipo, contacto, fecha compromiso y detalle
+            Utils.SearchWebElement("Producto.PestañaJira").Click();
+            Thread.Sleep(3000);
+
+            // Capex fibra y equipo
+            Utils.SearchWebElement("Producto.PestañaJiraKAPEXFIBRA").Click();
+            Utils.SearchWebElement("Producto.PestañaJiraKAPEXFIBRA").SendKeys(Keys.Control + "a");
+            Utils.SearchWebElement("Producto.PestañaJiraKAPEXFIBRA").SendKeys(Keys.Delete);
+            Utils.SearchWebElement("Producto.PestañaJiraKAPEXFIBRA").SendKeys("456");
+            Utils.SearchWebElement("Producto.PestañaJiraKAPEXFIBRA").SendKeys(Keys.Enter);
+            Thread.Sleep(3000);
+
+
+            // Detalle de servicio y fecha de compromiso
+            Utils.SearchWebElement("Producto.PestañaJiraDETALLESERVICIO").SendKeys("Pruebas");
+            Thread.Sleep(2000);
+            Utils.SearchWebElement("Producto.PestañaJiraFECHACOMPROMISO").SendKeys("28/02/2022");
+            Thread.Sleep(2000);
+
+
+            //Pestaña Billing (datos obligatorios)
+            /// </summary>
+            /// Contrato marco, Actualizacion precio, periodicidad, UTPRX, codigo tarea, sociedad de facturacion, limite ipc
+            Utils.SearchWebElement("Producto.PestañaContratosYbilling").Click();
+            Thread.Sleep(2000);
+
+            //Actualizacion precio
+            Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").Click();
+            Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").SendKeys("No Aplica");
+            wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//span[contains(., 'No Aplica')]")));
+            driver.FindElement(By.XPath("//span[contains(., 'No Aplica')]")).Click();
+
+            // UTPRX
+            Utils.SearchWebElement("Producto.PestañaContratosYbillingUTPRX").Click();
+            Utils.SearchWebElement("Producto.PestañaContratosYbillingUTPRX").SendKeys("45");
+
+            // Seleccionar tipo periodicidad
+            driver.FindElement(By.XPath("//button[contains(@aria-label, 'Tipo de periodicidad')]")).Click();
+            wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//span[contains(., '" + tipoPeriodicidad + "')]")));
+            driver.FindElement(By.XPath("//span[contains(., '" + tipoPeriodicidad + "')]")).Click();
+            Thread.Sleep(2000);
+
+            // Tarea
+            Utils.SearchWebElement("Producto.PestañaContratosYbillingTAREA").SendKeys("3");
+            Thread.Sleep(2000);
+
+            //Pestaña Fechas
+            Utils.SearchWebElement("Producto.PestañaFechas").Click();
+            Thread.Sleep(2000);
+            Utils.SearchWebElement("Producto.PestañaFechas.inputFechaInicioFacturacion").SendKeys(fechaPresentacionOferta);
+            Utils.SearchWebElement("Producto.PestañaFechas.inputFechaInicioFacturacion").SendKeys(Keys.Enter);
+            //Alert
+            Utils.SearchWebElement("Producto.botonConfirmar").Click();
+            Utils.SearchWebElement("Producto.botonOk").Click();
+
+            Utils.SearchWebElement("Oferta.saveOferta").Click();
+            Thread.Sleep(17000);
+        }
         /// <summary>
         /// Método para acceder a servicios contratados
         /// </summary>
@@ -1751,6 +2003,35 @@ namespace Lyntia.TestSet.Actions
             Thread.Sleep(3000);
             Utils.SearchWebElement("Oferta.saveAndCloseOferta").Click();
             Thread.Sleep(7000);
+        }
+        
+        public void rellenarCamposNuevoGeneradorFacturacion(string cliente, string nombreServicio)
+        {
+            //Rellenar Cliente
+            wait.Until(ExpectedConditions.ElementToBeClickable(Utils.getByElement("Producto.GeneradorFacturacion.inputCliente")));
+            Utils.SearchWebElement("Producto.GeneradorFacturacion.inputCliente").Click();
+            driver.FindElement(By.XPath("//div[@aria-label = 'General']")).SendKeys(Keys.PageUp);
+            Utils.SearchWebElement("Producto.GeneradorFacturacion.inputCliente").SendKeys(cliente);
+            wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//span[contains(text(), '" + cliente + "')]")));
+                // Seleccionar cliente del desplegable
+            driver.FindElement(By.XPath("//span[contains(text(), '" + cliente + "')]")).Click();
+            Thread.Sleep(2000);
+
+            //Rellenar sociedad
+            Utils.SearchWebElement("Producto.GeneradorFacturacion.inputSociedad").Click();
+            Utils.SearchWebElement("Producto.GeneradorFacturacion.inputSociedad").SendKeys("España");            
+            driver.FindElement(By.XPath("//div[@aria-label = 'General']")).SendKeys(Keys.PageUp);
+            wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//span[contains(text(), 'España')]")));
+            driver.FindElement(By.XPath("//span[contains(text(), 'España')]")).Click();
+
+            //Rellenar servicio contratado
+            Utils.SearchWebElement("Producto.GeneradorFacturacion.inputServicioContratado").Click();
+            Utils.SearchWebElement("Producto.GeneradorFacturacion.inputServicioContratado").SendKeys(nombreServicio);            
+            driver.FindElement(By.XPath("//div[@aria-label = 'General']")).SendKeys(Keys.PageUp);
+            wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//span[contains(text(), '" + nombreServicio + "')]")));
+            driver.FindElement(By.XPath("//span[contains(text(), '" + nombreServicio + "')]")).Click();
+            Utils.SearchWebElement("Oferta.saveOferta").Click();
+
         }
 
 
