@@ -1631,6 +1631,7 @@ namespace Lyntia.TestSet.Actions
             Thread.Sleep(2000);
 
             //Actualizacion precio
+            
             Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").Click();
             Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").SendKeys("No Aplica");
             wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//span[contains(., 'No Aplica')]")));

@@ -1845,12 +1845,15 @@ namespace Lyntia.TestSet
             ofertaActions.CamposObligatoriosProductoFIBRABilling("", "01/01/2021", "Mensual");
 
             //flujo nuevo
-            Thread.Sleep(2000);
+            //Thread.Sleep(2000);
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath(Utils.GetIdentifier("Producto.PestañaRelacionados"))));
             Utils.SearchWebElement("Producto.PestañaRelacionados").Click();
             Utils.driver.FindElement(By.XPath("//div[@aria-label = 'Configuraciones de facturación Relacionados - Billing']")).Click();
-            Thread.Sleep(2000);
+
 
             //Paso 4
+            //Thread.Sleep(2000);
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("Producto.SelectColumn2")));
             Utils.SearchWebElement("Producto.SelectColumn2").Click();  
             string texto = Utils.SearchWebElement("Producto.ConfiguracionFacturacion.Cabecera.inputRazonEstado").Text;
             Thread.Sleep(2000);
@@ -1858,28 +1861,31 @@ namespace Lyntia.TestSet
             Utils.SearchWebElement("Producto.ConfiguracionFacturacion.PestañaDetallesDeLineas").Click();
 
             //Paso 5
-            Thread.Sleep(2000);                            
+            //Thread.Sleep(2000);
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//div[contains(@data-id, 'cell-0-2')]")));
             driver.FindElement(By.XPath("//div[contains(@data-id, 'cell-0-2')]")).Click();
             string tantoXCien1 = Utils.SearchWebElement("Producto.ConfiguracionFacturacion.inputTantoXCien").GetAttribute("value");
-            Thread.Sleep(3000);
             
             Utils.SearchWebElement("Producto.ConfiguracionFacturacion.inputTantoXCien").Click();            
             Utils.SearchWebElement("Producto.ConfiguracionFacturacion.inputTantoXCien").SendKeys(Keys.Delete);
             Utils.SearchWebElement("Producto.ConfiguracionFacturacion.inputTantoXCien").SendKeys("30");
             Utils.SearchWebElement("BarraHerramientas.buttonGuardaryCerrar").Click();
-            
+
             //Paso 6 - Validar Oferta
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("Oferta.validar")));
             Utils.SearchWebElement("Oferta.validar").Click();
             Assert.AreEqual("El porcentaje del importe total correspondiente a las líneas normales es distinto de 100.00", Utils.SearchWebElement("Producto.alerta").Text);
             Utils.SearchWebElement("Producto.botonOk").Click();
 
             //Paso 7 - Modificar lineas para que la suma vuelva a dar 100
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//div[contains(@data-id, 'cell-0-2')]")));
             driver.FindElement(By.XPath("//div[contains(@data-id, 'cell-1-2')]")).Click();
             Thread.Sleep(2000);
             string tantoXCien2 = Utils.SearchWebElement("Producto.ConfiguracionFacturacion.inputTantoXCien").GetAttribute("value");
             Utils.SearchWebElement("BarraHerramientas.buttonGuardaryCerrar").Click();
 
-            Thread.Sleep(4000);
+            //Thread.Sleep(4000);
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//div[contains(@data-id, 'cell-0-2')]")));
             driver.FindElement(By.XPath("//div[contains(@data-id, 'cell-0-2')]")).Click();
             Thread.Sleep(4000);
             Utils.SearchWebElement("Producto.ConfiguracionFacturacion.inputTantoXCien").Click();            
@@ -1895,7 +1901,8 @@ namespace Lyntia.TestSet
 
             //Paso 9 - Comprobar estado Configuración facturacion Validado
             Utils.SearchWebElement("Producto.ConfiguracionFacturacion.PestañaCabecera").Click();
-            Thread.Sleep(3000);
+            //Thread.Sleep(3000);
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("Producto.ConfiguracionFacturacion.Cabecera.inputRazonEstado")));
             Assert.AreEqual("Validado", Utils.SearchWebElement("Producto.ConfiguracionFacturacion.Cabecera.inputRazonEstado").Text);
 
             //Paso 10 - Acceder a Modulo Billing
@@ -1910,18 +1917,21 @@ namespace Lyntia.TestSet
             ofertaActions.rellenarCamposNuevoGeneradorFacturacion("CLIENTE INTEGRACION", nombreServicio);
 
             //Paso 12 - Generar Facturas
-            Thread.Sleep(3000);            
+            //Thread.Sleep(3000);
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.XPath("BarraHerramientas.GenerarFacturas")));
             Utils.SearchWebElement("BarraHerramientas.GenerarFacturas").Click();
             commonActions.checkAlert();
             Utils.SearchWebElement("BarraHerramientas.GenerarFacturas").Click();
             commonActions.checkAlert();
             commonActions.checkAlert();
-            Thread.Sleep(6000);
+            //Thread.Sleep(6000);
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("Producto.botonOk")));
             Utils.SearchWebElement("Producto.botonOk").Click();
             Utils.SearchWebElement("BarraHerramientas.buttonGuardaryCerrar").Click();
 
             //Comprobar estado generador de facturacion completado 
-            Thread.Sleep(10000);            
+            //Thread.Sleep(10000);
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//div[contains(@data-id, 'cell-0-8')]")));
             Assert.AreEqual("Completado",driver.FindElement(By.XPath("//div[contains(@data-id, 'cell-0-8')]")));
 
             Utils.SearchWebElement("Facturas").Click();
