@@ -28,7 +28,7 @@ namespace Lyntia.TestSet.Actions
         }
 
 
-        public void CreacionProducto(String productoExistente, String uso, String unidadVenta, String metros, String modalidadContratacion, String nrc, String duracionContrato, String PrecioMensual)
+        public void CreacionProducto(String productoExistente, String uso, String unidadVenta, String metros, String modalidadContratacion, String nrc, String duracionContrato, String PrecioMensual, String Infraestuctura)
         {
             try
             {
@@ -46,11 +46,30 @@ namespace Lyntia.TestSet.Actions
                 Utils.SearchWebElement("Producto.inputProductoExistente").SendKeys(Keys.Delete);
                 Thread.Sleep(3000);
                 Utils.SearchWebElement("Producto.inputProductoExistente").SendKeys(productoExistente);
+                Thread.Sleep(4000);
 
-                
-                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//span[contains(text(), '" + productoExistente + "')]")));
+                //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//span[contains(text(), '" + productoExistente + "')]")));
                 driver.FindElement(By.XPath("//span[contains(text(), '" + productoExistente + "')]")).Click();
                 Thread.Sleep(6000);
+
+
+
+
+                // Seleccionar infrastura
+                if (!Infraestuctura.Equals(""))
+                {
+                    Utils.SearchWebElement("Oferta.Infastructura").Click();
+                    Thread.Sleep(1000);
+
+                    Utils.SearchWebElement("Oferta.Infastructura").SendKeys(Infraestuctura);
+                    Thread.Sleep(2000);
+                    Utils.SearchWebElement("Oferta.Infastructura").SendKeys(Keys.Control + "a");
+                    Utils.SearchWebElement("Oferta.Infastructura").SendKeys(Keys.Delete);
+                    Utils.SearchWebElement("Oferta.Infastructura").SendKeys(Infraestuctura);
+                    Thread.Sleep(2000);
+                    driver.FindElement(By.XPath("//span[contains(text(), '" + Infraestuctura + "')]")).Click();
+                    Thread.Sleep(2000);
+                }
 
                 // Seleccionar Uso(Línea de negocio)
                 if (!uso.Equals(""))
@@ -339,7 +358,7 @@ namespace Lyntia.TestSet.Actions
 
 
         //Metodo en el que una vez agregado un producto heredado se cumplimentan los campos obligatorios, se guarda y se cierra
-        public void Cumplimentar_campos_y_guardar(String linea)
+        public void Cumplimentar_campos_y_guardar(String linea, String UnidadDEVenta)
         {
             try
             {
@@ -351,11 +370,24 @@ namespace Lyntia.TestSet.Actions
                 drop.SelectByText(linea);
                 Thread.Sleep(2000);
 
+                
+
+                Utils.SearchWebElement("Producto.inputUnidaddeVenta").Click();
+                Thread.Sleep(1000);
+
+                Utils.SearchWebElement("Producto.inputUnidaddeVenta").SendKeys(UnidadDEVenta);
+                Thread.Sleep(1000);
+                Utils.SearchWebElement("Producto.inputUnidaddeVenta").SendKeys(Keys.Control + "a");
+                Utils.SearchWebElement("Producto.inputUnidaddeVenta").SendKeys(Keys.Delete);
+                Thread.Sleep(4000);
+                Utils.SearchWebElement("Producto.inputUnidaddeVenta").SendKeys(UnidadDEVenta);
+                Thread.Sleep(4000);
+                driver.FindElement(By.XPath("//span[contains(text(), '" + UnidadDEVenta + "')]")).Click();
+                Thread.Sleep(2000);
+
                 Utils.SearchWebElement("Producto.selectNRC").Click();
                 Utils.SearchWebElement("Producto.selectNRC").SendKeys("4");
                 Thread.Sleep(2000);
-
-
 
                 //Thread.Sleep(3000);
                 //Utils.SearchWebElement("Producto.inputPrecioMensual").Click();
@@ -423,7 +455,7 @@ namespace Lyntia.TestSet.Actions
                     Utils.SearchWebElement("Producto.selectNRC").SendKeys(Keys.Control + "a");
                     Utils.SearchWebElement("Producto.selectNRC").SendKeys(Keys.Delete);
                     Utils.SearchWebElement("Producto.selectNRC").SendKeys(NRC);
-                    Thread.Sleep(2000);
+                    Thread.Sleep(8000);
 
                     Utils.SearchWebElement("Producto.GuardarYCerrar_producto").Click(); //guardamos y cerramos
                     Thread.Sleep(18000);

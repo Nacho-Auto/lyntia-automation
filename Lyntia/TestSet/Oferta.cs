@@ -321,12 +321,12 @@ namespace Lyntia.TestSet
             ofertaActions.AccesoNuevaOferta();
 
             // Paso 3 - Rellenar campos y click en Guardar
-            ofertaActions.RellenarCamposOferta("CRM-COF0008_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Cambio de solución técnica (Tecnología)", "# BizQA");
+            ofertaActions.RellenarCamposOferta("CRM-COF0008_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Cambio de configuración o producto (Tecnología)", "# BizQA");
             ofertaActions.GuardarOferta();
 
             driver.Navigate().Refresh();
 
-            ofertaCondition.OfertaGuardadaCorrectamente("CRM-COF0008_" + Utils.GetRandomString(), "Cambio de solución técnica (Tecnología)");
+            ofertaCondition.OfertaGuardadaCorrectamente("CRM-COF0008_" + Utils.GetRandomString(), "Cambio de configuración o producto (Tecnología)");
 
             ofertaActions.AccesoFechasOferta();
             ofertaCondition.FechasInformadasCorrectamente();
@@ -338,7 +338,7 @@ namespace Lyntia.TestSet
             // Paso 4 - Crear Nueva Oferta, pulsando Guardar y cerrar
             ofertaActions.AccesoNuevaOferta();
 
-            ofertaActions.RellenarCamposOferta("CRM-COF0008_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Cambio de solución técnica (Tecnología)", "# BizQA");
+            ofertaActions.RellenarCamposOferta("CRM-COF0008_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Cambio de configuración o producto (Tecnología)", "# BizQA");
             ofertaActions.GuardarYCerrarOferta();
 
             // Buscar Oferta creada
@@ -347,7 +347,7 @@ namespace Lyntia.TestSet
 
             // Paso 5 - Abrir la oferta anterior y comprobar datos cumplimentados
             ofertaActions.AbrirOfertaEnVista("CRM-COF0008_" + Utils.GetRandomString());
-            ofertaCondition.OfertaGuardadaCorrectamente("CRM-COF0008_" + Utils.GetRandomString(), "Cambio de solución técnica (Tecnología)");
+            ofertaCondition.OfertaGuardadaCorrectamente("CRM-COF0008_" + Utils.GetRandomString(), "Cambio de configuración o producto (Tecnología)");
 
             ofertaActions.AccesoFechasOferta();
             ofertaCondition.FechasInformadasCorrectamente();
@@ -426,7 +426,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la Oferta
-            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps", "", "", "", "", "");
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps", "", "", "", "", "","");
 
             // Paso 3 y 4 - Pulsar Eliminar en la barra de herramientas y cancelar la eliminacion
             ofertaActions.EliminarOfertaActual("Cancelar");
@@ -465,7 +465,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la Oferta
-            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps", "", "", "4", "", "");
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps", "", "", "4", "", "","");
 
             // Volver al grid
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
@@ -511,7 +511,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la Oferta
-            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps", "", "", "4", "", "");
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps", "", "", "4", "", "","");
 
             // Volver al grid
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
@@ -525,16 +525,16 @@ namespace Lyntia.TestSet
             ofertaActions.AbrirOfertaEnVista("CRM-COF0007-CIERRE_" + Utils.GetRandomString());
 
             // Paso 3 y 4 - Pulsar Cerrar en la barra de herramientas y cancelar el cierre
-            ofertaActions.CerrarOfertaActual("Cancelar", "Cancelada", "Sin Información/otro motivo", "01/02/2021");
+            ofertaActions.CerrarOfertaActual("Cancelar", "Cancelada", "Duplicidad", "Sin información/Otro motivo", "01/02/2021");
 
             // Paso 5 - Repetir el paso anterior pero cerrando sin completar campos obligatorios
-            ofertaActions.CerrarOfertaActual("Aceptar", "Cancelada", "", "");
+            ofertaActions.CerrarOfertaActual("Aceptar", "Cancelada", "", "","");
             ofertaCondition.OfertaNoCerrada();
 
             driver.Navigate().Refresh();
 
             // Paso 6 - Repetir el paso anterior pero cerrando de manera correcta
-            ofertaActions.CerrarOfertaActual("Aceptar", "Cancelada", "Sin Información/otro motivo", "01/02/2021");
+            ofertaActions.CerrarOfertaActual("Aceptar", "Cancelada", "Sin información/otro motivo", "Sin información/Otro motivo","01/02/2021");
 
             driver.Navigate().Refresh();
 
@@ -571,7 +571,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la Oferta
-            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "10 Mbps", "", "", "10", "", "");
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "10 Mbps", "", "", "10", "", "","");
 
             // Volver al grid
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
@@ -624,7 +624,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la Oferta
-            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "10 Mbps", "", "", "4", "", "");
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "10 Mbps", "", "", "4", "", "","");
 
             // Volver al grid
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
@@ -640,7 +640,7 @@ namespace Lyntia.TestSet
             ofertaActions.PresentarOferta();
 
             // Paso 6 - Repetir el paso anterior pero cerrando de manera correcta
-            ofertaActions.CerrarOfertaActual("Aceptar", "Perdida", "Sin Información/otro motivo", "01/02/2021");
+            ofertaActions.CerrarOfertaActual("Aceptar", "Perdida", "Sin información/otro motivo", "Sin información/Otro motivo", "01/02/2021");
 
             driver.Navigate().Refresh();
 
@@ -677,7 +677,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la Oferta
-            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps", "", "", "4", "", "");
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps", "", "", "4", "", "","");
 
             // Volver al grid
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
@@ -695,7 +695,7 @@ namespace Lyntia.TestSet
             ofertaCondition.OfertaPresentada();
 
             // Paso 6 - Cerrar la Oferta actual como Revisada
-            ofertaActions.CerrarOfertaActual("Aceptar", "Revisada", "", "");
+            ofertaActions.CerrarOfertaActual("Aceptar", "Revisada", "", "","");
 
             driver.Navigate().Refresh();
 
@@ -878,7 +878,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la Oferta Circuito de Capacidad
-            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps", "", "", "10", "", "");
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "3 Mbps", "", "", "10", "", "","");
 
             // Paso 3 - Presentar la oferta
             ofertaActions.PresentarOferta();
@@ -953,7 +953,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la UbiRed Pro
-            productoActions.CreacionProducto("UbiRed Pro", "FTTO", "", "", "", "4", "", "");
+            productoActions.CreacionProducto("UbiRed Pro", "FTTO", "", "", "", "4", "", "","");
 
             // Paso 3 - Presentar la oferta
             ofertaActions.PresentarOferta();
@@ -990,7 +990,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la UbiRed Pro
-            productoActions.CreacionProducto("UbiRed Business", "", "", "", "", "", "", "");
+            productoActions.CreacionProducto("UbiRed Business", "", "", "", "", "", "", "","");
 
             // Paso 3 - Presentar la oferta
             ofertaActions.PresentarOferta();
@@ -1027,7 +1027,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la UbiRed Pro
-            productoActions.CreacionProducto("Rack", "FTTE", "600mm 24U", "", "", "", "12", "");
+            productoActions.CreacionProducto("Co-Location genérico", "", "", "", "", "4", "12", "", "2U en Rack compartido");
 
             // Paso 3 - Presentar la oferta
             ofertaActions.PresentarOferta();
@@ -1064,7 +1064,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la UbiRed Pro
-            productoActions.CreacionProducto("Circuitos de capacidad", "FTTE", "1 Gbps", "", "", "4", "", "");
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTE", "1 Gbps", "", "", "4", "", "","");
 
             // Paso 3 - Presentar la oferta
             ofertaActions.PresentarOferta();
@@ -1097,7 +1097,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la UbiRed Pro
-            productoActions.CreacionProducto("Fibra oscura", "FTTE", "", "3", "Lease", "4", "", "");
+            productoActions.CreacionProducto("Fibra oscura", "FTTE", "", "3", "Lease", "4", "", "","");
 
             // Paso 3 - Presentar la oferta
             ofertaActions.PresentarOferta();
@@ -1216,7 +1216,7 @@ namespace Lyntia.TestSet
             // Preparacion de datos de la prueba
             ofertaActions.RellenarCamposOferta("CRM-COF0001-ELIMINAR_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Nuevo servicio", "BizQA");
             ofertaActions.GuardarOferta();
-            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "10 Mbps", "", "", "4", "", "");
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "10 Mbps", "", "", "4", "", "","");
             ofertaActions.GuardarYCerrarOferta();
 
             // Paso 4 - Buscar en vista la oferta
@@ -1291,16 +1291,16 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Paso 4 - Cerrar oferta("Cancelar")
-            ofertaActions.CerrarOfertaActual("Cancelar", "", "", "");
+            ofertaActions.CerrarOfertaActual("Cancelar", "", "", "","");
 
             // Paso 5 - Cerrar oferta sin cumplimentar campos obligatorios
-            ofertaActions.CerrarOfertaActual("Aceptar", "Cancelada", "", "");
+            ofertaActions.CerrarOfertaActual("Aceptar", "Cancelada", "", "","");
             ofertaCondition.OfertaNoCerrada();
 
             driver.Navigate().Refresh();
 
             // Paso 6 - Repetir el paso anterior pero cerrando de manera correcta
-            ofertaActions.CerrarOfertaActual("Aceptar", "Cancelada", "Sin Información/otro motivo", "01/02/2021");
+            ofertaActions.CerrarOfertaActual("Aceptar", "Cancelada", "Sin información/otro motivo", "Sin información/Otro motivo", "01/02/2021");
 
             // Paso 7 - Accedemos al grid, buscamos la oferta y se comprueba estados
             commonActions.AccesoOferta();
@@ -1334,11 +1334,11 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Paso 4 - Cerrar oferta("Cancelar")
-            ofertaActions.CerrarOfertaActual("Cancelar", "", "", "");
+            ofertaActions.CerrarOfertaActual("Cancelar", "", "", "","");
 
             // Paso 5 - Cerrar oferta sin cumplimentar campos obligatorios
             // TODO: No se puede dejar sin informar campo obligatorios con la opcion de no viable, por lo que se pone cancelada para mostrar campos obligatorios
-            ofertaActions.CerrarOfertaActual("Aceptar", "Cancelada", "", "");
+            ofertaActions.CerrarOfertaActual("Aceptar", "Cancelada", "", "","");
             ofertaCondition.OfertaNoCerrada();
 
             driver.Navigate().Refresh();
@@ -1380,8 +1380,8 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Paso 4 - Creamos 2 tipos de productos CC
-            productoActions.CreacionProducto("Circuitos de capacidad", "FTTE", "10 Mbps", "", "", "4", "", "");
-            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "10 Mbps", "", "", "4", "", "");
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTE", "10 Mbps", "", "", "4", "", "","");
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "10 Mbps", "", "", "4", "", "","");
 
             // Paso 5 - Presentamos oferta
             ofertaActions.PresentarOferta();
@@ -1427,7 +1427,7 @@ namespace Lyntia.TestSet
 
             // Paso 4 - Creamos 2 tipos de productos CC
             productoActions.creacionproductofibraoscuraIRU("Fibra oscura", "FTTE","IRU","20", "4");
-            productoActions.CreacionProducto("Fibra oscura", "FTTT", "20", "2", "Lease", "2", "", "");
+            productoActions.CreacionProducto("Fibra oscura", "FTTT", "20", "2", "Lease", "2","","","");
 
             // Paso 5 - Presentamos oferta
             ofertaActions.PresentarOferta();
@@ -1472,8 +1472,8 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Paso 4 - Creamos 2 tipos de productos CC
-            productoActions.CreacionProducto("UbiRed Pro", "FTTT", "", "", "", "4", "", "");
-            productoActions.CreacionProducto("UbiRed Pro", "FTTE", "", "", "", "7", "", "");
+            productoActions.CreacionProducto("UbiRed Pro", "FTTT", "", "", "", "4", "", "","");
+            productoActions.CreacionProducto("UbiRed Pro", "FTTE", "", "", "", "7", "", "","");
 
             // Paso 5 - Presentamos oferta
             ofertaActions.PresentarOferta();
@@ -1518,8 +1518,8 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Paso 4 - Creamos 2 tipos de productos CC
-            productoActions.CreacionProducto("UbiRed Business", "", "", "", "", "", "2", "");
-            productoActions.CreacionProducto("UbiRed Business", "", "", "", "", "", "4", "");
+            productoActions.CreacionProducto("UbiRed Business", "", "", "", "", "", "2", "","");
+            productoActions.CreacionProducto("UbiRed Business", "", "", "", "", "", "4", "","");
 
             // Paso 5 - Presentamos oferta
             ofertaActions.PresentarOferta();
@@ -1567,8 +1567,8 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Paso 4 - Creamos 2 tipos de productos CC
-            productoActions.CreacionProducto("Rack", "FTTT", "", "", "", "", "3", "");
-            productoActions.CreacionProducto("Rack", "FTTE", "", "", "", "", "2", "");
+            productoActions.CreacionProducto("Co-Location genérico", "", "", "", "", "4", "3", "4", "2U en Rack compartido");
+            productoActions.CreacionProducto("Co-Location genérico", "", "", "", "", "6", "2", "4", "1/2 Rack 24U");
 
             // Paso 5 - Presentamos oferta
             ofertaActions.PresentarOferta();
@@ -1615,8 +1615,8 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Paso 4 - Creamos 2 tipos de productos CC
-            productoActions.CreacionProducto("Circuitos de capacidad", "FTTE", "1 Mbps", "", "", "4", "", "3");
-            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "10 Mbps", "", "", "4", "", "");
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTE", "1 Mbps", "", "", "4", "", "3","");
+            productoActions.CreacionProducto("Circuitos de capacidad", "FTTT", "10 Mbps", "", "", "4", "", "","");
 
             // Paso 5 - Presentamos oferta
             ofertaActions.PresentarOferta();
@@ -1667,8 +1667,8 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Paso 4 - Creamos 2 tipos de productos CC
-            productoActions.CreacionProducto("Fibra oscura", "FTTE", "10", "4", "Lease", "4", "", "");
-            productoActions.CreacionProducto("Fibra oscura", "FTTT", "20", "2", "Lease", "2", "", "");
+            productoActions.CreacionProducto("Fibra oscura", "FTTE", "10", "4", "Lease", "4", "", "","");
+            productoActions.CreacionProducto("Fibra oscura", "FTTT", "20", "2", "Lease", "2", "", "","");
 
             // Paso 5 - Presentamos oferta
             ofertaActions.PresentarOferta();
@@ -1719,8 +1719,8 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Paso 4 - Creamos 2 tipos de productos CC
-            productoActions.CreacionProducto("UbiRed Pro", "FTTT", "", "", "", "4", "", "10");
-            productoActions.CreacionProducto("UbiRed Pro", "FTTT", "", "", "", "4", "", "7");
+            productoActions.CreacionProducto("UbiRed Pro", "FTTT", "", "", "", "4", "", "10","");
+            productoActions.CreacionProducto("UbiRed Pro", "FTTT", "", "", "", "4", "", "7","");
 
             // Paso 5 - Presentamos oferta
             ofertaActions.PresentarOferta();
@@ -1770,8 +1770,8 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Paso 4 - Creamos 2 tipos de productos CC
-            productoActions.CreacionProducto("Rack", "FTTT", "", "", "", "", "3", "");
-            productoActions.CreacionProducto("Rack", "FTTE", "", "", "", "", "2", "");
+            productoActions.CreacionProducto("Co-Location genérico", "", "", "", "", "4", "3", "4", "2U en Rack compartido");
+            productoActions.CreacionProducto("Co-Location genérico", "", "", "", "", "2", "7", "3", "2U en Rack compartido");
 
             // Paso 5 - Presentamos oferta
             ofertaActions.PresentarOferta();
@@ -1823,7 +1823,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Creamos 2 tipos de productos CC            
-            productoActions.CreacionProducto("Fibra oscura", "FTTT", "20", "2", "Lease", "2", "", "");
+            productoActions.CreacionProducto("Fibra oscura", "FTTT", "20", "2", "Lease", "2", "", "","");
 
             // Presentamos oferta
             ofertaActions.PresentarOferta("01/01/2021");
@@ -1845,7 +1845,7 @@ namespace Lyntia.TestSet
             ofertaActions.CamposObligatoriosProductoFIBRABilling("", "01/01/2021", "Mensual");
 
             //flujo nuevo
-            Thread.Sleep(2000);
+            
             Utils.SearchWebElement("Producto.PestañaRelacionados").Click();
             Utils.driver.FindElement(By.XPath("//div[@aria-label = 'Configuraciones de facturación Relacionados - Billing']")).Click();
             Thread.Sleep(2000);
@@ -1910,19 +1910,20 @@ namespace Lyntia.TestSet
             ofertaActions.rellenarCamposNuevoGeneradorFacturacion("CLIENTE INTEGRACION", nombreServicio);
 
             //Paso 12 - Generar Facturas
-            Thread.Sleep(3000);            
+            Thread.Sleep(7000);            
+            Utils.SearchWebElement("BarraHerramientas.GenerarFacturas").Click();
+            Thread.Sleep(3000);
+            commonActions.checkAlert();
             Utils.SearchWebElement("BarraHerramientas.GenerarFacturas").Click();
             commonActions.checkAlert();
-            Utils.SearchWebElement("BarraHerramientas.GenerarFacturas").Click();
             commonActions.checkAlert();
-            commonActions.checkAlert();
-            Thread.Sleep(6000);
+            Thread.Sleep(10000);
             Utils.SearchWebElement("Producto.botonOk").Click();
             Utils.SearchWebElement("BarraHerramientas.buttonGuardaryCerrar").Click();
 
             //Comprobar estado generador de facturacion completado 
-            Thread.Sleep(10000);            
-            Assert.AreEqual("Completado",driver.FindElement(By.XPath("//div[contains(@data-id, 'cell-0-8')]")));
+            Thread.Sleep(10000);
+            Assert.AreEqual("Completado", driver.FindElement(By.XPath("//div[contains(@data-id, 'cell-0-8')]")).Text);
 
             Utils.SearchWebElement("Facturas").Click();
 

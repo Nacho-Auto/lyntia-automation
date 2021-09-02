@@ -459,7 +459,7 @@ namespace Lyntia.TestSet.Actions
 
                 SelectElement drop = new SelectElement(Utils.SearchWebElement("Oferta.selectOfertaType"));
 
-                drop.SelectByText("Cambio de solución técnica (Tecnología)");
+                drop.SelectByText("Cambio de configuración o producto (Tecnología)");
                 TestContext.WriteLine("Se modifica el tipo de Oferta de la prueba CRM-EOF0004: Cambio de solución técnica (Tecnología).");
             }
             catch (Exception e)
@@ -676,7 +676,7 @@ namespace Lyntia.TestSet.Actions
         /// <param name="opcion"></param>
         /// <param name="razonOferta"></param>
         /// <param name="motivoCierre"></param>
-        public void CerrarOfertaActual(string opcion, string razonOferta, string motivoCierre, String fechaCierre)
+        public void CerrarOfertaActual(string opcion, string razonOferta, string motivoCierre,String consecuenciaCierre, String fechaCierre)
         {
             try
             {
@@ -698,7 +698,17 @@ namespace Lyntia.TestSet.Actions
                 {
                     SelectElement drop = new SelectElement(Utils.SearchWebElement("Oferta.selectMotivoCierre"));
                     drop.SelectByText(motivoCierre);
+                    Thread.Sleep(3000);
                 }
+
+                if (!consecuenciaCierre.Equals(""))
+                {
+                    SelectElement drop = new SelectElement(Utils.SearchWebElement("Oferta.selectConsecuenciaCierre"));
+                    drop.SelectByText(consecuenciaCierre);
+                }
+
+
+
 
                 if (!fechaCierre.Equals(""))
                 {
@@ -1264,30 +1274,30 @@ namespace Lyntia.TestSet.Actions
             Thread.Sleep(2000);
 
             // Actualizacion de precio
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").Click();
-            Thread.Sleep(1000);
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").SendKeys("IPC");
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").SendKeys(Keys.Control + "a");
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").SendKeys(Keys.Delete);
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").SendKeys("IPC");
-            Thread.Sleep(2000);
-            driver.FindElement(By.XPath("//span[contains(text(), 'IPC')]")).Click();
-            Thread.Sleep(3000);
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").Click();
+            //Thread.Sleep(1000);
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").SendKeys("IPC");
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").SendKeys(Keys.Control + "a");
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").SendKeys(Keys.Delete);
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").SendKeys("IPC");
+            //Thread.Sleep(2000);
+            //driver.FindElement(By.XPath("//span[contains(text(), 'IPC')]")).Click();
+            //Thread.Sleep(3000);
 
             //Limite IPC
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingLIMITEIPC").SendKeys("10");
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingLIMITEIPC").SendKeys("10");
             
 
             // Periodicidad
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingTIPOPERIODICIDAD").Click();
-            Thread.Sleep(1000);
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingTIPOPERIODICIDAD").SendKeys("Anual");
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingTIPOPERIODICIDAD").SendKeys(Keys.Control + "a");
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingTIPOPERIODICIDAD").SendKeys(Keys.Delete);
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingTIPOPERIODICIDAD").SendKeys("Anual");
-            Thread.Sleep(2000);
-            driver.FindElement(By.XPath("//span[contains(text(), 'Anual')]")).Click();
-            Thread.Sleep(3000);
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingTIPOPERIODICIDAD").Click();
+            //Thread.Sleep(1000);
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingTIPOPERIODICIDAD").SendKeys("Anual");
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingTIPOPERIODICIDAD").SendKeys(Keys.Control + "a");
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingTIPOPERIODICIDAD").SendKeys(Keys.Delete);
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingTIPOPERIODICIDAD").SendKeys("Anual");
+            //Thread.Sleep(2000);
+            //driver.FindElement(By.XPath("//span[contains(text(), 'Anual')]")).Click();
+            //Thread.Sleep(3000);
 
             //Sociedad facturacion
             //Utils.SearchWebElement("Producto.PestañaContratosYbillingPAIS").Click();
@@ -1425,7 +1435,31 @@ namespace Lyntia.TestSet.Actions
             //driver.FindElement(By.XPath("//span[contains(text(), 'España')]")).Click();
             //Thread.Sleep(3000);
 
+            // Actualizacion de precio
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").Click();
+            //Thread.Sleep(1000);
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").SendKeys("IPC");
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").SendKeys(Keys.Control + "a");
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").SendKeys(Keys.Delete);
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").SendKeys("IPC");
+            //Thread.Sleep(4000);
+            //driver.FindElement(By.XPath("//span[contains(text(), 'IPC')]")).Click();
+            Thread.Sleep(4000);
 
+            // Limite IPC
+            Utils.SearchWebElement("Producto.PestañaContratosYbillingLIMITEIPC").SendKeys("10");
+            Thread.Sleep(3000);
+
+            // Periodicidad
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingTIPOPERIODICIDAD").Click();
+            //Thread.Sleep(1000);
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingTIPOPERIODICIDAD").SendKeys("Anual");
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingTIPOPERIODICIDAD").SendKeys(Keys.Control + "a");
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingTIPOPERIODICIDAD").SendKeys(Keys.Delete);
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingTIPOPERIODICIDAD").SendKeys("Anual");
+            //Thread.Sleep(4000);
+            //driver.FindElement(By.XPath("//span[contains(text(), 'Anual')]")).Click();
+            //Thread.Sleep(3000);
 
             Utils.SearchWebElement("Oferta.saveAndCloseOferta").Click();
             Thread.Sleep(17000);
@@ -1632,10 +1666,10 @@ namespace Lyntia.TestSet.Actions
 
             // UTPRX
             Utils.SearchWebElement("Producto.PestañaContratosYbillingUTPRX").SendKeys("45");
-            driver.FindElement(By.XPath("//button[contains(@aria-label, 'Tipo de periodicidad')]")).Click() ;
-            wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//span[contains(., '" + tipoPeriodicidad + "')]")));
+            //driver.FindElement(By.XPath("//button[contains(@aria-label, 'Tipo de periodicidad')]")).Click() ;
+            //wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//span[contains(., '" + tipoPeriodicidad + "')]")));
             // Seleccionar cliente del desplegable
-            driver.FindElement(By.XPath("//span[contains(., '" + tipoPeriodicidad + "')]")).Click();
+            //driver.FindElement(By.XPath("//span[contains(., '" + tipoPeriodicidad + "')]")).Click();
             Thread.Sleep(2000);
 
             // Tarea
@@ -1756,30 +1790,30 @@ namespace Lyntia.TestSet.Actions
             Thread.Sleep(2000);
 
             // Actualizacion de precio
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").Click();
-            Thread.Sleep(1000);
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").SendKeys("IPC");
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").SendKeys(Keys.Control + "a");
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").SendKeys(Keys.Delete);
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").SendKeys("IPC");
-            Thread.Sleep(4000);
-            driver.FindElement(By.XPath("//span[contains(text(), 'IPC')]")).Click();
-            Thread.Sleep(4000);
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").Click();
+            //Thread.Sleep(1000);
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").SendKeys("IPC");
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").SendKeys(Keys.Control + "a");
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").SendKeys(Keys.Delete);
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").SendKeys("IPC");
+            //Thread.Sleep(4000);
+            //driver.FindElement(By.XPath("//span[contains(text(), 'IPC')]")).Click();
+            //Thread.Sleep(4000);
 
             //Limite IPC
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingLIMITEIPC").SendKeys("10");
-            Thread.Sleep(3000);
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingLIMITEIPC").SendKeys("10");
+            //Thread.Sleep(3000);
 
             // Periodicidad
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingTIPOPERIODICIDAD").Click();
-            Thread.Sleep(1000);
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingTIPOPERIODICIDAD").SendKeys("Anual");
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingTIPOPERIODICIDAD").SendKeys(Keys.Control + "a");
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingTIPOPERIODICIDAD").SendKeys(Keys.Delete);
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingTIPOPERIODICIDAD").SendKeys("Anual");
-            Thread.Sleep(4000);
-            driver.FindElement(By.XPath("//span[contains(text(), 'Anual')]")).Click();
-            Thread.Sleep(3000);
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingTIPOPERIODICIDAD").Click();
+            //Thread.Sleep(1000);
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingTIPOPERIODICIDAD").SendKeys("Anual");
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingTIPOPERIODICIDAD").SendKeys(Keys.Control + "a");
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingTIPOPERIODICIDAD").SendKeys(Keys.Delete);
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingTIPOPERIODICIDAD").SendKeys("Anual");
+            //Thread.Sleep(4000);
+            //driver.FindElement(By.XPath("//span[contains(text(), 'Anual')]")).Click();
+            //Thread.Sleep(3000);
 
             //Sociedad facturacion
             //Utils.SearchWebElement("Producto.PestañaContratosYbillingPAIS").Click();
@@ -1818,9 +1852,9 @@ namespace Lyntia.TestSet.Actions
 
             Utils.SearchWebElement("Producto.PestañaDireccionesYcoordenadasSITIORIGEN").SendKeys("Madrid");
             Thread.Sleep(2000);
-            Utils.SearchWebElement("Producto.PestañaDireccionesYcoordenadasSITIODESTINO").SendKeys("Madrid");
+            //Utils.SearchWebElement("Producto.PestañaDireccionesYcoordenadasSITIODESTINO").SendKeys("Madrid");
             Utils.SearchWebElement("Producto.PestañaDireccionesYcoordenadasDIRECCIONORIGEN").SendKeys("Galicia");
-            Utils.SearchWebElement("Producto.PestañaDireccionesYcoordenadasDIRECCIONDESTINO").SendKeys("Galicia");
+            //Utils.SearchWebElement("Producto.PestañaDireccionesYcoordenadasDIRECCIONDESTINO").SendKeys("Galicia");
             Thread.Sleep(2000);
 
 
@@ -1884,29 +1918,29 @@ namespace Lyntia.TestSet.Actions
             Thread.Sleep(2000);
 
             // Actualizacion de precio
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").Click();
-            Thread.Sleep(2000);
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").SendKeys("IPC");
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").SendKeys(Keys.Control + "a");
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").SendKeys(Keys.Delete);
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").SendKeys("IPC");
-            Thread.Sleep(4000);
-            driver.FindElement(By.XPath("//span[contains(text(), 'IPC')]")).Click();
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").Click();
+            //Thread.Sleep(2000);
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").SendKeys("IPC");
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").SendKeys(Keys.Control + "a");
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").SendKeys(Keys.Delete);
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").SendKeys("IPC");
+            //Thread.Sleep(4000);
+            //driver.FindElement(By.XPath("//span[contains(text(), 'IPC')]")).Click();
             Thread.Sleep(4000);
 
             //Limite IPC
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingLIMITEIPC").SendKeys("10");
-            Thread.Sleep(3000);
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingLIMITEIPC").SendKeys("10");
+            //Thread.Sleep(3000);
 
             // Periodicidad
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingTIPOPERIODICIDAD").Click();
-            Thread.Sleep(2000);
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingTIPOPERIODICIDAD").SendKeys("Anual");
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingTIPOPERIODICIDAD").SendKeys(Keys.Control + "a");
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingTIPOPERIODICIDAD").SendKeys(Keys.Delete);
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingTIPOPERIODICIDAD").SendKeys("Anual");
-            Thread.Sleep(4000);
-            driver.FindElement(By.XPath("//span[contains(text(), 'Anual')]")).Click();
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingTIPOPERIODICIDAD").Click();
+            //Thread.Sleep(2000);
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingTIPOPERIODICIDAD").SendKeys("Anual");
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingTIPOPERIODICIDAD").SendKeys(Keys.Control + "a");
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingTIPOPERIODICIDAD").SendKeys(Keys.Delete);
+            //Utils.SearchWebElement("Producto.PestañaContratosYbillingTIPOPERIODICIDAD").SendKeys("Anual");
+            //Thread.Sleep(4000);
+            //driver.FindElement(By.XPath("//span[contains(text(), 'Anual')]")).Click();
             Thread.Sleep(3000);
 
             //Sociedad facturacion

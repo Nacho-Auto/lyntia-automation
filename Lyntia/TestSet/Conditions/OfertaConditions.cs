@@ -233,6 +233,8 @@ namespace Lyntia.TestSet.Conditions
             try
             {
                 Assert.AreEqual("La oferta de tipo “Cambio de capacidad” requiere envío a construcción, pero no cambia el código administrativo", driver.FindElement(By.XPath("//span[contains(@data-id, 'warningNotification')]")).Text);
+                //               La oferta de tipo “Cambio de capacidad” requiere envío a construcción, pero no cambia el código administrativo
+
                 TestContext.WriteLine("***La condicion de aviso cambio de capacidad se cumple");
             }
             catch (Exception e)

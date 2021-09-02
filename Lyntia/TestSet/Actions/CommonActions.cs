@@ -67,7 +67,7 @@ namespace Lyntia.TestSet.Actions
                 Utils.SearchWebElement("Login.firstSubmitButton").Click();
                 Utils.SearchWebElement("Login.secondInput").Clear();
                 Utils.SearchWebElement("Login.secondInput").SendKeys("rgomezs@lyntia.com"); //usuario de entorno lyntia
-                Utils.SearchWebElement("Login.thirdInput").SendKeys("W1nter22$"); //pass de entorno lyntia
+                Utils.SearchWebElement("Login.thirdInput").SendKeys("W1nter23$"); //pass de entorno lyntia
                 Utils.SearchWebElement("Login.secondSubmitButton").Click();
                 Utils.SearchWebElement("Login.notPersistanceButton").Click(); //Desea mantener la sesion iniciada NO
 
