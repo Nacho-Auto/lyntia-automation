@@ -1931,6 +1931,9 @@ namespace Lyntia.TestSet
             Utils.SearchWebElement("BarraHerramientas.buttonMarcarRevisada").Click();
             Assert.IsTrue(Utils.SearchWebElement("BarraHerramientas.buttonEnviarNav").Displayed);
             Utils.SearchWebElement("BarraHerramientas.buttonEnviarNav").Click();
+            Thread.Sleep(4000);
+            Utils.SearchWebElement("Facturas").Click();
+            Assert.AreEqual("Enviada a NAV", driver.FindElement(By.XPath("//div[contains(@data-id, 'cell-0-3')]")).Text);
         }
     }
 }
