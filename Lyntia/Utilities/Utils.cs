@@ -66,7 +66,7 @@ namespace Lyntia.Utilities
                 chromeOptions.AddArguments("headless");
                 chromeOptions.AddArguments("window-size=1920x1080");
 
-                driver = new ChromeDriver(chromeOptions);//chromeOptions
+                driver = new ChromeDriver();//chromeOptions
 
                 objRep = ObjectRepositoryUtils.Instance;
                 objRep.TestDataReader("ObjectRepository.csv");
@@ -106,6 +106,19 @@ namespace Lyntia.Utilities
             }
             return true;
         }
+
+        public bool existeElemento(string xPath)
+        {
+            bool result = false;
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
+            
+            if (driver.FindElements(By.XPath(xPath)).Count > 0)
+                result = true;
+            
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(45);
+            return result;
+        }
+
         public static string RandomString(int length)
         {
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789*";

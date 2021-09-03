@@ -64,8 +64,8 @@ namespace Lyntia.TestSet.Actions
         {
             try
             {
-                Utils.SearchWebElement("Oferta.newOferta").Click();
-                Thread.Sleep(3000);
+                Utils.SearchWebElement("Oferta.newOferta").Click();                
+                wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//h1[@data-id='header_title']")));
 
                 TestContext.WriteLine("Nueva Oferta creada correctamente");
             }
@@ -180,8 +180,8 @@ namespace Lyntia.TestSet.Actions
                 {
                     // Rellenar Cliente de Oferta
                     accionesSelenium.SendKeys(Keys.PageDown);
-                    accionesSelenium.Build().Perform();
-                    Thread.Sleep(3000);
+                    accionesSelenium.Build().Perform();                    
+                    wait.Until(ExpectedConditions.ElementIsVisible(Utils.GetIdentifier("Oferta.inputCustomerId")));
 
                     Utils.SearchWebElement("Oferta.inputCustomerId").Click();                                       
                     Utils.SearchWebElement("Oferta.inputCustomerId").SendKeys(cliente);                                                           
@@ -1661,14 +1661,19 @@ namespace Lyntia.TestSet.Actions
             //Pestaña Billing (datos obligatorios)
             /// </summary>
             /// Contrato marco, Actualizacion precio, periodicidad, UTPRX, codigo tarea, sociedad de facturacion, limite ipc
-            Utils.SearchWebElement("Producto.PestañaContratosYbilling").Click();
-            Thread.Sleep(2000);
+            Utils.SearchWebElement("Producto.PestañaContratosYbilling").Click();            
 
-            //Actualizacion precio
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").Click();
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").SendKeys("No Aplica");
-            wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//span[contains(., 'No Aplica')]")));
-            driver.FindElement(By.XPath("//span[contains(., 'No Aplica')]")).Click();
+            //Actualizacion precio            
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//ul[contains(@id, 'contratomarco')]")));
+            if (!utils.existeElemento("//div[@title='No Aplica']"))
+            {
+                driver.FindElement(By.XPath("//button[contains(@aria-label,'Actualizaci')]")).Click();
+                driver.FindElement(By.XPath("//button[@aria-label = 'Eliminar No Aplica']")).Click();
+                Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").Click();
+                Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").SendKeys("No Aplica");
+                wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//span[contains(., 'No Aplica')]")));
+                driver.FindElement(By.XPath("//span[contains(., 'No Aplica')]")).Click();
+            }
 
             // UTPRX
             Utils.SearchWebElement("Producto.PestañaContratosYbillingUTPRX").Click();
