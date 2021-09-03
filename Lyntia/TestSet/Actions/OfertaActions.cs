@@ -120,8 +120,7 @@ namespace Lyntia.TestSet.Actions
         {
             try
             {
-                Utils.SearchWebElement("Oferta.saveOferta").Click();
-                Thread.Sleep(7000);
+                Utils.SearchWebElement("Oferta.saveOferta").Click();                
 
                 TestContext.WriteLine("La Oferta se guarda correctamente.");
             }
@@ -165,15 +164,13 @@ namespace Lyntia.TestSet.Actions
                 if (!nombre.Equals(""))
                 {
                     Utils.SearchWebElement("Oferta.inputNameOferta").Click();
-                    Utils.SearchWebElement("Oferta.inputNameOferta").Clear();
-                    Thread.Sleep(2000);
+                    Utils.SearchWebElement("Oferta.inputNameOferta").Clear();                    
                     Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Control + "a");
                     Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Delete);
 
-                    // Rellenar Nombre de Oferta
-                    Thread.Sleep(2000);
+                    // Rellenar Nombre de Oferta                    
                     Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(nombre);
-                    Thread.Sleep(1000);            
+                    
                 }
 
                 if (!cliente.Equals(""))
@@ -181,7 +178,7 @@ namespace Lyntia.TestSet.Actions
                     // Rellenar Cliente de Oferta
                     accionesSelenium.SendKeys(Keys.PageDown);
                     accionesSelenium.Build().Perform();                    
-                    wait.Until(ExpectedConditions.ElementIsVisible(Utils.GetIdentifier("Oferta.inputCustomerId")));
+                    wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(Utils.GetIdentifier("Oferta.inputCustomerId"))));
 
                     Utils.SearchWebElement("Oferta.inputCustomerId").Click();                                       
                     Utils.SearchWebElement("Oferta.inputCustomerId").SendKeys(cliente);                                                           
@@ -191,20 +188,17 @@ namespace Lyntia.TestSet.Actions
                     
                     // Seleccionar cliente del desplegable
                     driver.FindElement(By.XPath("//span[contains(text(), '" + cliente + "')]")).Click();
-                    Thread.Sleep(2000);
+                    wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//span[contains(text(), '" + cliente + "')]")));
 
                     if (!nombre.Equals("") && Utils.SearchWebElement("Oferta.inputNameOferta").Text.Contains("---"))
                     {
                         Utils.SearchWebElement("Oferta.inputNameOferta").Click();
-                        Utils.SearchWebElement("Oferta.inputNameOferta").Clear();
-                        Thread.Sleep(2000);
+                        Utils.SearchWebElement("Oferta.inputNameOferta").Clear();                        
                         Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Control + "a");
                         Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(Keys.Delete);
 
-                        // Rellenar Cliente de Oferta
-                        Thread.Sleep(2000);
-                        Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(nombre);
-                        Thread.Sleep(1000);
+                        // Rellenar Cliente de Oferta                        
+                        Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(nombre);                        
                     }
                 }
 
