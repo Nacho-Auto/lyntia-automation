@@ -79,16 +79,17 @@ namespace Lyntia.TestSet.Actions
                 {
                     try
                     {
-                        Utils.SearchWebElement("Producto.inputUnidaddeVenta").Click();
+                        if (!utils.existeElemento("//div[@title='"+ unidadVenta +"']"))
+                        {
+                            Utils.SearchWebElement("Producto.inputUnidaddeVenta").Click();
+                            Utils.SearchWebElement("Producto.inputUnidaddeVenta").SendKeys(unidadVenta);
+                            Utils.SearchWebElement("Producto.inputUnidaddeVenta").SendKeys(Keys.Control + "a");
+                            Utils.SearchWebElement("Producto.inputUnidaddeVenta").SendKeys(Keys.Delete);
+                            Utils.SearchWebElement("Producto.inputUnidaddeVenta").SendKeys(unidadVenta);
+                            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//span[contains(text(), '" + unidadVenta + "')]")));
+                            driver.FindElement(By.XPath("//span[contains(text(), '" + unidadVenta + "')]")).Click();
+                        }
                         
-
-                        Utils.SearchWebElement("Producto.inputUnidaddeVenta").SendKeys(unidadVenta);
-                        
-                        Utils.SearchWebElement("Producto.inputUnidaddeVenta").SendKeys(Keys.Control + "a");
-                        Utils.SearchWebElement("Producto.inputUnidaddeVenta").SendKeys(Keys.Delete);
-                        Utils.SearchWebElement("Producto.inputUnidaddeVenta").SendKeys(unidadVenta);
-                        wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//span[contains(text(), '" + unidadVenta + "')]")));
-                        driver.FindElement(By.XPath("//span[contains(text(), '" + unidadVenta + "')]")).Click();                        
                     }
                     catch (Exception e)
                     {

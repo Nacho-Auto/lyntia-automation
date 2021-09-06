@@ -180,15 +180,13 @@ namespace Lyntia.TestSet.Actions
                     accionesSelenium.Build().Perform();                    
                     wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(Utils.GetIdentifier("Oferta.inputCustomerId"))));
 
+                    // Seleccionar cliente del desplegable
                     Utils.SearchWebElement("Oferta.inputCustomerId").Click();                                       
                     Utils.SearchWebElement("Oferta.inputCustomerId").SendKeys(cliente);                                                           
                     driver.FindElement(By.XPath("//div[@aria-label = 'General']")).SendKeys(Keys.PageUp);
                     wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//span[contains(text(), '" + cliente + "')]")));                    
-                    
-                    
-                    // Seleccionar cliente del desplegable
                     driver.FindElement(By.XPath("//span[contains(text(), '" + cliente + "')]")).Click();
-                    wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//span[contains(text(), '" + cliente + "')]")));
+                    Assert.IsTrue(utils.existeElemento("//div[@title='" + cliente + "']"));
 
                     if (!nombre.Equals("") && Utils.SearchWebElement("Oferta.inputNameOferta").Text.Contains("---"))
                     {
@@ -904,7 +902,9 @@ namespace Lyntia.TestSet.Actions
         {
             try
             {
-                Utils.SearchWebElement("Oferta.fechaPresentacion").Click();
+                wait.Until(ExpectedConditions.ElementIsVisible(Utils.getByElement("Producto.PestañaFechas")));                
+                Utils.SearchWebElement("Producto.PestañaFechas").Click();
+                wait.Until(ExpectedConditions.ElementIsVisible(Utils.getByElement("Oferta.fechaPresentacion")));
                 Utils.SearchWebElement("Oferta.fechaPresentacion").Click();                
                 Utils.SearchWebElement("Oferta.fechaPresentacion").SendKeys(fechaPresentacion);
                 

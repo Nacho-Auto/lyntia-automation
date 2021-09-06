@@ -95,6 +95,7 @@ namespace Lyntia.Utilities
 
         public bool EncontrarElemento(By by)
         {
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(4);
             IWebElement element;
             try
             {
@@ -104,6 +105,7 @@ namespace Lyntia.Utilities
             {
                 return false;
             }
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(45);
             return true;
         }
 

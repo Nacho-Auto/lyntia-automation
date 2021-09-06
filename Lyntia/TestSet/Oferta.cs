@@ -1820,6 +1820,7 @@ namespace Lyntia.TestSet
             //Preparacion de datos de la prueba
             string nombreServicio = "CRM-BILLING001_TestPrueba" + DateTime.Now;
             ofertaActions.RellenarCamposOferta(nombreServicio, "CLIENTE INTEGRACION", "Nuevo servicio", "");
+            
             ofertaActions.GuardarOferta();
 
             // Creamos 2 tipos de productos CC            
