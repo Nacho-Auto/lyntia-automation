@@ -902,9 +902,10 @@ namespace Lyntia.TestSet.Actions
         {
             try
             {
-                wait.Until(ExpectedConditions.ElementIsVisible(Utils.getByElement("Producto.PestañaFechas")));                
+
+                Thread.Sleep(5000);
                 Utils.SearchWebElement("Producto.PestañaFechas").Click();
-                wait.Until(ExpectedConditions.ElementIsVisible(Utils.getByElement("Oferta.fechaPresentacion")));
+                wait.Until(ExpectedConditions.ElementToBeClickable(Utils.getByElement("Oferta.fechaPresentacion")));
                 Utils.SearchWebElement("Oferta.fechaPresentacion").Click();                
                 Utils.SearchWebElement("Oferta.fechaPresentacion").SendKeys(fechaPresentacion);
                 

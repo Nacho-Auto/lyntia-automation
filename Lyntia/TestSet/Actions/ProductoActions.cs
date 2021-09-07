@@ -6,6 +6,7 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using Lyntia.TestSet.Conditions;
+using OpenQA.Selenium.Interactions;
 
 namespace Lyntia.TestSet.Actions
 {
@@ -72,24 +73,22 @@ namespace Lyntia.TestSet.Actions
                 throw e;
             }
 
+            Thread.Sleep(2000);
+
             if (!unidadVenta.Equals("") && utils.EncontrarElemento(By.XPath(Utils.GetIdentifier("Producto.inputUnidaddeVenta"))))
             {
                 // Seleccionar Producto existente del desplegable si esta vacio
-                if (utils.EncontrarElemento(By.XPath("//input[contains(@id,'Dropdown_uomid')]")))
+                if (utils.existeElemento(Utils.GetIdentifier("Producto.inputUnidaddeVenta")) && utils.EncontrarElemento(By.XPath("//input[contains(@id,'Dropdown_uomid')]")))
                 {
                     try
                     {
-                        if (!utils.existeElemento("//div[@title='"+ unidadVenta +"']"))
-                        {
-                            Utils.SearchWebElement("Producto.inputUnidaddeVenta").Click();
-                            Utils.SearchWebElement("Producto.inputUnidaddeVenta").SendKeys(unidadVenta);
-                            Utils.SearchWebElement("Producto.inputUnidaddeVenta").SendKeys(Keys.Control + "a");
-                            Utils.SearchWebElement("Producto.inputUnidaddeVenta").SendKeys(Keys.Delete);
-                            Utils.SearchWebElement("Producto.inputUnidaddeVenta").SendKeys(unidadVenta);
-                            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//span[contains(text(), '" + unidadVenta + "')]")));
-                            driver.FindElement(By.XPath("//span[contains(text(), '" + unidadVenta + "')]")).Click();
-                        }
-                        
+                        Utils.SearchWebElement("Producto.inputUnidaddeVenta").Click();
+                        Utils.SearchWebElement("Producto.inputUnidaddeVenta").SendKeys(unidadVenta);
+                        Utils.SearchWebElement("Producto.inputUnidaddeVenta").SendKeys(Keys.Control + "a");
+                        Utils.SearchWebElement("Producto.inputUnidaddeVenta").SendKeys(Keys.Delete);
+                        Utils.SearchWebElement("Producto.inputUnidaddeVenta").SendKeys(unidadVenta);
+                        wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//span[contains(text(), '" + unidadVenta + "')]")));
+                        driver.FindElement(By.XPath("//span[contains(text(), '" + unidadVenta + "')]")).Click();                                                
                     }
                     catch (Exception e)
                     {
@@ -102,8 +101,9 @@ namespace Lyntia.TestSet.Actions
             // Introduccir metros
             if (!metros.Equals(""))
             {
+                driver.FindElement(By.XPath("//section[@id='quickCreateRoot3']//div[@role='presentation']")).SendKeys(Keys.Escape);
+                
                 Utils.SearchWebElement("Producto.inputMetros").Click();
-
                 Utils.SearchWebElement("Producto.inputMetros").SendKeys(metros);
                 Utils.SearchWebElement("Producto.inputMetros").SendKeys(Keys.Control + "a");
                 Utils.SearchWebElement("Producto.inputMetros").SendKeys(Keys.Delete);

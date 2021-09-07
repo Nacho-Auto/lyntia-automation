@@ -1,11 +1,13 @@
 ﻿using System;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.IE;
 using Lyntia.TestSet.Actions;
 using Lyntia.TestSet.Conditions;
 using System.Linq;
 using System.IO;
 using NUnit.Framework;
+using OpenQA.Selenium.Remote;
 
 namespace Lyntia.Utilities
 {
@@ -66,7 +68,7 @@ namespace Lyntia.Utilities
                 chromeOptions.AddArguments("headless");
                 chromeOptions.AddArguments("window-size=1920x1080");
 
-                driver = new ChromeDriver();//chromeOptions
+                driver = new ChromeDriver();//chromeOptions               
 
                 objRep = ObjectRepositoryUtils.Instance;
                 objRep.TestDataReader("ObjectRepository.csv");

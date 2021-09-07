@@ -45,6 +45,7 @@ namespace Lyntia.TestSet
 
             // Realizar login
             commonActions.Login();
+         
         }
 
         [TearDown]
