@@ -54,7 +54,7 @@ Oferta.LabelInformacionPestaña;XPATH;//li[contains(@aria-label, 'Información')
 Oferta.LabelViabilidadPestaña;XPATH;//li[contains(@aria-label, 'Viabilidad')]
 Oferta.LabelProductosPestaña;XPATH;//li[contains(@aria-label, 'Productos')]
 Oferta.inputCalendar;XPATH;//input[contains(@aria-label, 'Fecha de Fecha de presentación')]
-Oferta.fechaPresentacion;XPATH;//input[contains(@aria-label, 'Fecha de Fecha de presentación')]
+Oferta.fechaPresentacion;XPATH;//section[@aria-label = 'Sección']//input[contains(@aria-label, 'presentaci')]
 Oferta.calendarDateToday;XPATH;//button[contains(@class,'dayIsToday')]
 Oferta.calendarDateRandomDay;XPATH;//tr[contains(@class,'weekRow')]//button
 Oferta.inputFechaCierre;XPATH;//input[@id="fechacierre"]
@@ -80,7 +80,7 @@ Oferta.selectConsecuenciaCierre;XPATH;//select[@id='consecuencia']
 Oferta.buttonConfirmarCierre;XPATH;//button[@id='btnOK']
 Oferta.buttonCancelarCierre;XPATH;//button[@id='cmdDialogCancel']
 Oferta.buttonAdjudicarOferta;XPATH;//button[contains(@aria-label, 'Adjudicar oferta')]
-Oferta.labelCrearpedido;XPATH;//h1[contains(@aria-label, 'Crear pedido')]
+Oferta.labelCrearpedido;XPATH;//h1[contains(@aria-label, 'Crear Pedido')]
 Oferta.inputFechaVentanaCrearpedido;XPATH;//input[contains(@aria-label, 'Fecha de Fecha en que se logró')]
 Oferta.labelMensajeCreapedidofechainferior;XPATH;//*[@id='subtitle']
 Oferta.buttonActualizar;XPATH;//button[contains(@aria-label, 'Actualizar')]
@@ -102,7 +102,8 @@ Oferta.inputCodigoTarea;XPATH;//input[contains(@aria-label, 'Código Tarea')]
 Oferta.labelAdjudicada;XPATH;//div[contains(@title, 'Adjudicada')]
 Oferta.labelProyectosGrid;XPATH;//li[contains(@aria-label, 'Proyectos')]
 Oferta.labelServicioscontratadosGrid;XPATH;//li[contains(@aria-label, 'Servicios contratados')]
-Oferta.fechaLogro;XPATH;//input[contains(@aria-label,"logró")]
+Oferta.fechaLogro;ID;fechacierre
+Oferta.crearPedidoDescripcion;ID;eventdescrip
 Oferta.Infastructura;XPATH;//input[@aria-label='Tipo infraestructura, Búsqueda']
 
 ############################# PRODUCTO ############################

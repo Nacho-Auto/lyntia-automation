@@ -524,6 +524,7 @@ namespace Lyntia.TestSet.Conditions
         {
             try
             {
+                driver.FindElement(By.Id("fechacierre")).Click();
                 Assert.AreEqual("Crear pedido", Utils.SearchWebElement("Oferta.labelCrearpedido").Text);
 
                 TestContext.WriteLine("***Se cumple la condicion de oferta adjudicada correctamente");
@@ -535,19 +536,19 @@ namespace Lyntia.TestSet.Conditions
             }
         }
 
-        public void ResAdjudicarOferta(string fechaAdjudicacion)
-        {
+        public void ResAdjudicarOferta(string año, string mes, string dia) { 
             try
             {
-                Assert.AreEqual("Crear pedido", Utils.SearchWebElement("Oferta.labelCrearpedido").Text);
-
-                Utils.SearchWebElement("Oferta.fechaLogro").Click();
-                Utils.SearchWebElement("Oferta.fechaLogro").Click();
-                Utils.SearchWebElement("Oferta.fechaLogro").SendKeys(Keys.Control + "a");
-                Utils.SearchWebElement("Oferta.fechaLogro").SendKeys(Keys.Delete);
-                Utils.SearchWebElement("Oferta.fechaLogro").SendKeys(fechaAdjudicacion);
-
+                string fechaLogro = año + "-" + mes + "-" + dia;
+                Assert.AreEqual("Crear Pedido", Utils.SearchWebElement("Oferta.labelCrearpedido").Text);
+                string id = Utils.GetIdentifier("Oferta.fechaLogro");
+                driver.SwitchTo().Frame("FullPageWebResource");
+                Utils.SearchWebElement("Oferta.fechaLogro").SendKeys("01-02-2023");
+                Utils.SearchWebElement("Oferta.crearPedidoDescripcion").SendKeys("descripcion");
+                Utils.SearchWebElement("Oferta.buttonConfirmarCierre").Click();
                 TestContext.WriteLine("***Se cumple la condicion de oferta adjudicada correctamente");
+                driver.SwitchTo().DefaultContent();
+
             }
             catch (Exception e)
             {

@@ -184,7 +184,7 @@ namespace Lyntia.TestSet.Actions
                     Utils.SearchWebElement("Oferta.inputCustomerId").Click();                                       
                     Utils.SearchWebElement("Oferta.inputCustomerId").SendKeys(cliente);                                                           
                     driver.FindElement(By.XPath("//div[@aria-label = 'General']")).SendKeys(Keys.PageUp);
-                    wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//span[contains(text(), '" + cliente + "')]")));                    
+                    wait.Until(ExpectedConditions.ElementExists(By.XPath("//span[contains(text(), '" + cliente + "')]")));                                     
                     driver.FindElement(By.XPath("//span[contains(text(), '" + cliente + "')]")).Click();
                     Assert.IsTrue(utils.existeElemento("//div[@title='" + cliente + "']"));
 
@@ -902,19 +902,17 @@ namespace Lyntia.TestSet.Actions
         {
             try
             {
-
-                Thread.Sleep(5000);
+                Thread.Sleep(10000);
                 Utils.SearchWebElement("Producto.PestañaFechas").Click();
                 wait.Until(ExpectedConditions.ElementToBeClickable(Utils.getByElement("Oferta.fechaPresentacion")));
                 Utils.SearchWebElement("Oferta.fechaPresentacion").Click();                
                 Utils.SearchWebElement("Oferta.fechaPresentacion").SendKeys(fechaPresentacion);
                 
-
                 Utils.SearchWebElement("Oferta.buttonPresentOferta").Click();
                 TestContext.WriteLine("Se accede a la ventana de Presentar Oferta.");
             }
             catch (Exception e)
-            {
+            {                
                 CommonActions.CapturadorExcepcion(e, "PresentarOferta.png", "No se accede a la ventana de Presentar Oferta.");
                 throw e;
             }
@@ -1656,8 +1654,13 @@ namespace Lyntia.TestSet.Actions
             //Pestaña Billing (datos obligatorios)
             /// </summary>
             /// Contrato marco, Actualizacion precio, periodicidad, UTPRX, codigo tarea, sociedad de facturacion, limite ipc
-            Utils.SearchWebElement("Producto.PestañaContratosYbilling").Click();            
+            Utils.SearchWebElement("Producto.PestañaContratosYbilling").Click();
 
+            //Contrato Marco
+            Utils.SearchWebElement("Producto.PestañaContratosYbillingCONTRATOMARCO").Click();
+            Utils.SearchWebElement("Producto.PestañaContratosYbillingCONTRATOMARCO").SendKeys("Automatic");
+            
+            
             //Actualizacion precio            
             wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//ul[contains(@id, 'contratomarco')]")));
             if (!utils.existeElemento("//div[@title='No Aplica']"))

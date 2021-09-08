@@ -1832,7 +1832,7 @@ namespace Lyntia.TestSet
 
             // Adjudicamos oferta
             ofertaActions.Adjudicar_Oferta();
-            ofertaCondition.ResAdjudicarOferta();
+            ofertaCondition.ResAdjudicarOferta("2021", "01", "01");
 
             // Creamos el pedido
             ofertaActions.VentanaCrearPedidofechaposterior();

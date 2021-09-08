@@ -101,8 +101,7 @@ namespace Lyntia.TestSet.Actions
             // Introduccir metros
             if (!metros.Equals(""))
             {
-                driver.FindElement(By.XPath("//section[@id='quickCreateRoot3']//div[@role='presentation']")).SendKeys(Keys.Escape);
-                
+                driver.FindElement(By.XPath("//div[@aria-label = 'General']")).SendKeys(Keys.PageUp);
                 Utils.SearchWebElement("Producto.inputMetros").Click();
                 Utils.SearchWebElement("Producto.inputMetros").SendKeys(metros);
                 Utils.SearchWebElement("Producto.inputMetros").SendKeys(Keys.Control + "a");
