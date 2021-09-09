@@ -1020,18 +1020,16 @@ namespace Lyntia.TestSet.Actions
         {
             try
             {
-                Thread.Sleep(3000);
-                Utils.SearchWebElement("Oferta.inputFechaVentanaCrearpedido").Click();
-                Thread.Sleep(2000);
-                Utils.SearchWebElement("Oferta.ButtonNextday").Click();
-                Thread.Sleep(2000);
-                Utils.SearchWebElement("Oferta.buttonAceptarVentanaEmergente").Click();
-                Thread.Sleep(28000);
-
-                
+                driver.SwitchTo().Frame("FullPageWebResource");
+                Utils.SearchWebElement("Oferta.fechaLogro").SendKeys(Utils.getFechaActual().Replace("/", "-"));
+                Utils.SearchWebElement("Oferta.crearPedidoDescripcion").SendKeys("descripcion");
+                Utils.SearchWebElement("Oferta.buttonConfirmarCierre").Click();
+                driver.SwitchTo().DefaultContent();
+                wait.Until(ExpectedConditions.ElementToBeClickable(Utils.getByElement("Oferta.saveOferta")));
                 Utils.SearchWebElement("Oferta.saveOferta").Click();
 
                 TestContext.WriteLine("se continua con el pedido correctamente.");
+
             }
             catch (Exception e)
             {
