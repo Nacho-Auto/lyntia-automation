@@ -98,7 +98,9 @@ namespace Lyntia.Utilities
             IWebElement element;
             try
             {
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1);
                 element = driver.FindElement(by);
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(45);
             }
             catch (NoSuchElementException)
             {

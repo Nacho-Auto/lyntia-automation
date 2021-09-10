@@ -232,7 +232,9 @@ namespace Lyntia.TestSet.Conditions
         {
             try
             {
-                Assert.AreEqual("La oferta de tipo “Cambio de capacidad” requiere envío a construcción, pero no cambia el código administrativo", driver.FindElement(By.XPath("//span[contains(@data-id, 'warningNotification')]")).Text);
+                if(!utils.EncontrarElemento(By.XPath("//span[contains(text(),'Cambio de capacidad')]")))
+                    driver.FindElement(By.Id("notificationIcon")).Click();
+                Assert.AreEqual("La oferta de tipo “Cambio de capacidad” requiere envío a construcción, pero no cambia el código administrativo", driver.FindElement(By.XPath("//span[contains(text(),'Cambio de capacidad')]")).Text);
                 //               La oferta de tipo “Cambio de capacidad” requiere envío a construcción, pero no cambia el código administrativo
 
                 TestContext.WriteLine("***La condicion de aviso cambio de capacidad se cumple");
@@ -250,7 +252,9 @@ namespace Lyntia.TestSet.Conditions
             try
             {
                 Thread.Sleep(3000);
-                Assert.AreEqual("La oferta de tipo “Cambio de precio” no requiere envío a construcción ni cambiar el código administrativo", driver.FindElement(By.XPath("//span[contains(@data-id, 'warningNotification')]")).Text);
+                if (!utils.EncontrarElemento(By.XPath("//span[contains(text(),'Cambio de precio')]")))
+                    driver.FindElement(By.Id("notificationIcon")).Click();
+                Assert.AreEqual("La oferta de tipo “Cambio de precio” no requiere envío a construcción ni cambiar el código administrativo", driver.FindElement(By.XPath("//span[contains(text(),'Cambio de precio')]")).Text);
                 Thread.Sleep(3000);
                 driver.FindElement(By.XPath("//button[contains(@aria-label, 'Guardar')]")).Click();//Guardar
 
@@ -268,7 +272,9 @@ namespace Lyntia.TestSet.Conditions
             try
             {
                 Thread.Sleep(3000);
-                Assert.AreEqual("La oferta de tipo “Cambio de tecnología” requiere el envío a construcción y cambia el código administrativo", driver.FindElement(By.XPath("//span[contains(@data-id, 'warningNotification')]")).Text);
+                if (!utils.EncontrarElemento(By.XPath("//span[contains(text(),'Cambio de tecnología')]")))
+                    driver.FindElement(By.Id("notificationIcon")).Click();
+                Assert.AreEqual("La oferta de tipo “Cambio de tecnología” requiere el envío a construcción y cambia el código administrativo", driver.FindElement(By.XPath("//span[contains(text(),'Cambio de tecnología')]")).Text);
                 driver.FindElement(By.XPath("//button[contains(@aria-label, 'Guardar')]")).Click();//Guardar
 
                 TestContext.WriteLine("***Se cumple la condicion de aviso cambio de solucion");
@@ -285,7 +291,9 @@ namespace Lyntia.TestSet.Conditions
             try
             {
                 Thread.Sleep(3000);
-                Assert.AreEqual("La oferta de tipo “Migración” requiere el envío a construcción y cambia el código administrativo", driver.FindElement(By.XPath("//span[contains(@data-id, 'warningNotification')]")).Text);
+                if (!utils.EncontrarElemento(By.XPath("//span[contains(text(),'Migración')]")))
+                    driver.FindElement(By.Id("notificationIcon")).Click();
+                Assert.AreEqual("La oferta de tipo “Migración” requiere el envío a construcción y cambia el código administrativo", driver.FindElement(By.XPath("//span[contains(text(),'Migración')]")).Text);
                 TestContext.WriteLine("***La condicion de aviso cambio de direccion es correcta");
             }
             catch (Exception e)

@@ -910,6 +910,7 @@ namespace Lyntia.TestSet.Actions
         {
             try
             {
+                Utils.SearchWebElement("Oferta.LabelFechasPestaña").Click();
                 Utils.SearchWebElement("Oferta.fechaPresentacion").Click();
                 Utils.SearchWebElement("Oferta.fechaPresentacion").Click();                
                 Utils.SearchWebElement("Oferta.fechaPresentacion").SendKeys(fechaPresentacion);
@@ -1258,18 +1259,21 @@ namespace Lyntia.TestSet.Actions
             Utils.SearchWebElement("Producto.PestañaContratosYbillingUTPRX").SendKeys("45");
             Thread.Sleep(2000);
 
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingCONTRATOMARCO").Click();
-            Thread.Sleep(1000);
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingCONTRATOMARCO").SendKeys("prueba");
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingCONTRATOMARCO").SendKeys(Keys.Control + "a");
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingCONTRATOMARCO").SendKeys(Keys.Delete);
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingCONTRATOMARCO").SendKeys("prueba");
-            Thread.Sleep(2000);
-            driver.FindElement(By.XPath("//span[contains(text(), 'prueba')]")).Click();
-            Thread.Sleep(3000);
-            Thread.Sleep(2000);
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingTAREA").SendKeys("3");
-            Thread.Sleep(2000);
+            if (!utils.EncontrarElemento(By.XPath("//div[@title = 'prueba']")))
+            {
+                Utils.SearchWebElement("Producto.PestañaContratosYbillingCONTRATOMARCO").Click();
+                Thread.Sleep(1000);
+                Utils.SearchWebElement("Producto.PestañaContratosYbillingCONTRATOMARCO").SendKeys("prueba");
+                Utils.SearchWebElement("Producto.PestañaContratosYbillingCONTRATOMARCO").SendKeys(Keys.Control + "a");
+                Utils.SearchWebElement("Producto.PestañaContratosYbillingCONTRATOMARCO").SendKeys(Keys.Delete);
+                Utils.SearchWebElement("Producto.PestañaContratosYbillingCONTRATOMARCO").SendKeys("prueba");
+                Thread.Sleep(2000);
+                driver.FindElement(By.XPath("//span[contains(text(), 'prueba')]")).Click();
+            }
+                Thread.Sleep(4000);                
+                Utils.SearchWebElement("Producto.PestañaContratosYbillingTAREA").SendKeys("3");
+                Thread.Sleep(2000);
+            
 
             // Actualizacion de precio
             //Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").Click();
@@ -1397,7 +1401,7 @@ namespace Lyntia.TestSet.Actions
             Utils.SearchWebElement("Producto.PestañaJiraFECHACOMPROMISO").SendKeys("28/02/2022");
             Thread.Sleep(2000);
 
-            // Contacto
+            // Contacto           
             //Utils.SearchWebElement("Producto.PestañaJiraCONTACTO").Click();
             //Thread.Sleep(1000);
             //Utils.SearchWebElement("Producto.PestañaJiraCONTACTO").SendKeys("Jose Antonio Garcia Mendez");
@@ -1661,6 +1665,12 @@ namespace Lyntia.TestSet.Actions
             /// Contrato marco, Actualizacion precio, periodicidad, UTPRX, codigo tarea, sociedad de facturacion, limite ipc
             Utils.SearchWebElement("Producto.PestañaContratosYbilling").Click();
             Thread.Sleep(2000);
+
+            //Contrato Marco
+            Utils.SearchWebElement("PestañaContratosYbillingCONTRATOMARCO").Click();
+            Utils.SearchWebElement("PestañaContratosYbillingCONTRATOMARCO").SendKeys("Automatic");
+
+
 
             //Actualizacion precio
             Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").Click();
