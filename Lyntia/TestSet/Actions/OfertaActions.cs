@@ -982,6 +982,7 @@ namespace Lyntia.TestSet.Actions
         {
             try
             {
+                wait.Until(ExpectedConditions.ElementToBeClickable(Utils.getByElement("Oferta.buttonAdjudicarOferta")));
                 Utils.SearchWebElement("Oferta.buttonAdjudicarOferta").Click();
                 TestContext.WriteLine("Se accede a la ventana de Adjudicar Oferta.");
             }
@@ -1021,11 +1022,11 @@ namespace Lyntia.TestSet.Actions
         {
             try
             {
-                driver.SwitchTo().Frame("FullPageWebResource");
-                Utils.SearchWebElement("Oferta.fechaLogro").SendKeys(Utils.getFechaActual().Replace("/", "-"));
-                Utils.SearchWebElement("Oferta.crearPedidoDescripcion").SendKeys("descripcion");
-                Utils.SearchWebElement("Oferta.buttonConfirmarCierre").Click();
-                driver.SwitchTo().DefaultContent();
+                //driver.SwitchTo().Frame("FullPageWebResource");
+                //Utils.SearchWebElement("Oferta.fechaLogro").SendKeys(Utils.getFechaActual().Replace("/", "-"));
+                //Utils.SearchWebElement("Oferta.crearPedidoDescripcion").SendKeys("descripcion");
+                Utils.SearchWebElement("Oferta.buttonAceptarVentanaEmergente").Click();
+                //driver.SwitchTo().DefaultContent();
                 wait.Until(ExpectedConditions.ElementToBeClickable(Utils.getByElement("Oferta.saveOferta")));
                 Utils.SearchWebElement("Oferta.saveOferta").Click();
 
@@ -1391,6 +1392,7 @@ namespace Lyntia.TestSet.Actions
             Thread.Sleep(3000);
 
             // Capex fibra y equipo
+            Utils.SearchWebElement("Producto.PestañaJiraKAPEXFIBRA").Click();
             Utils.SearchWebElement("Producto.PestañaJiraKAPEXFIBRA").SendKeys("456");
             Thread.Sleep(3000);
             
