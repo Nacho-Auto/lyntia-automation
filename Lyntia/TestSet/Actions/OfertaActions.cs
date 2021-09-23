@@ -164,6 +164,7 @@ namespace Lyntia.TestSet.Actions
             {
                 if (!nombre.Equals(""))
                 {
+                    Thread.Sleep(2000);
                     Utils.SearchWebElement("Oferta.inputNameOferta").Click();
                     Utils.SearchWebElement("Oferta.inputNameOferta").Clear();
                     Thread.Sleep(2000);
@@ -896,6 +897,12 @@ namespace Lyntia.TestSet.Actions
         {
             try
             {
+                Thread.Sleep(1000);
+                if (!utils.EncontrarElemento(Utils.getByElement("Oferta.buttonPresentOferta")))
+                {
+                    Utils.SearchWebElement("Oferta.saveOferta").Click();                    
+                }                                
+
                 Utils.SearchWebElement("Oferta.buttonPresentOferta").Click();
                 TestContext.WriteLine("Se accede a la ventana de Presentar Oferta.");
             }
@@ -999,10 +1006,10 @@ namespace Lyntia.TestSet.Actions
         {
             try
             {
-                Utils.SearchWebElement("Oferta.inputFechaVentanaCrearpedido").Click();
+                /*Utils.SearchWebElement("Oferta.inputFechaVentanaCrearpedido").Click();
                 Utils.SearchWebElement("Oferta.inputFechaVentanaCrearpedido").SendKeys(Keys.Control + "a");
                 Utils.SearchWebElement("Oferta.inputFechaVentanaCrearpedido").SendKeys(Keys.Delete);
-                Utils.SearchWebElement("Oferta.inputFechaVentanaCrearpedido").SendKeys(Fecha);
+                Utils.SearchWebElement("Oferta.inputFechaVentanaCrearpedido").SendKeys(Fecha);*/
 
                 
                 Utils.SearchWebElement("Oferta.buttonAceptarVentanaEmergente").Click();
@@ -1022,13 +1029,15 @@ namespace Lyntia.TestSet.Actions
         {
             try
             {
-                //driver.SwitchTo().Frame("FullPageWebResource");
-                //Utils.SearchWebElement("Oferta.fechaLogro").SendKeys(Utils.getFechaActual().Replace("/", "-"));
-                //Utils.SearchWebElement("Oferta.crearPedidoDescripcion").SendKeys("descripcion");
-                Utils.SearchWebElement("Oferta.buttonAceptarVentanaEmergente").Click();
-                //driver.SwitchTo().DefaultContent();
-                wait.Until(ExpectedConditions.ElementToBeClickable(Utils.getByElement("Oferta.saveOferta")));
-                Utils.SearchWebElement("Oferta.saveOferta").Click();
+                driver.SwitchTo().Frame("FullPageWebResource");
+                Utils.SearchWebElement("Oferta.fechaLogro").SendKeys(Utils.getFechaActual().Replace("/", "-"));
+                Utils.SearchWebElement("Oferta.crearPedidoDescripcion").SendKeys("descripcion");
+                Thread.Sleep(4000);
+                Utils.SearchWebElement("Oferta.buttonConfirmarCierre").Click();
+                Thread.Sleep(4000);
+                driver.SwitchTo().DefaultContent();
+                //wait.Until(ExpectedConditions.ElementToBeClickable(Utils.getByElement("Oferta.saveOferta")));
+                //Utils.SearchWebElement("Oferta.saveOferta").Click();
 
                 TestContext.WriteLine("se continua con el pedido correctamente.");
 
