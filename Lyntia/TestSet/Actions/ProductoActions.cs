@@ -180,7 +180,7 @@ namespace Lyntia.TestSet.Actions
                 // Guardar y Cerrar Producto actual
                 Utils.SearchWebElement("Producto.GuardarYCerrar_producto").Click();
                 Thread.Sleep(24000);
-
+                Utils.SearchWebElement("Oferta.saveOferta").Click();
                 TestContext.WriteLine("Producto guardado correctamente: " + productoExistente + ", " + uso + ", " + unidadVenta + ", " + metros + ", " + nrc + ", " + modalidadContratacion);
             }
             catch (Exception e)

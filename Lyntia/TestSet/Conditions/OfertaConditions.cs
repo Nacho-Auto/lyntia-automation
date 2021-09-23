@@ -532,7 +532,7 @@ namespace Lyntia.TestSet.Conditions
         {
             try
             {                
-                Assert.AreEqual("Crear pedido", driver.FindElement(By.XPath("//h1[contains(@aria-label, 'Crear pedido')]")).Text);               
+                Assert.AreEqual("Crear Proyecto", Utils.SearchWebElement("Oferta.labelCrearpedido").Text);               
                 TestContext.WriteLine("***Se cumple la condicion de oferta adjudicada correctamente");
             }
             catch (Exception e)
@@ -579,6 +579,7 @@ namespace Lyntia.TestSet.Conditions
         {
             try
             {
+                Thread.Sleep(2000);
                 Assert.AreEqual("En construcción", Utils.SearchWebElement("Producto.labelEnconstruccion").Text);
                 TestContext.WriteLine("Existe en la oferta el producto contratado");
             }
