@@ -187,8 +187,8 @@ namespace Lyntia.TestSet.Actions
                     Utils.SearchWebElement("Oferta.inputCustomerId").Click();                                       
                     Utils.SearchWebElement("Oferta.inputCustomerId").SendKeys(cliente);                                                           
                     driver.FindElement(By.XPath("//div[@aria-label = 'General']")).SendKeys(Keys.PageUp);
-                    wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//span[contains(text(), '" + cliente + "')]")));                    
-                    
+                    //wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//span[contains(text(), '" + cliente + "')]")));                    
+                    Thread.Sleep(1000);
                     
                     // Seleccionar cliente del desplegable
                     driver.FindElement(By.XPath("//span[contains(text(), '" + cliente + "')]")).Click();
@@ -1011,8 +1011,9 @@ namespace Lyntia.TestSet.Actions
                 Utils.SearchWebElement("Oferta.inputFechaVentanaCrearpedido").SendKeys(Keys.Delete);
                 Utils.SearchWebElement("Oferta.inputFechaVentanaCrearpedido").SendKeys(Fecha);*/
 
-                
+                driver.SwitchTo().Frame("FullPageWebResource");
                 Utils.SearchWebElement("Oferta.buttonAceptarVentanaEmergente").Click();
+                driver.SwitchTo().DefaultContent();
                 TestContext.WriteLine("se continua con el pedido correctamente.");
             }
             catch (Exception e)
@@ -1236,10 +1237,12 @@ namespace Lyntia.TestSet.Actions
             Thread.Sleep(2000);
 
             // Capex fibra y equipo
+            Utils.SearchWebElement("Producto.PestañaJiraKAPEXFIBRA").Click();
             Utils.SearchWebElement("Producto.PestañaJiraKAPEXFIBRA").SendKeys("456");
-            Thread.Sleep(2000);
-            Utils.SearchWebElement("Producto.PestañaJiraKAPEXEQUIPOS").SendKeys(Keys.Control + "a");
-            Utils.SearchWebElement("Producto.PestañaJiraKAPEXEQUIPOS").SendKeys(Keys.Delete);
+            //Thread.Sleep(2000);
+           // Utils.SearchWebElement("Producto.PestañaJiraKAPEXEQUIPOS").SendKeys(Keys.Control + "a");
+            //Utils.SearchWebElement("Producto.PestañaJiraKAPEXEQUIPOS").SendKeys(Keys.Delete);
+            Utils.SearchWebElement("Producto.PestañaJiraKAPEXEQUIPOS").Click();        
             Utils.SearchWebElement("Producto.PestañaJiraKAPEXEQUIPOS").SendKeys("458");        
             Thread.Sleep(2000);
 

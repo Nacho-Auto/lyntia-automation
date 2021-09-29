@@ -105,11 +105,14 @@ namespace Lyntia.TestSet.Conditions
                 // Assert de Hora de creación vacía
                 Assert.IsFalse(driver.FindElement(By.XPath("//input[contains(@aria-label,'Hora de Fecha creación')]")).GetAttribute("value").Equals(""));
 
-                // Assert de Fecha de modificación vacía
-                Assert.IsFalse(driver.FindElement(By.XPath("//input[contains(@data-id,'modifiedon')]")).GetAttribute("value").Equals(""));
+                if (utils.EncontrarElemento(By.XPath("//input[contains(@data-id,'modifiedon')]")))
+                {
+                    // Assert de Fecha de modificación vacía
+                    Assert.IsFalse(driver.FindElement(By.XPath("//input[contains(@data-id,'modifiedon')]")).GetAttribute("value").Equals(""));
 
-                // Assert de Hora de modificación vacía
-                Assert.IsFalse(driver.FindElement(By.XPath("//input[contains(@aria-label,'Hora de Fecha de modificación')]")).GetAttribute("value").Equals(""));
+                    // Assert de Hora de modificación vacía
+                    Assert.IsFalse(driver.FindElement(By.XPath("//input[contains(@aria-label,'Hora de Fecha de modificación')]")).GetAttribute("value").Equals(""));
+                }                
 
                 TestContext.WriteLine("***Las condiciones de fechas informadas correctamente han sido OK");
             }
