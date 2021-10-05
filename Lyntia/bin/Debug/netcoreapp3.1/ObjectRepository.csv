@@ -17,7 +17,7 @@ Oferta.buttonLupaFiltro;XPATH;//button[contains(@title, 'Iniciar búsqueda')]
 Oferta.ofertaTitleSelector;XPATH;//div[@title='Seleccionar vista']
 Oferta.newOferta;XPATH;//button[@aria-label='Nuevo']
 Oferta.saveOferta;XPATH;//button[@aria-label='Guardar (CTRL+S)']
-Oferta.validar;XPATH;//button[@aria-label='VALIDAR']
+Oferta.validar;XPATH;//button[@aria-label='Validar']
 Oferta.buttonComprobarAcceso;XPATH;//button[@aria-label='Comprobar acceso']
 Oferta.saveAndCloseOferta;XPATH;//div[@role='presentation']//button[@aria-label='Guardar y cerrar']
 Oferta.inputNameOferta;XPATH;//input[@aria-label='Nombre oferta']
@@ -153,7 +153,7 @@ Producto.selectProductoExistente;XPATH;//span[contains(@data-id, 'productid-erro
 Producto.LabelMensajeDeseaguardarcambios;XPATH;/html/body/section[2]/div/div/div/div/div/div/div[2]/span
 Producto.LabelMensajeDescartarCambios;XPATH;//button[contains(@aria-label, 'Descartar cambios')]
 Producto.h1QuickHeaderTitle;XPATH;//h1[contains(@data-id, 'quickHeaderTitle')]
-Producto.labelEnconstruccion;XPATH;//div[contains(@title, 'En construcción')]//label
+Producto.labelEnconstruccion;XPATH;//div[contains(@title, 'En construcción')]//span
 Producto.labelEnservicio;XPATH;//div[contains(@title, 'En servicio')]//label
 Producto.inputNombreDelservicio;XPATH;//input[contains(@aria-label, 'Nombre del servicio')]
 Producto.SelectLine1;XPATH;//div[contains(@data-id, 'cell-0-1')]

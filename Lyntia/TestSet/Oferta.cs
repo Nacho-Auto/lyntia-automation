@@ -1842,7 +1842,7 @@ namespace Lyntia.TestSet
             Utils.SearchWebElement("Oferta.inputCodigoTarea").Clear();
             Utils.SearchWebElement("Oferta.inputCodigoTarea").SendKeys("19");
             ofertaActions.Acceder_line1();
-            ofertaActions.CamposObligatoriosProductoFIBRABilling("", "01/01/2021", "Mensual");
+            ofertaActions.CamposObligatoriosProductoFIBRABilling("", Utils.getFechaActual(), "Mensual");
 
             //flujo nuevo
             
@@ -1888,12 +1888,14 @@ namespace Lyntia.TestSet
             Utils.SearchWebElement("Producto.ConfiguracionFacturacion.inputTantoXCien").SendKeys(tantoXCien1);
             Utils.SearchWebElement("BarraHerramientas.buttonGuardaryCerrar").Click();
             Assert.AreEqual("100", (Double.Parse(tantoXCien1) + Double.Parse(tantoXCien2)).ToString());
-            
-            //Paso 8 - Validar Oferta
-            Utils.SearchWebElement("Oferta.validar").Click();
-            Assert.IsTrue(Utils.driver.FindElement(By.XPath("//button[@aria-label='Comprobar acceso']")).Displayed);            
 
-            //Paso 9 - Comprobar estado Configuración facturacion Validado
+            //Paso 8 - Validar Oferta
+            Thread.Sleep(1000);
+            Utils.SearchWebElement("Oferta.validar").Click();
+            Assert.IsTrue(Utils.driver.FindElement(By.XPath("//button[@aria-label='Comprobar acceso']")).Displayed);
+
+            //Paso 9 - Comprobar estado Configuración facturacion Validado            
+            Thread.Sleep(1000);
             Utils.SearchWebElement("Producto.ConfiguracionFacturacion.PestañaCabecera").Click();
             Thread.Sleep(3000);
             Assert.AreEqual("Validado", Utils.SearchWebElement("Producto.ConfiguracionFacturacion.Cabecera.inputRazonEstado").Text);

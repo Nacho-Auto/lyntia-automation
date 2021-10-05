@@ -34,12 +34,11 @@ namespace Lyntia.TestSet.Actions
         /// <param name="seccion"></param>
         public void AccesoOfertasLyntia(String seccion)
         {
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.Id(Utils.GetIdentifier("Oferta.ofertaSection"))));
             if (utils.EncontrarElemento(By.Id(Utils.GetIdentifier("Oferta.ofertaSection"))))
             {
                 try
-                {
-                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.Id(Utils.GetIdentifier("Oferta.ofertaSection"))));
-                    Thread.Sleep(6000);
+                {                                        
                     Utils.SearchWebElement("Oferta.ofertaSection").Click();
                     Thread.Sleep(2000);
                     Utils.SearchWebElement("Oferta.ofertaTitleSelector").Click();
@@ -988,15 +987,16 @@ namespace Lyntia.TestSet.Actions
         public void Adjudicar_Oferta()
         {
             try
-            {
+            {                
                 wait.Until(ExpectedConditions.ElementToBeClickable(Utils.getByElement("Oferta.buttonAdjudicarOferta")));
                 Utils.SearchWebElement("Oferta.buttonAdjudicarOferta").Click();
+
                 TestContext.WriteLine("Se accede a la ventana de Adjudicar Oferta.");
             }
-            catch (Exception e)
+            catch (ElementClickInterceptedException e)
             {
-                CommonActions.CapturadorExcepcion(e, "AdjudicarOferta.png", "No se accede a la ventana de Adjudicar Oferta.");
-                throw e;
+                if (utils.EncontrarElemento(Utils.getByElement("Producto.botonCancelar")))
+                    Utils.SearchWebElement("Producto.botonCancelar");                
             }
         }
         /// <summary>
@@ -1037,9 +1037,11 @@ namespace Lyntia.TestSet.Actions
                 Utils.SearchWebElement("Oferta.buttonConfirmarCierre").Click();
                 Thread.Sleep(4000);
                 driver.SwitchTo().DefaultContent();
-                //wait.Until(ExpectedConditions.ElementToBeClickable(Utils.getByElement("Oferta.saveOferta")));
-                //Utils.SearchWebElement("Oferta.saveOferta").Click();
-
+                
+                Thread.Sleep(3000);
+                if (utils.EncontrarElemento(Utils.getByElement("Producto.botonConfirmar")))
+                    Utils.SearchWebElement("Producto.botonConfirmar").Click();
+                
                 TestContext.WriteLine("se continua con el pedido correctamente.");
 
             }
@@ -1156,6 +1158,7 @@ namespace Lyntia.TestSet.Actions
 
             Thread.Sleep(7000);
             Utils.SearchWebElement("Producto.SelectLine1").Click();
+            Thread.Sleep(500);
             Utils.SearchWebElement("Oferta.buttonEditOferta").Click();
             Thread.Sleep(4000);
         }
@@ -1681,16 +1684,15 @@ namespace Lyntia.TestSet.Actions
             Thread.Sleep(2000);
 
             //Contrato Marco
-            Utils.SearchWebElement("PestañaContratosYbillingCONTRATOMARCO").Click();
-            Utils.SearchWebElement("PestañaContratosYbillingCONTRATOMARCO").SendKeys("Automatic");
-
-
+            driver.FindElement(By.XPath("//button[contains(@aria-label,'Buscar registros para el campo Contrato marco')]")).Click();
+            driver.FindElement(By.XPath("//li[contains(@aria-label,'Automatic')]")).Click();
 
             //Actualizacion precio
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").Click();
+
+            /*Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").Click();
             Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").SendKeys("No Aplica");
             wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//span[contains(., 'No Aplica')]")));
-            driver.FindElement(By.XPath("//span[contains(., 'No Aplica')]")).Click();
+            driver.FindElement(By.XPath("//span[contains(., 'No Aplica')]")).Click();*/
 
             // UTPRX
             Utils.SearchWebElement("Producto.PestañaContratosYbillingUTPRX").Click();
@@ -1714,8 +1716,11 @@ namespace Lyntia.TestSet.Actions
             Utils.SearchWebElement("Producto.PestañaFechas.inputFechaInicioFacturacion").SendKeys(fechaPresentacionOferta);
             Utils.SearchWebElement("Producto.PestañaFechas.inputFechaInicioFacturacion").SendKeys(Keys.Enter);
             //Alert
-            Utils.SearchWebElement("Producto.botonConfirmar").Click();
-            Utils.SearchWebElement("Producto.botonOk").Click();
+            if (utils.EncontrarElemento(Utils.getByElement("Producto.botonConfirmar")))
+            {
+                Utils.SearchWebElement("Producto.botonConfirmar").Click();
+            }
+            
 
             Utils.SearchWebElement("Oferta.saveOferta").Click();
             Thread.Sleep(17000);
@@ -2007,7 +2012,7 @@ namespace Lyntia.TestSet.Actions
         public void Enviar_A_Jira_cancelar()
         {
 
-            Utils.SearchWebElement("Oferta.buttonAceptarVentanaEmergente").Click();
+            Utils.SearchWebElement("Producto.botonOk").Click();
             Thread.Sleep(4000);
 
             //Pulsar sobre el primer registro y editar 
