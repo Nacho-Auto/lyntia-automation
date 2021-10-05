@@ -582,7 +582,7 @@ namespace Lyntia.TestSet.Conditions
         {
             try
             {
-                Thread.Sleep(2000);
+                Thread.Sleep(3000);
                 Assert.AreEqual("En construcción", Utils.SearchWebElement("Producto.labelEnconstruccion").Text);
                 TestContext.WriteLine("Existe en la oferta el producto contratado");
             }
