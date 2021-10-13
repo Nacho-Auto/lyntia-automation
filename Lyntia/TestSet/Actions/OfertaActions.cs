@@ -917,13 +917,17 @@ namespace Lyntia.TestSet.Actions
             try
             {
                 Utils.SearchWebElement("Oferta.LabelFechasPestaña").Click();
-                Utils.SearchWebElement("Oferta.fechaPresentacion").Click();
+
+                wait.Until(ExpectedConditions.ElementToBeClickable(Utils.SearchWebElement("Oferta.fechaPresentacion")));
+                Utils.SearchWebElement("Oferta.fechaPresentacion").Click();                
                 Utils.SearchWebElement("Oferta.fechaPresentacion").Click();                
                 Utils.SearchWebElement("Oferta.fechaPresentacion").SendKeys(fechaPresentacion);
                 
 
                 Utils.SearchWebElement("Oferta.buttonPresentOferta").Click();
                 TestContext.WriteLine("Se accede a la ventana de Presentar Oferta.");
+                Thread.Sleep(3000);
+                //Utils.SearchWebElement("Producto.botonCancelar").Click();
             }
             catch (Exception e)
             {
