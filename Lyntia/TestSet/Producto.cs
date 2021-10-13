@@ -172,7 +172,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la UbiRed Pro
-            productoActions.CreacionProducto("UbiRed Pro", "FTTT", "1 Gbps", "", "", "4", "", "");
+            productoActions.CreacionProducto("UbiRed Pro", "FTTT", "1 Gbps", "", "", "4", "", "","");
             
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
 
@@ -205,7 +205,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la UbiRed Pro
-            productoActions.CreacionProducto("UbiRed Business", "", "", "", "", "", "2", "");
+            productoActions.CreacionProducto("UbiRed Business", "", "", "", "", "", "2", "","");
             
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
 
@@ -238,7 +238,7 @@ namespace Lyntia.TestSet
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la UbiRed Pro
-            productoActions.CreacionProducto("Rack", "FTTE", "600mm 24U", "", "", "", "24", "");
+            productoActions.CreacionProducto("Co-Location genérico", "", "", "", "", "4", "24", "3", "2U en Rack compartido");
             
             ofertaActions.AccesoOfertasLyntia("Mis Ofertas lyntia");
 
@@ -272,7 +272,7 @@ namespace Lyntia.TestSet
             productoCondition.Resultado_Agregar_servicio_heredado_y_guardar();
 
             //Paso 5
-            productoActions.Cumplimentar_campos_y_guardar("FTTT");
+            productoActions.Cumplimentar_campos_y_guardar("FTTT","10 Mbps");
             productoCondition.Resultado_Cumplimentar_campos_y_guardar();
 
             // Reestablece datos
@@ -330,7 +330,7 @@ namespace Lyntia.TestSet
             ofertaActions.AccesoNuevaOferta();
 
             // Rellenar campos y click en Guardar
-            ofertaActions.RellenarCamposOferta("CRM-APR0010-HEREDAR-PROD_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Cambio de solución técnica (Tecnología)", "# BizQA");
+            ofertaActions.RellenarCamposOferta("CRM-APR0010-HEREDAR-PROD_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Cambio de configuración o producto (Tecnología)", "# BizQA");
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la Oferta Circuito de Capacidad
@@ -462,7 +462,7 @@ namespace Lyntia.TestSet
             ofertaActions.AccesoNuevaOferta();
 
             // Rellenar campos y click en Guardar
-            ofertaActions.RellenarCamposOferta("CRM-APR0014-HEREDAR-PROD_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Cambio de solución técnica (Tecnología)", "# BizQA");
+            ofertaActions.RellenarCamposOferta("CRM-APR0014-HEREDAR-PROD_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Cambio de configuración o producto (Tecnología)", "# BizQA");
             ofertaActions.GuardarOferta();
 
             // Añadir Producto a la Oferta FO
@@ -594,7 +594,7 @@ namespace Lyntia.TestSet
             ofertaActions.AccesoNuevaOferta();
 
             // Rellenar campos y click en Guardar
-            ofertaActions.RellenarCamposOferta("CRM-APR0018-HEREDAR-PROD_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Cambio de solución técnica (Tecnología)", "# BizQA");
+            ofertaActions.RellenarCamposOferta("CRM-APR0018-HEREDAR-PROD_" + Utils.GetRandomString(), "CLIENTE INTEGRACION", "Cambio de configuración o producto (Tecnología)", "# BizQA");
             ofertaActions.GuardarOferta();
 
             // TODO: Añadir Producto a la Oferta UbuRed Pro

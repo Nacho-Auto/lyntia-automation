@@ -12,6 +12,7 @@ namespace Lyntia.TestSet.Conditions
     {
         readonly Utils utils = new Utils();
         private static IWebDriver driver;
+        private static WebDriverWait wait;
 
         public OfertaConditions()
         {
@@ -105,11 +106,14 @@ namespace Lyntia.TestSet.Conditions
                 // Assert de Hora de creación vacía
                 Assert.IsFalse(driver.FindElement(By.XPath("//input[contains(@aria-label,'Hora de Fecha creación')]")).GetAttribute("value").Equals(""));
 
-                // Assert de Fecha de modificación vacía
-                Assert.IsFalse(driver.FindElement(By.XPath("//input[contains(@data-id,'modifiedon')]")).GetAttribute("value").Equals(""));
+                if (utils.EncontrarElemento(By.XPath("//input[contains(@data-id,'modifiedon')]")))
+                {
+                    // Assert de Fecha de modificación vacía
+                    Assert.IsFalse(driver.FindElement(By.XPath("//input[contains(@data-id,'modifiedon')]")).GetAttribute("value").Equals(""));
 
-                // Assert de Hora de modificación vacía
-                Assert.IsFalse(driver.FindElement(By.XPath("//input[contains(@aria-label,'Hora de Fecha de modificación')]")).GetAttribute("value").Equals(""));
+                    // Assert de Hora de modificación vacía
+                    Assert.IsFalse(driver.FindElement(By.XPath("//input[contains(@aria-label,'Hora de Fecha de modificación')]")).GetAttribute("value").Equals(""));
+                }                
 
                 TestContext.WriteLine("***Las condiciones de fechas informadas correctamente han sido OK");
             }
@@ -232,7 +236,11 @@ namespace Lyntia.TestSet.Conditions
         {
             try
             {
-                Assert.AreEqual("La oferta de tipo “Cambio de capacidad” requiere envío a construcción, pero no cambia el código administrativo", driver.FindElement(By.XPath("//span[contains(@data-id, 'warningNotification')]")).Text);
+                if(!utils.EncontrarElemento(By.XPath("//span[contains(text(),'Cambio de capacidad')]")))
+                    driver.FindElement(By.Id("notificationIcon")).Click();
+                Assert.AreEqual("La oferta de tipo “Cambio de capacidad” requiere envío a construcción, pero no cambia el código administrativo", driver.FindElement(By.XPath("//span[contains(text(),'Cambio de capacidad')]")).Text);
+                //               La oferta de tipo “Cambio de capacidad” requiere envío a construcción, pero no cambia el código administrativo
+
                 TestContext.WriteLine("***La condicion de aviso cambio de capacidad se cumple");
             }
             catch (Exception e)
@@ -248,7 +256,9 @@ namespace Lyntia.TestSet.Conditions
             try
             {
                 Thread.Sleep(3000);
-                Assert.AreEqual("La oferta de tipo “Cambio de precio” no requiere envío a construcción ni cambiar el código administrativo", driver.FindElement(By.XPath("//span[contains(@data-id, 'warningNotification')]")).Text);
+                if (!utils.EncontrarElemento(By.XPath("//span[contains(text(),'Cambio de precio')]")))
+                    driver.FindElement(By.Id("notificationIcon")).Click();
+                Assert.AreEqual("La oferta de tipo “Cambio de precio” no requiere envío a construcción ni cambiar el código administrativo", driver.FindElement(By.XPath("//span[contains(text(),'Cambio de precio')]")).Text);
                 Thread.Sleep(3000);
                 driver.FindElement(By.XPath("//button[contains(@aria-label, 'Guardar')]")).Click();//Guardar
 
@@ -266,7 +276,9 @@ namespace Lyntia.TestSet.Conditions
             try
             {
                 Thread.Sleep(3000);
-                Assert.AreEqual("La oferta de tipo “Cambio de tecnología” requiere el envío a construcción y cambia el código administrativo", driver.FindElement(By.XPath("//span[contains(@data-id, 'warningNotification')]")).Text);
+                if (!utils.EncontrarElemento(By.XPath("//span[contains(text(),'Cambio de tecnología')]")))
+                    driver.FindElement(By.Id("notificationIcon")).Click();
+                Assert.AreEqual("La oferta de tipo “Cambio de tecnología” requiere el envío a construcción y cambia el código administrativo", driver.FindElement(By.XPath("//span[contains(text(),'Cambio de tecnología')]")).Text);
                 driver.FindElement(By.XPath("//button[contains(@aria-label, 'Guardar')]")).Click();//Guardar
 
                 TestContext.WriteLine("***Se cumple la condicion de aviso cambio de solucion");
@@ -283,7 +295,9 @@ namespace Lyntia.TestSet.Conditions
             try
             {
                 Thread.Sleep(3000);
-                Assert.AreEqual("La oferta de tipo “Migración” requiere el envío a construcción y cambia el código administrativo", driver.FindElement(By.XPath("//span[contains(@data-id, 'warningNotification')]")).Text);
+                if (!utils.EncontrarElemento(By.XPath("//span[contains(text(),'Migración')]")))
+                    driver.FindElement(By.Id("notificationIcon")).Click();
+                Assert.AreEqual("La oferta de tipo “Migración” requiere el envío a construcción y cambia el código administrativo", driver.FindElement(By.XPath("//span[contains(text(),'Migración')]")).Text);
                 TestContext.WriteLine("***La condicion de aviso cambio de direccion es correcta");
             }
             catch (Exception e)
@@ -521,30 +535,8 @@ namespace Lyntia.TestSet.Conditions
         public void ResAdjudicarOferta()
         {
             try
-            {
-                Assert.AreEqual("Crear pedido", Utils.SearchWebElement("Oferta.labelCrearpedido").Text);
-
-                TestContext.WriteLine("***Se cumple la condicion de oferta adjudicada correctamente");
-            }
-            catch(Exception e)
-            {
-                CommonActions.CapturadorExcepcion(e, "ResAdjudicarOferta.png", ("*** No Se cumple la condicion de oferta adjudicada correctamente"));
-                throw e;
-            }
-        }
-
-        public void ResAdjudicarOferta(string fechaAdjudicacion)
-        {
-            try
-            {
-                Assert.AreEqual("Crear pedido", Utils.SearchWebElement("Oferta.labelCrearpedido").Text);
-
-                Utils.SearchWebElement("Oferta.fechaLogro").Click();
-                Utils.SearchWebElement("Oferta.fechaLogro").Click();
-                Utils.SearchWebElement("Oferta.fechaLogro").SendKeys(Keys.Control + "a");
-                Utils.SearchWebElement("Oferta.fechaLogro").SendKeys(Keys.Delete);
-                Utils.SearchWebElement("Oferta.fechaLogro").SendKeys(fechaAdjudicacion);
-
+            {                
+                Assert.AreEqual("Crear Proyecto", Utils.SearchWebElement("Oferta.labelCrearpedido").Text);               
                 TestContext.WriteLine("***Se cumple la condicion de oferta adjudicada correctamente");
             }
             catch (Exception e)
@@ -552,7 +544,7 @@ namespace Lyntia.TestSet.Conditions
                 CommonActions.CapturadorExcepcion(e, "ResAdjudicarOferta.png", ("*** No Se cumple la condicion de oferta adjudicada correctamente"));
                 throw e;
             }
-        }
+        }       
 
         public void ResVentanaCrearPedido()
         {
@@ -591,10 +583,26 @@ namespace Lyntia.TestSet.Conditions
         {
             try
             {
+                Thread.Sleep(3000);
                 Assert.AreEqual("En construcción", Utils.SearchWebElement("Producto.labelEnconstruccion").Text);
                 TestContext.WriteLine("Existe en la oferta el producto contratado");
             }
             catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "ResultadResVentanaCrearPedidofechaposterior.png", "No existe en la oferta el producto contratado");
+                throw e;
+            }
+        }
+
+        public void ResultadResVentanaCrearPedidofechaposterior(string servicio)
+        {
+            try
+            {
+                Thread.Sleep(2000);
+                Assert.AreEqual("En construcción", Utils.SearchWebElement("Producto.labelEnconstruccion").Text);
+                TestContext.WriteLine("Existe en la oferta el producto contratado");
+            }
+            catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "ResultadResVentanaCrearPedidofechaposterior.png", "No existe en la oferta el producto contratado");
                 throw e;
