@@ -66,7 +66,7 @@ namespace Lyntia.Utilities
                 chromeOptions.AddArguments("headless");
                 chromeOptions.AddArguments("window-size=1920x1080");
 
-                driver = new ChromeDriver();//chromeOption
+                driver = new ChromeDriver(chromeOptions);//chromeOption
 
                 objRep = ObjectRepositoryUtils.Instance;
                 objRep.TestDataReader("ObjectRepository.csv");
@@ -82,6 +82,7 @@ namespace Lyntia.Utilities
                 BorradoScreenshots();
 
                 driver.Navigate().GoToUrl("https://ufinetprep2.crm4.dynamics.com/");
+                driver.Manage().Window.Position = new System.Drawing.Point(-1000, 100);
                 driver.Manage().Window.Maximize();
                 driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(45);
 

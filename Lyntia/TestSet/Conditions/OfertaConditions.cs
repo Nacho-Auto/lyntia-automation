@@ -12,6 +12,7 @@ namespace Lyntia.TestSet.Conditions
     {
         readonly Utils utils = new Utils();
         private static IWebDriver driver;
+        private static WebDriverWait wait;
 
         public OfertaConditions()
         {
@@ -587,6 +588,21 @@ namespace Lyntia.TestSet.Conditions
                 TestContext.WriteLine("Existe en la oferta el producto contratado");
             }
             catch(Exception e)
+            {
+                CommonActions.CapturadorExcepcion(e, "ResultadResVentanaCrearPedidofechaposterior.png", "No existe en la oferta el producto contratado");
+                throw e;
+            }
+        }
+
+        public void ResultadResVentanaCrearPedidofechaposterior(string servicio)
+        {
+            try
+            {
+                Thread.Sleep(2000);
+                Assert.AreEqual("En construcción", Utils.SearchWebElement("Producto.labelEnconstruccion").Text);
+                TestContext.WriteLine("Existe en la oferta el producto contratado");
+            }
+            catch (Exception e)
             {
                 CommonActions.CapturadorExcepcion(e, "ResultadResVentanaCrearPedidofechaposterior.png", "No existe en la oferta el producto contratado");
                 throw e;

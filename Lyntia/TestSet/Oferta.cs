@@ -1834,18 +1834,18 @@ namespace Lyntia.TestSet
 
             // Creamos el pedido
             ofertaActions.VentanaCrearPedidofechaposterior();
-            ofertaCondition.ResultadResVentanaCrearPedidofechaposterior();
+
+            ofertaCondition.ResultadResVentanaCrearPedidofechaposterior(nombreServicio);
 
             // Seleccion del primer registro de los 2 productos y cumplimentar datos obligatorios
             Utils.SearchWebElement("Oferta.inputUTPRx").Clear();
             Utils.SearchWebElement("Oferta.inputUTPRx").SendKeys("20");
             Utils.SearchWebElement("Oferta.inputCodigoTarea").Clear();
             Utils.SearchWebElement("Oferta.inputCodigoTarea").SendKeys("19");
-            ofertaActions.Acceder_line1();
+            Utils.SearchWebElement("Producto.SelectColumn2").Click();
             ofertaActions.CamposObligatoriosProductoFIBRABilling("", Utils.getFechaActual(), "Mensual");
 
-            //flujo nuevo
-            
+            //flujo nuevo            
             Utils.SearchWebElement("Producto.PestañaRelacionados").Click();
             Utils.driver.FindElement(By.XPath("//div[@aria-label = 'Configuraciones de facturación Relacionados - Billing']")).Click();
             Thread.Sleep(2000);
