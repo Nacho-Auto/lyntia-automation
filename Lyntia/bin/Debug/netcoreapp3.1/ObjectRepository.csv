@@ -29,12 +29,13 @@ Oferta.firstFromGrid;XPATH;//div[@data-id='cell-0-4']
 Oferta.secondFromGrid;XPATH;//div[@data-id='cell-1-4']
 Oferta.datesSection;XPATH;//li[@title='Fechas']
 Oferta.kamResponsable;XPATH;//input[contains(@id,'kamresponsable')]
+Oferta.kamOferta;XPATH;//input[contains(@aria-label,'KAM que oferta')]
 Oferta.deleteButtonOferta;XPATH;//button[contains(@aria-label,'Eliminar')]
 Oferta.confirmDeleteOferta;XPATH;//button[@id='confirmButton']
 Oferta.cancelDeleteOferta;XPATH;//button[@id='cancelButton']
 Oferta.inputQuickFindOferta;XPATH;//input[contains(@id,'quickFind')]
 Oferta.buttonQuickFindOferta;XPATH;//span[contains(@id,'quickFind_button')]
-Oferta.selectOfertaGrid;XPATH;//div[@data-id='cell-0-1']
+Oferta.selectOfertaGrid;XPATH;//div[@data-id='cellnewOferta-0-1']
 Oferta.buttonSearchContact;XPATH;//button[contains(@aria-label, 'Buscar registros para el campo Contacto de oferta, Búsqueda')]
 Oferta.buttonBuscarProductoExistente;XPATH;//button[contains(@aria-label, 'Buscar registros para el campo Producto existente, Búsqueda')]
 Oferta.gridCellsOferta;XPATH;//div[@wj-part='cells']
@@ -45,8 +46,8 @@ Oferta.gridFilterBuscarPorAceptarButton;XPATH;//button[@type='submit']
 Oferta.buttonAceptarVentanaEmergente;ID;btnOK
 Oferta.gridSelectAll;XPATH;//button[@title='Seleccionar todos']
 Oferta.buttonPresentOferta;XPATH;//button[@aria-label='Presentar Oferta']
-Oferta.labelPermutaDefault;XPATH;//a[@aria-label="Es permuta: No"]
-Oferta.labelPermutaDefaultReset;XPATH;//a[@aria-label="Es permuta: Sí"]
+Oferta.labelPermutaDefault;XPATH;//button[@aria-label="Es permuta: No"]
+Oferta.labelPermutaDefaultReset;XPATH;//button[@aria-label="Es permuta: Sí"]
 Oferta.buttonEditOferta;XPATH;//button[@aria-label='Editar']
 Oferta.SelectListOfertaTipoCambiodecapacidad;XPATH;//div[contains(@title, 'Cambio de capacidad (Upgrade/Downgrade)')]
 Oferta.LabelGeneralPestaña;XPATH;//li[contains(@aria-label, 'General')]
@@ -107,6 +108,7 @@ Oferta.fechaLogro;ID;fechacierre
 Oferta.crearPedidoDescripcion;ID;eventdescrip
 Oferta.Infastructura;XPATH;//input[@aria-label='Tipo infraestructura, Búsqueda']
 
+
 ############################# PRODUCTO ############################
 Producto.firstInput;ID;submit
 Producto.GuardarYCerrar_producto;XPATH;//button[@data-id='quickCreateSaveAndCloseBtn']
@@ -154,14 +156,14 @@ Producto.selectProductoExistente;XPATH;//span[contains(@data-id, 'productid-erro
 Producto.LabelMensajeDeseaguardarcambios;XPATH;/html/body/section[2]/div/div/div/div/div/div/div[2]/span
 Producto.LabelMensajeDescartarCambios;XPATH;//button[contains(@aria-label, 'Descartar cambios')]
 Producto.h1QuickHeaderTitle;XPATH;//h1[contains(@data-id, 'quickHeaderTitle')]
-Producto.labelEnconstruccion;XPATH;//div[contains(@title, 'En construcción')]//span
+Producto.labelEnconstruccion;XPATH;//div/label[contains(@title, 'En construcción')]
 Producto.labelEnservicio;XPATH;//div[contains(@title, 'En servicio')]//label
 Producto.inputNombreDelservicio;XPATH;//input[contains(@aria-label, 'Nombre del servicio')]
-Producto.SelectLine1;XPATH;//div[contains(@data-id, 'cell-0-1')]
-Producto.SelectLine2;XPATH;//div[contains(@data-id, 'cell-1-1')]
-Producto.SelectColumn2;XPATH;//div[contains(@data-id, 'cell-0-2')]
-Producto.SelectColumn13;XPATH;//div[contains(@data-id, 'cell-0-13')]
-Producto.celdaRazonEstado;XPATH;//div[contains(@data-id, 'cell-0-4')]
+Producto.SelectLine1;XPATH;//div[@row-index = 0]//button
+Producto.SelectLine2;XPATH;///div[@row-index = 1]//button
+Producto.SelectColumn2;XPATH;//div[@aria-colindex = 2]//button
+Producto.SelectColumn13;XPATH;//div[@aria-colindex = 13]//button
+Producto.celdaRazonEstado;XPATH;//div[@row-index = 0]//div[@aria-colindex = 8]//label
 Producto.PestañaCaracteristicas;XPATH;//li[@aria-label='Características']
 Producto.PestañaDireccionesYcoordenadas;XPATH;//li[@aria-label='Direcciones y Coordenadas']
 Producto.PestañaJira;XPATH;//li[@aria-label='Jira']

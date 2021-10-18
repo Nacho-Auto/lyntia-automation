@@ -578,7 +578,7 @@ namespace Lyntia.TestSet.Actions
             for (int i = 0; i <= 1; i++)
             {
                 //div[contains(@id,'cell-1-3')]//label
-                String codigo = driver.FindElement(By.XPath("//div[contains(@id,'cell-" + i + "-3')]//label")).Text;
+                String codigo = driver.FindElement(By.XPath("//div[contains(@data-id,'cell-0-3')]/span")).Text;
                 listaCodigos.Add(codigo);
             }
 

@@ -27,10 +27,12 @@ namespace Lyntia.TestSet.Conditions
 
         public void AccedeOferta()
         {
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//li[contains(@id, 'Todos_listItem')]")));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//span[text() = 'Ofertas lyntia']")));
+            Assert.AreEqual("Ofertas lyntia", driver.FindElement(By.XPath("//span[text() = 'Ofertas lyntia']")).Text);
+            /*wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//li[contains(@id, 'Todos_listItem')]")));
             Assert.AreEqual(true, driver.FindElement(By.XPath("//li[contains(@id, 'Todos_listItem')]")).Enabled);//el componente Todos esta activo
             Assert.AreEqual("Todos", driver.FindElement(By.XPath("//li[contains(@id, 'Todos_listItem')]")).Text);
-            ((ITakesScreenshot)driver).GetScreenshot().SaveAsFile(" AccedeOferta.png");
+            ((ITakesScreenshot)driver).GetScreenshot().SaveAsFile(" AccedeOferta.png");*/
         }
     }
 }
