@@ -17,6 +17,7 @@ namespace Lyntia.TestSet.Conditions
         public OfertaConditions()
         {
             driver = Utils.driver;
+            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(45));
         }
 
         public void CreaOferta()
@@ -24,7 +25,7 @@ namespace Lyntia.TestSet.Conditions
             try
             {
                 // Assert de título "Nuevo Oferta" del formulario
-                Assert.AreEqual("Nuevo Oferta", driver.FindElement(By.XPath("//h1[@data-id='header_title']")).Text);
+                Assert.AreEqual("Nuevo Oferta: Sin guardar", driver.FindElement(By.XPath("//h1[@data-id='header_title']")).Text);
 
                 // Assert de tab por defecto "General"
                 Assert.IsTrue(driver.FindElement(By.XPath("//li[@aria-label='General']")).GetAttribute("aria-selected").Equals("true"));
@@ -583,7 +584,8 @@ namespace Lyntia.TestSet.Conditions
         {
             try
             {
-                Thread.Sleep(3000);
+                Thread.Sleep(11000);                
+                wait.Until(ExpectedConditions.ElementExists(Utils.getByElement("Producto.labelEnconstruccion")));
                 Assert.AreEqual("En construcción", Utils.SearchWebElement("Producto.labelEnconstruccion").Text);
                 TestContext.WriteLine("Existe en la oferta el producto contratado");
             }

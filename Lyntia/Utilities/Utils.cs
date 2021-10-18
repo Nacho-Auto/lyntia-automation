@@ -6,6 +6,7 @@ using Lyntia.TestSet.Conditions;
 using System.Linq;
 using System.IO;
 using NUnit.Framework;
+using OpenQA.Selenium.Support.UI;
 
 namespace Lyntia.Utilities
 {
@@ -189,6 +190,16 @@ namespace Lyntia.Utilities
         {
             DateTime hoy = DateTime.Now;
             return hoy.ToString("dd/MM/yyyy");
+        }
+
+        public void checkAlert()
+        {
+            IAlert alert = ExpectedConditions.AlertIsPresent().Invoke(driver);
+            if (alert != null)
+            {
+                driver.SwitchTo().Alert().Accept();
+
+            }
         }
     }
 }

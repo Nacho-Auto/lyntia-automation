@@ -175,7 +175,7 @@ namespace Lyntia.TestSet.Actions
                     Utils.SearchWebElement("Oferta.inputNameOferta").SendKeys(nombre);
                     Thread.Sleep(1000);            
                 }
-
+                
                 if (!cliente.Equals(""))
                 {
                     // Rellenar Cliente de Oferta
@@ -207,6 +207,7 @@ namespace Lyntia.TestSet.Actions
                         Thread.Sleep(1000);
                     }
                 }
+                                
 
                 if (!tipoOferta.Equals(""))
                 {
@@ -321,7 +322,7 @@ namespace Lyntia.TestSet.Actions
         {
             try
             {
-                driver.FindElement(By.XPath("//a[@title='" + nombreOferta + "']")).Click();
+                driver.FindElement(By.XPath("//a[contains(@title,'" + nombreOferta + "')]")).Click();
                 Thread.Sleep(2000);
                 TestContext.WriteLine("Se abre la Oferta " + nombreOferta + " se abre correctamente.");
             }
@@ -576,17 +577,16 @@ namespace Lyntia.TestSet.Actions
                 Thread.Sleep(2000);
 
                 // KAM
-                //driver.FindElement(By.XPath("//input[contains(@aria-label, 'KAM que oferta, Búsqueda')]")).Click();
-                //driver.FindElement(By.XPath("//div[contains(@data-id,'new_kamresponsableid.fieldControl-LookupResultsDropdown_new_kamresponsableid_selected_tag')]")).Click();
-
-                //driver.FindElement(By.XPath("//ul[contains(@data-id,'new_kamresponsableid_SelectedRecordList')]")).Click();
-                //driver.FindElement(By.XPath("//button[contains(@data-id,'kamresponsableid_selected_tag_delete')]")).Click();
+                Utils.SearchWebElement("Oferta.kamOferta").Click();
+                Thread.Sleep(1000);
+                driver.FindElement(By.XPath("//span[contains(text(), 'Rodrigo')]")).Click();
                 Thread.Sleep(3000);
 
                 // Divisa
-                driver.FindElement(By.XPath("//ul[contains(@data-id,'transactioncurrencyid_SelectedRecordList')]")).Click();
+                Utils.SearchWebElement("Oferta.inputListadeprecios").Click();                
                 Thread.Sleep(1000);
-                driver.FindElement(By.XPath("//span[contains(@data-id, 'transactioncurrencyid_microsoftIcon_cancelButton')]")).Click();
+                driver.FindElement(By.XPath("//span[contains(text(), '2019')]")).Click();
+                //driver.FindElement(By.XPath("//span[contains(@data-id, 'transactioncurrencyid_microsoftIcon_cancelButton')]")).Click();
 
                 //TODO: capturar boton aceptar
                 Thread.Sleep(2000);
@@ -896,13 +896,14 @@ namespace Lyntia.TestSet.Actions
         {
             try
             {
-                Thread.Sleep(1000);
+                Thread.Sleep(2000);
                 if (!utils.EncontrarElemento(Utils.getByElement("Oferta.buttonPresentOferta")))
                 {
                     Utils.SearchWebElement("Oferta.saveOferta").Click();                    
                 }                                
 
                 Utils.SearchWebElement("Oferta.buttonPresentOferta").Click();
+                Thread.Sleep(2000);
                 TestContext.WriteLine("Se accede a la ventana de Presentar Oferta.");
             }
             catch (Exception e)
@@ -1163,8 +1164,11 @@ namespace Lyntia.TestSet.Actions
             Thread.Sleep(7000);
             Utils.SearchWebElement("Producto.SelectLine1").Click();
             Thread.Sleep(500);
-            Utils.SearchWebElement("Oferta.buttonEditOferta").Click();
+            //Utils.SearchWebElement("Oferta.buttonEditOferta").Click();
             Thread.Sleep(4000);
+            if (utils.EncontrarElemento(Utils.getByElement("Producto.botonConfirmar")))            
+                Utils.SearchWebElement("Producto.botonConfirmar").Click();
+            
         }
 
         /// <summary>
@@ -1176,7 +1180,8 @@ namespace Lyntia.TestSet.Actions
 
             Thread.Sleep(10000);
             Utils.SearchWebElement("Producto.SelectLine2").Click();
-            Utils.SearchWebElement("Oferta.buttonEditOferta").Click();
+            //
+            //Utils.SearchWebElement("Oferta.buttonEditOferta").Click();
             Thread.Sleep(4000);
         }
 
@@ -1817,8 +1822,9 @@ namespace Lyntia.TestSet.Actions
 
             Utils.SearchWebElement("Producto.PestañaContratosYbillingUTPRX").SendKeys("45");
             Thread.Sleep(2000);
-
-            Utils.SearchWebElement("Producto.PestañaContratosYbillingCONTRATOMARCO").Click();
+            
+            //CONTRATO MARCO
+            /*Utils.SearchWebElement("Producto.PestañaContratosYbillingCONTRATOMARCO").Click();
             Thread.Sleep(2000);
             Utils.SearchWebElement("Producto.PestañaContratosYbillingCONTRATOMARCO").SendKeys("prueba");
             Utils.SearchWebElement("Producto.PestañaContratosYbillingCONTRATOMARCO").SendKeys(Keys.Control + "a");
@@ -1828,7 +1834,7 @@ namespace Lyntia.TestSet.Actions
             driver.FindElement(By.XPath("//span[contains(text(), 'prueba')]")).Click();
             Thread.Sleep(4000);
             Utils.SearchWebElement("Producto.PestañaContratosYbillingTAREA").SendKeys("3");
-            Thread.Sleep(2000);
+            Thread.Sleep(2000);*/
 
             // Actualizacion de precio
             //Utils.SearchWebElement("Producto.PestañaContratosYbillingACTUALIZACIONPRECIO").Click();
@@ -2006,6 +2012,8 @@ namespace Lyntia.TestSet.Actions
          public void Enviar_A_Jira()
          {
             Utils.SearchWebElement("Producto.EnviarAJira").Click();
+            Thread.Sleep(500);
+            utils.checkAlert();
             Thread.Sleep(10000);
             
         }
@@ -2023,7 +2031,7 @@ namespace Lyntia.TestSet.Actions
 
             Thread.Sleep(7000);
             Utils.SearchWebElement("Producto.SelectLine1").Click();
-            Utils.SearchWebElement("Oferta.buttonEditOferta").Click();
+            //Utils.SearchWebElement("Oferta.buttonEditOferta").Click();
             Thread.Sleep(4000);
 
             Utils.SearchWebElement("Oferta.LabelFechaspestaña").Click();
@@ -2047,9 +2055,8 @@ namespace Lyntia.TestSet.Actions
 
             //Pulsar sobre el segundo registro y editar 
 
-            Thread.Sleep(7000);
-            Utils.SearchWebElement("Producto.SelectLine2").Click();
-            Utils.SearchWebElement("Oferta.buttonEditOferta").Click();
+            /*//Utils.SearchWebElement("Producto.SelectLine2").Click();
+            //Utils.SearchWebElement("Oferta.buttonEditOferta").Click();
             Thread.Sleep(4000);
 
             Utils.SearchWebElement("Oferta.LabelFechaspestaña").Click();
@@ -2069,7 +2076,7 @@ namespace Lyntia.TestSet.Actions
             driver.FindElement(By.XPath("//span[contains(text(), 'El Cliente lo entregará con su propia red')]")).Click();
             Thread.Sleep(3000);
             Utils.SearchWebElement("Oferta.saveAndCloseOferta").Click();
-            Thread.Sleep(7000);
+            Thread.Sleep(7000);*/
         }
         
         public void rellenarCamposNuevoGeneradorFacturacion(string cliente, string nombreServicio)
